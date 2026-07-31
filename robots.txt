@@ -1,2 +1,9 @@
+# Unreleased review draft.
+#
+# Crawling is deliberately ALLOWED so that crawlers can actually read the
+# "noindex, nofollow" meta tag in every page's <head>. Blocking with
+# "Disallow: /" would be counterproductive: a crawler that may not fetch the
+# page never sees the noindex, and Google may then still list the bare URL if
+# it finds a link to it somewhere.
 User-agent: *
-Disallow: /
+Allow: /
