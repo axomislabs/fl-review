@@ -1,0 +1,255 @@
+/* ==========================================================================
+   Fersen & Lohse — capability catalog page
+   ========================================================================== */
+
+.catalog-intro { padding-top: var(--s8); }
+
+/* ------------------------------------------------------------- toolbar -- */
+
+.toolbar {
+  position: sticky;
+  top: 76px;
+  z-index: 40;
+  background: rgba(255, 255, 255, .95);
+  backdrop-filter: saturate(180%) blur(10px);
+  border-block: 1px solid var(--line);
+  padding-block: var(--s4) var(--s3);
+}
+@media (max-width: 900px) { .toolbar { top: 76px; } }
+
+.toolbar__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s4);
+  margin-bottom: var(--s3);
+}
+
+.toolbar__search {
+  position: relative;
+  flex: 1 1 340px;
+  min-width: 0;
+}
+.toolbar__search-icon {
+  position: absolute; left: 15px; top: 50%;
+  transform: translateY(-50%);
+  width: 18px; height: 18px;
+  fill: none; stroke: var(--ink-3); stroke-width: 1.8;
+  pointer-events: none;
+}
+.toolbar__search input {
+  width: 100%;
+  padding: 12px 42px 12px 44px;
+  font: inherit;
+  font-size: var(--fs-sm);
+  color: var(--ink);
+  background: #fff;
+  border: 1.5px solid var(--line-strong);
+  border-radius: var(--radius-pill);
+  transition: border-color .16s ease, box-shadow .16s ease;
+}
+.toolbar__search input:focus {
+  outline: none;
+  border-color: var(--light);
+  box-shadow: 0 0 0 3px var(--light-tint);
+}
+.toolbar__clear {
+  position: absolute; right: 8px; top: 50%;
+  transform: translateY(-50%);
+  width: 30px; height: 30px;
+  border: 0; border-radius: 50%;
+  background: var(--paper-alt);
+  color: var(--ink-2);
+  font-size: 18px; line-height: 1;
+  cursor: pointer;
+}
+.toolbar__clear:hover { background: var(--light-soft); color: var(--deep); }
+
+.toolbar__actions { display: flex; align-items: center; gap: var(--s3); flex-wrap: wrap; }
+.toolbar__count {
+  font-size: var(--fs-sm);
+  font-weight: 650;
+  color: var(--deep);
+  white-space: nowrap;
+  padding-right: var(--s2);
+}
+
+.toolbar__chips {
+  gap: 7px;
+  overflow-x: auto;
+  padding-bottom: var(--s2);
+  scrollbar-width: thin;
+  flex-wrap: wrap;
+}
+.toolbar__chips .chip {
+  cursor: pointer;
+  font-size: var(--fs-xs);
+  padding: 6px 13px;
+  white-space: nowrap;
+  font-family: inherit;
+}
+.chip__n {
+  display: inline-block;
+  margin-left: 5px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--ink-3);
+}
+.chip--active .chip__n { color: rgba(255, 255, 255, .75); }
+.chip[hidden] { display: none; }
+
+@media (max-width: 700px) {
+  .toolbar__chips { flex-wrap: nowrap; }
+  .toolbar__actions { width: 100%; justify-content: space-between; }
+}
+
+/* ------------------------------------------------------------ accordion -- */
+
+.catalog { display: grid; gap: var(--s3); }
+
+.cat {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+  overflow: hidden;
+  transition: border-color .18s ease, box-shadow .18s ease;
+  scroll-margin-top: 190px;
+}
+.cat:hover { border-color: var(--line-strong); }
+.cat[open] { border-color: var(--light); box-shadow: var(--shadow-sm); }
+.cat[hidden] { display: none; }
+
+.cat__summary {
+  display: flex;
+  align-items: center;
+  gap: var(--s4);
+  padding: var(--s5) var(--s6);
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+.cat__summary::-webkit-details-marker { display: none; }
+.cat__summary:hover { background: var(--light-tint); }
+.cat__summary:focus-visible { outline: 3px solid var(--light); outline-offset: -3px; }
+
+.cat__title {
+  flex: 1;
+  font-size: var(--fs-h3);
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  min-width: 0;
+}
+.cat[open] .cat__title { color: var(--deep); }
+
+.cat__count {
+  flex: none;
+  font-size: var(--fs-xs);
+  font-weight: 650;
+  color: var(--deep);
+  background: var(--light-tint);
+  border-radius: var(--radius-pill);
+  padding: 5px 12px;
+  white-space: nowrap;
+}
+
+.cat__chevron {
+  flex: none;
+  width: 11px; height: 11px;
+  border-right: 2px solid var(--ink-3);
+  border-bottom: 2px solid var(--ink-3);
+  transform: rotate(45deg) translate(-2px, -2px);
+  transition: transform .2s ease;
+}
+.cat[open] .cat__chevron {
+  transform: rotate(-135deg) translate(-2px, -2px);
+  border-color: var(--deep);
+}
+
+.cat__body {
+  padding: 0 var(--s6) var(--s6);
+  border-top: 1px solid var(--line);
+  padding-top: var(--s5);
+}
+.cat__blurb {
+  color: var(--ink-2);
+  font-size: var(--fs-sm);
+  max-width: 60ch;
+  margin-bottom: var(--s5);
+}
+
+.cat__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  gap: 2px var(--s5);
+}
+.cat__item {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s3);
+  padding: 9px 0 9px 20px;
+  margin: 0;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+  font-size: var(--fs-sm);
+}
+.cat__item::before {
+  content: "";
+  position: absolute;
+  left: 2px; top: 17px;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--light);
+  opacity: .55;
+}
+.cat__item[hidden] { display: none; }
+.cat__item-name { color: var(--ink); min-width: 0; }
+.cat__item-name mark {
+  background: #ffeaa0;
+  color: inherit;
+  border-radius: 2px;
+  padding: 0 1px;
+}
+.cat__item-cta {
+  flex: none;
+  font-size: var(--fs-xs);
+  font-weight: 650;
+  color: var(--deep);
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity .15s ease;
+  white-space: nowrap;
+}
+.cat__item:hover .cat__item-cta,
+.cat__item-cta:focus-visible { opacity: 1; }
+.cat__item-cta::after { content: " →"; }
+@media (hover: none) { .cat__item-cta { opacity: 1; } }
+
+.cat__empty {
+  font-size: var(--fs-sm);
+  color: var(--ink-3);
+  font-style: italic;
+  margin: 0;
+}
+
+.catalog__empty {
+  text-align: center;
+  color: var(--ink-2);
+  padding: var(--s8) 0;
+}
+.catalog__empty button {
+  background: none; border: 0; cursor: pointer;
+  font: inherit; font-weight: 650; color: var(--deep);
+  padding: 0; margin-left: 6px;
+}
+
+/* highlight the deep-linked domain briefly */
+@keyframes cat-flash {
+  from { box-shadow: 0 0 0 4px var(--light-soft); }
+  to   { box-shadow: 0 0 0 0 rgba(66, 175, 195, 0); }
+}
+.cat--targeted { animation: cat-flash 1.6s ease-out 1; }

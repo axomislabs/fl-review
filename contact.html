@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact — Fersen &amp; Lohse</title>
+<meta name="description" content="Talk to us about an upcoming renewal, a tender or a benchmark. By form, email, phone or WhatsApp.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="assets/img/logo-mark.png">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/review.css">
+</head>
+<body data-page="Contact">
+
+<a class="btn btn--primary skip-link sr-only" href="#main">Skip to content</a>
+
+<!-- ============================================================ HEADER -->
+<header class="site-header" data-review-id="global.header" data-review-label="Header &amp; navigation">
+  <div class="container site-header__inner">
+    <a class="brand" href="index.html">
+      <img src="assets/img/logo-mark.png" alt="">
+      <span>
+        <span class="brand__name">Fersen &amp; Lohse</span>
+        <span class="brand__tag">IT Procurement</span>
+      </span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+      <span></span><span class="sr-only">Menu</span>
+    </button>
+    <nav class="nav" id="primary-nav" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="references.html">References</a>
+      <a href="catalog.html">Catalog</a>
+      <a href="contact.html" aria-current="page">Contact</a>
+      <a class="btn btn--primary btn--sm" href="contact.html">Get in touch</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="pagehead" data-review-id="contact.head" data-review-label="Contact — Page header">
+    <div class="container pagehead__inner">
+      <p class="breadcrumb"><a href="index.html">Home</a> &nbsp;/&nbsp; Contact</p>
+      <span class="eyebrow">Contact</span>
+      <h1>Let's look at your contract together</h1>
+      <p>
+        Tell us what is coming up for renewal, what you are trying to buy, or what you suspect
+        you are overpaying for. The first conversation is free and non-binding.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================ FORM -->
+  <section class="section" data-review-id="contact.form" data-review-label="Contact — Contact form">
+    <div class="container">
+      <div class="grid" style="grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:var(--s8);align-items:start" id="contact-layout">
+
+        <div>
+          <div class="section__head" style="margin-bottom:var(--s5)">
+            <span class="eyebrow">Send an enquiry</span>
+            <h2>Contact form</h2>
+            <p>Fields marked <span class="req">*</span> are required. We reply within
+              <span class="ph">one business day</span>.</p>
+          </div>
+
+          <div class="form-panel">
+            <form id="contact-form" novalidate>
+              <div class="form-grid">
+                <div class="field">
+                  <label for="cf-name">Name <span class="req">*</span></label>
+                  <input type="text" id="cf-name" name="name" required autocomplete="name">
+                  <p class="field__error">Please tell us your name.</p>
+                </div>
+                <div class="field">
+                  <label for="cf-company">Company</label>
+                  <input type="text" id="cf-company" name="company" autocomplete="organization">
+                </div>
+                <div class="field">
+                  <label for="cf-email">Email <span class="req">*</span></label>
+                  <input type="email" id="cf-email" name="email" required autocomplete="email">
+                  <p class="field__error">Please enter a valid email address.</p>
+                </div>
+                <div class="field">
+                  <label for="cf-phone">Phone</label>
+                  <input type="tel" id="cf-phone" name="phone" autocomplete="tel">
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="cf-topic">Area of interest</label>
+                <select id="cf-topic" name="topic">
+                  <option value="">— Please choose —</option>
+                  <option value="General enquiry">General enquiry</option>
+                  <option value="Contract renewal / renegotiation">Contract renewal / renegotiation</option>
+                  <option value="Market price benchmark">Market price benchmark</option>
+                  <option value="Tender / vendor selection">Tender / vendor selection</option>
+                  <optgroup label="Capability domains" id="cf-topic-domains">
+                  <option value="Web Performance &amp; Delivery">Web Performance &amp; Delivery</option>
+                  <option value="Cloud &amp; Platform Operations">Cloud &amp; Platform Operations</option>
+                  <option value="Network &amp; SASE">Network &amp; SASE</option>
+                  <option value="Security &amp; Identity">Security &amp; Identity</option>
+                  <option value="Application &amp; Code Security">Application &amp; Code Security</option>
+                  <option value="FinOps, Risk &amp; Governance">FinOps, Risk &amp; Governance</option>
+                  <option value="Cloud Hosting &amp; Infrastructure">Cloud Hosting &amp; Infrastructure</option>
+                  <option value="Enterprise &amp; SaaS Platforms">Enterprise &amp; SaaS Platforms</option>
+                  <option value="Developer &amp; Edge Platform">Developer &amp; Edge Platform</option>
+                  <option value="Video &amp; Streaming Analytics">Video &amp; Streaming Analytics</option>
+                  </optgroup>
+                </select>
+                <p class="field__hint" id="cf-topic-hint" hidden></p>
+              </div>
+
+              <div class="field">
+                <label for="cf-message">Message <span class="req">*</span></label>
+                <textarea id="cf-message" name="message" required placeholder="Which contract, which vendor, and when does it come up for renewal?"></textarea>
+                <p class="field__error">Please add a short message.</p>
+              </div>
+
+              <div class="field field--check">
+                <input type="checkbox" id="cf-consent" name="consent" required>
+                <label for="cf-consent">
+                  I agree that my details may be used to process my enquiry.
+                  See the <a href="legal.html#privacy">privacy notice</a>. <span class="req">*</span>
+                </label>
+              </div>
+              <p class="field__error" id="cf-consent-error" style="margin:-16px 0 var(--s5)">Please confirm to continue.</p>
+
+              <button type="submit" class="btn btn--primary btn--block">Send enquiry</button>
+
+              <p class="field__hint" style="margin-top:var(--s4);text-align:center">
+                Draft status: no backend is connected yet — submitting opens your email client instead.
+              </p>
+            </form>
+
+            <div class="form-success" id="contact-success" data-visible="false" role="status">
+              <h3>Thank you — your enquiry is ready to send</h3>
+              <p>
+                Because this is a design draft, there is no server behind the form yet. We have
+                opened a pre-filled email in your mail client. If nothing happened, use the
+                button below or write to us directly.
+              </p>
+              <p style="margin-top:var(--s4)">
+                <a class="btn btn--primary btn--sm" href="#" id="contact-mailto-retry">Open email again</a>
+                <button type="button" class="btn btn--ghost btn--sm" id="contact-reset">Edit the enquiry</button>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================================================== CHANNELS -->
+        <aside data-review-id="contact.channels" data-review-label="Contact — Direct channels (phone, WhatsApp, email)">
+          <div class="section__head" style="margin-bottom:var(--s5)">
+            <span class="eyebrow">Direct</span>
+            <h2 style="font-size:var(--fs-h3)">Prefer to talk?</h2>
+          </div>
+
+          <div class="grid" style="gap:var(--s3)">
+            <a class="channel" href="#" data-contact="phone">
+              <span class="channel__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M6 3h3l2 5-2.5 1.5a12 12 0 0 0 5 5L15 12l5 2v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4 5.2 2 2 0 0 1 6 3Z"/></svg>
+              </span>
+              <span>
+                <span class="channel__label">Phone</span>
+                <span class="channel__value ph" data-contact-text="phone">+49 (0) 000 000 000</span>
+              </span>
+            </a>
+
+            <a class="channel" href="#" data-contact="whatsapp">
+              <span class="channel__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.6-1.2A9 9 0 1 0 12 3Z"/><path d="M8.6 9.2c.2 2 2.2 4 4.2 4.2l1-1 2 .9v1.4c-2.6.5-6.9-2.6-7.5-6.5h1.4l.9 1Z"/></svg>
+              </span>
+              <span>
+                <span class="channel__label">WhatsApp</span>
+                <span class="channel__value ph" data-contact-text="whatsapp">Chat with us — number to be supplied</span>
+              </span>
+            </a>
+
+            <a class="channel" href="#" data-contact="email">
+              <span class="channel__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 7 8.5 6 8.5-6"/></svg>
+              </span>
+              <span>
+                <span class="channel__label">Email</span>
+                <span class="channel__value ph" data-contact-text="email">hello@fersen-lohse.de</span>
+              </span>
+            </a>
+
+            <a class="channel" href="#" data-contact="linkedin">
+              <span class="channel__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 0 1 4 0v4"/></svg>
+              </span>
+              <span>
+                <span class="channel__label">LinkedIn</span>
+                <span class="channel__value ph" data-contact-text="linkedin">Company profile — link to be supplied</span>
+              </span>
+            </a>
+
+            <a class="channel" href="#" data-contact="booking">
+              <span class="channel__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+              </span>
+              <span>
+                <span class="channel__label">Book a slot</span>
+                <span class="channel__value ph">30-minute intro call — booking link to be supplied</span>
+              </span>
+            </a>
+          </div>
+
+          <div class="card" style="margin-top:var(--s5);background:var(--paper-alt);padding:var(--s5)">
+            <h3 style="font-size:var(--fs-sm);margin-bottom:var(--s3)">Office hours</h3>
+            <p style="font-size:var(--fs-sm);margin-bottom:var(--s2)">
+              <span class="ph">Mon–Fri, 09:00–18:00 CET</span>
+            </p>
+            <p style="font-size:var(--fs-sm);color:var(--ink-2)">
+              <span class="ph">Street, postcode and city</span><br>
+              <span class="ph">Germany</span>
+            </p>
+          </div>
+
+          <div class="note" style="margin-top:var(--s5)">
+            <span class="note__icon" aria-hidden="true">✎</span>
+            <div>
+              <strong>Placeholders.</strong> Phone number, WhatsApp number, email address,
+              LinkedIn URL, booking link and address are all set in one place —
+              <code>assets/js/site.js</code>, the <code>CONTACT</code> object at the top.
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================= CTA -->
+  <section class="section section--tight cta" data-review-id="contact.cta" data-review-label="Contact — Closing call to action">
+    <div class="container cta__inner">
+      <div>
+        <h2>Renewal in the next six months?</h2>
+        <p>Send us the contract date and the vendor. We will tell you within a week whether there is room to move.</p>
+      </div>
+      <div class="cta__actions">
+        <a class="btn btn--onDark" href="#contact-form">Use the form</a>
+        <a class="btn btn--outlineDark" href="#" data-contact="email">Email us</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================ FOOTER -->
+<footer class="site-footer" data-review-id="global.footer" data-review-label="Footer &amp; imprint links">
+  <div class="container">
+    <div class="site-footer__grid">
+      <div>
+        <a class="brand" href="index.html" style="margin-bottom:var(--s4)">
+          <img src="assets/img/logo-mark.png" alt="">
+          <span>
+            <span class="brand__name">Fersen &amp; Lohse</span>
+            <span class="brand__tag">IT Procurement</span>
+          </span>
+        </a>
+        <p style="max-width:30ch">
+          Independent procurement, benchmarking and contract negotiation for software and
+          technology solutions.
+        </p>
+      </div>
+
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="references.html">References</a></li>
+          <li><a href="catalog.html">Capability catalog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Capabilities</h4>
+        <ul>
+          <li><a href="catalog.html#web-performance-delivery">Web performance &amp; delivery</a></li>
+          <li><a href="catalog.html#network-sase">Network &amp; SASE</a></li>
+          <li><a href="catalog.html#security-identity">Security &amp; identity</a></li>
+          <li><a href="catalog.html#finops-risk-governance">FinOps &amp; governance</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="#" data-contact="email">hello@fersen-lohse.de</a></li>
+          <li><a href="#" data-contact="phone">+49 (0) 000 000 000</a></li>
+          <li><a href="#" data-contact="whatsapp">WhatsApp</a></li>
+          <li><a href="contact.html">Contact form</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> Fersen &amp; Lohse. All rights reserved.</span>
+      <ul>
+        <li><a href="legal.html#imprint">Imprint</a></li>
+        <li><a href="legal.html#privacy">Privacy</a></li>
+        <li><a href="legal.html#imprint">Legal notice</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/site.js"></script>
+<script src="assets/js/review.js"></script>
+</body>
+</html>
