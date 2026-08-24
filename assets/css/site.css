@@ -257,6 +257,19 @@ li + li { margin-top: var(--s2); }
   height: 2px; background: var(--light); border-radius: 2px;
 }
 
+/* Draft-only tab. Sits behind the call to action and is deliberately quieter
+   than the real navigation, so it reads as scaffolding, not as a site page. */
+.nav a.nav__draft:not(.btn) {
+  margin-left: var(--s2);
+  padding-left: var(--s5);
+  border-left: 1px solid var(--line-strong);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--ink-3);
+}
+.nav a.nav__draft:not(.btn):hover { color: var(--deep); }
+.nav a.nav__draft[aria-current="page"] { color: var(--deep); }
+
 .nav-toggle {
   display: none;
   width: 42px; height: 42px;
@@ -288,6 +301,10 @@ li + li { margin-top: var(--s2); }
   .nav a { padding: 13px 0; border-bottom: 1px solid var(--line); font-size: 1rem; }
   .nav a[aria-current="page"]::after { display: none; }
   .nav .btn { margin-top: var(--s4); }
+  .nav a.nav__draft:not(.btn) {
+    margin-left: 0; padding-left: 0; border-left: 0;
+    margin-top: var(--s4); font-size: var(--fs-sm);
+  }
 }
 
 /* --------------------------------------------------------------- hero -- */

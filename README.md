@@ -1,7 +1,7 @@
 # Fersen & Lohse — website draft v1
 
 A first design draft of the website, positioned around **IT Procurement as a Service**.
-Five pages, built from the brand assets and the two source documents in the parent folder.
+Six pages, built from the brand assets and the two source documents in the parent folder.
 
 Everything is static HTML/CSS/JS. **No build step, no server, no external dependencies** —
 double-click `index.html` and it runs. Nothing on any page contacts the internet.
@@ -32,6 +32,7 @@ static host (Netlify, Cloudflare Pages, GitHub Pages, plain web space). It is al
 | `index.html` | Overview: hero, six services, expertise, four-step process, the ten domains, impact figures, references teaser |
 | `references.html` | Client projects (Globe, Weiße Immobilien), the RACI delivery matrix, partner/vendor wall, testimonial |
 | `catalog.html` | All **183 capabilities in 10 domains**, as searchable, foldable accordions |
+| `decisions.html` | **Überarbeitungszyklen** — the decision catalogue: fifteen questions on where the draft should go, answerable in the browser (German, dark layout, see section 4) |
 | `contact.html` | Contact form plus WhatsApp / phone / email / LinkedIn / booking |
 | `legal.html` | Imprint and privacy — skeleton only, see the warning below |
 
@@ -73,7 +74,74 @@ strip the `data-review-id` / `data-review-label` attributes. Nothing else depend
 
 ---
 
-## 4. What still needs to come from you
+## 4. Überarbeitungszyklen — the decision catalogue (`decisions.html`)
+
+The review layer collects remarks paragraph by paragraph. The decision catalogue does the
+opposite: it puts the **fifteen questions where the direction of the site is actually decided**
+on one page — money model, language, the Akamai case, the placeholder figures, a team page,
+which number leads, how much text goes, whether a price is named. Each question shows what
+the website says today next to what the voice message of 24 August says, then offers three to
+six answer options plus a free-text field. Content and interface are German; the audience for
+this page is Miguel and Fredrik, not the end customer.
+
+**It is deliberately set apart from the site.** The tab sits at the far right of the
+navigation, *behind* the Get in touch button and separated by a divider (`nav__draft` in
+`site.css`), and the page itself runs on a dark palette while the other five stay light —
+so nobody mistakes the working layer for a page of the website. The dark values are simply
+site.css's own tokens redefined on `body.dec-page` at the top of `decisions.css`; the
+components underneath are unchanged. Printing switches the whole thing back to ink on white.
+
+**Answering.** Name in the bottom bar, one option per question (question 13 takes several),
+free text wherever an option does not fit. Answers save themselves to `localStorage`
+after half a second — same rule as the review layer, nothing leaves the browser until
+someone exports. The progress bar counts answered questions, the left-hand rail jumps
+between them and marks what is done.
+
+**Dictating instead of typing.** Every free-text field carries a *Diktieren* button that
+uses the browser's built-in speech recognition, set to German. It transcribes continuously,
+appends to whatever is already in the field, and a second click stops it. Only one field
+records at a time.
+
+- Works in Chrome, Edge and Safari. In Firefox the button does not appear at all and the
+  field stays a normal textarea.
+- Needs the hosted version. Opened straight from disk (`file://`) the browser refuses
+  microphone access — the page says so at the top instead of failing on click.
+- **Chrome and Edge send the audio to the browser vendor's speech service for recognition.**
+  Nothing else on this site contacts the internet, so this is worth knowing before the page
+  goes to anyone who cares about it — and worth a line in the privacy notice if the page
+  ever stays up beyond the review.
+- The mechanism sits in `assets/js/dictation.js` and is independent of this page. Wiring the
+  same button into the review layer's comment box later is a small change.
+
+**Getting the answers out of the browser.** *Antworten senden* in the bottom bar opens a sheet
+with five routes:
+
+| Route | What happens |
+|---|---|
+| Per E-Mail senden | Downloads the CSV and opens a pre-filled mail to `martin@axomislabs.com`. The mail asks the sender to attach the CSV, since a browser cannot attach it itself. |
+| Per WhatsApp senden | Opens WhatsApp with all answers as message text, recipient chosen in the app. Text only — a link cannot attach a file, so long answer sets are shortened with a note. |
+| Nur die CSV-Datei herunterladen | `fersen-lohse-entscheidungen-YYYY-MM-DD.csv`, UTF-8 with BOM and a `sep=,` line, so it opens correctly in German and English Excel. Columns: `nr, block, frage, antwort, ergaenzung, beantwortet_von, stand`. This is the file to attach in a WhatsApp chat by hand. |
+| Text kopieren | The whole summary on the clipboard. |
+| Als PDF drucken | Print stylesheet: rail, bottom bar and microphones drop out, cards do not break across pages. |
+
+*Alle Antworten löschen* at the bottom of the sheet clears this browser's answers after a
+confirmation — useful when two people review on the same machine.
+
+**Changing the recipient address:** `assets/js/decisions.js`, `CONFIG.recipient` at the top.
+The WhatsApp route uses `CONTACT.whatsapp` from `assets/js/site.js` once that placeholder is
+replaced; until then it opens WhatsApp without a preselected recipient.
+
+**Editing the questions:** `assets/js/decisions-data.js` holds all fifteen entries with their
+options. Never renumber an `id` — the stored answers hang on it.
+
+**Removing it before going live:** delete `decisions.html`, `assets/css/decisions.css`,
+`assets/js/decisions.js`, `assets/js/decisions-data.js` and `assets/js/dictation.js`, then take
+the *Überarbeitungszyklen* link out of the nav and footer of the other five pages and drop the
+`.nav a.nav__draft` rules from `site.css`. Nothing else depends on them.
+
+---
+
+## 5. What still needs to come from you
 
 Placeholders are **visibly marked in cream/yellow** on the pages, so nothing gets forgotten.
 
@@ -104,20 +172,25 @@ pre-filled email instead. Wiring it up later means one `fetch()` in `assets/js/s
 
 ---
 
-## 5. Structure
+## 6. Structure
 
 ```
 website/
 ├── index.html  references.html  catalog.html  contact.html  legal.html
+├── decisions.html
 ├── README.md
 └── assets/
     ├── css/  site.css        design system: colours, type, layout, components
     │         catalog.css     catalog page only
     │         review.css      review layer only
+    │         decisions.css   decision catalogue only
     ├── js/   site.js         nav, CONTACT config, contact form
     │         catalog.js      search, filter, expand/collapse
     │         catalog-data.js AUTO-GENERATED from the Excel — do not hand-edit
     │         review.js       review layer, CSV + mail export
+    │         decisions.js    decision catalogue: answers, dictation, exports
+    │         decisions-data.js the fifteen questions — edit the wording here
+    │         dictation.js    speech-to-text helper, reusable on any textarea
     ├── fonts/CroissantOne-Regular.ttf
     └── img/  logo-full.png  logo-mark.png  logo-mark-white.png
 ```
@@ -150,7 +223,7 @@ The RACI table on `references.html` comes from Sheet2 of the same workbook.
 
 ---
 
-## 6. Verified
+## 7. Verified
 
 Tested in Chrome via an automated pass (30 checks), from `file://`:
 all five pages load without console errors; catalog search, domain filters, expand/collapse,
@@ -158,3 +231,13 @@ empty state and deep links behave; the contact form prefills from `?topic=` and 
 submits; review comments save, persist across reload, collect across pages, export to a valid
 CSV and produce a correctly grouped mail body (long reviews truncate the mail but keep every
 row in the CSV); no horizontal overflow at 375 px; and no page makes a single external request.
+
+The decision catalogue was tested the same way (52 checks, Chrome via the DevTools protocol):
+all fifteen questions and both question types render and store; answers, name and multi-select
+survive a reload; dictation was driven through a stubbed speech engine — text lands in the
+right field, a second dictation appends instead of overwriting, only one field records at a
+time, and a refused microphone produces a readable message rather than a dead button; the CSV
+carries its BOM and all sixteen rows; the WhatsApp link stays under 2 000 characters; mail,
+print, copy and reset all do what the sheet promises; no console errors on any of the six
+pages; no horizontal overflow at 390 px; the tab is the last item of the navigation on all six
+pages; and the print stylesheet turns the dark page back into ink on white.
