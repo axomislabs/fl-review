@@ -32,7 +32,7 @@ static host (Netlify, Cloudflare Pages, GitHub Pages, plain web space). It is al
 | `index.html` | Overview: hero, six services, expertise, four-step process, the ten domains, impact figures, references teaser |
 | `references.html` | Client projects (Globe, Weiße Immobilien), the RACI delivery matrix, partner/vendor wall, testimonial |
 | `catalog.html` | All **183 capabilities in 10 domains**, as searchable, foldable accordions |
-| `decisions.html` | **Überarbeitungszyklen** — the decision catalogue: fifteen questions on where the draft should go, answerable in the browser (German, dark layout, see section 4) |
+| `decisions.html` | **Überarbeitungszyklen** — the decision catalogue: eighteen questions on where the draft should go, answerable in the browser (German, dark layout, see section 4) |
 | `contact.html` | Contact form plus WhatsApp / phone / email / LinkedIn / booking |
 | `legal.html` | Imprint and privacy — skeleton only, see the warning below |
 
@@ -77,11 +77,17 @@ strip the `data-review-id` / `data-review-label` attributes. Nothing else depend
 ## 4. Überarbeitungszyklen — the decision catalogue (`decisions.html`)
 
 The review layer collects remarks paragraph by paragraph. The decision catalogue does the
-opposite: it puts the **fifteen questions where the direction of the site is actually decided**
+opposite: it puts the **eighteen questions where the direction of the site is actually decided**
 on one page — money model, language, the Akamai case, the placeholder figures, a team page,
 which number leads, how much text goes, whether a price is named. Each question shows what
-the website says today next to what the voice message of 24 August says, then offers three to
-six answer options plus a free-text field. Content and interface are German; the audience for
+the website says today next to what the voice messages of 24 August say, then offers three to
+six answer options plus a free-text field.
+
+Blocks A–D (questions 01–15) come from the two midday voice messages. **Block E (16–18)** was
+added afterwards from the three evening messages, which respond to this draft directly: a
+use-case layer for the buyer, the metrics-driven intake, and whether the dependency analysis
+becomes a second product. It is kept as its own block rather than woven into A–D so the later
+batch stays recognisable as a batch — and so no existing number has to move. Content and interface are German; the audience for
 this page is Miguel and Fredrik, not the end customer.
 
 **It is deliberately set apart from the site.** The tab sits at the far right of the
@@ -131,8 +137,9 @@ confirmation — useful when two people review on the same machine.
 The WhatsApp route uses `CONTACT.whatsapp` from `assets/js/site.js` once that placeholder is
 replaced; until then it opens WhatsApp without a preselected recipient.
 
-**Editing the questions:** `assets/js/decisions-data.js` holds all fifteen entries with their
-options. Never renumber an `id` — the stored answers hang on it.
+**Editing the questions:** `assets/js/decisions-data.js` holds all eighteen entries with their
+options. Never renumber an `id` — the stored answers hang on it. Adding a block means one entry
+in `BLOCKS`; the rail, the progress bar and both exports read their counts from the data.
 
 **Removing it before going live:** delete `decisions.html`, `assets/css/decisions.css`,
 `assets/js/decisions.js`, `assets/js/decisions-data.js` and `assets/js/dictation.js`, then take
@@ -189,7 +196,7 @@ website/
     │         catalog-data.js AUTO-GENERATED from the Excel — do not hand-edit
     │         review.js       review layer, CSV + mail export
     │         decisions.js    decision catalogue: answers, dictation, exports
-    │         decisions-data.js the fifteen questions — edit the wording here
+    │         decisions-data.js the eighteen questions — edit the wording here
     │         dictation.js    speech-to-text helper, reusable on any textarea
     ├── fonts/CroissantOne-Regular.ttf
     └── img/  logo-full.png  logo-mark.png  logo-mark-white.png
@@ -233,11 +240,18 @@ CSV and produce a correctly grouped mail body (long reviews truncate the mail bu
 row in the CSV); no horizontal overflow at 375 px; and no page makes a single external request.
 
 The decision catalogue was tested the same way (52 checks, Chrome via the DevTools protocol):
-all fifteen questions and both question types render and store; answers, name and multi-select
+all questions and both question types render and store; answers, name and multi-select
 survive a reload; dictation was driven through a stubbed speech engine — text lands in the
 right field, a second dictation appends instead of overwriting, only one field records at a
 time, and a refused microphone produces a readable message rather than a dead button; the CSV
-carries its BOM and all sixteen rows; the WhatsApp link stays under 2 000 characters; mail,
-print, copy and reset all do what the sheet promises; no console errors on any of the six
-pages; no horizontal overflow at 390 px; the tab is the last item of the navigation on all six
-pages; and the print stylesheet turns the dark page back into ink on white.
+carries its BOM and one row per question plus the closing row; the WhatsApp link stays under
+2 000 characters; mail, print, copy and reset all do what the sheet promises; no console errors
+on any of the six pages; no horizontal overflow at 390 px; the tab is the last item of the
+navigation on all six pages; and the print stylesheet turns the dark page back into ink on white.
+
+**That run predates Block E.** It covered the catalogue at fifteen questions in four blocks.
+Questions 16–18 were added afterwards and have only been checked statically: the data file
+parses, ids and option values are unique, every entry carries all its fields, and the block is
+registered in `BLOCKS`. Section rendering, the rail, the progress bar and both exports derive
+their grouping and counts from the data, so no code change was needed — but the browser run has
+not been repeated. Worth doing before this goes to Miguel and Fredrik.

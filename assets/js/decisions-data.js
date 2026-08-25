@@ -1,9 +1,14 @@
 /* ==========================================================================
    Fersen & Lohse — decision catalogue, content only
 
-   The fifteen questions where the direction of the website draft is actually
+   The eighteen questions where the direction of the website draft is actually
    decided. Derived from concept.docx, the five pages under website/ and the
-   two voice messages of 24 August 2026.
+   five voice messages of 24 August 2026.
+
+   Questions 01-15 come from the two midday voice messages (Resources/Transkript.md).
+   Block E (16-18) comes from the three evening messages that answer the draft itself
+   (Resources/Transkript-2.md) — kept as its own block on purpose so the later batch
+   stays visible as a batch. Never renumber 01-15 to weave them in.
 
    Content is German on purpose: this page is the internal review layer for
    Miguel and Fredrik, not public site copy.
@@ -195,6 +200,42 @@
         {v:"fix", label:"Ja, Einstiegspreis nennen", hint:"„Benchmark ab 10.000 €.“ Neben dem Ersparnis-Beispiel wird daraus ein sehr starkes Argument."},
         {v:"ab", label:"Nur eine Größenordnung", hint:"„Fünfstellig, abhängig vom Vertragsvolumen“ — Orientierung ohne Festlegung."},
         {v:"kein", label:"Kein Preis", hint:"Alles im Gespräch, wie heute."}
+      ]},
+
+    /* ---------------- BLOCK E ---------------- */
+    { id:"e1", block:"E", n:"16", flag:true,
+      q:"Bekommt die Seite eine Use-Case-Ebene für den Einkäufer?",
+      now:"Die Startseite listet sechs Leistungen aus Anbietersicht — <em>„Sourcing software &amp; technology“</em>, <em>„Running contract negotiations“</em>, <em>„Market price &amp; terms benchmarking“</em> und drei weitere. Was der Einkäufer damit erreicht, muss er sich selbst zusammenreimen.",
+      voice:"<em>„Was wir noch ein bisschen verbessern können, ist: was sind die einzelnen Use Cases für den Einkäufer?“</em> Genannt werden vier: den Status quo challengen und Verhandlungsmacht ins Renewal mitnehmen (<em>„das Hauptding“</em>); die eigene Abhängigkeit vom Vendor bestimmen; herausfinden, wer die besten Player am Markt sind; das eigene Angebot gegen den Markt stellen.",
+      why:"Das ist die zentrale Bitte aus den drei Abendnachrichten — und der einzige Punkt, an dem der Entwurf ausdrücklich als unvollständig bezeichnet wird. Die vier Use Cases beschreiben dieselben Leistungen, nur aus der Sicht dessen, der zahlt. Die Frage ist, ob sie die Startseite gliedern oder neben ihr stehen.",
+      opts:[
+        {v:"leitachse", label:"Ja, als Leitachse der Startseite", hint:"Vier Use Cases gliedern die Seite, die sechs Leistungen ordnen sich als Mittel darunter ein. Der größte Umbau — und die klarste Kundensicht."},
+        {v:"abschnitt", label:"Ja, als eigener Abschnitt", hint:"Ein Use-Case-Block vor den Leistungen, die Leistungsliste bleibt daneben bestehen. Verlangt Disziplin, damit nichts doppelt erzählt wird."},
+        {v:"umformulieren", label:"Nein, die Leistungen aus Kundensicht umschreiben", hint:"Keine neue Ebene, aber jede der sechs Leistungen beginnt mit dem Ergebnis für den Einkäufer statt mit der Tätigkeit."},
+        {v:"nein", label:"Nein, bleibt wie es ist", hint:"Kein Aufwand — geht aber an der ausdrücklichen Rückmeldung vorbei."}
+      ]},
+
+    { id:"e2", block:"E", n:"17", flag:true,
+      q:"Wird der Metriken-Ablauf der Einstieg auf der Kontaktseite?",
+      now:"Ein allgemeines Kontaktformular: Name, Firma, E-Mail, Telefon, Interessengebiet, Nachricht. Dazu <em>„Renewal in the next six months?“</em> und der Hinweis, das erste Gespräch sei kostenlos und unverbindlich.",
+      voice:"<em>„Am besten wäre es so, wenn er quasi sagt, ich möchte das und das challengen, dass wir dann antworten mit: okay, dann brauchen wir folgende Metriken. Und er dann halt eine Quote von uns bekommt.“</em> Direkt danach: <em>„Wie wir das genau machen, weiß ich auch noch nicht.“</em>",
+      why:"Das macht aus dem Kontaktformular einen Qualifizierungsschritt: Der Interessent nennt, was er challengen will, und bekommt die Metrikenliste zurück, die ihr für ein belastbares Vergleichsangebot braucht. Das filtert unernste Anfragen und macht sofort greifbar, wie der Ablauf aussieht — verlangt aber, dass die Metriken je Domäne einmal sauber definiert werden.",
+      opts:[
+        {v:"formular", label:"Ja, als geführtes Formular", hint:"Auswahl der Domäne blendet die passende Metrikenliste ein. Beste Wirkung, meiste Arbeit — und die Metriken müssen vorher feststehen."},
+        {v:"statisch", label:"Ja, aber als statische Liste", hint:"„Das brauchen wir von dir“ als Aufzählung neben dem Formular. Erklärt den Ablauf, ohne Logik zu bauen."},
+        {v:"erklaeren", label:"Nur den Ablauf beschreiben", hint:"Drei Schritte als Text — challengen, Metriken, Angebot. Keine Metriken im Detail, das klärt sich im Gespräch."},
+        {v:"spaeter", label:"Später, erst wenn die Metriken feststehen", hint:"Kontaktseite bleibt vorerst wie sie ist. Ehrlich, solange offen ist, wie das genau laufen soll."}
+      ]},
+
+    { id:"e3", block:"E", n:"18",
+      q:"Wird die Abhängigkeitsanalyse ein zweites, größeres Angebot?",
+      now:"Nicht vorhanden. Migration kommt nur als RACI-Beispiel auf der Referenzseite vor, Abhängigkeit und Wechselkosten tauchen nirgends als Leistung auf.",
+      voice:"<em>„Finde heraus, wie abhängig du bist von deinem aktuellen Vendor. Hol dir Informationen rein, was würde mich eine Migration kosten und zu welchen Marktpreisen könnte ich hingehen — also quasi in einem Projekt und eine komplette ROI-Rechnung dafür.“</em>",
+      why:"Das ist deutlich schwerer als der Benchmark aus Frage 09: ein bezahltes Projekt mit Migrationskostenschätzung und ROI-Rechnung. Damit hättet ihr zwei klar verschiedene Angebote statt sechs gleich schwerer Leistungen — und Frage 12 (ein Prozess oder zwei Pfade) hängt unmittelbar daran.",
+      opts:[
+        {v:"zweitprodukt", label:"Ja, als benanntes zweites Produkt", hint:"Leichter Benchmark als Einstieg, Abhängigkeitsanalyse als Ausbaustufe. Passt zu „zwei Pfade zeigen“ in Frage 12."},
+        {v:"leistung", label:"Ja, aber als eine Leistung unter mehreren", hint:"Wandert in die bestehende Liste, ohne eigene Bühne."},
+        {v:"nein", label:"Nein, Fokus bleibt der Benchmark", hint:"Ein Angebot, klar erzählt. Deckt sich mit „was man immer einfach machen kann, ist das Thema Geldsparung“ aus der Mittagsnachricht."}
       ]}
   ];
 
@@ -202,7 +243,8 @@
     A:{ t:"Block A · Grundsatz", d:"Positionierung — hiervon hängt der Rest ab" },
     B:{ t:"Block B · Beweis", d:"Was belegt, dass es funktioniert" },
     C:{ t:"Block C · Aufbau", d:"Reihenfolge und Gewichtung der Seite" },
-    D:{ t:"Block D · Darstellung", d:"Grafik, Umfang, Preis" }
+    D:{ t:"Block D · Darstellung", d:"Grafik, Umfang, Preis" },
+    E:{ t:"Block E · Nachtrag", d:"Aus den drei Nachrichten vom Abend des 24. August" }
   };
 
   window.FL_DECISIONS = {
