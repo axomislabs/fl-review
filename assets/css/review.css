@@ -127,6 +127,79 @@ body.fl-review-on { padding-right: var(--rail); }
 .fl-pop__actions { display: flex; gap: var(--s2); align-items: center; }
 .fl-pop__hint { font-size: 11px; color: var(--ink-3); margin: var(--s3) 0 0; }
 
+/* ------------------------------------------------------------ dictation -- */
+
+/* The comment can be spoken instead of typed. dictation.js does the speech
+   part and is shared with the working layer, so the button carries the same
+   .wl-mic class in both places — but the look is repeated here rather than
+   imported: workspace.css holds the dark version of it and never loads on
+   the five customer pages.
+
+   .is-live is not carried by colour alone; the button also swaps its label
+   to "Stop" while it records. */
+
+.fl-pop__field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s3);
+  margin-bottom: 6px;
+}
+.fl-pop__field label {
+  font-size: var(--fs-xs);
+  font-weight: 650;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.wl-mic {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 13px 5px 10px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-pill);
+  background: #fff;
+  color: var(--deep);
+  font: inherit;
+  font-size: var(--fs-xs);
+  font-weight: 650;
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease, color .15s ease;
+}
+.wl-mic:hover { background: var(--light-tint); border-color: var(--light); }
+.wl-mic svg {
+  width: 16px; height: 16px;
+  fill: none; stroke: currentColor;
+  stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round;
+}
+.wl-mic.is-live {
+  background: var(--danger);
+  border-color: var(--danger);
+  color: #fff;
+  animation: fl-mic-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes fl-mic-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(163, 55, 44, .45); }
+  50%      { box-shadow: 0 0 0 6px rgba(163, 55, 44, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wl-mic.is-live { animation: none; }
+}
+
+.fl-pop__mic {
+  margin: -4px 0 var(--s3);
+  font-size: 11px;
+  line-height: 1.45;
+  color: var(--ink-3);
+}
+.fl-pop__mic[hidden] { display: none; }
+.fl-pop__mic[data-kind="live"] { color: var(--deep); font-weight: 650; }
+.fl-pop__mic[data-kind="warn"] { color: var(--danger); }
+
 .fl-pop__existing { margin-bottom: var(--s4); display: grid; gap: var(--s2); max-height: 210px; overflow-y: auto; }
 .fl-note {
   background: var(--paper-alt);

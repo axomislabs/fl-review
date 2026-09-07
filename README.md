@@ -18,15 +18,29 @@ from. **On 6 September the plan was reshaped**: the phases are one chart, the ta
 table per phase, and pressing a phase filters the table to it. Same fifty tasks, same
 feedback layer — a different shape. See section 4.
 
-Everything is static HTML/CSS/JS. **No build step, no server, no external dependencies** —
-double-click `index.html` and it runs. Nothing on any page contacts the internet.
+**On 7 September the comment box learned to listen.** The *Diktieren* button that the
+decision catalogue and the project plan already had is now in the review layer's comment box
+too, on all five customer pages — the same `dictation.js`, so feedback can be spoken instead
+of typed. That was task **C7** on the plan. See section 3.
 
-The two working-layer stylesheets and `plan.js` are linked with a version marker
-(`plan.css?v=20260906b`). Browsers cache local files hard, and a reviewer who reloads
-`plan.html` after an edit would otherwise keep the old stylesheet. **Bump the marker whenever
-one of those files changes.** For anything that needs a real origin — dictation, mainly —
-serve the folder instead: `python3 -m http.server 8000 --bind 127.0.0.1` and open
-`http://127.0.0.1:8000/plan.html`.
+**The first review came back through it the same day: nine comments on the home page.** They
+are worked through in section 9 — what each one asked for and what it turned into. Two whole
+sections left the home page as a result (the benchmark case, the three people), so the page
+is shorter than the v2 description in section 2 and 8.
+
+Everything is static HTML/CSS/JS. **No build step, no server, no external dependencies** —
+double-click `index.html` and it runs. No page contacts the internet on its own; the single
+exception is dictation, where the browser hands the audio to its own speech recognition while
+the button is switched on — which is why that has a paragraph in the privacy notice.
+
+The two working-layer stylesheets and `plan.js` carry a version marker
+(`plan.css?v=20260906b`), and since dictation moved into the comment box the review layer
+does too (`review.js?v=20260907`, on all five pages). Browsers cache these files hard, and a
+reviewer who reloads after an edit would otherwise keep the old one — and, now, wonder where
+the microphone went. **Bump the marker whenever one of those files changes.** For anything
+that needs a real origin — dictation, mainly — serve the folder instead:
+`python3 -m http.server 8000 --bind 127.0.0.1`, then open `http://127.0.0.1:8000/index.html`
+for the site or `.../plan.html` for the plan.
 
 ---
 
@@ -51,10 +65,10 @@ static host (Netlify, Cloudflare Pages, GitHub Pages, plain web space). It is al
 
 | File | Purpose |
 |---|---|
-| `index.html` | Hero, the problem, four buyer use cases, six services, the benchmark case, the two named engagements, security exposure, the commercial model, the four-step process, the market map of the ten domains, expertise, the three people, references teaser |
+| `index.html` | Hero with a picture index of the page, the problem, four buyer use cases, six services, the two named engagements, security exposure, the commercial model, the four-step process, the market map of the ten domains, expertise, references teaser |
 | `references.html` | The benchmark case in full, client projects (Globe, Weiße Immobilien), partner/vendor wall, testimonial |
 | `catalog.html` | All **183 capabilities in 10 domains**, as searchable, foldable accordions |
-| `contact.html` | The guided intake — challenge → metrics → quote — plus WhatsApp / phone / email / LinkedIn / booking |
+| `contact.html` | The guided intake — challenge → metrics → quote — plus WhatsApp / phone / email / LinkedIn / booking, and **About us**: the three people, moved here on 7 September |
 | `legal.html` | Imprint and privacy — skeleton only, see the warning below |
 
 Three further pages are the **working layer** — German, dark, `noindex`, and not part of
@@ -75,6 +89,7 @@ The whole point of this draft: the customer can comment on it directly in the br
 
 1. Hovering any section shows a **speech bubble** in the right-hand margin.
 2. Clicking it opens a small box: write the comment, optionally a name, save.
+   The comment can also be **spoken instead of typed** — see below.
 3. A commented section is marked with a teal bar and the bubble shows a counter.
 4. The **Review** button at the bottom right opens a panel listing every comment,
    grouped by page, with jump-to-section and delete.
@@ -87,6 +102,18 @@ The whole point of this draft: the customer can comment on it directly in the br
 
 Notes worth knowing:
 
+- **Dictating a comment.** The comment box carries a *Dictate* button that uses the browser's
+  built-in speech recognition, set to German. It transcribes continuously and appends to
+  whatever is already in the field, so typing and speaking can be mixed; a second click stops
+  it, and the button reads *Stop* while it records. It is the same mechanism the working layer
+  uses (`assets/js/dictation.js`), now loaded on the five customer pages as well.
+  - Chrome, Edge and Safari only. In Firefox the button is not rendered and the box stays a
+    normal textarea.
+  - It needs the hosted version. Opened from `file://` the browser refuses the microphone, and
+    the box says so before anyone clicks.
+  - **Chrome and Edge send the audio to the browser vendor's speech service.** It is the only
+    outside connection this site can cause, and it is now on pages a customer sees — so it has
+    its own paragraph in the privacy notice on `legal.html`.
 - Comments are stored in the customer's **own browser** (`localStorage`) and are collected
   **across all five pages**. They survive reloads and closing the tab. Nothing is
   transmitted until the customer actively exports.
@@ -95,13 +122,16 @@ Notes worth knowing:
   view the site clean. A small **Review** tab on the right brings it back.
 - The CSV opens correctly in both German and English Excel (UTF-8 BOM + `sep=,` line).
   Columns: `page, section_id, section_label, comment, author, created_at, url`.
-- 43 sections are commentable across the five pages (36 before the v2 rework).
+- 42 sections are commentable across the five pages (36 before the v2 rework, 43 before the
+  home page lost two sections and the contact page gained one on 7 September).
 
 **Changing the recipient address:** `assets/js/review.js`, `CONFIG.recipient` at the top.
 
 **Removing the review layer** before going live: delete `assets/css/review.css` and
-`assets/js/review.js`, remove the two `<link>`/`<script>` lines from each page, and (optionally)
-strip the `data-review-id` / `data-review-label` attributes. Nothing else depends on them.
+`assets/js/review.js`, remove the `<link>` and the two `<script>` lines (`dictation.js` and
+`review.js`) from each page, and (optionally) strip the `data-review-id` /
+`data-review-label` attributes. Nothing else depends on them — `dictation.js` is only there
+for the comment box, the working layer loads its own copy.
 
 ---
 
@@ -323,8 +353,9 @@ records at a time.
   Nothing else on this site contacts the internet, so this is worth knowing before the page
   goes to anyone who cares about it — and worth a line in the privacy notice if the page
   ever stays up beyond the review.
-- The mechanism sits in `assets/js/dictation.js` and is independent of this page. Wiring the
-  same button into the review layer's comment box later is a small change.
+- The mechanism sits in `assets/js/dictation.js` and is independent of this page. **It is now
+  wired into the review layer's comment box as well** — same helper, same button, English
+  labels there because that panel is English. See section 3.
 
 **Getting the answers out of the browser.** *Antworten senden* in the bottom bar opens a sheet
 with five routes. **The mail and WhatsApp routes used to lose content — see section 4.4.**
@@ -424,7 +455,9 @@ The two lists are kept in step by hand; if one changes, change the other.
   A success share plus compensation from the delivery side is a defensible model, but in
   Germany advertising advice as independent while taking undisclosed vendor-side compensation
   is attackable as misleading. The disclosure wording and the percentage itself need a lawyer
-  before launch. The percentage is not named anywhere yet.
+  before launch. The percentage is not named anywhere yet. The picture now in that band
+  shows an illustrative € 500,000 → € 380,000 example; those figures are invented and need
+  the same check, or wording that says so plainly. The on-page note covers this for now.
 - **The ten metric lists.** `assets/js/site.js`, the `METRICS` object. They are a first draft
   derived from the capability catalog and decide whether an enquiry arrives usable. One pass
   through them, please.
@@ -443,6 +476,37 @@ The two lists are kept in step by hand; if one changes, change the other.
   Logo usage should be checked against each vendor's brand guidelines.
 - The scope of the *Security exposure review*: what is inside it, who delivers it, how it is
   priced. It is named on the site as a service but not yet defined.
+- **High-resolution versions of the six home-page pictures.** `assets/img/visual-*.webp` are
+  placeholders cut out of the two six-panel sheets, so each one is only about 500 px — sharp
+  at tile size, soft much above that, and not good enough for the full-width band in the
+  *How we are paid* section, which is held back to 760 px by `is-placeholder` until they are.
+
+  **What must survive regeneration, and what must not.** The headline, the sub-line and any
+  corner claim are branding and belong in HTML — they are already there, and the four pictures
+  that arrived with them burnt in have been retouched so the overlay sits in the space the
+  original type occupied. What must stay in the file are the labels: the leader lines on the
+  exploded contract and the € 120,000 printed on it, the two feature lists with `OFFER A` /
+  `OFFER B`, the `PRODUCT / MODEL / PRICE / Δ (3M)` columns, and `Before / Savings / After`
+  with `Our fee (from savings)`. So the brief for each regenerated picture is: **the diagram
+  and its labels, no headline, no sub-line, no claim, no logo.**
+
+  Also at regeneration: set the label type **larger than looks right at full size**. It has to
+  survive being shown about 350 px wide on a phone, which is where these currently sit at the
+  edge of legibility — a type-size problem, not a resolution one, and more pixels alone will
+  not fix it. Pull the red and green accents towards the brand teal where the colour is only
+  decorative. On the market board, the Δ column sits about half a row high against the product
+  names, so the first value lines up with the column header rather than with
+  *Cloud Infrastructure* — worth straightening.
+
+  `SAME GOALS. A STRONGER TOMORROW.`, `BEYOND THE PRICE. A STRONGER TOMORROW.` and
+  `STAY AHEAD. BUY SMARTER.` appear in the generated versions but are not ratified taglines —
+  they are in no decision, transcript or brief. They have been painted out and are not on the
+  site. Two of the six show a person, and both are men — worth a deliberate look.
+
+  Note that putting pictures on the home page at all settles part of **B7 *Bild- und
+  Iconsprache*** ahead of its phase and ahead of **B2**, its stated prerequisite. Decision 13
+  had picked only the market map, and *"no graphics, stay purely typographic"* was on the
+  table. `plan.html` records this against B7; icons and diagram style are still open.
 
 **Contact details** — all in one place, `assets/js/site.js`, the `CONTACT` object at the top:
 email, phone (display + `tel:` format), WhatsApp number, LinkedIn URL, booking link.
@@ -477,15 +541,17 @@ website/
     ├── js/   site.js         nav, CONTACT config, contact form
     │         catalog.js      search, filter, expand/collapse
     │         catalog-data.js AUTO-GENERATED from the Excel — do not hand-edit
-    │         review.js       review layer, CSV + mail export
+    │         review.js       review layer: comments, dictation, CSV + mail export
     │         handoff.js      CSV / mail / WhatsApp / clipboard, and the length
     │                         budgeting both working pages depend on — see 4.4
     │         plan.js         project plan: chart, filters, feedback, exports
     │         decisions.js    decision catalogue: answers, dictation, exports
     │         decisions-data.js the eighteen questions — edit the wording here
-    │         dictation.js    speech-to-text helper, reusable on any textarea
+    │         dictation.js    speech-to-text helper, on any textarea: the comment
+    │                         box, the decision catalogue, the plan
     ├── fonts/CroissantOne-Regular.ttf
     └── img/  logo-full.png  logo-mark.png  logo-mark-white.png
+              visual-*.webp   the six home-page pictures (placeholders, 500 px)
 ```
 
 ### Corporate design
@@ -507,10 +573,57 @@ One hue, monotone lightness, the light end still clearing the white surface, and
 two light steps against white on the three dark ones so every label passes 4.5:1. Area, not
 colour, carries the number, and every tile is labelled — the ramp only reinforces it.
 
-**Croissant One** (the font of the logo wordmark) is self-hosted and used for the wordmark,
-the hero headline and the large figures. Everything else uses the system sans, which stays
-readable at paragraph size. The lotus mark reappears as a large, faint watermark in the
-dark bands.
+**Croissant One** (the font of the logo wordmark) is self-hosted and used for exactly three
+things: the wordmark, the hero headline and the large figures (stat tiles, step numbers, case
+results). Everything else — every section title, every card title, the picture headlines and the
+claim lines — uses the system sans, which stays readable at paragraph size.
+
+The line is deliberate and worth keeping: Croissant One is a display face with a single weight
+(400), so it neither reads at paragraph size nor takes a real bold. It marks *the brand and the
+numbers*, never a heading level. Picture headlines and claim lines used to be set in it too, but
+they sit at almost the same size as a neighbouring `<h2>` and in the same section — two fonts on
+one hierarchy level read as an accident, not as a system, so they moved to the sans at weight 650.
+
+The lotus mark reappears as a large, faint watermark in the dark bands.
+
+**Pictures** go through one template, `.visual` in `site.css`. Three variants: `--split`
+(picture beside prose, sides alternating down the page), `--banner` (one picture carrying a
+statement across the column) and `--tile` (for a row of parallel pictures). Pictures are
+**never cropped** — `object-fit: cover` is deliberately not used, because these carry labels
+hard against the edge of the frame and cover would quietly cut the part that makes them mean
+anything. The file's own proportions decide the height.
+
+The rule the template exists to enforce is the line between *headline* and *labels*:
+
+- The **headline, the sub-line and the mark are HTML** — `.visual__title`, `.visual__sub` and
+  `.visual__brand` inside `.visual__overlay`. Burnt into a file they could not be edited,
+  translated, searched or set at a readable size on a phone. `--onDark` / `--onLight` set the
+  tone, `data-anchor` picks the corner, and `--tw` / `--sw` narrow the two text blocks per
+  picture where the quiet part of that photograph is narrow. An `<em>` inside the title takes
+  the accent colour, which is how the two-tone headlines of the original artwork are rebuilt.
+  The mark normally sits in the corner opposite the text; `data-brand` overrides that where
+  the picture already has something there — on the two glass cases, `OFFER A` and `OFFER B`
+  occupy both bottom corners, so the mark goes up beside the headline.
+- The **explanatory labels stay in the picture.** They are the argument it is making, not
+  decoration: the leader lines on the exploded contract, the two feature lists on the glass
+  cases, the `PRODUCT / MODEL / PRICE / Δ (3M)` columns on the market board,
+  `Before / Savings / After` under the three blocks. Strip those and nothing is left but a
+  photograph — three blocks with numbers and no labels say nothing at all.
+
+The four pictures that arrived with their headline burnt in were **retouched**, not cropped:
+the headline, sub-line and corner claim were painted out and the space they occupied left
+intact, so the HTML overlay sits exactly where the original type did. The fill interpolates
+each column between the clean pixels above and below the erased area, which reproduces these
+flat and smoothly graded backgrounds exactly; on the exploded contract it fills downward only,
+because interpolating towards the bright edge of the paper smears a plume of light up through
+the background. That is a placeholder technique — regeneration replaces these files.
+
+The wash rides on the overlay rather than on the picture, and clears by 46 % of the height, so
+it protects the text without greying out the diagram beneath. A picture used without a line of
+text keeps its full contrast: the security one is the only one used that way, because the
+headline beside it already says the line and its own printed detail is the point. All six
+carry the lotus mark. Where the overlay is used, contrast is measured on the rendered page by
+diffing against a text-hidden render rather than assumed — currently 5.9:1 at worst.
 
 ### Updating the catalog
 
@@ -622,9 +735,35 @@ opens with five routes and still locks the body, and the plan gets the same furn
 the same file. Dictation correctly refuses from `file://` on both pages and each says why
 instead of leaving a silent gap.
 
-Not re-run since v1: the dictation stub and the review-layer CSV/mail export. The review
-layer was not touched. Dictation was: `decisions.js` now emits the shared `.wl-mic` class,
-which is exercised, but the stubbed speech engine has not been run again.
+**Dictation in the comment box was tested the same way** — headless Chrome over the DevTools
+protocol, 50 assertions, the site served over `http://` so the microphone is not blocked for
+the wrong reason, and a stubbed speech engine standing in for the real one:
+
+- All five customer pages load `dictation.js` and `review.js` without console errors, and each
+  one has the button in its comment box.
+- The recogniser is started with the settings it is supposed to have (German, continuous,
+  interim results). While it runs the button carries `is-live`, `aria-pressed="true"` **and the
+  word *Stop***, so the state is never colour alone.
+- Spoken text lands in the field; a second sentence appends rather than overwrites; and
+  dictation appends to text that was typed by hand instead of replacing it.
+- **The four moments that would otherwise paste old text back into an emptied field are each
+  asserted**: saving a comment, opening another section's box, closing the popover, and loading
+  an existing comment to edit all stop the recogniser first. This is the one real bug the
+  wiring can have — dictation remembers the field's content from when it started.
+- A refused microphone produces a readable English line and a button that still works
+  afterwards, not a dead one.
+- The Firefox case is produced deliberately (both engines deleted, `blocked()` returns
+  `unsupported`): no button is rendered, the box still saves a typed comment, and its label
+  stays on the textarea.
+- From `file://` the button stays visible, says why it cannot work **before** it is clicked, and
+  starts no recogniser when it is.
+- Layout: the box still fits a 390 px phone with the mic row in it, the row does not widen the
+  popover, no horizontal overflow, and in print the whole review layer including the mic is
+  gone. The new `?v=` markers were checked from `file://` as well — a query string on a local
+  stylesheet is exactly the kind of thing that silently does not load.
+
+Not re-run since v1: the review-layer CSV/mail export beyond the one save-and-store path the
+dictation pass exercises.
 
 ---
 
@@ -638,10 +777,10 @@ The short version:
 | 01 | Vendor-financed, free for the client | New dark *How we are paid* band; the "no referral fee" claim is gone from home and references |
 | 02 | Take GlobalDots out entirely | Removed from both vendor walls; the whole RACI delivery section is gone from `references.html` |
 | 03 | English stays | No change |
-| 04 | Tell the case, anonymised | Case on the home page with a before/after figure, in full on `references.html` |
+| 04 | Tell the case, anonymised | In full on `references.html`. The home page carried it too until the 7 September review took it off as a duplicate — section 9 |
 | 05 | Figures out, the case instead | The `XX` impact tiles and the two `XX` hero facts are gone |
 | 06 | Copy and releases are coming | Both client cards stay; the note now says what is coming |
-| 07 | A team presence, slim | *Who you are actually working with* — three short profiles, no photos, no sixth page |
+| 07 | A team presence, slim | *Who you are actually working with* — three short profiles, no photos, no sixth page. On `contact.html` since 7 September, not on the home page — section 9 |
 | 08 | The problem first, compact | A narrow band under the hero with the 95 % claim and three points |
 | 09 | The benchmark stays one of six | The card is reworded and leads the list; it also appears as the entry engagement |
 | 10 | 183 stays in front | Unchanged; the ~120 vendors join as the third hero figure |
@@ -652,7 +791,7 @@ The short version:
 | 15 | No price, make it a strength | *There is no price list. Your success is our success* |
 | 16 | Use cases as their own section | *Four things you can actually do with us* |
 | 17 | A guided metrics form | The contact page is now challenge → metrics → quote |
-| 18 | The dependency analysis as a second product | *Two ways in*, with the ROI analysis named beside the benchmark |
+| 18 | The dependency analysis as a second product | *Initial benchmark versus actual project*, with the ROI analysis named beside the benchmark (retitled 7 September) |
 
 Two judgement calls worth knowing about, both flagged on the decision page itself:
 
@@ -663,3 +802,69 @@ Two judgement calls worth knowing about, both flagged on the decision page itsel
   RACI example" and named the cost. An anonymised version — *Client · Platform vendor ·
   Integration partner · Carrier* — would keep the delivery argument without the name, and the
   CSS for it is still in place.
+
+---
+
+## 9. The home-page review of 7 September
+
+Nine comments, dictated into the comment box the same morning it was built, exported through
+*Send feedback*. What each one asked for and what it became:
+
+| # | Section | The comment | What was done |
+|---|---|---|---|
+| 1 | Hero | An overview of the pictures, small, clickable, and it has to survive the strong turquoise | Six cards, **in the right-hand column beside the pitch** — the claim on the left, what the page holds on the right. Each card carries a short line laid over the picture and a caption underneath; the line over the picture is a hint, not the section's headline, because the full sentence is unreadable at 180 px. **Renamed on 8 September** so the page reads as benefits rather than as descriptions: the
+captions are now *The challenge · Your benefits · What we do · Security exposure · Our pricing
+model · Why us*, and the market card's line over the picture became *Procurement expertise*.
+**The sections were pulled along**: the eyebrows of the problem, use-case and commercial-model
+sections now read *The challenge*, *Your benefits* and *Our pricing model* too. Two places in
+the working layer still name the old ones — the jump links on `decisions.html` (*Startseite ·
+How we are paid*, *· Why this is hard*, *· For the buyer*) and task A9 on `plan.html`, which
+calls the band *How we are paid*. Both are records of what was decided in cycle 1, so they
+were left alone; the three link labels are worth updating if that page is still used as a map
+of the site. The photographs are desaturated and dimmed against the teal and come up to full colour on hover. Below 1080 px the cards drop under the pitch, three across, two on a phone. *(First built as a thumbnail strip under the hero facts; moved and given the overlays after the follow-up on 7 September.)* |
+| 2 | Use cases | The four points look disordered; the *the main one* chip distorts the format; two columns, or drop the chip, or one row | All four in one row, chip gone. They keep their numbers and get a rule each, so the row reads as one band. **No connector line between them** — they are alternatives, not stages, and a connector would promise a sequence that is not there. The intro already says most engagements start with the first |
+| 3 | Services | The area behind the text reaches into the middle of the picture and is too conspicuous — crop it tighter | The wash is no longer the size of the picture. It is the size of its own text block, and it fades on two axes: a vertical gradient for the paint, a horizontal mask for how far across it carries. On the market picture it now stops before the price board instead of washing the whole top of the frame |
+| 4 | Benchmark case | Already on the references page — take it off the home page | The whole section is gone from `index.html`. It stands in full on `references.html`, where it was already told with more detail |
+| 5 | Engagements | *Two ways in — one of them very small* sounds generated; and the second card is the same colour as the band behind it | Retitled **Initial benchmark versus actual project**. The second card was filled with `--light-tint`, which is exactly the colour of the tinted section — it now has the same white surface as the first, a brand-coloured edge and a filled tag |
+| 6 | Security | The text overlay is missing on this picture — check the initial version | Added, in the words the original artwork carried: *Overpaying hits the budget. Exposure hits later.* / *We help you see both.* Anchored bottom-left, over the quiet part of the desk, so the two documents stay readable |
+| 7 | Commercial model | Big headline, no subtext, an oversized picture and no air before the three points | The picture moved beside the lead, the way the two sections above are built, at half the width. A subtext line was added under the lead, and the three points get a full band of space |
+| 8 | The people | Does not belong on the home page — put it with contact and about | Moved to `contact.html` as **About us** (`#about`), with a jump link in the page header and an entry in every footer. The page introduces itself as *Contact & about* |
+| 9 | References teaser | The case is a reference and belongs on the references page | The *Mexican retail group* card is gone from the teaser; the teaser now points at the case rather than repeating it |
+
+**A tenth thing came out of the same round: the smeared corner of the market picture.** The
+six pictures were prepared by painting the burnt-in headline and strapline out of the
+generated artwork. On five of them that was clean. On `visual-market-moved.webp` the retouch
+was a wide vertical smear: it took *STAY AHEAD. BUY SMARTER.* but also half the vendor quote
+and the whole right-hand background — the washed patch beside the lotus that the review kept
+pointing at. It is repaired from the original generation, which is still in the parent folder
+as `Resources/Pictures/ChatGPT Image 7. Sept. 2026, 11_42_57.png` (a 3×2 contact sheet, this
+is the top-right tile): the tile was aligned to the shipped crop by a scale-and-offset search,
+the strapline alone was removed by diffusing the surrounding bokeh into it, the tone was
+matched on a strip both still share, and the result was grafted back with a feathered edge.
+The document reads *VENDOR QUOTE* again. **The other five were checked the same way and are
+untouched** — two of them were cropped rather than retouched, which is why their alignment
+scores look wrong.
+
+**One consequence worth stating plainly:** with 4 and 9 both done, the €1.5m saving no longer
+appears anywhere on the home page. The proof is one click away on `references.html` and the
+teaser leads there, but the home page itself no longer carries a number that a sceptical
+reader can weigh. That was the explicit instruction twice over; it is one paragraph to put
+back if the effect is not what was wanted.
+
+**Checked after the change**, headless Chrome at 390, 768, 1280 and 1600 px — 80 assertions:
+
+- No console errors on any page, and no horizontal overflow at any of the four widths.
+- Every jump link in the hero cards resolves to a section that exists on the page, and each
+  card shows the same picture that section shows.
+- Every card carries both lines, they say different things, and neither is clipped. The cards
+  sit beside the pitch at 1280 px and under it at 900 px.
+- The white lines over the six hero cards were measured against the band under them: the
+  weakest is 5.0:1 against a 4.5:1 requirement.
+- The text over the six pictures was measured rather than judged: the glyph boxes were
+  photographed with the letters made transparent, and the pixels behind them read back as
+  contrast ratios. At 768, 1280 and 1600 px every line clears its threshold — the worst
+  pixel anywhere is 6.8:1 against a 4.5:1 requirement.
+- **The phone width was checked by eye, not by that measurement.** The clipped screenshot the
+  harness uses comes back shifted by a few dozen pixels at 390 px, which lands the sample on
+  the wrong part of the photograph; the computed styles and a plain screenshot both show the
+  wash where it belongs, so this is a limit of the measurement, not a finding about the page.

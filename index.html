@@ -8,7 +8,7 @@
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="assets/img/logo-mark.png">
 <link rel="stylesheet" href="assets/css/site.css">
-<link rel="stylesheet" href="assets/css/review.css">
+<link rel="stylesheet" href="assets/css/review.css?v=20260907">
 </head>
 <body data-page="Home">
 
@@ -50,32 +50,104 @@
   <!-- Decision 01/15: the money model leads instead of the independence claim. -->
   <section class="hero" id="rev-home-hero" data-review-id="home.hero" data-review-label="Home — Hero">
     <div class="container hero__inner">
-      <span class="hero__eyebrow">No fixed fees · Paid from what you save</span>
-      <h1>IT&nbsp;Procurement <em>as a Service</em></h1>
-      <p class="hero__sub">
-        We source, benchmark and negotiate software and technology contracts on your behalf.
-        After years on both sides of the table we know which prices are actually market rate,
-        which terms are realistically negotiable — and where the fine print will cost you later.
-        You carry no fee for finding out.
-      </p>
-      <div class="hero__actions">
-        <a class="btn btn--onDark" href="contact.html">Benchmark a contract</a>
-        <a class="btn btn--outlineDark" href="catalog.html">Browse 183 capabilities</a>
+      <div class="hero__pitch">
+        <span class="hero__eyebrow">No fixed fees &middot; Paid from what you save</span>
+        <h1>IT&nbsp;Procurement <em>as a Service</em></h1>
+        <p class="hero__sub">
+          We source, benchmark and negotiate software and technology contracts on your behalf.
+          After years on both sides of the table we know which prices are actually market rate,
+          which terms are realistically negotiable — and where the fine print will cost you later.
+          You carry no fee for finding out.
+        </p>
+        <div class="hero__actions">
+          <a class="btn btn--onDark" href="contact.html">Benchmark a contract</a>
+          <a class="btn btn--outlineDark" href="catalog.html">Browse 183 capabilities</a>
+        </div>
+        <div class="hero__facts">
+          <div class="hero__fact">
+            <strong>183</strong>
+            <span>Capabilities sourced</span>
+          </div>
+          <div class="hero__fact">
+            <strong>10</strong>
+            <span>Technology domains</span>
+          </div>
+          <div class="hero__fact">
+            <strong>~120</strong>
+            <span>Vendors we can quote from</span>
+          </div>
+        </div>
       </div>
-      <div class="hero__facts">
-        <div class="hero__fact">
-          <strong>183</strong>
-          <span>Capabilities sourced</span>
-        </div>
-        <div class="hero__fact">
-          <strong>10</strong>
-          <span>Technology domains</span>
-        </div>
-        <div class="hero__fact">
-          <strong>~120</strong>
-          <span>Vendors we can quote from</span>
-        </div>
-      </div>
+
+      <!-- The six sections that carry a picture, beside the pitch rather than
+           under it: you read the claim on the left and see what the page holds
+           on the right. Each card says its own half-sentence over the picture
+           and names its section underneath. -->
+      <nav class="hero__tour" aria-label="What is on this page">
+        <p class="hero__tour-head">What is on this page</p>
+        <ul class="tour">
+          <li>
+            <a class="tour__link" href="#rev-home-problem">
+              <span class="tour__shot">
+                <img class="tour__img" src="assets/img/visual-price-layers.webp" alt=""
+                     width="504" height="511" loading="lazy" decoding="async">
+                <span class="tour__over">The price is the easy part</span>
+              </span>
+              <span class="tour__label">The challenge</span>
+            </a>
+          </li>
+          <li>
+            <a class="tour__link" href="#rev-home-usecases">
+              <span class="tour__shot">
+                <img class="tour__img" src="assets/img/visual-same-price.webp" alt=""
+                     width="501" height="511" loading="lazy" decoding="async">
+                <span class="tour__over">Same price. Different deal.</span>
+              </span>
+              <span class="tour__label">Your benefits</span>
+            </a>
+          </li>
+          <li>
+            <a class="tour__link" href="#rev-home-services">
+              <span class="tour__shot">
+                <img class="tour__img" src="assets/img/visual-market-moved.webp" alt=""
+                     width="505" height="511" loading="lazy" decoding="async">
+                <span class="tour__over">Procurement expertise</span>
+              </span>
+              <span class="tour__label">What we do</span>
+            </a>
+          </li>
+          <li>
+            <a class="tour__link" href="#rev-home-security">
+              <span class="tour__shot">
+                <img class="tour__img" src="assets/img/visual-hidden-exposure.webp" alt=""
+                     width="500" height="500" loading="lazy" decoding="async">
+                <span class="tour__over">Exposure hits later</span>
+              </span>
+              <span class="tour__label">Security exposure</span>
+            </a>
+          </li>
+          <li>
+            <a class="tour__link" href="#rev-home-model">
+              <span class="tour__shot">
+                <img class="tour__img" src="assets/img/visual-savings-share.webp" alt=""
+                     width="505" height="498" loading="lazy" decoding="async">
+                <span class="tour__over">Paid from what you save</span>
+              </span>
+              <span class="tour__label">Our pricing model</span>
+            </a>
+          </li>
+          <li>
+            <a class="tour__link" href="#rev-home-why">
+              <span class="tour__shot">
+                <img class="tour__img" src="assets/img/visual-experience-gap.webp" alt=""
+                     width="500" height="500" loading="lazy" decoding="async">
+                <span class="tour__over">You&rsquo;ve seen only one deal</span>
+              </span>
+              <span class="tour__label">Why us</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
   </section>
 
@@ -85,7 +157,7 @@
     <div class="container">
       <div class="problem">
         <div>
-          <span class="eyebrow">Why this is hard</span>
+          <span class="eyebrow">The challenge</span>
           <p class="problem__claim">
             In our assessment, around 95&nbsp;% of companies are making avoidable mistakes in
             what they buy — either paying well over the market, or leaving holes open.
@@ -96,7 +168,22 @@
             market moves faster than any single buyer can stay current with.
           </p>
         </div>
-        <ul class="problem__points">
+
+        <figure class="visual visual--onDark" data-anchor="top-left">
+          <div class="visual__media">
+            <img class="visual__img" src="assets/img/visual-price-layers.webp"
+                 width="504" height="511" loading="lazy" decoding="async"
+                 alt="A software agreement showing € 120,000 a year, lifted clear of a stack of transparent layers. Each layer is labelled with something the price is really covering: features and scope, architecture, usage limits, integrations, security and compliance, SLA and support, data ownership, renewal terms, exit options, total cost of ownership.">
+            <div class="visual__overlay">
+              <p class="visual__title">The price is the easy part.</p>
+              <p class="visual__sub">What you&rsquo;re actually buying sits underneath it.</p>
+            </div>
+            <img class="visual__brand" src="assets/img/logo-mark-white.png" alt="" aria-hidden="true">
+          </div>
+        </figure>
+      </div>
+
+      <ul class="problem__points problem__points--row">
           <li>
             <strong>It is a technical purchase before it is a commercial one</strong>
             You cannot negotiate a contract you cannot read. Comparing two offers means
@@ -113,8 +200,8 @@
             Paying too much is visible in a budget. Being exposed is not — which is why it
             usually goes unpriced until it is expensive.
           </li>
-        </ul>
-      </div>
+      </ul>
+
       <div class="note" style="margin-top:var(--s6)">
         <span class="note__icon" aria-hidden="true">✎</span>
         <div>
@@ -131,17 +218,32 @@
   <!-- Decision 16: a use-case layer for the buyer, as its own section. -->
   <section class="section" id="rev-home-usecases" data-review-id="home.usecases" data-review-label="Home — Use cases for the buyer">
     <div class="container">
-      <div class="section__head">
-        <span class="eyebrow">For the buyer</span>
-        <h2>Four things you can actually do with us</h2>
-        <p class="lead">
-          Same work, described from the side of the person who pays for it. Most engagements
-          start with the first one.
-        </p>
+      <div class="visual visual--split visual--first visual--onLight"
+           data-anchor="top-left" data-brand="top-right">
+        <div class="visual__body">
+          <div class="section__head" style="margin-bottom:0">
+            <span class="eyebrow">Your benefits</span>
+            <h2>Four things you can actually do with us</h2>
+            <p class="lead">
+              Same work, described from the side of the person who pays for it. Most engagements
+              start with the first one.
+            </p>
+          </div>
+        </div>
+        <div class="visual__media">
+          <img class="visual__img" src="assets/img/visual-same-price.webp"
+               width="501" height="511" loading="lazy" decoding="async"
+               alt="Two glass cases of hardware, each sealed under a contract reading € 120,000 a year. Offer A is orderly and ticked off — unlimited users, full API access, global deployment, advanced security, SLA 99.9 %, flexible terms — and builds your options. Offer B is tangled and flagged with warnings — limited users, API limits, regional only, basic security, SLA 99.0 %, rigid terms — and creates future costs.">
+          <div class="visual__overlay">
+            <p class="visual__title">Same price. <em>Different deal.</em></p>
+            <p class="visual__sub">Two contracts. Same number. A very different reality.</p>
+          </div>
+          <img class="visual__brand" src="assets/img/logo-mark.png" alt="" aria-hidden="true">
+        </div>
       </div>
 
-      <div class="grid grid--2">
-        <article class="usecase usecase--lead">
+      <div class="grid grid--4 usecases">
+        <article class="usecase">
           <span class="usecase__n" aria-hidden="true">01</span>
           <h3>Challenge your status quo</h3>
           <p>
@@ -192,14 +294,29 @@
   <!-- Decision 09: the benchmark stays one of six, but is stated far more clearly. -->
   <section class="section section--alt" id="rev-home-services" data-review-id="home.services" data-review-label="Home — What we do (services)">
     <div class="container">
-      <div class="section__head">
-        <span class="eyebrow">What we do</span>
-        <h2>Procurement expertise you would otherwise have to hire</h2>
-        <p class="lead">
-          We support companies in the selection, procurement and negotiation of software and
-          technology solutions — either as a complete outsourced procurement function, or
-          alongside your existing team for a single strategic deal.
-        </p>
+      <div class="visual visual--split visual--onDark" data-anchor="top-left"
+           style="--tw:20ch;--sw:20ch">
+        <div class="visual__body">
+          <div class="section__head" style="margin-bottom:0">
+            <span class="eyebrow">What we do</span>
+            <h2>Procurement expertise you would otherwise have to hire</h2>
+            <p class="lead">
+              We support companies in the selection, procurement and negotiation of software and
+              technology solutions — either as a complete outsourced procurement function, or
+              alongside your existing team for a single strategic deal.
+            </p>
+          </div>
+        </div>
+        <div class="visual__media">
+          <img class="visual__img" src="assets/img/visual-market-moved.webp"
+               width="505" height="511" loading="lazy" decoding="async"
+               alt="A buyer holding a printed vendor quote looks up at a board of three-month price movements by product and pricing model: cloud infrastructure by usage, AI platforms by tokens, security and CRM per user, developer tools per seat, observability by ingested data. Some categories are down by a tenth, others up by a quarter or more.">
+          <div class="visual__overlay">
+            <p class="visual__title">The market moved. <em>Did your benchmark?</em></p>
+            <p class="visual__sub">Technology pricing can change faster than procurement cycles.</p>
+          </div>
+          <img class="visual__brand" src="assets/img/logo-mark-white.png" alt="" aria-hidden="true">
+        </div>
       </div>
 
       <div class="grid grid--3">
@@ -254,68 +371,6 @@
     </div>
   </section>
 
-  <!-- ========================================================== CASE -->
-  <!-- Decisions 04 + 05: the placeholder figures are gone; the anonymised case
-       carries the proof on its own. -->
-  <section class="section" id="rev-home-case" data-review-id="home.case" data-review-label="Home — The benchmark case (anonymised)">
-    <div class="container">
-      <div class="section__head">
-        <span class="eyebrow">Proof</span>
-        <h2>Twelve years unchallenged, and one phone call</h2>
-      </div>
-
-      <div class="case">
-        <div>
-          <p class="lead">
-            A Mexican retail group — a listed business in the billions — had run the same
-            content delivery and web security platform for twelve years. In all that time the
-            contract had never been benchmarked. They were paying €&nbsp;2.4m a year.
-          </p>
-          <ul class="case__steps">
-            <li>A short technical review gave us their real usage metrics.</li>
-            <li>We asked a competing provider to quote against exactly those metrics. The offer came back at roughly half.</li>
-            <li>The client took that number to their incumbent and renegotiated. No tender, no migration, no switch.</li>
-          </ul>
-          <p style="margin-top:var(--s5)">
-            <a class="link-arrow" href="references.html#rev-references-case">The full case on the references page</a>
-          </p>
-        </div>
-
-        <figure class="case__figure">
-          <figcaption>Annual contract value, before and after</figcaption>
-          <div class="compare">
-            <div class="compare__row">
-              <span class="compare__label">Before — twelve years, never benchmarked</span>
-              <div class="compare__track">
-                <div class="compare__bar compare__bar--before" style="width:100%">€&nbsp;2.4m / year</div>
-              </div>
-            </div>
-            <div class="compare__row">
-              <span class="compare__label">After — same vendor, renegotiated</span>
-              <div class="compare__track">
-                <div class="compare__bar compare__bar--after" style="width:79.2%">€&nbsp;1.9m / year</div>
-                <div class="compare__delta" style="left:79.2%;right:0">− €&nbsp;500k</div>
-              </div>
-            </div>
-          </div>
-          <div class="case__result">
-            <strong>€&nbsp;1.5m</strong>
-            <span>saved across the three-year term, without changing provider</span>
-          </div>
-        </figure>
-      </div>
-
-      <div class="note" style="margin-top:var(--s6)">
-        <span class="note__icon" aria-hidden="true">✎</span>
-        <div>
-          <strong>Anonymised on purpose, and more to come.</strong>
-          Client and vendors are unnamed, so no release is needed to publish this.
-          Further examples are to be supplied and will be added alongside it.
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ======================================================== OFFERS -->
   <!-- Decision 18: the dependency analysis becomes a named second product,
        with the benchmark as the light way in. -->
@@ -323,9 +378,9 @@
     <div class="container">
       <div class="section__head">
         <span class="eyebrow">Engagements</span>
-        <h2>Two ways in — one of them very small</h2>
+        <h2>Initial benchmark versus actual project</h2>
         <p class="lead">
-          Most clients start with a benchmark because it commits them to nothing. The second
+          Most clients start with the benchmark because it commits them to nothing. The second
           engagement is a real project, and it answers a much harder question.
         </p>
       </div>
@@ -370,8 +425,8 @@
   <!-- Decision 11: risk becomes a service of its own, not just an argument. -->
   <section class="section" id="rev-home-security" data-review-id="home.security" data-review-label="Home — Security exposure as its own service">
     <div class="container">
-      <div class="grid grid--2" style="align-items:start;gap:var(--s8)">
-        <div>
+      <div class="visual visual--split visual--first visual--onLight" data-anchor="bottom-left">
+        <div class="visual__body">
           <span class="eyebrow">The second kind of mistake</span>
           <h2>Overpaying is visible. Being exposed is not.</h2>
           <p class="lead">
@@ -384,8 +439,20 @@
             <a class="link-arrow" href="catalog.html#security-identity">See the 35 security capabilities</a>
           </p>
         </div>
-        <div>
-          <h3>Security exposure review</h3>
+        <div class="visual__media">
+          <img class="visual__img" src="assets/img/visual-hidden-exposure.webp"
+               width="500" height="500" loading="lazy" decoding="async"
+               alt="Two copies of the same software agreement side by side. One is priced and totalled; the other is torn open to show the auto-renewal, data exposure and termination risks underneath.">
+          <div class="visual__overlay">
+            <p class="visual__title">Overpaying hits the budget. <em>Exposure hits later.</em></p>
+            <p class="visual__sub">We help you see both.</p>
+          </div>
+          <img class="visual__brand" src="assets/img/logo-mark.png" alt="" aria-hidden="true">
+        </div>
+      </div>
+
+      <div style="max-width:46rem">
+        <h3>Security exposure review</h3>
           <p style="color:var(--ink-2);font-size:var(--fs-sm)">
             A standalone engagement, priced and delivered separately from any benchmark.
           </p>
@@ -403,7 +470,6 @@
               who delivers it and how it is priced is not yet written down.
             </div>
           </div>
-        </div>
       </div>
     </div>
   </section>
@@ -413,12 +479,28 @@
        This replaces "no reseller margin, no referral fee, no vendor allegiance". -->
   <section class="section section--deep" id="rev-home-model" data-review-id="home.model" data-review-label="Home — How we are paid (commercial model)">
     <div class="container">
-      <div class="section__head">
-        <span class="eyebrow">How we are paid</span>
-        <p class="model__lead">
-          There is no price list. Your success is our success — we keep a share of the
-          savings we actually help you realise.
-        </p>
+      <div class="visual visual--split visual--onLight" data-anchor="top-left">
+        <div class="visual__body">
+          <span class="eyebrow">Our pricing model</span>
+          <p class="model__lead">
+            There is no price list. Your success is our success — we keep a share of the
+            savings we actually help you realise.
+          </p>
+          <p class="model__sub">
+            No day rates, no retainer, nothing to approve before we start. The three points
+            below are the whole commercial model.
+          </p>
+        </div>
+        <div class="visual__media">
+          <img class="visual__img" src="assets/img/visual-savings-share.webp"
+               width="505" height="498" loading="lazy" decoding="async"
+               alt="Three blocks on a plain surface: € 500,000 before, a € 120,000 saving, and € 380,000 after. Our fee is marked against a share of the saving block, not against the budget.">
+          <div class="visual__overlay">
+            <p class="visual__title">No fixed fees. <em>Paid from what you save.</em></p>
+            <p class="visual__sub">Our success fee comes from your savings — not from your budget.</p>
+          </div>
+          <img class="visual__brand" src="assets/img/logo-mark.png" alt="" aria-hidden="true">
+        </div>
       </div>
 
       <div class="model">
@@ -452,7 +534,8 @@
           A success share plus payment from the delivery side is a defensible model, but in
           Germany advertising advice as independent while taking undisclosed vendor-side
           compensation is attackable as misleading. The disclosure wording above, and the
-          percentage itself, should be reviewed by a lawyer.
+          percentage itself, should be reviewed by a lawyer. The figures in the picture are
+          an illustrative example, not a quoted result, and need the same check.
         </div>
       </div>
     </div>
@@ -602,7 +685,20 @@
             <a class="link-arrow" href="catalog.html">See the full capability catalog</a>
           </p>
         </div>
-        <div>
+        <figure class="visual visual--onDark" data-anchor="bottom-left">
+          <div class="visual__media">
+            <img class="visual__img" src="assets/img/visual-experience-gap.webp"
+                 width="500" height="500" loading="lazy" decoding="async"
+                 alt="One buyer alone with a single contract at the near end of a table, facing row upon row of stacked agreements at the far end.">
+            <div class="visual__overlay">
+              <p class="visual__title">They&rsquo;ve seen hundreds of deals. You&rsquo;ve seen one.</p>
+            </div>
+            <img class="visual__brand" src="assets/img/logo-mark-white.png" alt="" aria-hidden="true">
+          </div>
+        </figure>
+      </div>
+
+      <div style="margin-top:var(--s8)">
           <h3 style="font-size:var(--fs-xs);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3)">
             Technologies and vendors we negotiate with
           </h3>
@@ -619,60 +715,6 @@
           <p class="field__hint" style="margin-top:var(--s3)">
             Placeholder tiles — vendor logo files still to be supplied and cleared for use.
           </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================================================== TEAM -->
-  <!-- Decision 07: a team presence, but slim — a section here rather than a
-       sixth page. -->
-  <section class="section" id="rev-home-team" data-review-id="home.team" data-review-label="Home — The people behind it">
-    <div class="container">
-      <div class="section__head">
-        <span class="eyebrow">The people</span>
-        <h2>Who you are actually working with</h2>
-        <p class="lead">
-          The reach is the product. Three people, and the vendor relationships they have
-          built over their careers — that is what turns a request into a real quote inside
-          a few days.
-        </p>
-      </div>
-
-      <div class="people">
-        <article class="person">
-          <h3>Miguel Fersen</h3>
-          <span class="person__role ph">Role to be confirmed</span>
-          <p>
-            <span class="ph">Two or three sentences: background, which parts of the market
-            he negotiates in, and where the vendor relationships come from.</span>
-          </p>
-        </article>
-        <article class="person">
-          <h3>Fredrik <span class="ph">Surname</span></h3>
-          <span class="person__role ph">Role to be confirmed</span>
-          <p>
-            <span class="ph">Two or three sentences: background, which parts of the market
-            he negotiates in, and where the vendor relationships come from.</span>
-          </p>
-        </article>
-        <article class="person">
-          <h3>Noel <span class="ph">Surname</span></h3>
-          <span class="person__role ph">Role to be confirmed</span>
-          <p>
-            <span class="ph">Two or three sentences: background, which parts of the market
-            he negotiates in, and where the vendor relationships come from.</span>
-          </p>
-        </article>
-      </div>
-
-      <div class="note" style="margin-top:var(--s6)">
-        <span class="note__icon" aria-hidden="true">✎</span>
-        <div>
-          <strong>Names, roles and profile text needed.</strong>
-          Kept deliberately slim — no photos, no separate team page. Three short profiles
-          and the surnames are all that is missing.
-        </div>
       </div>
     </div>
   </section>
@@ -680,25 +722,22 @@
   <!-- =================================================== REFERENCES -->
   <!-- Decision 06: Globe and Weiße Immobilien stay; copy and written releases
        are being supplied. -->
-  <section class="section section--alt" id="rev-home-references" data-review-id="home.references" data-review-label="Home — References teaser">
+  <section class="section" id="rev-home-references" data-review-id="home.references" data-review-label="Home — References teaser">
     <div class="container">
       <div class="grid grid--2" style="align-items:center;gap:var(--s8)">
         <div>
           <span class="eyebrow">References</span>
           <h2>Proven in the enterprise environment</h2>
           <p class="lead">
-            The benchmark case in full, plus selected client projects — named once each
-            client has confirmed in writing that we may use their name.
+            The benchmark case is told in full on the references page, together with the
+            client projects behind it — each named once the client has confirmed in writing
+            that we may use their name.
           </p>
           <p style="margin-top:var(--s5)">
             <a class="btn btn--primary" href="references.html">View references</a>
           </p>
         </div>
         <div class="grid" style="gap:var(--s3)">
-          <article class="card" style="padding:var(--s5)">
-            <h3 style="margin-bottom:var(--s2)">Mexican retail group</h3>
-            <p>€&nbsp;1.5m saved across a three-year term, without changing provider.</p>
-          </article>
           <article class="card" style="padding:var(--s5)">
             <h3 style="margin-bottom:var(--s2)">Globe</h3>
             <p><span class="ph">One-line description of the engagement and the outcome achieved.</span></p>
@@ -753,6 +792,7 @@
           <li><a href="references.html">References</a></li>
           <li><a href="catalog.html">Capability catalog</a></li>
           <li><a href="contact.html">Contact</a></li>
+          <li><a href="contact.html#about">About us</a></li>
           <li><a href="project.html">Projektdokumentation</a></li>
         </ul>
       </div>
@@ -791,6 +831,7 @@
 
 <script src="assets/js/site.js"></script>
 <script src="assets/js/handoff.js"></script>
-<script src="assets/js/review.js"></script>
+<script src="assets/js/dictation.js?v=20260907"></script>
+<script src="assets/js/review.js?v=20260907"></script>
 </body>
 </html>

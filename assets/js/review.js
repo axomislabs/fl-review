@@ -8,6 +8,11 @@
    Storage is local only: nothing is transmitted until the reviewer clicks
    "Download CSV" or "Send feedback". Works from file:// — no modules, no
    fetch, no external dependencies.
+
+   The comment box can also be dictated. The speech part is not here: it is
+   dictation.js, the same helper the decision catalogue and the project plan
+   use, loaded before this file. If it is missing the button is simply not
+   rendered and the box stays a normal textarea.
    ========================================================================== */
 (function () {
   "use strict";
@@ -82,6 +87,31 @@
   var svgBubble =
     '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-8 8H8l-5 3 1.5-4.4A8 8 0 1 1 21 12Z"/></svg>';
 
+  /* ----------------------------------------------------------- dictation -- */
+
+  /* Why the button is unavailable, decided once: "unsupported" (Firefox, or
+     dictation.js not loaded) hides it, "file" leaves it visible and explains
+     itself, because from file:// the browser refuses the microphone. */
+  var micBlocked = window.FL_DICTATION ? window.FL_DICTATION.blocked() : "unsupported";
+
+  var svgMic =
+    '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">' +
+    '<path d="M12 3.5a2.7 2.7 0 0 1 2.7 2.7v5.4a2.7 2.7 0 1 1-5.4 0V6.2A2.7 2.7 0 0 1 12 3.5Z"/>' +
+    '<path d="M6.2 11.2a5.8 5.8 0 0 0 11.6 0"/><path d="M12 17v3.5"/><path d="M9 20.5h6"/></svg>';
+
+  /* dictation.js speaks German to the reviewer; this panel speaks English to
+     the customer. Its error codes are translated here rather than in the
+     helper, which the German pages share. */
+  var MIC_TEXT = {
+    file:        "Dictation needs the online version — a page opened from disk may not use the microphone.",
+    unsupported: "This browser cannot dictate — try Chrome, Edge or Safari.",
+    denied:      "Microphone not allowed — enable it in the browser and try again.",
+    nomic:       "No microphone found.",
+    network:     "Speech recognition is unreachable — check your connection.",
+    failed:      "Dictation is not available.",
+    live:        "Listening — just speak. Click again to stop."
+  };
+
   /* ---------------------------------------------------------- launcher -- */
 
   var launcher = document.createElement("button");
@@ -135,8 +165,16 @@
     '  <button type="button" class="fl-pop__close" aria-label="Close">×</button>',
     "</div>",
     '<div class="fl-pop__existing" data-existing></div>',
-    '<label class="sr-only" for="fl-pop-text">Your comment</label>',
+    '<div class="fl-pop__field">',
+    '  <label for="fl-pop-text">Your comment</label>',
+    micBlocked === "unsupported" ? "" :
+      '  <button type="button" class="wl-mic" data-act="mic" aria-pressed="false"' +
+      ' title="Dictate instead of typing — speech recognition is set to German">' +
+      svgMic + '<span class="wl-mic__label">Dictate</span>' +
+      '<span class="sr-only"> — speak this comment instead of typing it</span></button>',
+    "</div>",
     '<textarea id="fl-pop-text" placeholder="What should change in this section?"></textarea>',
+    '<p class="fl-pop__mic" data-mic-status role="status" hidden></p>',
     '<label class="sr-only" for="fl-pop-author">Your name</label>',
     '<input type="text" id="fl-pop-author" placeholder="Your name (optional)">',
     '<div class="fl-pop__actions">',
@@ -151,6 +189,8 @@
   var popAuthor = pop.querySelector("input");
   var popLabel = pop.querySelector("[data-label]");
   var popExisting = pop.querySelector("[data-existing]");
+  var popMic = pop.querySelector(".wl-mic");
+  var popMicStatus = pop.querySelector("[data-mic-status]");
 
   var openSection = null;   /* section element the popover belongs to */
   var editingId = null;     /* comment being edited, if any */
@@ -334,7 +374,62 @@
     }).join("");
   };
 
+  /* ------------------------------------------------------- the mic button -- */
+
+  var micStatus = function (text, kind) {
+    if (!popMicStatus) { return; }
+    popMicStatus.textContent = text || "";
+    popMicStatus.setAttribute("data-kind", kind || "");
+    popMicStatus.hidden = !text;
+  };
+
+  var micVisual = function (live) {
+    if (!popMic) { return; }
+    popMic.classList.toggle("is-live", live);
+    popMic.setAttribute("aria-pressed", live ? "true" : "false");
+    var label = popMic.querySelector(".wl-mic__label");
+    if (label) { label.textContent = live ? "Stop" : "Dictate"; }
+  };
+
+  /* The idle line: silent, unless the microphone cannot work here at all. */
+  var micReset = function () {
+    micVisual(false);
+    micStatus(micBlocked === "file" ? MIC_TEXT.file : "", micBlocked === "file" ? "note" : "");
+  };
+
+  /* Dictation writes into popText and remembers what was in the field when it
+     started, so anything that empties or refills the field has to stop it
+     first — otherwise the next word pastes the old text back in. */
+  var stopDictation = function () {
+    if (window.FL_DICTATION && window.FL_DICTATION.target() === popText) {
+      window.FL_DICTATION.stop();
+    }
+  };
+
+  var toggleMic = function () {
+    if (!window.FL_DICTATION) { return; }
+    if (micBlocked) {
+      micStatus(MIC_TEXT[micBlocked] || MIC_TEXT.failed, "warn");
+      return;
+    }
+    window.FL_DICTATION.toggle(popText, function (event, info) {
+      if (event === "start") {
+        micVisual(true);
+        micStatus(MIC_TEXT.live, "live");
+        return;
+      }
+      if (event === "stop") {
+        micReset();
+        return;
+      }
+      micVisual(false);
+      micStatus(MIC_TEXT[(info && info.code) || "failed"] || MIC_TEXT.failed, "warn");
+    });
+  };
+
   function openPop(section, anchor) {
+    stopDictation();
+    micReset();
     openSection = section;
     editingId = null;
     popLabel.textContent = section.getAttribute("data-review-label") || section.id;
@@ -349,6 +444,7 @@
   }
 
   function closePop() {
+    stopDictation();
     pop.hidden = true;
     openSection = null;
     editingId = null;
@@ -358,6 +454,7 @@
   var saveComment = function () {
     var text = popText.value.trim();
     if (!text || !openSection) { popText.focus(); return; }
+    stopDictation();
     state.author = popAuthor.value.trim();
 
     if (editingId) {
@@ -396,6 +493,7 @@
     if (!action) { return; }
 
     var act = action.getAttribute("data-act");
+    if (act === "mic") { toggleMic(); return; }
     if (act === "save") { saveComment(); return; }
     if (act === "cancel") { closePop(); return; }
 
@@ -410,6 +508,7 @@
     if (act === "edit" && id) {
       var found = state.comments.filter(function (comment) { return comment.id === id; })[0];
       if (found) {
+        stopDictation();
         editingId = id;
         popText.value = found.text;
         popAuthor.value = found.author || "";
