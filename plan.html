@@ -1,0 +1,1475 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projektplan — Fersen &amp; Lohse</title>
+<meta name="description" content="Projektplan zum Website- und Markenaufbau: sechs Phasen, 50 Aufgaben in sechs Blöcken, mit Rückmeldung je Aufgabe.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="assets/img/logo-mark.png">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/workspace.css?v=20260906c">
+<link rel="stylesheet" href="assets/css/plan.css?v=20260906c">
+</head>
+<body data-page="Projektplan" class="dec-page wl-has-bar">
+
+<a class="btn btn--primary skip-link sr-only" href="#main">Zum Inhalt springen</a>
+
+<!-- ============================================================ HEADER -->
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="index.html">
+      <img src="assets/img/logo-mark-white.png" alt="">
+      <span>
+        <span class="brand__name">Fersen &amp; Lohse</span>
+        <span class="brand__tag">IT Procurement</span>
+      </span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+      <span></span><span class="sr-only">Menu</span>
+    </button>
+    <nav class="nav" id="primary-nav" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="references.html">References</a>
+      <a href="catalog.html">Catalog</a>
+      <a href="contact.html">Contact</a>
+      <a class="btn btn--primary btn--sm" href="contact.html">Get in touch</a>
+      <span class="nav__doc">
+        <a class="nav__doc-main" href="project.html">Projektdokumentation</a>
+        <span class="nav__doc-sub">
+          <a href="plan.html" aria-current="page">Projektplan</a>
+          <a href="decisions.html">Überarbeitungszyklus 1</a>
+        </span>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ======================================================== PAGEHEAD -->
+  <section class="pagehead">
+    <div class="container pagehead__inner">
+      <p class="breadcrumb"><a href="index.html">Home</a> &nbsp;/&nbsp; <a href="project.html">Projektdokumentation</a> &nbsp;/&nbsp; Projektplan</p>
+      <span class="eyebrow">Projektplan · Stand 6. September 2026</span>
+      <h1>Von hier bis zum ersten Kunden</h1>
+      <p>
+        Sechs Phasen, 50 Aufgaben, zwei Ziele. Grundlage ist Miguels Sprachnachricht vom
+        31. August. Zu jeder Aufgabe lässt sich hier direkt eine Rückmeldung schreiben oder
+        diktieren — und am Ende als CSV, E-Mail oder WhatsApp verschicken.
+      </p>
+    </div>
+  </section>
+
+  <!-- ======================================================== ZEITPLAN -->
+  <section class="section section--tight" id="zeitplan">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow">Der Ablauf</span>
+        <h2>Sechs Phasen</h2>
+        <p class="lead">
+          Die ersten vier sind eine Kette, die letzten beiden hören nicht auf — das ist Betrieb,
+          kein Projekt. <strong>Alle Termine sind grob geschätzt und rechnen ab Session 1</strong>,
+          die noch nicht steht.
+        </p>
+      </div>
+
+      <div class="pl-gantt" id="pl-gantt">
+        <div class="pl-gantt__scale">
+          <span class="pl-gantt__corner" aria-hidden="true"></span>
+          <div class="pl-gantt__months" aria-hidden="true">
+            <span><b>Aug</b><i>26</i></span>
+            <span><b>Sep</b></span>
+            <span><b>Okt</b></span>
+            <span><b>Nov</b></span>
+            <span><b>Dez</b></span>
+            <span><b>Jan</b><i>27</i></span>
+            <span><b>Feb</b></span>
+            <span><b>Mär</b></span>
+            <span><b>Apr</b></span>
+            <span><b>Mai</b><i>ff.</i></span>
+            <span class="pl-now" id="pl-now" hidden>heute</span>
+          </div>
+        </div>
+
+        <div class="pl-gantt__rows">
+          <button class="pl-grow pl-grow--done" type="button" data-phase="P0" aria-pressed="false">
+            <span class="pl-grow__label">
+              <span class="pl-grow__line"><span class="pl-grow__n">Phase 0</span><span class="pl-grow__title">Entwurf und Richtungsentscheid</span><span class="pl-grow__count">keine Aufgabe im Register</span></span>
+              <span class="pl-grow__sub"><b>Juli – 31. August 2026</b> · abgeschlossen · Achtzehn Fragen gestellt, alle beantwortet, die Seite daraufhin neu gebaut.</span>
+            </span>
+            <span class="pl-grow__track" aria-hidden="true">
+              <span class="pl-bar pl-bar--done" style="grid-column: 1 / 2"></span>
+            </span>
+          </button>
+          <button class="pl-grow" type="button" data-phase="P1" aria-pressed="false" aria-controls="tasks-p1">
+            <span class="pl-grow__label">
+              <span class="pl-grow__line"><span class="pl-grow__n">Phase 1</span><span class="pl-grow__title">Schematik — Session 1</span><span class="pl-grow__count">3 Aufgaben · alle offen</span></span>
+              <span class="pl-grow__sub"><b>grob Mitte September</b> · sobald vier Kalender passen · Ein Termin zu viert: was fehlt, welche Ober- und Unterseiten dazukommen.</span>
+            </span>
+            <span class="pl-grow__track" aria-hidden="true">
+              <span class="pl-bar" style="grid-column: 2 / 3"></span>
+            </span>
+          </button>
+          <button class="pl-grow" type="button" data-phase="P2" aria-pressed="false" aria-controls="tasks-p2">
+            <span class="pl-grow__label">
+              <span class="pl-grow__line"><span class="pl-grow__n">Phase 2</span><span class="pl-grow__title">Hausaufgaben — Zulieferung und Aufbau</span><span class="pl-grow__count">18 Aufgaben · 2 blockierend</span></span>
+              <span class="pl-grow__sub"><b>grob Oktober</b> · drei bis vier Wochen nach Session 1 · Die drei liefern Inhalte, Martin baut die neuen Seiten und die Marke aus.</span>
+            </span>
+            <span class="pl-grow__track" aria-hidden="true">
+              <span class="pl-bar" style="grid-column: 3 / 4"></span>
+            </span>
+          </button>
+          <button class="pl-grow" type="button" data-phase="P3" aria-pressed="false" aria-controls="tasks-p3">
+            <span class="pl-grow__label">
+              <span class="pl-grow__line"><span class="pl-grow__n">Phase 3</span><span class="pl-grow__title">Launch</span><span class="pl-grow__count">9 Aufgaben · 1 blockierend</span></span>
+              <span class="pl-grow__sub"><b>grob Anfang November</b> · ein bis zwei Wochen nach Session 2 · Aus dem Entwurf wird eine Website. Hier müssen die beiden Blocker fallen.</span>
+            </span>
+            <span class="pl-grow__track" aria-hidden="true">
+              <span class="pl-bar" style="grid-column: 4 / 5"></span>
+            </span>
+          </button>
+          <button class="pl-grow" type="button" data-phase="P4" aria-pressed="false" aria-controls="tasks-p4">
+            <span class="pl-grow__label">
+              <span class="pl-grow__line"><span class="pl-grow__n">Phase 4</span><span class="pl-grow__title">Flankieren — LinkedIn, Content, Agenten</span><span class="pl-grow__count">14 Aufgaben · 1 läuft</span></span>
+              <span class="pl-grow__sub"><b>ab Launch</b> · laufend, kein Ende · Hier entscheidet sich, ob die Seite Zulauf bekommt oder nur existiert.</span>
+            </span>
+            <span class="pl-grow__track" aria-hidden="true">
+              <span class="pl-bar pl-bar--ongoing" style="grid-column: 4 / 11"></span>
+            </span>
+          </button>
+          <button class="pl-grow" type="button" data-phase="P5" aria-pressed="false" aria-controls="tasks-p5">
+            <span class="pl-grow__label">
+              <span class="pl-grow__line"><span class="pl-grow__n">Phase 5</span><span class="pl-grow__title">Externes Feedback — Zyklus 2</span><span class="pl-grow__count">5 Aufgaben · 3 im Backlog</span></span>
+              <span class="pl-grow__sub"><b>zwei bis vier Wochen nach Launch</b> · dann in Zyklen · Kunden und Einkäufer schauen drauf. Daraus wird der nächste Zyklus.</span>
+            </span>
+            <span class="pl-grow__track" aria-hidden="true">
+              <span class="pl-bar pl-bar--ongoing" style="grid-column: 5 / 11"></span>
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <p class="pl-gantt__hint">
+        Eine Phase anklicken führt zu ihren Aufgaben unten und blendet alle anderen aus —
+        nochmal klicken hebt das auf.
+      </p>
+    </div>
+  </section>
+
+  <!-- ======================================================== AUFGABEN -->
+  <section class="section section--tight" id="aufgaben" style="padding-top:0">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow">Die Aufgaben</span>
+        <h2>50 Aufgaben, nach Zeitfenster sortiert</h2>
+        <p class="lead">
+          Nach Zeitfenster sortiert, nicht nach Thema — jede Phase mischt die Bereiche,
+          Blockierendes steht oben. Klick auf eine Zeile öffnet Beschreibung und Rückmeldung.
+        </p>
+      </div>
+
+      <div class="pl-filters">
+        <span class="pl-filters__label" id="pl-who-label">Wer</span>
+        <div class="pl-chips" role="group" aria-labelledby="pl-who-label">
+          <button class="pl-chip" type="button" data-group="who" data-value="miguel" aria-pressed="false">Miguel</button>
+          <button class="pl-chip" type="button" data-group="who" data-value="fredrik" aria-pressed="false">Fredrik</button>
+          <button class="pl-chip" type="button" data-group="who" data-value="noel" aria-pressed="false">Noel</button>
+          <button class="pl-chip" type="button" data-group="who" data-value="martin" aria-pressed="false">Martin</button>
+          <button class="pl-chip" type="button" data-group="who" data-value="extern" aria-pressed="false">Anwalt</button>
+        </div>
+        <span class="pl-filters__sep" aria-hidden="true"></span>
+        <label class="sr-only" for="pl-phase">Phase</label>
+        <select id="pl-phase">
+            <option value="all">alle Phasen</option>
+            <option value="P0">Phase 0 · Entwurf</option>
+            <option value="P1">Phase 1 · Schematik</option>
+            <option value="P2">Phase 2 · Hausaufgaben</option>
+            <option value="P3">Phase 3 · Launch</option>
+            <option value="P4">Phase 4 · Flankieren</option>
+            <option value="P5">Phase 5 · Externes Feedback</option>
+            <option value="BL">Backlog</option>
+          </select>
+        <label class="sr-only" for="pl-stream">Bereich</label>
+        <select id="pl-stream">
+            <option value="all">alle Bereiche</option>
+            <option value="A">A · Website</option>
+            <option value="B">B · Marke</option>
+            <option value="C">C · Agenten</option>
+            <option value="D">D · LinkedIn</option>
+            <option value="E">E · Feedback</option>
+            <option value="F">F · Steuerung</option>
+          </select>
+        <label class="sr-only" for="pl-status">Status</label>
+        <select id="pl-status">
+            <option value="all">jeder Status</option>
+            <option value="block">blockierend</option>
+            <option value="run">läuft</option>
+            <option value="open">offen</option>
+            <option value="later">Backlog</option>
+          </select>
+        <button class="pl-linkbtn" type="button" id="pl-reset-filter" hidden>Filter aufheben</button>
+        <span class="pl-count" id="pl-count">Alle 50 Aufgaben.</span>
+      </div>
+
+      <p class="pl-hint" id="pl-mic-hint" hidden></p>
+
+      <div id="pl-groups">
+      <section class="pl-group" id="tasks-p1" data-phase="P1" data-phase-title="Phase 1 · Schematik — Session 1">
+        <div class="pl-group__head">
+          <h3><span class="pl-group__n">Phase 1</span> Schematik — Session 1 <span class="pl-group__count"><span data-group-count>3</span> von 3</span></h3>
+          <p class="pl-group__meta">grob Mitte September · sobald vier Kalender passen · <b>Fertig, wenn</b> niemand mehr fragen muss, wer was liefert · <b>Wer</b> Miguel, Fredrik, Noel, Martin · <b>Bereiche</b> Website · Agenten · Steuerung</p>
+        </div>
+
+        <table class="pl-table">
+          <thead>
+            <tr>
+              <th class="c-nr" scope="col">Nr</th>
+              <th class="c-task" scope="col">Aufgabe</th>
+              <th class="c-area" scope="col">Bereich</th>
+              <th class="c-who" scope="col">Wer</th>
+              <th class="c-eff" scope="col">Aufwand</th>
+              <th class="c-st" scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody class="pl-item" id="t-A13" data-task="A13" data-stream="A" data-phase="P1" data-status="open" data-who="miguel fredrik noel martin">
+            <tr class="pl-row">
+              <td class="c-nr">A13</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-A13"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Seitenplan aus Session 1</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>A</b> Website</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--all">alle vier</span></span></td>
+              <td class="c-eff"><span class="pl-eff">M</span></td>
+              <td class="c-st"><span class="pl-pill">offen</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-A13" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Das Ergebnis von Session 1, nicht die Vorarbeit dazu. Gebraucht wird eine Liste aller Seiten, die die fertige Website haben soll: welche der fünf bestehenden bleiben, welche Oberseiten dazukommen, welche Unterseiten darunter hängen. Miguel nennt das in der Sprachnachricht „die Schematik von dem Ganzen“. Diese Liste ist der Flaschenhals der ganzen Phase 2 — ohne sie lässt sich der Aufbau der neuen Seiten weder schätzen noch anfangen, und es ist unklar, welche Inhalte überhaupt gebraucht werden.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Eine schriftliche Seitenliste: je Seite eine Zeile mit Arbeitstitel, was darauf steht und wer den Inhalt liefert.</dd><dt>Braucht vorher</dt><dd class="pl-refs"><a class="pl-ref" href="#t-F1" data-ref="F1"><b>F1</b> Session 1 terminieren <span class="pl-ref__phase">Phase 1</span></a></dd><dt>Hängt daran</dt><dd class="pl-refs"><a class="pl-ref" href="#t-A14" data-ref="A14"><b>A14</b> Die neuen Seiten bauen <span class="pl-ref__phase">Phase 2</span></a></dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>alle vier</b></span><span>Wann <b>Phase 1</b></span><span>Aufwand <b>M</b></span><span>Block <b>A · Website — die offenen Punkte</b></span></p>
+                <div class="pl-fb" data-fb="A13"></div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody class="pl-item" id="t-C2" data-task="C2" data-stream="C" data-phase="P1" data-status="open" data-who="miguel noel">
+            <tr class="pl-row">
+              <td class="c-nr">C2</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-C2"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Klären, welche Agenten gemeint sind</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>C</b> Agenten</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--miguel">Miguel</span><span class="pl-who__p pl-who__p--noel">Noel</span></span></td>
+              <td class="c-eff"><span class="pl-eff">S</span></td>
+              <td class="c-st"><span class="pl-pill">offen</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-C2" hidden>
+              <td colspan="6">
+                <p class="pl-brief">In der Sprachnachricht klingt es nach „Grok-Agenten“, es kann aber auch „Groq“ sein. Grok ist das Sprachmodell von xAI, Groq ein Anbieter für schnelle Inferenz-Hardware — zwei verschiedene Dinge mit verschiedenen Kosten, Datenschutzfragen und Schnittstellen. Noel weiß, was er tatsächlich benutzt. Die Rückfrage kostet zwei Minuten und verhindert, dass der ganze Strang um Agenten und Chatbot auf einer falschen Annahme geplant wird.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Der Anbieter steht schriftlich im Plan, und alle Agenten-Aufgaben rechnen mit demselben.</dd><dt>Hängt daran</dt><dd class="pl-refs"><a class="pl-ref" href="#t-C1" data-ref="C1"><b>C1</b> SDR-Tool mit Agenten <span class="pl-ref__phase">Phase 4</span></a><a class="pl-ref" href="#t-C5" data-ref="C5"><b>C5</b> Datenschutz und Betrieb für Bot und Agent <span class="pl-ref__phase">Phase 4</span></a></dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>Noel, Miguel</b></span><span>Wann <b>Phase 1</b></span><span>Aufwand <b>S</b></span><span>Block <b>C · Agenten und Chatbots</b></span></p>
+                <div class="pl-fb" data-fb="C2"></div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody class="pl-item" id="t-F1" data-task="F1" data-stream="F" data-phase="P1" data-status="open" data-who="miguel">
+            <tr class="pl-row">
+              <td class="c-nr">F1</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-F1"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Session 1 terminieren</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>F</b> Steuerung</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--miguel">Miguel</span></span></td>
+              <td class="c-eff"><span class="pl-eff">S</span></td>
+              <td class="c-st"><span class="pl-pill">offen</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-F1" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Der Termin, an dem alles andere hängt: neunzig Minuten mit Miguel, Fredrik, Noel und Martin, gemeinsam durch die Website. Solange er nicht steht, ist dieser Plan eine Reihenfolge und kein Kalender — jede Datumsangabe darin rechnet ab diesem Tag. Am besten gleich beide Termine legen, Session 1 und Session 2, solange alle vier zusammensitzen.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Der Termin steht in vier Kalendern, mit Einladung und Videolink.</dd><dt>Hängt daran</dt><dd class="pl-refs"><a class="pl-ref" href="#t-A13" data-ref="A13"><b>A13</b> Seitenplan aus Session 1 <span class="pl-ref__phase">Phase 1</span></a><a class="pl-ref" href="#t-F2" data-ref="F2"><b>F2</b> Session 2 terminieren <span class="pl-ref__phase">Phase 2</span></a></dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>Miguel</b></span><span>Wann <b>Phase 1</b></span><span>Aufwand <b>S</b></span><span>Block <b>F · Steuerung und Ziele</b></span></p>
+                <div class="pl-fb" data-fb="F1"></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="pl-fb pl-fb--group" data-fb="PHASE-P1"></div>
+      </section>
+
+      <section class="pl-group" id="tasks-p2" data-phase="P2" data-phase-title="Phase 2 · Hausaufgaben — Zulieferung und Aufbau">
+        <div class="pl-group__head">
+          <h3><span class="pl-group__n">Phase 2</span> Hausaufgaben — Zulieferung und Aufbau <span class="pl-group__count"><span data-group-count>18</span> von 18</span></h3>
+          <p class="pl-group__meta">grob Oktober · drei bis vier Wochen nach Session 1 · <b>Fertig, wenn</b> Session 2 die Fassung freigibt · <b>Wer</b> Fredrik, Miguel und Noel liefern · Martin baut · <b>Bereiche</b> Website · Marke · LinkedIn · Steuerung</p>
+        </div>
+
+        <table class="pl-table">
+          <thead>
+            <tr>
+              <th class="c-nr" scope="col">Nr</th>
+              <th class="c-task" scope="col">Aufgabe</th>
+              <th class="c-area" scope="col">Bereich</th>
+              <th class="c-who" scope="col">Wer</th>
+              <th class="c-eff" scope="col">Aufwand</th>
+              <th class="c-st" scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody class="pl-item" id="t-A1" data-task="A1" data-stream="A" data-phase="P2" data-status="block" data-who="miguel extern">
+            <tr class="pl-row">
+              <td class="c-nr">A1</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-A1"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Rechtsprüfung des Geldmodells</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>A</b> Website</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--miguel">Miguel</span><span class="pl-who__p pl-who__p--extern">Anwalt</span></span></td>
+              <td class="c-eff"><span class="pl-eff">L</span></td>
+              <td class="c-st"><span class="pl-pill pl-pill--block">blockierend</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-A1" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Die Startseite verspricht im dunklen Band <em>How we are paid</em> ein Modell ohne Fixkosten für den Kunden: eine Beteiligung an der Ersparnis plus eine Vergütung von der Lieferseite. Das Modell ist tragfähig — angreifbar wird es, wenn die Beratung als unabhängig beworben wird und die Vergütung der Lieferseite nicht offengelegt ist; in Deutschland ist das als irreführende Werbung abmahnbar. Ein Anwalt muss den Offenlegungstext formulieren und sagen, ob der Prozentsatz genannt werden darf und wie. Der Prozentsatz steht bis heute nirgends auf der Seite.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Ein anwaltlich freigegebener Offenlegungstext steht im Band, und die Frage nach dem Prozentsatz ist beantwortet.</dd><dt>Wo</dt><dd><code>index.html</code>, Band <em>How we are paid</em></dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>Miguel + Anwalt</b></span><span>Wann <b>Phase 2</b></span><span>Aufwand <b>L</b></span><span>Block <b>A · Website — die offenen Punkte</b></span></p>
+                <div class="pl-fb" data-fb="A1"></div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody class="pl-item" id="t-A2" data-task="A2" data-stream="A" data-phase="P2" data-status="block" data-who="miguel fredrik">
+            <tr class="pl-row">
+              <td class="c-nr">A2</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-A2"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Die zehn Metrikenlisten durchgehen</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>A</b> Website</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--miguel">Miguel</span><span class="pl-who__p pl-who__p--fredrik">Fredrik</span></span></td>
+              <td class="c-eff"><span class="pl-eff">M</span></td>
+              <td class="c-st"><span class="pl-pill pl-pill--block">blockierend</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-A2" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Auf der Kontaktseite wählt der Besucher die Domäne seines Vertrags und sieht sofort, welche Angaben wir brauchen, um das Thema zu bepreisen — statt es im ersten Gespräch zu erfahren. Genau diese Listen entscheiden, ob eine Anfrage brauchbar ankommt. Sie sind ein erster Entwurf, abgeleitet aus dem Fähigkeitenkatalog und fachlich nicht bestätigt: zehn Domänenlisten, dazu die Liste für die ROI-Analyse und vier Basisangaben, die für jede Anfrage gelten. Einmal durchgehen heißt: streichen, was nicht hilft, ergänzen, was fehlt, und die wichtigste Angabe nach oben.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Jede der elf Listen ist einmal durchgesehen und bestätigt.</dd><dt>Hängt daran</dt><dd class="pl-refs"><a class="pl-ref" href="#t-C4" data-ref="C4"><b>C4</b> Chatbot auf der Website <span class="pl-ref__phase">Phase 4</span></a><a class="pl-ref" href="#t-C6" data-ref="C6"><b>C6</b> Metriken-Selbstbedienung <span class="pl-ref__phase">Backlog</span></a></dd><dt>Wo</dt><dd><code>assets/js/site.js</code>, Objekte <code>METRICS</code> und <code>METRICS_BASE</code></dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>Miguel, Fredrik</b></span><span>Wann <b>Phase 2</b></span><span>Aufwand <b>M</b></span><span>Block <b>A · Website — die offenen Punkte</b></span></p>
+                <div class="pl-fb" data-fb="A2"></div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody class="pl-item" id="t-B1" data-task="B1" data-stream="B" data-phase="P2" data-status="run" data-who="miguel">
+            <tr class="pl-row">
+              <td class="c-nr">B1</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-B1"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Marktkarte abnehmen</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>B</b> Marke</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--miguel">Miguel</span></span></td>
+              <td class="c-eff"><span class="pl-eff">S</span></td>
+              <td class="c-st"><span class="pl-pill pl-pill--run">läuft</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-B1" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Antwort 13 aus Zyklus 1 war: statt zehn gleich großer Kacheln eine proportionale Karte der zehn Domänen, die zeigt, wo das Geld liegt. Die Karte ist gebaut und steht im Fähigkeitenkatalog, inhaltlich abgenommen hat sie aber niemand. Zu prüfen: stimmen die Größenverhältnisse, heißen die Domänen richtig, fehlt eine, ist eine zu viel.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Miguel hat die Karte einmal angesehen und entweder freigegeben oder die Korrekturen benannt.</dd><dt>Wo</dt><dd><code>catalog.html</code>, Abschnitt Marktkarte</dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>Miguel</b></span><span>Wann <b>Phase 2</b></span><span>Aufwand <b>S</b></span><span>Block <b>B · Marke und Grafik</b></span></p>
+                <div class="pl-fb" data-fb="B1"></div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody class="pl-item" id="t-A3" data-task="A3" data-stream="A" data-phase="P2" data-status="open" data-who="miguel">
+            <tr class="pl-row">
+              <td class="c-nr">A3</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-A3"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Die 95-Prozent-Aussage belegen</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>A</b> Website</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--miguel">Miguel</span></span></td>
+              <td class="c-eff"><span class="pl-eff">S</span></td>
+              <td class="c-st"><span class="pl-pill">offen</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-A3" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Im Band unter dem Hero steht, dass rund 95 Prozent der geprüften Verträge über Marktpreis liegen. Sie ist heute ausdrücklich als Einschätzung formuliert und in dieser Form vertretbar. Soll sie als harte Zahl stehen, braucht sie eine Quelle: eine eigene Auswertung mit Stichprobengröße, eine Studie oder ein belegbarer Erfahrungswert. Gibt es beides nicht, bleibt die vorsichtige Formulierung — das ist eine legitime Antwort auf diese Aufgabe.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Entweder steht eine nennbare Quelle an der Zahl, oder es ist bewusst entschieden, dass sie eine Einschätzung bleibt.</dd><dt>Wo</dt><dd><code>index.html</code>, Problem-Band unter dem Hero</dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>Miguel</b></span><span>Wann <b>Phase 2</b></span><span>Aufwand <b>S</b></span><span>Block <b>A · Website — die offenen Punkte</b></span></p>
+                <div class="pl-fb" data-fb="A3"></div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody class="pl-item" id="t-A4" data-task="A4" data-stream="A" data-phase="P2" data-status="open" data-who="miguel fredrik noel">
+            <tr class="pl-row">
+              <td class="c-nr">A4</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-A4"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Drei Kurzprofile füllen</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>A</b> Website</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--miguel">Miguel</span><span class="pl-who__p pl-who__p--fredrik">Fredrik</span><span class="pl-who__p pl-who__p--noel">Noel</span></span></td>
+              <td class="c-eff"><span class="pl-eff">S</span></td>
+              <td class="c-st"><span class="pl-pill">offen</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-A4" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Antwort 07 war: eine Teampräsenz, aber schlank — keine Fotos, keine eigene Teamseite. Auf der Startseite stehen dafür drei Kurzprofile unter <em>Who you are actually working with</em>, heute mit Platzhaltern. Gebraucht werden die Nachnamen von Fredrik und Noel, die Rolle jedes der drei in einem Satz und zwei bis drei Sätze, die erklären, warum man mit dieser Person sprechen will — Erfahrung, nicht Lebenslauf.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Drei Profile stehen final auf der Seite und sind von den Genannten freigegeben.</dd><dt>Wo</dt><dd><code>index.html</code>, Abschnitt <em>Who you are actually working with</em></dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>Miguel, Fredrik, Noel</b></span><span>Wann <b>Phase 2</b></span><span>Aufwand <b>S</b></span><span>Block <b>A · Website — die offenen Punkte</b></span></p>
+                <div class="pl-fb" data-fb="A4"></div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody class="pl-item" id="t-A5" data-task="A5" data-stream="A" data-phase="P2" data-status="open" data-who="miguel">
+            <tr class="pl-row">
+              <td class="c-nr">A5</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-A5"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Fallstudien Globe und Weiße Immobilien</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>A</b> Website</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--miguel">Miguel</span></span></td>
+              <td class="c-eff"><span class="pl-eff">L</span></td>
+              <td class="c-st"><span class="pl-pill">offen</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-A5" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Zwei Kundenprojekte sollen als Fallstudie auf die Referenzseite: Ausgangslage, Vorgehen, Ergebnis, je etwa eine halbe Seite. Der Text ist schnell geschrieben — der lange Teil ist die schriftliche Freigabe beider Kunden, dass ihr Name und die Zahlen genannt werden dürfen. Deshalb früh anfragen. Ohne Freigabe bleibt nur die anonymisierte Fassung, und dann fällt auch das Logo weg.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Beide Texte liegen vor und beide Freigaben sind schriftlich da — oder es ist entschieden, dass anonymisiert wird.</dd><dt>Wo</dt><dd><code>references.html</code></dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>Miguel</b></span><span>Wann <b>Phase 2</b></span><span>Aufwand <b>L</b></span><span>Block <b>A · Website — die offenen Punkte</b></span></p>
+                <div class="pl-fb" data-fb="A5"></div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody class="pl-item" id="t-A6" data-task="A6" data-stream="A" data-phase="P2" data-status="open" data-who="miguel">
+            <tr class="pl-row">
+              <td class="c-nr">A6</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-A6"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Weitere Benchmark-Beispiele</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>A</b> Website</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--miguel">Miguel</span></span></td>
+              <td class="c-eff"><span class="pl-eff">M</span></td>
+              <td class="c-st"><span class="pl-pill">offen</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-A6" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Antwort 05 war: keine erfundenen Zahlen, sondern der eine echte Fall — der anonymisierte Akamai-Fall mit 1,5 Millionen Ersparnis. Damit der nicht wie ein Einzelfall wirkt, braucht die Seite zwei bis drei weitere Beispiele in derselben Form: Vertragsart, Ausgangspreis, erzielter Preis, Laufzeit, Jahr. Anonymisiert reicht, Größenordnungen genügen.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Zwei bis drei Beispiele liegen in Stichpunkten vor und stehen auf der Seite.</dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>Miguel</b></span><span>Wann <b>Phase 2</b></span><span>Aufwand <b>M</b></span><span>Block <b>A · Website — die offenen Punkte</b></span></p>
+                <div class="pl-fb" data-fb="A6"></div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody class="pl-item" id="t-A7" data-task="A7" data-stream="A" data-phase="P2" data-status="open" data-who="miguel">
+            <tr class="pl-row">
+              <td class="c-nr">A7</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-A7"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Eine Kundenstimme</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>A</b> Website</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--miguel">Miguel</span></span></td>
+              <td class="c-eff"><span class="pl-eff">S</span></td>
+              <td class="c-st"><span class="pl-pill">offen</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-A7" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Ein Zitat von jemandem, der mit euch gearbeitet hat — mit Name, Rolle und Firma, oder wenn das nicht geht, mit Rolle und Branche. Der Platz dafür ist auf der Referenzseite bereits vorgesehen. Ein Satz reicht, wenn er konkret ist; „sehr professionell“ hilft niemandem, „hat unseren CDN-Vertrag um 40 Prozent gesenkt, ohne dass wir den Anbieter wechseln mussten“ schon.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Zitat, Zuschreibung und die Freigabe des Zitierten liegen vor.</dd><dt>Wo</dt><dd><code>references.html</code></dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>Miguel</b></span><span>Wann <b>Phase 2</b></span><span>Aufwand <b>S</b></span><span>Block <b>A · Website — die offenen Punkte</b></span></p>
+                <div class="pl-fb" data-fb="A7"></div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody class="pl-item" id="t-A8" data-task="A8" data-stream="A" data-phase="P2" data-status="open" data-who="fredrik">
+            <tr class="pl-row">
+              <td class="c-nr">A8</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-A8"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Logodateien und Nutzungsrechte</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>A</b> Website</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--fredrik">Fredrik</span></span></td>
+              <td class="c-eff"><span class="pl-eff">M</span></td>
+              <td class="c-st"><span class="pl-pill">offen</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-A8" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Startseite und Referenzseite tragen zwei Logo-Wände — Anbieter und Kunden —, heute als gestrichelte Platzhalter. Gebraucht werden die Dateien, am besten als SVG, und die Prüfung, ob wir sie überhaupt zeigen dürfen: Jede Marke hat eigene Regeln, viele verlangen ein Partnerverhältnis oder eine schriftliche Zustimmung. Kundenlogos hängen zusätzlich an der Freigabe aus der Fallstudien-Aufgabe.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Für jedes gezeigte Logo liegt die Datei vor und es ist geklärt, dass es gezeigt werden darf.</dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>Fredrik</b></span><span>Wann <b>Phase 2</b></span><span>Aufwand <b>M</b></span><span>Block <b>A · Website — die offenen Punkte</b></span></p>
+                <div class="pl-fb" data-fb="A8"></div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody class="pl-item" id="t-A9" data-task="A9" data-stream="A" data-phase="P2" data-status="open" data-who="miguel noel">
+            <tr class="pl-row">
+              <td class="c-nr">A9</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-A9"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Security exposure review definieren</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>A</b> Website</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--miguel">Miguel</span><span class="pl-who__p pl-who__p--noel">Noel</span></span></td>
+              <td class="c-eff"><span class="pl-eff">M</span></td>
+              <td class="c-st"><span class="pl-pill">offen</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-A9" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Antwort 11 hat aus dem Sicherheitsthema eine eigene Leistung gemacht: den <em>Security exposure review</em>. Auf der Seite ist er benannt und beworben, inhaltlich ist er leer. Zu klären: was genau geprüft wird, welche Zugänge oder Daten dafür nötig sind, wer die Prüfung durchführt — ihr, Noel oder ein Partner —, wie lange sie dauert und wie sie bepreist wird.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Eine halbe Seite Leistungsbeschreibung, auf die hin ein Einkäufer beauftragen kann.</dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>Miguel, Noel</b></span><span>Wann <b>Phase 2</b></span><span>Aufwand <b>M</b></span><span>Block <b>A · Website — die offenen Punkte</b></span></p>
+                <div class="pl-fb" data-fb="A9"></div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody class="pl-item" id="t-A10" data-task="A10" data-stream="A" data-phase="P2" data-status="open" data-who="miguel">
+            <tr class="pl-row">
+              <td class="c-nr">A10</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-A10"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Kontaktdaten vervollständigen</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>A</b> Website</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--miguel">Miguel</span></span></td>
+              <td class="c-eff"><span class="pl-eff">S</span></td>
+              <td class="c-st"><span class="pl-pill">offen</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-A10" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Alle Kontaktdaten der Website kommen aus einem einzigen Objekt im Code: E-Mail, Telefonnummer in Anzeige- und <code>tel:</code>-Format, WhatsApp-Nummer, LinkedIn-URL und optional ein Buchungslink. Dort stehen heute Platzhalter aus Nullen, jeder Kontaktweg der Seite läuft also ins Leere. Dazu kommen Anschrift und Bürozeiten auf der Kontaktseite. Die Aufgabe selbst ist klein — sie blockiert aber die Visitenkarten und das Impressum.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Das Objekt ist gefüllt, Anschrift und Zeiten stehen, und jeder Kontaktweg auf der Seite führt irgendwohin.</dd><dt>Hängt daran</dt><dd class="pl-refs"><a class="pl-ref" href="#t-A11" data-ref="A11"><b>A11</b> Impressum und Datenschutz <span class="pl-ref__phase">Phase 3</span></a><a class="pl-ref" href="#t-B5" data-ref="B5"><b>B5</b> Visitenkarten, die die Seite spiegeln <span class="pl-ref__phase">Phase 3</span></a></dd><dt>Wo</dt><dd><code>assets/js/site.js</code>, Objekt <code>CONTACT</code>; dazu <code>contact.html</code></dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>Miguel</b></span><span>Wann <b>Phase 2</b></span><span>Aufwand <b>S</b></span><span>Block <b>A · Website — die offenen Punkte</b></span></p>
+                <div class="pl-fb" data-fb="A10"></div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody class="pl-item" id="t-A14" data-task="A14" data-stream="A" data-phase="P2" data-status="open" data-who="martin">
+            <tr class="pl-row">
+              <td class="c-nr">A14</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-A14"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Die neuen Seiten bauen</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>A</b> Website</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--martin">Martin</span></span></td>
+              <td class="c-eff"><span class="pl-eff">L</span></td>
+              <td class="c-st"><span class="pl-pill">offen</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-A14" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Bauen, was in Session 1 beschlossen wurde. Welche Seiten das sind, steht erst nach diesem Termin fest — deshalb ist der Aufwand hier eine Annahme und keine Schätzung: ohne die Seitenliste lässt sich weder planen noch anfangen. Sobald sie vorliegt, zerfällt diese eine Zeile in mehrere eigene Aufgaben, je eine pro Seite, und der Aufwand wird echt geschätzt.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Alle in Session 1 beschlossenen Seiten stehen im Entwurf — mit Inhalt, wo er da ist, und mit sichtbar markierten Platzhaltern, wo er fehlt.</dd><dt>Braucht vorher</dt><dd class="pl-refs"><a class="pl-ref" href="#t-A13" data-ref="A13"><b>A13</b> Seitenplan aus Session 1 <span class="pl-ref__phase">Phase 1</span></a></dd><dt>Hängt daran</dt><dd class="pl-refs"><a class="pl-ref" href="#t-A19" data-ref="A19"><b>A19</b> Durchlauf vor dem Launch <span class="pl-ref__phase">Phase 3</span></a></dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>Martin</b></span><span>Wann <b>Phase 2</b></span><span>Aufwand <b>L</b></span><span>Block <b>A · Website — die offenen Punkte</b></span></p>
+                <div class="pl-fb" data-fb="A14"></div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody class="pl-item" id="t-A15" data-task="A15" data-stream="A" data-phase="P2" data-status="open" data-who="martin">
+            <tr class="pl-row">
+              <td class="c-nr">A15</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-A15"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Blogbereich anlegen</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>A</b> Website</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--martin">Martin</span></span></td>
+              <td class="c-eff"><span class="pl-eff">M</span></td>
+              <td class="c-st"><span class="pl-pill">offen</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-A15" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Ein Blogbereich, damit die Content-Schleife ein Ziel hat: Übersichtsseite mit Datum und Anrisstext plus eine Artikelvorlage mit Titel, Autor, Datum, Fließtext und Bild. Ohne diesen Bereich läuft die ganze Schleife aus Strang D ins Leere — geschrieben wird, aber es gibt keinen Ort, an dem es erscheint.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Ein Beispielartikel steht im Entwurf und ist von der Übersicht verlinkt.</dd><dt>Hängt daran</dt><dd class="pl-refs"><a class="pl-ref" href="#t-D1" data-ref="D1"><b>D1</b> Content-Schleife aufsetzen <span class="pl-ref__phase">Phase 4</span></a></dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>Martin</b></span><span>Wann <b>Phase 2</b></span><span>Aufwand <b>M</b></span><span>Block <b>A · Website — die offenen Punkte</b></span></p>
+                <div class="pl-fb" data-fb="A15"></div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody class="pl-item" id="t-A18" data-task="A18" data-stream="A" data-phase="P2" data-status="open" data-who="miguel">
+            <tr class="pl-row">
+              <td class="c-nr">A18</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-A18"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Zwei offene Urteile aus Zyklus 1</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>A</b> Website</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--miguel">Miguel</span></span></td>
+              <td class="c-eff"><span class="pl-eff">S</span></td>
+              <td class="c-st"><span class="pl-pill">offen</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-A18" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Aus Zyklus 1 sind zwei Entscheidungen bewusst offengeblieben und im Fragenkatalog als solche vermerkt. Erstens die RACI-Matrix: Sie wurde gelöscht statt anonymisiert, obwohl Antwort 02 beide Wege zuließ — eine anonymisierte Fassung („Kunde · Plattform-Anbieter · Integrator · Carrier“) würde das Lieferargument ohne Namen erhalten, und das Layout dafür liegt noch im Code. Zweitens die 10.000 Euro aus dem Fall: Sie stehen nicht auf der Seite, weil sie neben 1,5 Millionen Ersparnis wie ein Einstiegspreis gelesen würden — und Antwort 15 sagt ausdrücklich: kein Preis.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Beide Fragen sind mit Ja oder Nein beantwortet und, wo Ja, umgesetzt.</dd><dt>Wo</dt><dd><code>decisions.html</code>, Antworten 02 und 15</dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>Miguel</b></span><span>Wann <b>Phase 2</b></span><span>Aufwand <b>S</b></span><span>Block <b>A · Website — die offenen Punkte</b></span></p>
+                <div class="pl-fb" data-fb="A18"></div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody class="pl-item" id="t-B2" data-task="B2" data-stream="B" data-phase="P2" data-status="open" data-who="martin">
+            <tr class="pl-row">
+              <td class="c-nr">B2</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-B2"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Markenblatt auf einer Seite</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>B</b> Marke</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--martin">Martin</span></span></td>
+              <td class="c-eff"><span class="pl-eff">M</span></td>
+              <td class="c-st"><span class="pl-pill">offen</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-B2" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Eine Seite, die die Marke so festhält, dass jemand ohne Zugriff auf den Code sie trifft: die Farbwerte, beide Schriften mit Größen, die Abstände um das Logo, seine Mindestgröße, was man mit ihm nicht tun darf, und zwei, drei Beispiele richtig gegen falsch. Grundlage ist das, was auf der Website ohnehin schon gilt — es steht nur bisher nirgends außerhalb des Codes.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Ein PDF, das man dem Bruder, einer Druckerei oder einer Agentur ohne Rückfragen geben kann.</dd><dt>Hängt daran</dt><dd class="pl-refs"><a class="pl-ref" href="#t-B3" data-ref="B3"><b>B3</b> Grafikvorlagen für Social Posts <span class="pl-ref__phase">Phase 2</span></a><a class="pl-ref" href="#t-B5" data-ref="B5"><b>B5</b> Visitenkarten, die die Seite spiegeln <span class="pl-ref__phase">Phase 3</span></a><a class="pl-ref" href="#t-B6" data-ref="B6"><b>B6</b> LinkedIn-Unternehmensseite einrichten <span class="pl-ref__phase">Phase 3</span></a><a class="pl-ref" href="#t-B7" data-ref="B7"><b>B7</b> Bild- und Iconsprache festlegen <span class="pl-ref__phase">Phase 4</span></a><a class="pl-ref" href="#t-B8" data-ref="B8"><b>B8</b> Weitere Druckstücke <span class="pl-ref__phase">Phase 4</span></a></dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>Martin</b></span><span>Wann <b>Phase 2</b></span><span>Aufwand <b>M</b></span><span>Block <b>B · Marke und Grafik</b></span></p>
+                <div class="pl-fb" data-fb="B2"></div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody class="pl-item" id="t-B3" data-task="B3" data-stream="B" data-phase="P2" data-status="open" data-who="martin">
+            <tr class="pl-row">
+              <td class="c-nr">B3</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-B3"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Grafikvorlagen für Social Posts</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>B</b> Marke</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--martin">Martin</span></span></td>
+              <td class="c-eff"><span class="pl-eff">M</span></td>
+              <td class="c-st"><span class="pl-pill">offen</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-B3" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Fünf Vorlagen aus derselben Palette wie die Website: Querformat für LinkedIn, Quadrat, Zitatkachel, Zahlkachel, Blogteaser. Nicht aus Miguels Sprachnachricht, sondern aus dem Gespräch mit Martin am 2. September. Der Zweck: Posts sollen nach Fersen &amp; Lohse aussehen, ohne dass jemand jedes Mal von vorn gestaltet.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Fünf Vorlagen liegen als bearbeitbare Dateien vor, jede mit einem gefüllten Beispiel.</dd><dt>Braucht vorher</dt><dd class="pl-refs"><a class="pl-ref" href="#t-B2" data-ref="B2"><b>B2</b> Markenblatt auf einer Seite <span class="pl-ref__phase">Phase 2</span></a></dd><dt>Hängt daran</dt><dd class="pl-refs"><a class="pl-ref" href="#t-B4" data-ref="B4"><b>B4</b> Vorlagen übergabefähig machen <span class="pl-ref__phase">Phase 4</span></a><a class="pl-ref" href="#t-B8" data-ref="B8"><b>B8</b> Weitere Druckstücke <span class="pl-ref__phase">Phase 4</span></a><a class="pl-ref" href="#t-D6" data-ref="D6"><b>D6</b> Über Instagram entscheiden <span class="pl-ref__phase">Phase 4</span></a></dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>Martin</b></span><span>Wann <b>Phase 2</b></span><span>Aufwand <b>M</b></span><span>Block <b>B · Marke und Grafik</b></span></p>
+                <div class="pl-fb" data-fb="B3"></div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody class="pl-item" id="t-D2" data-task="D2" data-stream="D" data-phase="P2" data-status="open" data-who="miguel">
+            <tr class="pl-row">
+              <td class="c-nr">D2</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-D2"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Die ersten zehn Themen sammeln</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>D</b> LinkedIn</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--miguel">Miguel</span></span></td>
+              <td class="c-eff"><span class="pl-eff">M</span></td>
+              <td class="c-st"><span class="pl-pill">offen</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-D2" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Zehn Themen für die ersten Artikel, je als Stichpunktliste, aus Miguels laufender Arbeit — der Akamai-Fall ist eines davon. Bei der Frequenz aus Strang D decken zehn Themen ungefähr ein halbes Jahr. Es geht ausdrücklich nicht um fertige Texte: Stichpunkte reichen, geschrieben wird an anderer Stelle.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Zehn Themen stehen mit je drei bis fünf Stichpunkten in einer Liste.</dd><dt>Hängt daran</dt><dd class="pl-refs"><a class="pl-ref" href="#t-D1" data-ref="D1"><b>D1</b> Content-Schleife aufsetzen <span class="pl-ref__phase">Phase 4</span></a></dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>Miguel</b></span><span>Wann <b>Phase 2</b></span><span>Aufwand <b>M</b></span><span>Block <b>D · LinkedIn und Content</b></span></p>
+                <div class="pl-fb" data-fb="D2"></div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody class="pl-item" id="t-F2" data-task="F2" data-stream="F" data-phase="P2" data-status="open" data-who="miguel">
+            <tr class="pl-row">
+              <td class="c-nr">F2</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-F2"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Session 2 terminieren</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>F</b> Steuerung</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--miguel">Miguel</span></span></td>
+              <td class="c-eff"><span class="pl-eff">S</span></td>
+              <td class="c-st"><span class="pl-pill">offen</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-F2" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Der zweite gemeinsame Termin: Abnahme der Hausaufgaben und Freigabe für den Launch. Am besten schon in Session 1 mitlegen, solange alle vier zusammen sind — sonst kostet die Terminfindung erneut Wochen, und der Launch verschiebt sich um genau diese Zeit.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Der Termin steht in vier Kalendern.</dd><dt>Braucht vorher</dt><dd class="pl-refs"><a class="pl-ref" href="#t-F1" data-ref="F1"><b>F1</b> Session 1 terminieren <span class="pl-ref__phase">Phase 1</span></a></dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>Miguel</b></span><span>Wann <b>Phase 2</b></span><span>Aufwand <b>S</b></span><span>Block <b>F · Steuerung und Ziele</b></span></p>
+                <div class="pl-fb" data-fb="F2"></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="pl-fb pl-fb--group" data-fb="PHASE-P2"></div>
+      </section>
+
+      <section class="pl-group" id="tasks-p3" data-phase="P3" data-phase-title="Phase 3 · Launch">
+        <div class="pl-group__head">
+          <h3><span class="pl-group__n">Phase 3</span> Launch <span class="pl-group__count"><span data-group-count>9</span> von 9</span></h3>
+          <p class="pl-group__meta">grob Anfang November · ein bis zwei Wochen nach Session 2 · <b>Fertig, wenn</b> die Rechtsprüfung durch ist — vorher geht nichts live · <b>Wer</b> Martin, mit Miguel für alles Rechtliche · <b>Bereiche</b> Website · Marke · Feedback</p>
+        </div>
+
+        <table class="pl-table">
+          <thead>
+            <tr>
+              <th class="c-nr" scope="col">Nr</th>
+              <th class="c-task" scope="col">Aufgabe</th>
+              <th class="c-area" scope="col">Bereich</th>
+              <th class="c-who" scope="col">Wer</th>
+              <th class="c-eff" scope="col">Aufwand</th>
+              <th class="c-st" scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody class="pl-item" id="t-A11" data-task="A11" data-stream="A" data-phase="P3" data-status="block" data-who="miguel extern">
+            <tr class="pl-row">
+              <td class="c-nr">A11</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-A11"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Impressum und Datenschutz</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>A</b> Website</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--miguel">Miguel</span><span class="pl-who__p pl-who__p--extern">Anwalt</span></span></td>
+              <td class="c-eff"><span class="pl-eff">M</span></td>
+              <td class="c-st"><span class="pl-pill pl-pill--block">blockierend</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-A11" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Die Rechtsseite ist ein Gerüst und juristisch nicht geprüft. Hinein gehören Firmenname und Rechtsform, Anschrift, Geschäftsführung, Registergericht und -nummer, Umsatzsteuer-ID, der Verantwortliche für den Inhalt und eine vollständige Datenschutzerklärung — inklusive der Abschnitte für Kontaktformular, Chatbot und eingebundene Dienste. Ein unvollständiges Impressum ist in Deutschland abmahnfähig, und deshalb geht ohne diesen Punkt nichts live.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Impressum und Datenschutzerklärung sind anwaltlich geprüft und stehen auf der Seite.</dd><dt>Braucht vorher</dt><dd class="pl-refs"><a class="pl-ref" href="#t-A10" data-ref="A10"><b>A10</b> Kontaktdaten vervollständigen <span class="pl-ref__phase">Phase 2</span></a></dd><dt>Hängt daran</dt><dd class="pl-refs"><a class="pl-ref" href="#t-A12" data-ref="A12"><b>A12</b> Kontaktformular an ein Backend <span class="pl-ref__phase">Phase 3</span></a><a class="pl-ref" href="#t-C5" data-ref="C5"><b>C5</b> Datenschutz und Betrieb für Bot und Agent <span class="pl-ref__phase">Phase 4</span></a></dd><dt>Wo</dt><dd><code>legal.html</code></dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>Miguel + Anwalt</b></span><span>Wann <b>Phase 3</b></span><span>Aufwand <b>M</b></span><span>Block <b>A · Website — die offenen Punkte</b></span></p>
+                <div class="pl-fb" data-fb="A11"></div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody class="pl-item" id="t-A12" data-task="A12" data-stream="A" data-phase="P3" data-status="open" data-who="martin">
+            <tr class="pl-row">
+              <td class="c-nr">A12</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-A12"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Kontaktformular an ein Backend</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>A</b> Website</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--martin">Martin</span></span></td>
+              <td class="c-eff"><span class="pl-eff">M</span></td>
+              <td class="c-st"><span class="pl-pill">offen</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-A12" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Das Kontaktformular prüft die Eingaben, hat aber keinen Server: Beim Absenden öffnet es eine vorbefüllte E-Mail, in der auch die Metrikenliste der gewählten Domäne steht. Das funktioniert, wirkt aber unfertig und geht schief, wenn jemand kein Mailprogramm eingerichtet hat. Für den Livebetrieb braucht es einen Endpunkt und ein <code>fetch()</code>; welche Felder gesendet werden, steht bereits in der Funktion, die heute die Mail baut.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Eine Testanfrage kommt im Postfach an, ohne dass sich ein Mailprogramm öffnet.</dd><dt>Braucht vorher</dt><dd class="pl-refs"><a class="pl-ref" href="#t-A11" data-ref="A11"><b>A11</b> Impressum und Datenschutz <span class="pl-ref__phase">Phase 3</span></a></dd><dt>Hängt daran</dt><dd class="pl-refs"><a class="pl-ref" href="#t-A19" data-ref="A19"><b>A19</b> Durchlauf vor dem Launch <span class="pl-ref__phase">Phase 3</span></a><a class="pl-ref" href="#t-C3" data-ref="C3"><b>C3</b> Übergabe vom SDR-Tool zur Website <span class="pl-ref__phase">Phase 4</span></a></dd><dt>Wo</dt><dd><code>assets/js/site.js</code>, Funktion <code>buildMailto()</code></dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>Martin</b></span><span>Wann <b>Phase 3</b></span><span>Aufwand <b>M</b></span><span>Block <b>A · Website — die offenen Punkte</b></span></p>
+                <div class="pl-fb" data-fb="A12"></div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody class="pl-item" id="t-A16" data-task="A16" data-stream="A" data-phase="P3" data-status="open" data-who="miguel fredrik noel martin">
+            <tr class="pl-row">
+              <td class="c-nr">A16</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-A16"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Über die Kommentarebene entscheiden</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>A</b> Website</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--all">alle vier</span></span></td>
+              <td class="c-eff"><span class="pl-eff">S</span></td>
+              <td class="c-st"><span class="pl-pill">offen</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-A16" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Die Website trägt eine Kommentarebene: Jeder Abschnitt lässt sich direkt im Browser kommentieren, gespeichert wird im Browser des Kommentierenden, verschickt wird als CSV oder Mail. Für einen normalen Besucher der fertigen Seite ist das nichts — für die Feedbackrunde mit Kunden und Einkäufern ist es der fertig gebaute Weg. Also entscheiden: zum Launch herausnehmen und für die Runde wieder einbauen, oder anlassen und in Kauf nehmen, dass sie sichtbar ist.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Entschieden und umgesetzt — der Code ist entweder draußen oder er bleibt bewusst drin.</dd><dt>Hängt daran</dt><dd class="pl-refs"><a class="pl-ref" href="#t-C7" data-ref="C7"><b>C7</b> Diktierfunktion in die Kommentarebene <span class="pl-ref__phase">Phase 5</span></a><a class="pl-ref" href="#t-E2" data-ref="E2"><b>E2</b> Den Feedbackweg festlegen <span class="pl-ref__phase">Phase 3</span></a></dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>alle vier</b></span><span>Wann <b>Phase 3</b></span><span>Aufwand <b>S</b></span><span>Block <b>A · Website — die offenen Punkte</b></span></p>
+                <div class="pl-fb" data-fb="A16"></div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody class="pl-item" id="t-A17" data-task="A17" data-stream="A" data-phase="P3" data-status="open" data-who="martin">
+            <tr class="pl-row">
+              <td class="c-nr">A17</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-A17"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Domain, Hosting, TLS, robots.txt</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>A</b> Website</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--martin">Martin</span></span></td>
+              <td class="c-eff"><span class="pl-eff">S</span></td>
+              <td class="c-st"><span class="pl-pill">offen</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-A17" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Der Entwurf liegt heute auf GitHub Pages und trägt auf jeder Seite ein <code>noindex</code>, damit ihn niemand zufällig findet. Für den Launch: Domain aufsetzen, Hosting festlegen — vorgesehen ist Cloudflare Pages —, TLS-Zertifikat einrichten, <code>robots.txt</code> scharf stellen und das <code>noindex</code> aus allen Seiten entfernen. Bleibt es drin, ist die Seite auch nach dem Launch für Suchmaschinen unsichtbar.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Die Seite ist unter der echten Domain verschlüsselt erreichbar und darf indexiert werden.</dd><dt>Hängt daran</dt><dd class="pl-refs"><a class="pl-ref" href="#t-A19" data-ref="A19"><b>A19</b> Durchlauf vor dem Launch <span class="pl-ref__phase">Phase 3</span></a></dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>Martin</b></span><span>Wann <b>Phase 3</b></span><span>Aufwand <b>S</b></span><span>Block <b>A · Website — die offenen Punkte</b></span></p>
+                <div class="pl-fb" data-fb="A17"></div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody class="pl-item" id="t-A19" data-task="A19" data-stream="A" data-phase="P3" data-status="open" data-who="martin">
+            <tr class="pl-row">
+              <td class="c-nr">A19</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-A19"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Durchlauf vor dem Launch</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>A</b> Website</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--martin">Martin</span></span></td>
+              <td class="c-eff"><span class="pl-eff">M</span></td>
+              <td class="c-st"><span class="pl-pill">offen</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-A19" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Einmal alles durchgehen, bevor es live geht: jede Seite auf drei Breiten (Telefon, Tablet, Desktop), Bedienung nur mit der Tastatur, Kontraste, Ladezeit, tote Links, Formular einmal wirklich abschicken, Rechtschreibung. Eine Liste, ein Nachmittag — und der billigste Zeitpunkt, Fehler zu finden.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Die Liste ist abgehakt, oder was übrig bleibt, steht als eigener Punkt im Plan.</dd><dt>Braucht vorher</dt><dd class="pl-refs"><a class="pl-ref" href="#t-A14" data-ref="A14"><b>A14</b> Die neuen Seiten bauen <span class="pl-ref__phase">Phase 2</span></a><a class="pl-ref" href="#t-A12" data-ref="A12"><b>A12</b> Kontaktformular an ein Backend <span class="pl-ref__phase">Phase 3</span></a><a class="pl-ref" href="#t-A17" data-ref="A17"><b>A17</b> Domain, Hosting, TLS, robots.txt <span class="pl-ref__phase">Phase 3</span></a></dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>Martin</b></span><span>Wann <b>Phase 3</b></span><span>Aufwand <b>M</b></span><span>Block <b>A · Website — die offenen Punkte</b></span></p>
+                <div class="pl-fb" data-fb="A19"></div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody class="pl-item" id="t-B5" data-task="B5" data-stream="B" data-phase="P3" data-status="open" data-who="miguel martin">
+            <tr class="pl-row">
+              <td class="c-nr">B5</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-B5"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Visitenkarten, die die Seite spiegeln</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>B</b> Marke</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--miguel">Miguel</span><span class="pl-who__p pl-who__p--martin">Martin</span></span></td>
+              <td class="c-eff"><span class="pl-eff">S</span></td>
+              <td class="c-st"><span class="pl-pill">offen</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-B5" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Aus dem Gespräch mit Martin am 2. September: Visitenkarten in derselben Marke wie die Website, mit QR-Code auf die Seite. Erst drucken, wenn die Kontaktdaten final sind — sonst wird zweimal gedruckt, und die erste Auflage ist Altpapier.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Die Druckdatei liegt vor und die Auflage ist bestellt.</dd><dt>Braucht vorher</dt><dd class="pl-refs"><a class="pl-ref" href="#t-A10" data-ref="A10"><b>A10</b> Kontaktdaten vervollständigen <span class="pl-ref__phase">Phase 2</span></a><a class="pl-ref" href="#t-B2" data-ref="B2"><b>B2</b> Markenblatt auf einer Seite <span class="pl-ref__phase">Phase 2</span></a></dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>Martin, Miguel</b></span><span>Wann <b>Phase 3</b></span><span>Aufwand <b>S</b></span><span>Block <b>B · Marke und Grafik</b></span></p>
+                <div class="pl-fb" data-fb="B5"></div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody class="pl-item" id="t-B6" data-task="B6" data-stream="B" data-phase="P3" data-status="open" data-who="miguel martin">
+            <tr class="pl-row">
+              <td class="c-nr">B6</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-B6"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">LinkedIn-Unternehmensseite einrichten</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>B</b> Marke</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--miguel">Miguel</span><span class="pl-who__p pl-who__p--martin">Martin</span></span></td>
+              <td class="c-eff"><span class="pl-eff">S</span></td>
+              <td class="c-st"><span class="pl-pill">offen</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-B6" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Eine Unternehmensseite auf LinkedIn: Logo, Banner, Über-Text im selben Ton wie die Website, Link auf die Domain, die vier Beteiligten als Mitarbeitende verknüpft. Sie ist die Voraussetzung für alles in Strang D — ohne Unternehmensseite gibt es keine Posts, nichts zum Teilen für die eigenen Profile und keine Kampagne.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Die Seite ist online und die vier sind verknüpft.</dd><dt>Braucht vorher</dt><dd class="pl-refs"><a class="pl-ref" href="#t-B2" data-ref="B2"><b>B2</b> Markenblatt auf einer Seite <span class="pl-ref__phase">Phase 2</span></a></dd><dt>Hängt daran</dt><dd class="pl-refs"><a class="pl-ref" href="#t-D1" data-ref="D1"><b>D1</b> Content-Schleife aufsetzen <span class="pl-ref__phase">Phase 4</span></a></dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>Miguel, Martin</b></span><span>Wann <b>Phase 3</b></span><span>Aufwand <b>S</b></span><span>Block <b>B · Marke und Grafik</b></span></p>
+                <div class="pl-fb" data-fb="B6"></div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody class="pl-item" id="t-E1" data-task="E1" data-stream="E" data-phase="P3" data-status="open" data-who="miguel fredrik">
+            <tr class="pl-row">
+              <td class="c-nr">E1</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-E1"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Die Liste anlegen</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>E</b> Feedback</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--miguel">Miguel</span><span class="pl-who__p pl-who__p--fredrik">Fredrik</span></span></td>
+              <td class="c-eff"><span class="pl-eff">S</span></td>
+              <td class="c-st"><span class="pl-pill">offen</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-E1" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Festlegen, wer in der Feedbackrunde gefragt wird: welche Bestandskunden, welche Einkäufer, mit denen Miguel verhandelt hat, und wer von euch wen anspricht. Zehn Namen reichen. Ohne diese Liste findet die Runde nicht statt, weil sie niemandes Aufgabe ist — das ist der übliche Grund, warum solche Runden ausfallen.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Zehn Namen mit je einem Zuständigen stehen in einer Liste.</dd><dt>Hängt daran</dt><dd class="pl-refs"><a class="pl-ref" href="#t-E3" data-ref="E3"><b>E3</b> Rückmeldungen bündeln <span class="pl-ref__phase">Phase 5</span></a></dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>Miguel, Fredrik</b></span><span>Wann <b>Phase 3</b></span><span>Aufwand <b>S</b></span><span>Block <b>E · Externes Feedback</b></span></p>
+                <div class="pl-fb" data-fb="E1"></div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody class="pl-item" id="t-E2" data-task="E2" data-stream="E" data-phase="P3" data-status="open" data-who="martin">
+            <tr class="pl-row">
+              <td class="c-nr">E2</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-E2"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Den Feedbackweg festlegen</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>E</b> Feedback</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--martin">Martin</span></span></td>
+              <td class="c-eff"><span class="pl-eff">S</span></td>
+              <td class="c-st"><span class="pl-pill">offen</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-E2" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Wie kommt das Feedback zurück: direkt auf der Seite über die Kommentarebene, im Telefonat mit Notiz, oder als kurzer Fragebogen. Das hängt an der Entscheidung über die Kommentarebene — bleibt sie an, ist der Weg schon gebaut und braucht nur eine Anleitung in zwei Sätzen. Wird sie ausgebaut, muss hier etwas anderes her.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Der Weg steht und ist einmal mit einer Person ausprobiert worden.</dd><dt>Braucht vorher</dt><dd class="pl-refs"><a class="pl-ref" href="#t-A16" data-ref="A16"><b>A16</b> Über die Kommentarebene entscheiden <span class="pl-ref__phase">Phase 3</span></a></dd><dt>Hängt daran</dt><dd class="pl-refs"><a class="pl-ref" href="#t-E3" data-ref="E3"><b>E3</b> Rückmeldungen bündeln <span class="pl-ref__phase">Phase 5</span></a></dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>Martin</b></span><span>Wann <b>Phase 3</b></span><span>Aufwand <b>S</b></span><span>Block <b>E · Externes Feedback</b></span></p>
+                <div class="pl-fb" data-fb="E2"></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="pl-fb pl-fb--group" data-fb="PHASE-P3"></div>
+      </section>
+
+      <section class="pl-group" id="tasks-p4" data-phase="P4" data-phase-title="Phase 4 · Flankieren — LinkedIn, Content, Agenten">
+        <div class="pl-group__head">
+          <h3><span class="pl-group__n">Phase 4</span> Flankieren — LinkedIn, Content, Agenten <span class="pl-group__count"><span data-group-count>14</span> von 14</span></h3>
+          <p class="pl-group__meta">ab Launch · laufend · <b>Fertig, wenn</b> nie — das ist Betrieb, kein Projekt · <b>Wer</b> Miguel Content · Noel Agenten · Martin Seite und Vorlagen · <b>Bereiche</b> Marke · Agenten · LinkedIn · Steuerung</p>
+        </div>
+
+        <table class="pl-table">
+          <thead>
+            <tr>
+              <th class="c-nr" scope="col">Nr</th>
+              <th class="c-task" scope="col">Aufgabe</th>
+              <th class="c-area" scope="col">Bereich</th>
+              <th class="c-who" scope="col">Wer</th>
+              <th class="c-eff" scope="col">Aufwand</th>
+              <th class="c-st" scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody class="pl-item" id="t-C1" data-task="C1" data-stream="C" data-phase="P4" data-status="run" data-who="noel">
+            <tr class="pl-row">
+              <td class="c-nr">C1</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-C1"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">SDR-Tool mit Agenten</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>C</b> Agenten</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--noel">Noel</span></span></td>
+              <td class="c-eff"><span class="pl-eff">L</span></td>
+              <td class="c-st"><span class="pl-pill pl-pill--run">läuft</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-C1" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Noel baut bereits an einem Tool für die automatisierte Erstansprache. Für den Plan zu klären ist der Rahmen: welche Zielgruppen es anspricht, aus welchen Quellen es Kontakte zieht, wie viele Nachrichten pro Woche herausgehen, wer vorher darüberschaut und was mit einer Antwort passiert. Solange das nicht steht, lässt sich weder die Übergabe an die Website noch der Datenschutz dazu klären.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Eine Seite Beschreibung: Zielgruppe, Quellen, Ablauf, Freigabe, Grenzen.</dd><dt>Braucht vorher</dt><dd class="pl-refs"><a class="pl-ref" href="#t-C2" data-ref="C2"><b>C2</b> Klären, welche Agenten gemeint sind <span class="pl-ref__phase">Phase 1</span></a></dd><dt>Hängt daran</dt><dd class="pl-refs"><a class="pl-ref" href="#t-C3" data-ref="C3"><b>C3</b> Übergabe vom SDR-Tool zur Website <span class="pl-ref__phase">Phase 4</span></a></dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>Noel</b></span><span>Wann <b>Phase 4</b></span><span>Aufwand <b>L</b></span><span>Block <b>C · Agenten und Chatbots</b></span></p>
+                <div class="pl-fb" data-fb="C1"></div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody class="pl-item" id="t-B4" data-task="B4" data-stream="B" data-phase="P4" data-status="open" data-who="martin">
+            <tr class="pl-row">
+              <td class="c-nr">B4</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-B4"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Vorlagen übergabefähig machen</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>B</b> Marke</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--martin">Martin</span></span></td>
+              <td class="c-eff"><span class="pl-eff">M</span></td>
+              <td class="c-st"><span class="pl-pill">offen</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-B4" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Die Vorlagen so aufbereiten, dass Miguel oder sein Bruder sie ohne Martin befüllen können — in Canva, Figma oder PowerPoint, mit einer kurzen Anleitung. Sonst hängt die Content-Schleife an einer einzelnen Person, und genau daran hören solche Schleifen erfahrungsgemäß auf.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Jemand außer Martin hat einmal einen fertigen Post daraus gebaut.</dd><dt>Braucht vorher</dt><dd class="pl-refs"><a class="pl-ref" href="#t-B3" data-ref="B3"><b>B3</b> Grafikvorlagen für Social Posts <span class="pl-ref__phase">Phase 2</span></a></dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>Martin</b></span><span>Wann <b>Phase 4</b></span><span>Aufwand <b>M</b></span><span>Block <b>B · Marke und Grafik</b></span></p>
+                <div class="pl-fb" data-fb="B4"></div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody class="pl-item" id="t-C3" data-task="C3" data-stream="C" data-phase="P4" data-status="open" data-who="noel martin">
+            <tr class="pl-row">
+              <td class="c-nr">C3</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-C3"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Übergabe vom SDR-Tool zur Website</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>C</b> Agenten</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--noel">Noel</span><span class="pl-who__p pl-who__p--martin">Martin</span></span></td>
+              <td class="c-eff"><span class="pl-eff">M</span></td>
+              <td class="c-st"><span class="pl-pill">offen</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-C3" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Wo landet ein Lead, den das SDR-Tool erzeugt: im selben Postfach wie die Formularanfragen, in einem CRM oder in einer Tabelle? Welches Feld wird womit gefüllt, wer sieht ihn zuerst, und woran erkennt man später, dass er vom Tool kam und nicht von der Website? Ohne diese Festlegung entstehen zwei getrennte Sammlungen von Anfragen, die niemand zusammenführt.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Der Weg ist beschrieben und einmal mit einem Testlead durchgespielt.</dd><dt>Braucht vorher</dt><dd class="pl-refs"><a class="pl-ref" href="#t-C1" data-ref="C1"><b>C1</b> SDR-Tool mit Agenten <span class="pl-ref__phase">Phase 4</span></a><a class="pl-ref" href="#t-A12" data-ref="A12"><b>A12</b> Kontaktformular an ein Backend <span class="pl-ref__phase">Phase 3</span></a></dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>Noel, Martin</b></span><span>Wann <b>Phase 4</b></span><span>Aufwand <b>M</b></span><span>Block <b>C · Agenten und Chatbots</b></span></p>
+                <div class="pl-fb" data-fb="C3"></div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody class="pl-item" id="t-C4" data-task="C4" data-stream="C" data-phase="P4" data-status="open" data-who="noel martin">
+            <tr class="pl-row">
+              <td class="c-nr">C4</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-C4"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Chatbot auf der Website</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>C</b> Agenten</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--noel">Noel</span><span class="pl-who__p pl-who__p--martin">Martin</span></span></td>
+              <td class="c-eff"><span class="pl-eff">L</span></td>
+              <td class="c-st"><span class="pl-pill">offen</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-C4" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Ein Chatbot, der Besucher entlang derselben Metriken qualifiziert, die auch das Formular abfragt: Domäne, Volumen, Laufzeit, aktueller Anbieter. Er hängt vollständig an den Metrikenlisten — solange die nicht bestätigt sind, fragt er ins Leere. Vorher zu entscheiden ist außerdem, ob er nur führt oder auch inhaltlich antwortet; das zweite ist deutlich mehr Arbeit und deutlich mehr Risiko.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Der Bot läuft auf der Seite und erzeugt Anfragen mit denselben Feldern wie das Formular.</dd><dt>Braucht vorher</dt><dd class="pl-refs"><a class="pl-ref" href="#t-A2" data-ref="A2"><b>A2</b> Die zehn Metrikenlisten durchgehen <span class="pl-ref__phase">Phase 2</span></a><a class="pl-ref" href="#t-C5" data-ref="C5"><b>C5</b> Datenschutz und Betrieb für Bot und Agent <span class="pl-ref__phase">Phase 4</span></a></dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>Martin, Noel</b></span><span>Wann <b>Phase 4</b></span><span>Aufwand <b>L</b></span><span>Block <b>C · Agenten und Chatbots</b></span></p>
+                <div class="pl-fb" data-fb="C4"></div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody class="pl-item" id="t-C5" data-task="C5" data-stream="C" data-phase="P4" data-status="open" data-who="miguel extern">
+            <tr class="pl-row">
+              <td class="c-nr">C5</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-C5"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Datenschutz und Betrieb für Bot und Agent</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>C</b> Agenten</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--miguel">Miguel</span><span class="pl-who__p pl-who__p--extern">Anwalt</span></span></td>
+              <td class="c-eff"><span class="pl-eff">M</span></td>
+              <td class="c-st"><span class="pl-pill">offen</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-C5" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Wo laufen die Modelle, welche Daten verlassen dabei Europa, was wird gespeichert und wie lange, und was steht dazu in der Datenschutzerklärung? Betrifft das SDR-Tool und den Chatbot gleichermaßen. Gehört in denselben Anwaltstermin wie die Rechtsprüfung des Geldmodells und das Impressum — drei Fragen, ein Termin, ein Vorlauf.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Die Antworten stehen schriftlich, und der passende Abschnitt steht in der Datenschutzerklärung.</dd><dt>Braucht vorher</dt><dd class="pl-refs"><a class="pl-ref" href="#t-C2" data-ref="C2"><b>C2</b> Klären, welche Agenten gemeint sind <span class="pl-ref__phase">Phase 1</span></a><a class="pl-ref" href="#t-A11" data-ref="A11"><b>A11</b> Impressum und Datenschutz <span class="pl-ref__phase">Phase 3</span></a></dd><dt>Hängt daran</dt><dd class="pl-refs"><a class="pl-ref" href="#t-C4" data-ref="C4"><b>C4</b> Chatbot auf der Website <span class="pl-ref__phase">Phase 4</span></a></dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>Miguel + Anwalt</b></span><span>Wann <b>Phase 4</b></span><span>Aufwand <b>M</b></span><span>Block <b>C · Agenten und Chatbots</b></span></p>
+                <div class="pl-fb" data-fb="C5"></div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody class="pl-item" id="t-D1" data-task="D1" data-stream="D" data-phase="P4" data-status="open" data-who="miguel">
+            <tr class="pl-row">
+              <td class="c-nr">D1</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-D1"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Content-Schleife aufsetzen</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>D</b> LinkedIn</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--miguel">Miguel</span></span></td>
+              <td class="c-eff"><span class="pl-eff">M</span></td>
+              <td class="c-st"><span class="pl-pill">offen</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-D1" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Der Ablauf aus der Sprachnachricht, einmal verbindlich verabredet: Miguel gibt Stichpunkte, sein Bruder schreibt daraus einen Artikel, jemand gibt ihn frei, er erscheint im Blogbereich, danach wird er als LinkedIn-Post nachgezogen. Festzuhalten sind die fünf Schritte mit je einem Namen und einer groben Durchlaufzeit. Die Schleife hat mit Miguels Bruder eine Abhängigkeit außerhalb des Teams — das ist kein Problem, solange die Frequenz sich danach richtet.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Ein Artikel ist einmal komplett durch alle fünf Schritte gelaufen.</dd><dt>Braucht vorher</dt><dd class="pl-refs"><a class="pl-ref" href="#t-A15" data-ref="A15"><b>A15</b> Blogbereich anlegen <span class="pl-ref__phase">Phase 2</span></a><a class="pl-ref" href="#t-D2" data-ref="D2"><b>D2</b> Die ersten zehn Themen sammeln <span class="pl-ref__phase">Phase 2</span></a><a class="pl-ref" href="#t-B6" data-ref="B6"><b>B6</b> LinkedIn-Unternehmensseite einrichten <span class="pl-ref__phase">Phase 3</span></a></dd><dt>Hängt daran</dt><dd class="pl-refs"><a class="pl-ref" href="#t-D3" data-ref="D3"><b>D3</b> Frequenz festlegen und halten <span class="pl-ref__phase">Phase 4</span></a></dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>Miguel</b></span><span>Wann <b>Phase 4</b></span><span>Aufwand <b>M</b></span><span>Block <b>D · LinkedIn und Content</b></span></p>
+                <div class="pl-fb" data-fb="D1"></div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody class="pl-item" id="t-D3" data-task="D3" data-stream="D" data-phase="P4" data-status="open" data-who="miguel fredrik noel martin">
+            <tr class="pl-row">
+              <td class="c-nr">D3</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-D3"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Frequenz festlegen und halten</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>D</b> LinkedIn</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--all">alle vier</span></span></td>
+              <td class="c-eff"><span class="pl-eff">S</span></td>
+              <td class="c-st"><span class="pl-pill">offen</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-D3" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Vorschlag: alle zwei Wochen ein Artikel und zwei Posts. Wichtiger als die Zahl ist, dass sie gehalten wird — lieber wenig und verlässlich als drei Wochen Stille nach einem starken Start. Die Frequenz muss zu dem passen, was der Bruder tatsächlich schafft, nicht umgekehrt.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Eine Frequenz ist verabredet und die ersten vier Termine stehen im Kalender.</dd><dt>Braucht vorher</dt><dd class="pl-refs"><a class="pl-ref" href="#t-D1" data-ref="D1"><b>D1</b> Content-Schleife aufsetzen <span class="pl-ref__phase">Phase 4</span></a></dd><dt>Hängt daran</dt><dd class="pl-refs"><a class="pl-ref" href="#t-D5" data-ref="D5"><b>D5</b> Bezahlte LinkedIn-Kampagne <span class="pl-ref__phase">Phase 5</span></a></dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>alle vier</b></span><span>Wann <b>Phase 4</b></span><span>Aufwand <b>S</b></span><span>Block <b>D · LinkedIn und Content</b></span></p>
+                <div class="pl-fb" data-fb="D3"></div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody class="pl-item" id="t-D4" data-task="D4" data-stream="D" data-phase="P4" data-status="open" data-who="miguel fredrik">
+            <tr class="pl-row">
+              <td class="c-nr">D4</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-D4"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Personas schärfen</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>D</b> LinkedIn</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--miguel">Miguel</span><span class="pl-who__p pl-who__p--fredrik">Fredrik</span></span></td>
+              <td class="c-eff"><span class="pl-eff">M</span></td>
+              <td class="c-st"><span class="pl-pill">offen</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-D4" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Einkauf, CISO und CFO wollen Verschiedenes hören: der Einkauf Preis und Verhandlungsposition, der CISO Risiko, der CFO Planbarkeit. Der Einkauf ist die Rolle, die Miguel wirklich kennt — also mit der anfangen. Je Rolle: wovor sie sich fürchtet, was sie überzeugt, und welcher Satz sie sofort verliert.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Drei halbseitige Beschreibungen, aus denen sich Themen und Tonfall ableiten lassen.</dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>Miguel, Fredrik</b></span><span>Wann <b>Phase 4</b></span><span>Aufwand <b>M</b></span><span>Block <b>D · LinkedIn und Content</b></span></p>
+                <div class="pl-fb" data-fb="D4"></div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody class="pl-item" id="t-D6" data-task="D6" data-stream="D" data-phase="P4" data-status="open" data-who="miguel fredrik noel martin">
+            <tr class="pl-row">
+              <td class="c-nr">D6</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-D6"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Über Instagram entscheiden</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>D</b> LinkedIn</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--all">alle vier</span></span></td>
+              <td class="c-eff"><span class="pl-eff">S</span></td>
+              <td class="c-st"><span class="pl-pill">offen</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-D6" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Aus dem Gespräch am 2. September, mit einer klaren Einschätzung: Für Einkaufsentscheider in IT-Verträgen ist Instagram die falsche Bühne — die sind auf LinkedIn. Wenn es trotzdem sein soll, dann nur als Nebenverwertung der ohnehin vorhandenen Vorlagen und ohne eigene Produktion.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Entschieden — und wenn ja, ist ein Konto eingerichtet und die Nebenverwertung beschrieben.</dd><dt>Braucht vorher</dt><dd class="pl-refs"><a class="pl-ref" href="#t-B3" data-ref="B3"><b>B3</b> Grafikvorlagen für Social Posts <span class="pl-ref__phase">Phase 2</span></a></dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>alle vier</b></span><span>Wann <b>Phase 4</b></span><span>Aufwand <b>S</b></span><span>Block <b>D · LinkedIn und Content</b></span></p>
+                <div class="pl-fb" data-fb="D6"></div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody class="pl-item" id="t-D7" data-task="D7" data-stream="D" data-phase="P4" data-status="open" data-who="martin">
+            <tr class="pl-row">
+              <td class="c-nr">D7</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-D7"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Messen, was zählt</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>D</b> LinkedIn</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--martin">Martin</span></span></td>
+              <td class="c-eff"><span class="pl-eff">S</span></td>
+              <td class="c-st"><span class="pl-pill">offen</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-D7" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Zwei Zahlen, von Anfang an dieselben: wie viele qualifizierte Anfragen kommen und wie viele Erstgespräche daraus werden. Reichweite und Followerzahlen sagen nichts über Aufträge und verleiten dazu, das Falsche zu optimieren. Festzulegen ist, woher die Zahlen kommen und wer sie monatlich einträgt.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Eine Tabelle mit zwei Spalten existiert und ist für den ersten Monat gefüllt.</dd><dt>Hängt daran</dt><dd class="pl-refs"><a class="pl-ref" href="#t-D5" data-ref="D5"><b>D5</b> Bezahlte LinkedIn-Kampagne <span class="pl-ref__phase">Phase 5</span></a><a class="pl-ref" href="#t-F4" data-ref="F4"><b>F4</b> Ziel 2026 halten <span class="pl-ref__phase">Phase 4</span></a></dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>Martin</b></span><span>Wann <b>Phase 4</b></span><span>Aufwand <b>S</b></span><span>Block <b>D · LinkedIn und Content</b></span></p>
+                <div class="pl-fb" data-fb="D7"></div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody class="pl-item" id="t-F3" data-task="F3" data-stream="F" data-phase="P4" data-status="open" data-who="miguel fredrik">
+            <tr class="pl-row">
+              <td class="c-nr">F3</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-F3"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Angebots- und Liefermuster</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>F</b> Steuerung</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--miguel">Miguel</span><span class="pl-who__p pl-who__p--fredrik">Fredrik</span></span></td>
+              <td class="c-eff"><span class="pl-eff">L</span></td>
+              <td class="c-st"><span class="pl-pill">offen</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-F3" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Damit aus dem ersten Kunden ein zweiter wird, braucht es drei wiederholbare Dinge: ein Angebot (was darin steht, welche Preislogik gilt), einen Ablauf (welche Schritte in welcher Reihenfolge, wer macht was) und einen Abschluss (was der Kunde am Ende in der Hand hält). Aus Miguels Satz „dann arbeiten wir einfach projektbasiert“ — projektbasiert funktioniert nur, wenn das Projekt eine Form hat.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Angebotsvorlage und Ablaufbeschreibung liegen vor und sind einmal benutzt worden.</dd><dt>Hängt daran</dt><dd class="pl-refs"><a class="pl-ref" href="#t-F5" data-ref="F5"><b>F5</b> Ziel 2027 vorbereiten <span class="pl-ref__phase">Phase 5</span></a></dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>Miguel, Fredrik</b></span><span>Wann <b>Phase 4</b></span><span>Aufwand <b>L</b></span><span>Block <b>F · Steuerung und Ziele</b></span></p>
+                <div class="pl-fb" data-fb="F3"></div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody class="pl-item" id="t-F4" data-task="F4" data-stream="F" data-phase="P4" data-status="open" data-who="miguel fredrik noel martin">
+            <tr class="pl-row">
+              <td class="c-nr">F4</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-F4"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Ziel 2026 halten</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>F</b> Steuerung</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--all">alle vier</span></span></td>
+              <td class="c-eff"><span class="pl-eff">—</span></td>
+              <td class="c-st"><span class="pl-pill">offen</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-F4" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Ein bis zwei Kunden bis Ende 2026 — „dann wäre das schon ein voller Erfolg“. Als Aufgabe heißt das nicht hoffen, sondern einmal im Monat gemeinsam draufschauen: welche Anfragen liegen an, woran hängen sie, muss etwas nachgesteuert werden.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Ein monatlicher Termin steht, und im Dezember gibt es eine ehrliche Antwort auf die Frage.</dd><dt>Braucht vorher</dt><dd class="pl-refs"><a class="pl-ref" href="#t-D7" data-ref="D7"><b>D7</b> Messen, was zählt <span class="pl-ref__phase">Phase 4</span></a></dd><dt>Hängt daran</dt><dd class="pl-refs"><a class="pl-ref" href="#t-F5" data-ref="F5"><b>F5</b> Ziel 2027 vorbereiten <span class="pl-ref__phase">Phase 5</span></a></dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>alle vier</b></span><span>Wann <b>Phase 4</b></span><span>Aufwand <b>—</b></span><span>Block <b>F · Steuerung und Ziele</b></span></p>
+                <div class="pl-fb" data-fb="F4"></div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody class="pl-item" id="t-B7" data-task="B7" data-stream="B" data-phase="P4" data-status="later" data-who="martin">
+            <tr class="pl-row">
+              <td class="c-nr">B7</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-B7"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Bild- und Iconsprache festlegen</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>B</b> Marke</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--martin">Martin</span></span></td>
+              <td class="c-eff"><span class="pl-eff">M</span></td>
+              <td class="c-st"><span class="pl-pill pl-pill--later">Backlog</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-B7" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Die Website trägt heute fast nur Typografie und das Lotus-Wasserzeichen. Für Blog, Posts und Folien braucht es eine Entscheidung: Fotos oder Illustration, welche Iconfamilie, wie Diagramme aussehen. Ohne diese Festlegung sieht jeder Beitrag ein bisschen anders aus, und die Marke franst genau dort aus, wo sie am meisten gesehen wird.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Eine Musterseite zeigt Bild, Icon und Diagramm im endgültigen Stil.</dd><dt>Braucht vorher</dt><dd class="pl-refs"><a class="pl-ref" href="#t-B2" data-ref="B2"><b>B2</b> Markenblatt auf einer Seite <span class="pl-ref__phase">Phase 2</span></a></dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>Martin</b></span><span>Wann <b>Phase 4</b></span><span>Aufwand <b>M</b></span><span>Block <b>B · Marke und Grafik</b></span></p>
+                <div class="pl-fb" data-fb="B7"></div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody class="pl-item" id="t-B8" data-task="B8" data-stream="B" data-phase="P4" data-status="later" data-who="martin">
+            <tr class="pl-row">
+              <td class="c-nr">B8</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-B8"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Weitere Druckstücke</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>B</b> Marke</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--martin">Martin</span></span></td>
+              <td class="c-eff"><span class="pl-eff">M</span></td>
+              <td class="c-st"><span class="pl-pill pl-pill--later">Backlog</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-B8" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Ein Einseiter zum Benchmark-Angebot und ein Foliensatz fürs Erstgespräch. Beides fällt fast von selbst an, wenn Markenblatt und Vorlagen stehen — es steht hier, damit es nicht doch jemand unter Zeitdruck neu erfindet.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Einseiter und Foliensatz liegen als PDF vor.</dd><dt>Braucht vorher</dt><dd class="pl-refs"><a class="pl-ref" href="#t-B2" data-ref="B2"><b>B2</b> Markenblatt auf einer Seite <span class="pl-ref__phase">Phase 2</span></a><a class="pl-ref" href="#t-B3" data-ref="B3"><b>B3</b> Grafikvorlagen für Social Posts <span class="pl-ref__phase">Phase 2</span></a></dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>Martin</b></span><span>Wann <b>Phase 4</b></span><span>Aufwand <b>M</b></span><span>Block <b>B · Marke und Grafik</b></span></p>
+                <div class="pl-fb" data-fb="B8"></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="pl-fb pl-fb--group" data-fb="PHASE-P4"></div>
+      </section>
+
+      <section class="pl-group" id="tasks-p5" data-phase="P5" data-phase-title="Phase 5 · Externes Feedback — Zyklus 2">
+        <div class="pl-group__head">
+          <h3><span class="pl-group__n">Phase 5</span> Externes Feedback — Zyklus 2 <span class="pl-group__count"><span data-group-count>5</span> von 5</span></h3>
+          <p class="pl-group__meta">zwei bis vier Wochen nach Launch · dann in Zyklen · <b>Fertig, wenn</b> auch nie — jede Runde erzeugt die nächste · <b>Wer</b> Miguel und Fredrik fragen · Martin bündelt · <b>Bereiche</b> Agenten · LinkedIn · Feedback · Steuerung</p>
+        </div>
+
+        <table class="pl-table">
+          <thead>
+            <tr>
+              <th class="c-nr" scope="col">Nr</th>
+              <th class="c-task" scope="col">Aufgabe</th>
+              <th class="c-area" scope="col">Bereich</th>
+              <th class="c-who" scope="col">Wer</th>
+              <th class="c-eff" scope="col">Aufwand</th>
+              <th class="c-st" scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody class="pl-item" id="t-E3" data-task="E3" data-stream="E" data-phase="P5" data-status="open" data-who="martin">
+            <tr class="pl-row">
+              <td class="c-nr">E3</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-E3"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Rückmeldungen bündeln</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>E</b> Feedback</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--martin">Martin</span></span></td>
+              <td class="c-eff"><span class="pl-eff">M</span></td>
+              <td class="c-st"><span class="pl-pill">offen</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-E3" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Alles einsammeln, was aus der Feedbackrunde zurückkommt, Doppeltes zusammenfassen und in Fragen übersetzen, über die man entscheiden kann — genau das Format von Zyklus 1: eine Frage, die Optionen, eine Empfehlung. Rohes Feedback ist keine Entscheidung; die Übersetzungsarbeit ist der eigentliche Inhalt dieser Aufgabe.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Ein Fragenkatalog liegt vor, den Miguel in einem Durchgang beantworten kann.</dd><dt>Braucht vorher</dt><dd class="pl-refs"><a class="pl-ref" href="#t-E1" data-ref="E1"><b>E1</b> Die Liste anlegen <span class="pl-ref__phase">Phase 3</span></a><a class="pl-ref" href="#t-E2" data-ref="E2"><b>E2</b> Den Feedbackweg festlegen <span class="pl-ref__phase">Phase 3</span></a></dd><dt>Hängt daran</dt><dd class="pl-refs"><a class="pl-ref" href="#t-E4" data-ref="E4"><b>E4</b> Überarbeitungszyklus 2 dokumentieren <span class="pl-ref__phase">Phase 5</span></a></dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>Martin</b></span><span>Wann <b>Phase 5</b></span><span>Aufwand <b>M</b></span><span>Block <b>E · Externes Feedback</b></span></p>
+                <div class="pl-fb" data-fb="E3"></div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody class="pl-item" id="t-E4" data-task="E4" data-stream="E" data-phase="P5" data-status="open" data-who="martin">
+            <tr class="pl-row">
+              <td class="c-nr">E4</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-E4"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Überarbeitungszyklus 2 dokumentieren</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>E</b> Feedback</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--martin">Martin</span></span></td>
+              <td class="c-eff"><span class="pl-eff">M</span></td>
+              <td class="c-st"><span class="pl-pill">offen</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-E4" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Die Antworten aus der Runde im selben Format festhalten wie Zyklus 1: Frage, Antwort, was daraus wurde, und ein Link auf die Stelle der Seite, an der man es sieht. Der Platz dafür ist auf der Projektdokumentation schon als Platzhalter angelegt.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Zyklus 2 steht neben Zyklus 1 und ist von der Projektdokumentation verlinkt.</dd><dt>Braucht vorher</dt><dd class="pl-refs"><a class="pl-ref" href="#t-E3" data-ref="E3"><b>E3</b> Rückmeldungen bündeln <span class="pl-ref__phase">Phase 5</span></a></dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>Martin</b></span><span>Wann <b>Phase 5</b></span><span>Aufwand <b>M</b></span><span>Block <b>E · Externes Feedback</b></span></p>
+                <div class="pl-fb" data-fb="E4"></div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody class="pl-item" id="t-C7" data-task="C7" data-stream="C" data-phase="P5" data-status="later" data-who="martin">
+            <tr class="pl-row">
+              <td class="c-nr">C7</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-C7"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Diktierfunktion in die Kommentarebene</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>C</b> Agenten</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--martin">Martin</span></span></td>
+              <td class="c-eff"><span class="pl-eff">S</span></td>
+              <td class="c-st"><span class="pl-pill pl-pill--later">Backlog</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-C7" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Der Baustein liegt fertig im Code — auf diesem Projektplan und im Fragenkatalog kann man schon diktieren statt tippen. Dasselbe in der Kommentarebene der Website macht die Feedbackrunde spürbar leichter, gerade für Einkäufer, die nebenbei antworten. Zwei Dinge zu beachten: Das Mikrofon funktioniert nur über eine echte Adresse, nicht bei einer lokal geöffneten Datei — und die Kommentarebene muss zum Launch drin geblieben sein.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>In jedem Kommentarfeld der Website steht ein Mikrofonknopf, und er funktioniert.</dd><dt>Braucht vorher</dt><dd class="pl-refs"><a class="pl-ref" href="#t-A16" data-ref="A16"><b>A16</b> Über die Kommentarebene entscheiden <span class="pl-ref__phase">Phase 3</span></a></dd><dt>Wo</dt><dd><code>assets/js/dictation.js</code>, eingebunden in <code>review.js</code></dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>Martin</b></span><span>Wann <b>Phase 5</b></span><span>Aufwand <b>S</b></span><span>Block <b>C · Agenten und Chatbots</b></span></p>
+                <div class="pl-fb" data-fb="C7"></div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody class="pl-item" id="t-D5" data-task="D5" data-stream="D" data-phase="P5" data-status="later" data-who="miguel">
+            <tr class="pl-row">
+              <td class="c-nr">D5</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-D5"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Bezahlte LinkedIn-Kampagne</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>D</b> LinkedIn</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--miguel">Miguel</span></span></td>
+              <td class="c-eff"><span class="pl-eff">M</span></td>
+              <td class="c-st"><span class="pl-pill pl-pill--later">Backlog</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-D5" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Erst wenn organisch etwas trägt — sonst bezahlt man dafür, dass Leute etwas finden, das sie nicht hält. Und dann mit Rahmen statt offen: festes Budget, feste Laufzeit, eine Zielgruppe, ein Ziel, und die beiden Zahlen aus der Messung als Maßstab.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Entweder läuft eine Kampagne mit festem Rahmen, oder sie ist begründet vertagt.</dd><dt>Braucht vorher</dt><dd class="pl-refs"><a class="pl-ref" href="#t-D7" data-ref="D7"><b>D7</b> Messen, was zählt <span class="pl-ref__phase">Phase 4</span></a><a class="pl-ref" href="#t-D3" data-ref="D3"><b>D3</b> Frequenz festlegen und halten <span class="pl-ref__phase">Phase 4</span></a></dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>Miguel</b></span><span>Wann <b>Phase 5</b></span><span>Aufwand <b>M</b></span><span>Block <b>D · LinkedIn und Content</b></span></p>
+                <div class="pl-fb" data-fb="D5"></div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody class="pl-item" id="t-F5" data-task="F5" data-stream="F" data-phase="P5" data-status="later" data-who="miguel fredrik noel martin">
+            <tr class="pl-row">
+              <td class="c-nr">F5</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-F5"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Ziel 2027 vorbereiten</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>F</b> Steuerung</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__p pl-who__p--all">alle vier</span></span></td>
+              <td class="c-eff"><span class="pl-eff">—</span></td>
+              <td class="c-st"><span class="pl-pill pl-pill--later">Backlog</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-F5" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Zwei bis vier kleinere Projekte im Jahr 2027 — „und dann können wir da richtig aufbauen“. Vorbereiten heißt: aus dem, was 2026 funktioniert hat, das Muster ziehen und entscheiden, was es 2027 braucht — mehr Hände, mehr Reichweite oder engere Auswahl der Anfragen.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Ein Blatt mit den drei bis fünf Entscheidungen, die 2027 möglich machen.</dd><dt>Braucht vorher</dt><dd class="pl-refs"><a class="pl-ref" href="#t-F3" data-ref="F3"><b>F3</b> Angebots- und Liefermuster <span class="pl-ref__phase">Phase 4</span></a><a class="pl-ref" href="#t-F4" data-ref="F4"><b>F4</b> Ziel 2026 halten <span class="pl-ref__phase">Phase 4</span></a></dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>alle vier</b></span><span>Wann <b>Phase 5</b></span><span>Aufwand <b>—</b></span><span>Block <b>F · Steuerung und Ziele</b></span></p>
+                <div class="pl-fb" data-fb="F5"></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="pl-fb pl-fb--group" data-fb="PHASE-P5"></div>
+      </section>
+
+      <section class="pl-group" id="tasks-bl" data-phase="BL" data-phase-title="Backlog · Ohne Phase">
+        <div class="pl-group__head">
+          <h3><span class="pl-group__n">Backlog</span> Ohne Phase <span class="pl-group__count"><span data-group-count>1</span> von 1</span></h3>
+          <p class="pl-group__meta">keinem Termin zugeordnet · <b>Wer</b> noch offen · <b>Bereiche</b> Agenten</p>
+        </div>
+
+        <table class="pl-table">
+          <thead>
+            <tr>
+              <th class="c-nr" scope="col">Nr</th>
+              <th class="c-task" scope="col">Aufgabe</th>
+              <th class="c-area" scope="col">Bereich</th>
+              <th class="c-who" scope="col">Wer</th>
+              <th class="c-eff" scope="col">Aufwand</th>
+              <th class="c-st" scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody class="pl-item" id="t-C6" data-task="C6" data-stream="C" data-phase="BL" data-status="later" data-who="">
+            <tr class="pl-row">
+              <td class="c-nr">C6</td>
+              <td class="c-task"><button class="pl-row__btn" type="button" aria-expanded="false" aria-controls="d-C6"><span class="pl-row__caret" aria-hidden="true">›</span><span class="pl-row__title">Metriken-Selbstbedienung</span><span class="pl-row__flag" hidden></span></button></td>
+              <td class="c-area"><span class="pl-area"><b>C</b> Agenten</span></td>
+              <td class="c-who"><span class="pl-who"><span class="pl-who__none">noch offen</span></span></td>
+              <td class="c-eff"><span class="pl-eff">L</span></td>
+              <td class="c-st"><span class="pl-pill pl-pill--later">Backlog</span></td>
+            </tr>
+            <tr class="pl-detail" id="d-C6" hidden>
+              <td colspan="6">
+                <p class="pl-brief">Aus der Sprachnachricht vom 24. August: Besucher geben ihre Metriken selbst ein und sehen sofort eine Einschätzung. Miguel hat den Punkt in derselben Nachricht selbst vertagt — er setzt voraus, dass die Preislogik automatisierbar ist, und das ist sie heute nicht. Liegt bewusst im Backlog: nicht vergessen, aber auch nicht eingeplant.</p>
+                <dl class="pl-facts"><dt>Ergebnis</dt><dd>Wird aufgegriffen, wenn die Metrikenlisten bestätigt sind und genug Fälle vorliegen, um daraus eine belastbare Spanne zu rechnen.</dd><dt>Braucht vorher</dt><dd class="pl-refs"><a class="pl-ref" href="#t-A2" data-ref="A2"><b>A2</b> Die zehn Metrikenlisten durchgehen <span class="pl-ref__phase">Phase 2</span></a></dd></dl>
+                <p class="pl-detail__meta"><span>Wer <b>noch offen</b></span><span>Wann <b>Backlog</b></span><span>Aufwand <b>L</b></span><span>Block <b>C · Agenten und Chatbots</b></span></p>
+                <div class="pl-fb" data-fb="C6"></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="pl-fb pl-fb--group" data-fb="PHASE-BL"></div>
+      </section>
+
+        <p class="pl-empty" id="pl-empty" hidden>Keine Aufgabe passt auf diesen Filter.</p>
+
+        <section class="pl-areas" id="bereiche">
+          <h3>Anmerkung zu einem ganzen Bereich</h3>
+          <p class="pl-areas__lead">
+            Der Plan läuft nach Zeitfenstern, die Arbeit hat trotzdem Themen. Was für alle
+            Aufgaben eines Bereichs gilt — egal in welcher Phase sie stehen — gehört hierher.
+          </p>
+          <div class="pl-areas__grid">
+            <div class="pl-fb pl-fb--area" data-fb="BLOCK-A" data-area="A · Website — die offenen Punkte"></div>
+            <div class="pl-fb pl-fb--area" data-fb="BLOCK-B" data-area="B · Marke und Grafik"></div>
+            <div class="pl-fb pl-fb--area" data-fb="BLOCK-C" data-area="C · Agenten und Chatbots"></div>
+            <div class="pl-fb pl-fb--area" data-fb="BLOCK-D" data-area="D · LinkedIn und Content"></div>
+            <div class="pl-fb pl-fb--area" data-fb="BLOCK-E" data-area="E · Externes Feedback"></div>
+            <div class="pl-fb pl-fb--area" data-fb="BLOCK-F" data-area="F · Steuerung und Ziele"></div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================== OFFEN -->
+  <section class="section section--tight" id="offen" style="padding-top:0">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow">Ungeklärt</span>
+        <h2>Was der Plan nicht beantwortet</h2>
+        <p class="lead">
+          Sechs Punkte, die keine Aufgabe sind, sondern eine Entscheidung — sie gehören in die
+          ersten zehn Minuten von Session 1.
+        </p>
+      </div>
+      <ul class="pl-open">
+        <li>
+          <strong>Wann findet Session 1 statt?</strong>
+          <p>Die einzige Zahl, die den ganzen Plan bewegt. Alle Zeitangaben rechnen ab diesem Termin, nicht ab heute.</p>
+        </li>
+        <li>
+          <strong>Wer beauftragt den Anwalt, und wann?</strong>
+          <p>A1, A11 und C5 sind die einzigen echten Blocker und brauchen einen Vorlauf, den niemand verkürzen kann. Am besten alle drei in einem Termin, angestoßen in Phase 2.</p>
+        </li>
+        <li>
+          <strong>Wovon wird das bezahlt?</strong>
+          <p>Hosting, Anwalt, Visitenkartendruck, später eventuell eine Kampagne. Kleine Beträge — aber sie brauchen jemanden, der sie freigibt.</p>
+        </li>
+        <li>
+          <strong>Grok oder Groq?</strong>
+          <p>In der Sprachnachricht akustisch nicht eindeutig. Zwei völlig verschiedene Dinge, siehe C2.</p>
+        </li>
+        <li>
+          <strong>Bleibt die Kommentarebene zum Launch an?</strong>
+          <p>Sie ist der fertige Weg für die Feedbackrunde in Phase 5. Nimmt man sie heraus, muss dafür etwas anderes her.</p>
+        </li>
+        <li>
+          <strong>Wie schnell schreibt Miguels Bruder?</strong>
+          <p>Die Content-Schleife hat damit eine Abhängigkeit außerhalb des Teams. Die Frequenz muss sich danach richten, nicht umgekehrt.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- =========================================================== ZIELE -->
+  <section class="section section--tight" id="ziele" style="padding-top:0">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow">Woran sich das misst</span>
+        <h2>Zwei Zahlen, mehr nicht</h2>
+        <p class="lead">Beide wörtlich aus der Sprachnachricht vom 31. August.</p>
+      </div>
+      <div class="pl-goals">
+        <div class="pl-goal">
+          <strong>1–2</strong>
+          <span>Kunden bis Ende 2026. „Dann wäre das schon ein voller Erfolg.“</span>
+        </div>
+        <div class="pl-goal">
+          <strong>2–4</strong>
+          <span>kleinere Projekte 2027. „Und dann können wir da richtig aufbauen.“</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================ FOOTER -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__grid">
+      <div>
+        <a class="brand" href="index.html" style="margin-bottom:var(--s4)">
+          <img src="assets/img/logo-mark.png" alt="">
+          <span>
+            <span class="brand__name">Fersen &amp; Lohse</span>
+            <span class="brand__tag">IT Procurement</span>
+          </span>
+        </a>
+        <p style="max-width:32ch">
+          Projektplan zum Website- und Markenaufbau · Grundlage ist die Sprachnachricht vom
+          31. August 2026. Arbeitsstand, kein Vertrag: die Termine rechnen ab Session 1.
+        </p>
+      </div>
+
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="references.html">References</a></li>
+          <li><a href="catalog.html">Capability catalog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="project.html">Projektdokumentation</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Auf dieser Seite</h4>
+        <ul>
+          <li><a href="#zeitplan">Die sechs Phasen</a></li>
+          <li><a href="#aufgaben">Die Aufgaben</a></li>
+          <li><a href="#offen">Was noch offen ist</a></li>
+          <li><a href="#ziele">Die beiden Ziele</a></li>
+        </ul>
+      </div>
+
+            <div>
+        <h4>Die Phasen</h4>
+        <ul>
+          <li><a href="#tasks-p1">Phase 1 · Schematik</a></li>
+          <li><a href="#tasks-p2">Phase 2 · Hausaufgaben</a></li>
+          <li><a href="#tasks-p3">Phase 3 · Launch</a></li>
+          <li><a href="#tasks-p4">Phase 4 · Flankieren</a></li>
+          <li><a href="#tasks-p5">Phase 5 · Externes Feedback</a></li>
+          <li><a href="#tasks-bl">Backlog · ohne Phase</a></li>
+          <li><a href="#bereiche">Anmerkung je Bereich</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> Fersen &amp; Lohse. All rights reserved.</span>
+      <ul>
+        <li><a href="legal.html#imprint">Imprint</a></li>
+        <li><a href="legal.html#privacy">Privacy</a></li>
+        <li><a href="legal.html#imprint">Legal notice</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<!-- =========================================================== SAVEBAR -->
+<div class="wl-bar">
+  <div class="container wl-bar__inner">
+    <div class="wl-progress">
+      <div class="wl-progress__track"><div class="wl-progress__fill" id="pl-progress-fill"></div></div>
+      <span class="wl-progress__text" id="pl-progress-text">0 Rückmeldungen</span>
+    </div>
+    <span class="wl-bar__spacer"></span>
+    <span class="wl-status" id="pl-status-line"></span>
+    <input type="text" id="pl-who" placeholder="Dein Name" aria-label="Wer meldet zurück?" autocomplete="name">
+    <button class="btn btn--primary btn--sm" type="button" data-pl-action="open-sheet">Rückmeldung senden</button>
+  </div>
+</div>
+
+<!-- ======================================================== SEND SHEET -->
+<div class="wl-sheet" id="pl-sheet" role="dialog" aria-modal="true" aria-labelledby="pl-sheet-title" hidden>
+  <div class="wl-sheet__panel">
+    <div class="wl-sheet__head">
+      <div>
+        <h2 id="pl-sheet-title">Rückmeldung senden</h2>
+        <p id="pl-sheet-summary"></p>
+      </div>
+      <button class="wl-sheet__close" type="button" data-pl-action="close-sheet" aria-label="Schließen">✕</button>
+    </div>
+
+    <button class="wl-route" type="button" data-pl-action="mail">
+      <span class="wl-route__icon">✉</span>
+      <span>
+        <strong>Per E-Mail senden</strong>
+        <span>Lädt die CSV-Datei herunter und öffnet die Mail mit allen Rückmeldungen im Text.</span>
+      </span>
+    </button>
+
+    <button class="wl-route" type="button" data-pl-action="whatsapp">
+      <span class="wl-route__icon">◍</span>
+      <span>
+        <strong>Per WhatsApp senden</strong>
+        <span>Öffnet WhatsApp mit allen Rückmeldungen als Nachrichtentext.</span>
+      </span>
+    </button>
+
+    <button class="wl-route" type="button" data-pl-action="csv">
+      <span class="wl-route__icon">⤓</span>
+      <span>
+        <strong>Nur die CSV-Datei herunterladen</strong>
+        <span>Alle 50 Aufgaben mit Status, Fortschritt und Anmerkung. Öffnet sauber in Excel.</span>
+      </span>
+    </button>
+
+    <button class="wl-route" type="button" data-pl-action="copy">
+      <span class="wl-route__icon">⧉</span>
+      <span>
+        <strong>Text kopieren</strong>
+        <span>Alle Rückmeldungen in der Zwischenablage.</span>
+      </span>
+    </button>
+
+    <button class="wl-route" type="button" data-pl-action="print">
+      <span class="wl-route__icon">⎙</span>
+      <span>
+        <strong>Als PDF drucken</strong>
+        <span>Der ganze Plan mit allen Aufgaben, Filter wird ignoriert.</span>
+      </span>
+    </button>
+
+    <div class="wl-sheet__foot">
+      <span>Rückmeldungen liegen nur in diesem Browser, bis hier etwas gewählt wird.</span>
+      <button class="wl-linkbtn" type="button" data-pl-action="reset">Alle Rückmeldungen löschen</button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/site.js"></script>
+<script src="assets/js/handoff.js"></script>
+<script src="assets/js/dictation.js"></script>
+<script src="assets/js/plan.js?v=20260906c"></script>
+</body>
+</html>

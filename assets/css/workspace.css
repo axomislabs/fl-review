@@ -1,0 +1,375 @@
+/* ==========================================================================
+   Fersen & Lohse — the working layer
+
+   Three pages are not the website: the Projektdokumentation hub, the
+   Überarbeitungszyklus with the decision catalogue, and the Projektplan.
+   They all run dark on purpose — they are scaffolding, and the switch makes
+   that obvious the moment you land on one.
+
+   This file holds only what those three share: the dark palette, the handful
+   of corrections where site.css hardcodes white, and the print block that
+   turns the whole thing back into ink on white. The page-specific components
+   live in decisions.css and plan.css.
+
+   The mechanism is deliberately dumb: site.css's own tokens are redefined for
+   the duration of the page, so every card, button, field and band underneath
+   picks the dark values up without knowing anything about it.
+
+   Load order on every one of the three pages:
+     site.css  →  workspace.css  →  (decisions.css | plan.css)
+   ========================================================================== */
+
+/* ----------------------------------------------------------- palette -- */
+
+body.dec-page {
+  /* Brand, lifted for dark ground: the deep teal of the site cannot carry
+     text on near-black, so --deep becomes the light teal of the lotus. */
+  --deep: #5bc0d4;
+  --deep-700: #8ad6e4;
+  --deep-900: #071214;
+  --light: #42afc3;
+  --light-soft: #1f3b41;
+  --light-tint: #12333b;
+  --mute: #7e9599;
+
+  /* Neutrals, inverted */
+  --ink: #e3ebec;
+  --ink-2: #afc4c8;
+  --ink-3: #7e9599;
+  --paper: #122225;          /* card and field surfaces */
+  --paper-alt: #193035;
+  --line: #274449;
+  --line-strong: #325257;
+
+  /* Signals */
+  --danger: #de8b74;
+  --danger-wash: #39231d;
+
+  /* Done — a green that appears nowhere else in the working layer. On the
+     decision page it marks what Miguel actually decided; on the plan it
+     marks what is finished. Both meanings are the same one: settled. */
+  --done: #6fc79b;
+  --done-wash: #13302a;
+  --done-line: #2c5a4c;
+
+  /* Waiting — amber, for what is running or blocked on someone else. It is
+     never the only carrier of that state: every use of it is also a word. */
+  --wait: #e8c07a;
+  --wait-wash: #33280f;
+  --wait-line: #55451f;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, .35), 0 3px 10px rgba(0, 0, 0, .25);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, .4), 0 16px 40px rgba(0, 0, 0, .35);
+
+  --ground: #0b1618;         /* the page itself, one step below the cards */
+  --on-teal: #08181b;        /* text on a bright teal fill */
+
+  background: var(--ground);
+  color: var(--ink);
+}
+
+/* ------------------------------- shared components, dark corrections -- */
+
+/* site.css hardcodes white in these four places. */
+body.dec-page .site-header {
+  background: rgba(11, 22, 24, .9);
+  border-bottom-color: var(--line);
+}
+
+body.dec-page .btn--primary,
+body.dec-page .btn--primary:hover { color: var(--on-teal); }
+
+body.dec-page .site-footer {
+  background: #0e1e22;
+  border-top: 1px solid var(--line);
+}
+
+@media (max-width: 900px) {
+  body.dec-page .nav { background: var(--paper); border-bottom-color: var(--line); }
+}
+
+/* The page header band: the site's teal gradient would glare against a dark
+   page, so it steps down instead of up. */
+body.dec-page .pagehead { background: linear-gradient(160deg, #0e2329, #16333b 90%); }
+body.dec-page .pagehead .eyebrow { color: var(--deep); }
+
+body.dec-page ::placeholder { color: var(--ink-3); opacity: 1; }
+
+/* ---------------------------------------------------- the mic button -- */
+
+/* Dictation is offered wherever the working layer takes free text — the
+   decision catalogue and the project plan. The button is built in JS by
+   whichever page needs it (dictation.js does the speech part), so only the
+   look lives here. In Firefox, and from file://, it is never rendered at all.
+
+   .is-live is not carried by colour alone: the button also swaps its label to
+   "Stopp" while it records. */
+
+.wl-mic {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 13px 5px 10px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-pill);
+  background: var(--paper);
+  color: var(--deep);
+  font: inherit;
+  font-size: var(--fs-xs);
+  font-weight: 650;
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease, color .15s ease;
+}
+
+.wl-mic:hover { background: var(--light-tint); border-color: var(--light); }
+
+.wl-mic svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.wl-mic.is-live {
+  background: var(--danger);
+  border-color: var(--danger);
+  color: #2a1512;
+  animation: wl-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes wl-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(222, 139, 116, .5); }
+  50%      { box-shadow: 0 0 0 6px rgba(222, 139, 116, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wl-mic.is-live { animation: none; }
+}
+
+/* ------------------------------------------- getting the work back out -- */
+
+/* The fixed bar at the foot of the page and the sheet it opens. Both the
+   decision catalogue and the project plan collect something in this browser
+   and then need the same five routes out — CSV, mail, WhatsApp, clipboard,
+   print — so the furniture for that lives here and the routes themselves live
+   in handoff.js.
+
+   The bar is fixed, so every page that shows it needs room underneath. */
+
+body.wl-has-bar { padding-bottom: 92px; }
+body.wl-sheet-open { overflow: hidden; }
+
+/* ------------------------------------------------------------- savebar -- */
+
+.wl-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 60;
+  background: rgba(11, 22, 24, .96);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid var(--line);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, .35);
+}
+
+.wl-bar__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s3) var(--s4);
+  padding-block: 11px;
+}
+
+.wl-progress { display: flex; align-items: center; gap: var(--s3); min-width: 210px; }
+
+.wl-progress__track {
+  width: 120px;
+  height: 6px;
+  border-radius: var(--radius-pill);
+  background: var(--line);
+  overflow: hidden;
+}
+
+.wl-progress__fill {
+  height: 100%;
+  width: 0;
+  background: var(--deep);
+  border-radius: var(--radius-pill);
+  transition: width .25s ease;
+}
+
+.wl-progress__text { font-size: var(--fs-xs); color: var(--ink-2); font-weight: 650; white-space: nowrap; }
+
+.wl-bar__spacer { flex: 1 1 auto; }
+
+.wl-status { font-size: var(--fs-xs); color: var(--ink-3); }
+.wl-status.is-ok { color: var(--deep); }
+.wl-status.is-warn { color: var(--danger); }
+
+.wl-bar input[type="text"] {
+  width: 165px;
+  padding: 9px 13px;
+  font: inherit;
+  font-size: var(--fs-sm);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.wl-bar input[type="text"]:focus {
+  outline: none;
+  border-color: var(--deep);
+  box-shadow: 0 0 0 3px var(--light-soft);
+}
+
+/* Two rows on a phone: progress on top, name plus send button below —
+   the save status already sits above the questions on that width. */
+@media (max-width: 720px) {
+  .wl-bar__inner { gap: 8px var(--s3); padding-block: 9px; }
+  .wl-progress { min-width: 0; order: 1; flex: 1 1 auto; }
+  .wl-progress__track { width: 70px; }
+  .wl-status { display: none; }
+  .wl-bar__spacer { display: none; }
+  .wl-bar input[type="text"] { order: 2; flex: 1 1 110px; width: auto; min-width: 0; }
+  .wl-bar .btn { order: 3; flex: 0 0 auto; }
+  body.dec-page { padding-bottom: 122px; }
+}
+
+/* --------------------------------------------------------- send sheet -- */
+
+.wl-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--s4);
+  background: rgba(3, 10, 12, .66);
+}
+
+.wl-sheet[hidden] { display: none; }
+
+.wl-sheet__panel {
+  width: min(560px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  background: var(--paper);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  padding: var(--s5);
+}
+
+.wl-sheet__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--s4);
+  margin-bottom: var(--s5);
+}
+
+.wl-sheet__head h2 { margin: 0 0 4px; font-size: var(--fs-h3); }
+.wl-sheet__head p { margin: 0; font-size: var(--fs-sm); color: var(--ink-3); }
+
+.wl-sheet__close {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  background: var(--paper);
+  color: var(--ink-2);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.wl-sheet__close:hover { background: var(--paper-alt); color: var(--ink); }
+
+.wl-route {
+  display: flex;
+  gap: var(--s4);
+  align-items: flex-start;
+  width: 100%;
+  text-align: left;
+  padding: var(--s3) var(--s4);
+  margin-bottom: 8px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: var(--paper);
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  transition: border-color .15s ease, background .15s ease;
+}
+
+.wl-route:hover { border-color: var(--light); background: var(--light-tint); }
+
+.wl-route__icon {
+  flex: none;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  display: grid;
+  place-items: center;
+  background: var(--light-tint);
+  color: var(--deep);
+}
+
+.wl-route__icon svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.wl-route strong { display: block; font-size: var(--fs-sm); }
+.wl-route span { display: block; font-size: var(--fs-xs); color: var(--ink-3); margin-top: 2px; }
+
+.wl-sheet__foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s4);
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--s5);
+  padding-top: var(--s4);
+  border-top: 1px solid var(--line);
+  font-size: var(--fs-xs);
+  color: var(--ink-3);
+}
+
+.wl-linkbtn {
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  font-size: var(--fs-xs);
+  color: var(--danger);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* -------------------------------------------------------------- print -- */
+
+@media print {
+  .site-header, .site-footer, .dec-rail,
+  .wl-bar, .wl-sheet, .wl-mic, .fl-launcher, .fl-drawer, .fl-handle, .skip-link { display: none !important; }
+
+  /* On paper the dark ground turns back into ink on white. */
+  body.dec-page {
+    --ink: #111; --ink-2: #333; --ink-3: #555;
+    --paper: #fff; --paper-alt: #f4f7f8;
+    --line: #ccc; --line-strong: #aaa;
+    --deep: #0d5a69; --deep-700: #0d5a69;
+    --light-tint: #f0f6f7; --light-soft: #d5e4e7;
+    --danger: #8c3527; --danger-wash: #f6ebe8;
+    --done: #1f6b4d; --done-wash: #eef6f2; --done-line: #b6d5c8;
+    --wait: #7a5a12; --wait-wash: #fdf6e6; --wait-line: #e3d0a3;
+    --ground: #fff; --on-teal: #fff;
+    background: #fff;
+    color: #111;
+    padding-bottom: 0;
+  }
+  .pagehead { background: none !important; color: #111; }
+  .pagehead h1, .pagehead p, .breadcrumb, .breadcrumb a { color: #111 !important; }
+}

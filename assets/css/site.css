@@ -259,16 +259,40 @@ li + li { margin-top: var(--s2); }
 
 /* Draft-only tab. Sits behind the call to action and is deliberately quieter
    than the real navigation, so it reads as scaffolding, not as a site page. */
-.nav a.nav__draft:not(.btn) {
+/* The working layer hangs off the end of the nav, behind the Get in touch
+   button and behind a divider — it is not a page of the website. Its two
+   documents sit under it as a second line rather than in a hover menu: there
+   are only ever two of them, and a menu that has to be opened hides what the
+   whole point was to make obvious. */
+.nav .nav__doc {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
   margin-left: var(--s2);
   padding-left: var(--s5);
   border-left: 1px solid var(--line-strong);
-  font-size: var(--fs-xs);
-  font-weight: 600;
-  color: var(--ink-3);
+  line-height: 1.3;
 }
-.nav a.nav__draft:not(.btn):hover { color: var(--deep); }
-.nav a.nav__draft[aria-current="page"] { color: var(--deep); }
+
+.nav .nav__doc a {
+  font-size: var(--fs-xs);
+  color: var(--ink-3);
+  text-decoration: none;
+}
+.nav .nav__doc a:hover { color: var(--deep); }
+.nav .nav__doc a[aria-current="page"] { color: var(--deep); font-weight: 700; }
+/* site.css marks the current page with an underline bar; inside this stack it
+   would sit on top of the second line, so the weight carries it instead. */
+.nav .nav__doc a[aria-current="page"]::after { display: none; }
+
+.nav .nav__doc-main { font-weight: 600; }
+
+.nav .nav__doc-sub { display: flex; gap: var(--s3); }
+.nav .nav__doc-sub a { color: var(--mute); }
+.nav .nav__doc-sub a + a {
+  padding-left: var(--s3);
+  border-left: 1px solid var(--line);
+}
 
 .nav-toggle {
   display: none;
@@ -301,10 +325,13 @@ li + li { margin-top: var(--s2); }
   .nav a { padding: 13px 0; border-bottom: 1px solid var(--line); font-size: 1rem; }
   .nav a[aria-current="page"]::after { display: none; }
   .nav .btn { margin-top: var(--s4); }
-  .nav a.nav__draft:not(.btn) {
+  .nav .nav__doc {
     margin-left: 0; padding-left: 0; border-left: 0;
-    margin-top: var(--s4); font-size: var(--fs-sm);
+    margin-top: var(--s4); gap: var(--s2);
   }
+  .nav .nav__doc a { font-size: var(--fs-sm); }
+  .nav .nav__doc-sub { flex-direction: column; gap: var(--s2); padding-left: var(--s4); }
+  .nav .nav__doc-sub a + a { padding-left: 0; border-left: 0; }
 }
 
 /* --------------------------------------------------------------- hero -- */
@@ -354,7 +381,10 @@ li + li { margin-top: var(--s2); }
 .hero__actions { display: flex; flex-wrap: wrap; gap: var(--s3); }
 .hero__facts {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  /* auto-fit rather than a fixed four: the hero carries three figures since
+     the two XX placeholders came out (answer 05), and empty tracks would
+     leave the row hanging to the right. */
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
   gap: var(--s5) var(--s4);
   margin-top: var(--s8);
   padding-top: var(--s5);
@@ -735,3 +765,485 @@ table.matrix tbody tr:hover { background: var(--light-tint); }
     radial-gradient(ellipse 60% 100% at 50% 100%, var(--light-tint) 0 70%, transparent 71%);
   border-bottom: 1px solid var(--line);
 }
+
+/* ==========================================================================
+   Components added for the v2 rework (decisions of 31.08.2026)
+
+   Every block below exists because of one answered question in the decision
+   catalogue — the comment says which. See decisions.html for the answers and
+   assets/js/decisions-data.js for the wording.
+   ========================================================================== */
+
+/* --------------------------------------- problem statement — question 08 -- */
+
+.problem { display: grid; gap: var(--s6); align-items: start; }
+
+@media (min-width: 860px) { .problem { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: var(--s8); } }
+
+.problem__claim {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 1.05rem + 1.25vw, 2rem);
+  line-height: 1.3;
+  color: var(--deep);
+  margin: 0 0 var(--s4);
+}
+
+.problem__points { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--s4); }
+
+.problem__points li {
+  padding-left: var(--s5);
+  border-left: 2px solid var(--light);
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
+}
+
+.problem__points strong { display: block; color: var(--ink); margin-bottom: 2px; }
+
+/* ------------------------------------------- buyer use cases — question 16 -- */
+
+.usecase { position: relative; padding-top: var(--s6); }
+
+.usecase__n {
+  position: absolute;
+  top: 0; left: 0;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--light);
+}
+
+.usecase h3 { margin-bottom: var(--s3); }
+.usecase p { color: var(--ink-2); font-size: var(--fs-sm); margin-bottom: var(--s3); }
+
+.usecase__gain {
+  display: block;
+  font-size: var(--fs-xs);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--deep);
+  font-weight: 650;
+}
+
+.usecase--lead h3::after {
+  content: "The main one";
+  display: inline-block;
+  margin-left: var(--s3);
+  padding: 2px 9px;
+  border-radius: var(--radius-pill);
+  background: var(--light-tint);
+  border: 1px solid var(--light-soft);
+  color: var(--deep);
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  font-weight: 650;
+  letter-spacing: .03em;
+  text-transform: none;
+  vertical-align: middle;
+}
+
+/* -------------------------------------- the anonymised case — question 04 -- */
+
+.case { display: grid; gap: var(--s7); align-items: center; }
+
+@media (min-width: 920px) { .case { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--s8); } }
+
+.case__figure {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+  padding: var(--s6);
+}
+
+.case__figure figcaption {
+  font-size: var(--fs-xs);
+  color: var(--ink-3);
+  margin-bottom: var(--s5);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  font-weight: 650;
+}
+
+/* Two magnitudes, one hue, two shades — before and after on the same scale. */
+.compare { display: grid; gap: var(--s4); margin: 0; }
+
+.compare__row { display: grid; gap: 6px; }
+
+.compare__label { font-size: var(--fs-xs); color: var(--ink-2); }
+
+.compare__track { position: relative; height: 30px; }
+
+.compare__bar {
+  height: 100%;
+  border-radius: 0 4px 4px 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 10px;
+  font-size: var(--fs-sm);
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.compare__bar--before { background: #7ac2d2; color: #0d2a31; }
+.compare__bar--after  { background: #156476; color: #fff; }
+
+/* The gap between the two bars is the saving — outlined, not filled, so it
+   reads as the space that was given up rather than as a third quantity. */
+.compare__delta {
+  position: absolute;
+  top: 0; bottom: 0;
+  border: 1px dashed var(--line-strong);
+  border-left: none;
+  border-radius: 0 4px 4px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fs-xs);
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+.case__result {
+  margin-top: var(--s5);
+  padding-top: var(--s5);
+  border-top: 1px solid var(--line);
+}
+
+.case__result strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 1.4rem + 1.5vw, 2.6rem);
+  font-weight: 400;
+  color: var(--deep);
+  line-height: 1.1;
+}
+
+.case__result span { font-size: var(--fs-sm); color: var(--ink-2); }
+
+.case__steps { list-style: none; padding: 0; margin: var(--s5) 0 0; display: grid; gap: var(--s3); }
+
+.case__steps li {
+  display: flex;
+  gap: var(--s3);
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
+}
+
+.case__steps li::before {
+  content: "→";
+  color: var(--light);
+  flex: none;
+}
+
+/* --------------------------- the two named engagements — questions 09 + 18 -- */
+
+.offers { display: grid; gap: var(--s5); }
+
+@media (min-width: 820px) { .offers { grid-template-columns: 1fr 1fr; } }
+
+.offer {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+  padding: var(--s7) var(--s6);
+  display: flex;
+  flex-direction: column;
+}
+
+.offer--second { background: var(--light-tint); border-color: var(--light-soft); }
+
+.offer__tag {
+  align-self: flex-start;
+  font-size: var(--fs-xs);
+  font-weight: 650;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--deep);
+  margin-bottom: var(--s3);
+}
+
+.offer h3 { margin-bottom: var(--s3); }
+.offer > p { color: var(--ink-2); font-size: var(--fs-sm); }
+
+.offer__list { list-style: none; padding: 0; margin: var(--s4) 0 var(--s5); display: grid; gap: var(--s2); }
+
+.offer__list li {
+  position: relative;
+  padding-left: var(--s5);
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
+}
+
+.offer__list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--deep);
+  font-weight: 700;
+}
+
+.offer__foot { margin-top: auto; }
+
+/* ------------------------------------- market map of the ten domains — 13 -- */
+
+/* Area is proportional to the number of capabilities in the domain, so the
+   ten rectangles together are the catalog at 1:183. Fill is one hue on a
+   five-step ordinal ramp, light to dark with the count — never colour alone:
+   every tile carries its own name and figure. */
+.marketmap {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.marketmap__row { display: flex; gap: 3px; flex: var(--w) 1 0; }
+
+.marketmap__tile {
+  flex: var(--w) 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 2px;
+  padding: var(--s3);
+  border-radius: 4px;
+  text-decoration: none;
+  overflow: hidden;
+  transition: filter .15s ease, transform .15s ease;
+}
+
+.marketmap__tile:hover, .marketmap__tile:focus-visible {
+  filter: brightness(1.08);
+  transform: translateY(-2px);
+}
+
+.marketmap__name {
+  font-size: var(--fs-xs);
+  font-weight: 650;
+  line-height: 1.2;
+  letter-spacing: .01em;
+}
+
+.marketmap__n { font-size: var(--fs-xs); opacity: .82; line-height: 1.2; }
+
+/* The five steps of the ramp. Ink on the two light steps, white on the three
+   dark ones — every combination clears 4.5:1. */
+.marketmap__tile[data-step="1"] { background: #7ac2d2; color: #0d2a31; }
+.marketmap__tile[data-step="2"] { background: #54a9bd; color: #0d2a31; }
+.marketmap__tile[data-step="3"] { background: #2b8095; color: #fff; }
+.marketmap__tile[data-step="4"] { background: #156476; color: #fff; }
+.marketmap__tile[data-step="5"] { background: #0a4653; color: #fff; }
+
+/* The proportional layout needs room: the smallest domain is 5 of 183, so its
+   rectangle is under a tenth of a row. Below 1000px that tile gets too narrow
+   to label, and the map switches to the list form instead. */
+@media (min-width: 1000px) {
+  .marketmap { height: clamp(340px, 33vw, 430px); }
+  /* Without this, a tile's own text sets a floor on its row height and the
+     areas stop being proportional. */
+  .marketmap__row, .marketmap__tile { min-height: 0; }
+  .marketmap__tile { padding: var(--s4); }
+  .marketmap__name { font-size: var(--fs-sm); }
+  .marketmap__tile--tight { padding: var(--s3); }
+  .marketmap__tile--tight .marketmap__name { font-size: var(--fs-xs); }
+  .marketmap__tile--tight .marketmap__unit { display: none; }
+}
+
+/* Below it the row grouping dissolves and the same tiles become a plain
+   two-column list — still in order, still coloured by size. */
+@media (max-width: 999px) {
+  .marketmap { display: grid; grid-template-columns: 1fr 1fr; }
+  .marketmap__row { display: contents; }
+  .marketmap__tile { min-height: 76px; }
+}
+
+.marketmap-legend {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  margin-top: var(--s4);
+  font-size: var(--fs-xs);
+  color: var(--ink-3);
+}
+
+.marketmap-legend__ramp {
+  display: flex;
+  flex: none;
+  width: 120px;
+  height: 10px;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.marketmap-legend__ramp span { flex: 1; }
+
+/* --------------------------------------------- the people behind it — 07 -- */
+
+.people { display: grid; gap: var(--s5); }
+
+@media (min-width: 760px) { .people { grid-template-columns: repeat(3, 1fr); } }
+
+.person {
+  border-top: 2px solid var(--light);
+  padding-top: var(--s4);
+}
+
+.person h3 { margin-bottom: 2px; }
+
+.person__role {
+  display: block;
+  font-size: var(--fs-xs);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: var(--s3);
+}
+
+.person p { font-size: var(--fs-sm); color: var(--ink-2); }
+
+/* ------------------------------- the metrics step of the intake — Q 17 -- */
+
+.metrics {
+  border: 1px solid var(--light-soft);
+  border-radius: var(--radius-sm);
+  background: var(--light-tint);
+  padding: var(--s5);
+  margin-bottom: var(--s5);
+}
+
+.metrics[hidden] { display: none; }
+
+.metrics__head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2) var(--s3);
+  align-items: baseline;
+  margin-bottom: var(--s3);
+}
+
+.metrics__head h3 { font-size: var(--fs-sm); margin: 0; }
+
+.metrics__for {
+  font-size: var(--fs-xs);
+  color: var(--deep);
+  font-weight: 650;
+}
+
+.metrics__list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--s2); }
+
+.metrics__list li {
+  position: relative;
+  padding-left: var(--s5);
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
+}
+
+.metrics__list li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: .45em;
+  width: 12px; height: 12px;
+  border: 1.5px solid var(--light);
+  border-radius: 3px;
+  background: #fff;
+}
+
+.metrics__foot { margin: var(--s4) 0 0; font-size: var(--fs-xs); color: var(--ink-2); }
+
+/* --------------------------------------------- the commercial model — 01/15 -- */
+
+.model { display: grid; gap: var(--s6); }
+
+@media (min-width: 860px) { .model { grid-template-columns: repeat(3, 1fr); gap: var(--s7); } }
+
+.model__item h3 { margin-bottom: var(--s3); }
+.model__item p { color: rgba(255, 255, 255, .82); font-size: var(--fs-sm); }
+
+.model__item h3 { color: #fff; }
+
+.model__lead {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 1.05rem + 1.1vw, 1.9rem);
+  line-height: 1.3;
+  color: #fff;
+  margin: 0 0 var(--s6);
+  max-width: 30ch;
+}
+
+/* A dark band that is not the hero and not the closing CTA — used once, for
+   the commercial model, because that section has to carry more weight than a
+   tinted band gives it. */
+.section--deep { background: var(--deep-900); color: rgba(255, 255, 255, .86); }
+.section--deep h2, .section--deep h3 { color: #fff; }
+.section--deep .eyebrow { color: var(--light-soft); }
+.section--deep .eyebrow::before { background: var(--light); }
+.section--deep .lead { color: rgba(255, 255, 255, .82); }
+.section--deep .ph {
+  background: rgba(255, 255, 255, .15);
+  border-bottom-color: rgba(255, 255, 255, .45);
+  color: inherit;
+}
+
+/* The three named steps of the guided intake — question 17. */
+.step-head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s3);
+  margin: var(--s6) 0 var(--s4);
+  padding-bottom: var(--s2);
+  border-bottom: 1px solid var(--line);
+}
+
+.step-head:first-child { margin-top: 0; }
+
+.step-head__n {
+  flex: none;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--light);
+  line-height: 1;
+}
+
+.step-head h3 { font-size: var(--fs-sm); margin: 0; }
+.step-head p { margin: 0; font-size: var(--fs-xs); color: var(--ink-3); }
+
+.intake-flow {
+  display: grid;
+  gap: var(--s3);
+  margin-bottom: var(--s6);
+  counter-reset: flow;
+}
+
+@media (min-width: 700px) { .intake-flow { grid-template-columns: repeat(3, 1fr); } }
+
+.intake-flow li {
+  list-style: none;
+  padding: var(--s4);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: #fff;
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
+}
+
+.intake-flow li strong { display: block; color: var(--ink); margin-bottom: 2px; }
+
+/* The contact page: form beside the direct channels. This was an inline
+   two-column grid that never collapsed, so the page scrolled sideways on a
+   phone — the columns now stack below 880px. */
+.contact-layout { gap: var(--s7); align-items: start; }
+
+@media (min-width: 880px) {
+  .contact-layout {
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+    gap: var(--s8);
+  }
+}
+
+/* The Überarbeitungszyklen page links straight into a section of the site
+   (index.html#rev-home-model and so on). The site header is sticky, so
+   without this the landing starts underneath it and the eyebrow is hidden.
+   The ids match what review.js derives from data-review-id, so the jump also
+   works with the review layer stripped out. */
+[id^="rev-"] { scroll-margin-top: calc(76px + var(--s4)); }

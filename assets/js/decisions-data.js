@@ -239,6 +239,146 @@
       ]}
   ];
 
+
+  /* ========================================================================
+     DIE ANTWORTEN — Miguel, 31.08.2026, 19:23
+
+     Eingegangen als CSV-Export dieser Seite:
+     Resources/fersen-lohse-entscheidungen-2026-08-31 3.csv. Alle achtzehn
+     Fragen beantwortet, drei davon mit Ergänzung.
+
+     Getrennt von DECISIONS gehalten, weil es eine andere Sorte Inhalt ist:
+     die Fragen oben sind der Entwurfsstand, das hier ist die Rückmeldung
+     darauf und was daraufhin an der Website geändert wurde. Die Seite bleibt
+     dadurch weiter benutzbar — wer sie öffnet, kann für eine zweite Runde
+     nach wie vor selbst antworten, ohne dass diese Antworten überschrieben
+     werden.
+
+     Felder je Eintrag:
+       v      der gewählte Optionswert (bei "multi" ein Array)
+       note   Miguels Ergänzung, wörtlich aus der CSV
+       done   was daraufhin tatsächlich an der Website geändert wurde
+       open   was dabei offen geblieben ist oder eine Entscheidung braucht
+       links  Sprungziele in die Seite: h = href, t = Beschriftung
+              Die rev-… Anker vergibt review.js aus data-review-id.
+     ======================================================================== */
+  var ANSWERED = {
+    by: "Miguel",
+    at: "31.08.2026, 19:23",
+    source: "Resources/fersen-lohse-entscheidungen-2026-08-31 3.csv",
+    items: {
+
+      a1: { v:"vendor", note:"Mach dir VM (1)",
+        done:"Das Geldmodell führt jetzt die Seite an statt der Unabhängigkeitsaussage. Neuer dunkler Abschnitt „How we are paid“: nichts im Voraus, Anteil an den erzielten Einsparungen, dazu die Vergütung von der Umsetzungsseite. Die Zeile „No reseller margin, no referral fee, no vendor allegiance“ ist ersetzt, der Hero-Eyebrow lautet „No fixed fees · Paid from what you save“, und auf der Referenzseite steht statt „We are not a reseller for any of them“ jetzt „We do not resell their products to you“ mit Verweis auf den Abschnitt.",
+        open:"Anwaltlich prüfen lassen: Erfolgsbeteiligung plus Vergütung von der Umsetzungsseite ist tragfähig, aber „unabhängig“ zu werben und dabei nicht offengelegte Anbietervergütung zu nehmen, ist in Deutschland angreifbar. Der Prozentsatz fehlt noch — solange er nicht feststeht, bleibt die Formulierung allgemein.",
+        links:[
+          {h:"index.html#rev-home-model", t:"Startseite · How we are paid"},
+          {h:"index.html#rev-home-hero", t:"Startseite · Hero"},
+          {h:"references.html#rev-references-partners", t:"Referenzen · Partners & technologies"}
+        ]},
+
+      a2: { v:"raus",
+        done:"GlobalDots kommt auf keiner Seite mehr vor: die Kachel ist aus beiden Anbieterwänden verschwunden, und der komplette RACI-Abschnitt „Clear ownership when four parties share one migration“ ist von der Referenzseite entfallen. Damit sind auch Barceló, Cloudflare und Telefónica als benannte Projektparteien weg. Die Referenzseite hat dadurch einen Abschnitt weniger.",
+        open:"Falls das Delivery-Argument doch fehlt: dieselbe Matrix ginge anonymisiert — „Client · Platform vendor · Integration partner · Carrier“ statt der Namen. Ein Wort genügt, dann kommt sie so zurück.",
+        links:[
+          {h:"references.html#rev-references-partners", t:"Referenzen · Anbieterwand ohne GlobalDots"},
+          {h:"index.html#rev-home-why", t:"Startseite · Anbieterwand ohne GlobalDots"}
+        ]},
+
+      a3: { v:"en",
+        done:"Keine Änderung nötig. Alle fünf Kundenseiten bleiben durchgehend englisch, nur diese Arbeitsseite ist weiter deutsch.",
+        links:[]},
+
+      b1: { v:"anon",
+        done:"Der Fall steht jetzt zweimal: kompakt auf der Startseite mit der Vorher-/Nachher-Grafik, und ausführlich als Fallstudie auf der Referenzseite mit Challenge, Approach und Result. Weder der Kunde noch die beiden Anbieter werden genannt — „a Mexican retail group, a listed business in the billions“. Damit ist keine Freigabe nötig und die Frage, wem der Fall gehört, stellt sich nicht.",
+        links:[
+          {h:"index.html#rev-home-case", t:"Startseite · Proof"},
+          {h:"references.html#rev-references-case", t:"Referenzen · Benchmark case"}
+        ]},
+
+      b2: { v:"fall", note:"Wir werden auch noch weitere Beispiel einbauen",
+        done:"Der ganze Impact-Abschnitt mit den drei XX-Kacheln ist weg; an seiner Stelle steht der Fall. Auch die beiden Platzhalterzahlen im Hero sind raus — statt „XX yrs“ und „XX %“ stehen dort jetzt 183 Capabilities, 10 Domänen und ~120 Anbieter. Die Notiz unter dem Fall hält deine Ergänzung fest, dass weitere Beispiele nachkommen.",
+        links:[
+          {h:"index.html#rev-home-case", t:"Startseite · Proof"},
+          {h:"index.html#rev-home-hero", t:"Startseite · Hero ohne Platzhalterzahlen"}
+        ]},
+
+      b3: { v:"text",
+        done:"Beide Kacheln bleiben stehen und warten auf Material. Die Notiz sagt jetzt, dass Text und Freigaben von euch kommen, statt sie als offenes Risiko zu markieren. Auf der Startseite steht der anonymisierte Fall als dritte Referenzkachel über den beiden.",
+        open:"Offen bleibt das Material selbst: je drei bis vier Sätze zu Herausforderung, Vorgehen und Ergebnis, plus die schriftliche Freigabe beider Kunden.",
+        links:[
+          {h:"references.html#rev-references-cases", t:"Referenzen · Selected engagements"},
+          {h:"index.html#rev-home-references", t:"Startseite · References-Teaser"}
+        ]},
+
+      b4: { v:"schlank",
+        done:"Abschnitt „Who you are actually working with“ auf der Startseite — drei Kurzprofile nebeneinander, keine Fotos, keine sechste Seite. Der Aufhänger ist, dass die Reichweite das Produkt ist.",
+        open:"Nachnamen von Fredrik und Noel, die drei Rollen und je zwei bis drei Sätze fehlen noch — im Entwurf gelb markiert.",
+        links:[{h:"index.html#rev-home-team", t:"Startseite · The people"}]},
+
+      c1: { v:"kompakt",
+        done:"Ein schmales Band direkt unter dem Hero statt eines eigenen großen Abschnitts: die 95-%-Aussage als Aufhänger, daneben drei Punkte — technischer Einkauf, Markttempo mit den LLM-Bedrohungen, und die zwei Fehlerarten.",
+        open:"Die 95 % stehen bewusst als „in our assessment“ da. Als harte Zahl bräuchten sie eine Quelle, sonst fragt der erste skeptische Leser danach.",
+        links:[{h:"index.html#rev-home-problem", t:"Startseite · Why this is hard"}]},
+
+      c2: { v:"eine",
+        done:"Die Sechserliste bleibt gleichgewichtig, aber die Karte ist umformuliert und heißt jetzt „Three comparable offers, non-binding“ — „du musst nicht wechseln, du musst nicht migrieren“ steht wörtlich drin. Sie steht als erste der sechs. Zusätzlich taucht der Benchmark im Abschnitt zu den zwei Angeboten als leichter Einstieg auf, was aus Frage 18 folgt.",
+        links:[
+          {h:"index.html#rev-home-services", t:"Startseite · What we do"},
+          {h:"index.html#rev-home-offers", t:"Startseite · Two ways in"}
+        ]},
+
+      c3: { v:"capabilities",
+        done:"183 führt weiter: im Hero, in der Überschrift der Marktkarte und auf dem Katalog-Button. Die ~120 Anbieterzugänge stehen als dritte, kleinere Hero-Zahl daneben und tragen den Team-Abschnitt — sie konkurrieren nicht mit der 183, sondern erklären, woher die Angebote kommen.",
+        links:[
+          {h:"index.html#rev-home-hero", t:"Startseite · Hero"},
+          {h:"index.html#rev-home-coverage", t:"Startseite · Marktkarte"}
+        ]},
+
+      c4: { v:"leistung",
+        done:"Eigener Abschnitt „The second kind of mistake“ mit der benannten Leistung „Security exposure review“ — vier Punkte Umfang, getrennt vom Benchmark verkauft. Der Aufhänger ist, dass Security mit 35 von 183 Capabilities die größte Domäne ist.",
+        open:"Was genau drin ist, wer es liefert und wie es abgerechnet wird, steht noch nicht fest — auf der Seite als offen markiert.",
+        links:[{h:"index.html#rev-home-security", t:"Startseite · Security exposure review"}]},
+
+      c5: { v:"behalten",
+        done:"Unverändert. Die vier Stufen stehen Wort für Wort wie vorher, inklusive „a documented decision trail you can hand to finance, security and legal“.",
+        links:[{h:"index.html#rev-home-process", t:"Startseite · How it works"}]},
+
+      d1: { v:["marktkarte"],
+        done:"Die Marktkarte ersetzt die Zehner-Kachelliste auf der Startseite, wie im Optionstext vorgesehen. Fläche proportional zur Zahl der Capabilities — die zehn Rechtecke sind zusammen der Katalog im Maßstab 1:183 —, eine Farbfamilie in fünf Stufen, dunkler mit der Größe, jede Fläche verlinkt in ihre Katalogdomäne. Auf schmalen Displays löst sich die Proportion in eine zweispaltige Liste auf, damit die Beschriftungen lesbar bleiben.",
+        open:"Anbieterdichte je Domäne steckt noch nicht drin — dafür bräuchten wir die Zahl der Anbieter pro Domäne. Die anderen vier Grafiken aus der Frage sind nicht gebaut.",
+        links:[{h:"index.html#rev-home-coverage", t:"Startseite · Marktkarte"}]},
+
+      d2: { v:"lassen",
+        done:"Nichts gekürzt. Die Startseite ist durch Problemband, Use Cases, Fall, Angebote, Security, Geldmodell und Team deutlich länger geworden — der Umfang belegt Kompetenz, wie im Optionstext.",
+        links:[]},
+
+      d3: { v:"kein", note:"als stärke, hervorheben. Keine fixen preise euer erfolg ist unser erfolg: wir behalente % der direkten Einsparungen nur für die wir direkr beteiligt waren",
+        done:"Kein Preis auf der Seite, und die Preislosigkeit ist zum Argument gemacht: der Abschnitt „How we are paid“ trägt „There is no price list. Your success is our success“ als Leitsatz, darunter „a share of what you save — only on the contracts we were involved in“.",
+        open:"Die 10.000 € aus dem Fall sind bewusst nicht genannt: neben dem Ersparnisbeispiel würden sie sofort als Einstiegspreis gelesen, und das widerspricht „kein Preis“. Das Verhältnis 10 T€ → 1,5 Mio. ist das stärkste Einzelargument, das wir haben — sag Bescheid, wenn es doch rein soll, dann ist es eine Zeile.",
+        links:[{h:"index.html#rev-home-model", t:"Startseite · How we are paid"}]},
+
+      e1: { v:"abschnitt",
+        done:"„Four things you can actually do with us“ — eigener Abschnitt vor den Leistungen, in deiner Reihenfolge: Status quo challengen (als „the main one“ markiert), Abhängigkeit bestimmen, die besten Player finden, das eigene Angebot gegen den Markt stellen. Jeder Use Case endet mit einer „You get“-Zeile, damit nichts doppelt zur Leistungsliste erzählt wird.",
+        links:[{h:"index.html#rev-home-usecases", t:"Startseite · For the buyer"}]},
+
+      e2: { v:"formular",
+        done:"Die Kontaktseite ist ein dreistufiger Ablauf geworden: Domäne wählen → die passende Metrikenliste erscheint sofort → Anfrage abschicken. Die Liste ist Teil der Mail, die dabei entsteht, damit die Anfrage brauchbar ankommt. Die Seitenüberschrift heißt jetzt „Tell us what you want to challenge“.",
+        open:"Die zehn Metrikensätze sind ein erster Entwurf aus dem Katalog und nicht bestätigt. Sie entscheiden, ob eine Anfrage verwertbar hereinkommt — bitte einmal durchgehen. Sie stehen alle an einer Stelle: assets/js/site.js, Objekt METRICS.",
+        links:[
+          {h:"contact.html#rev-contact-metrics", t:"Kontakt · Der dreistufige Ablauf"},
+          {h:"contact.html#rev-contact-form", t:"Kontakt · Formular mit Metrikenliste"}
+        ]},
+
+      e3: { v:"zweitprodukt",
+        done:"Abschnitt „Two ways in — one of them very small“: links „Market benchmark“ als Einstieg, rechts „Dependency & migration ROI analysis“ als benanntes zweites Produkt mit vier Leistungspunkten und eigenem Call-to-Action. Der zweite ist auch als Thema im Kontaktformular wählbar und hat dort eine eigene Metrikenliste.",
+        links:[
+          {h:"index.html#rev-home-offers", t:"Startseite · Two ways in"},
+          {h:"contact.html#rev-contact-form", t:"Kontakt · Thema „Dependency & migration ROI analysis“"}
+        ]}
+    }
+  };
+
   var BLOCKS = {
     A:{ t:"Block A · Grundsatz", d:"Positionierung — hiervon hängt der Rest ab" },
     B:{ t:"Block B · Beweis", d:"Was belegt, dass es funktioniert" },
@@ -250,6 +390,7 @@
   window.FL_DECISIONS = {
     items: DECISIONS,
     blocks: BLOCKS,
+    answered: ANSWERED,
     closingId: "__open"
   };
 })();

@@ -2,79 +2,17 @@
    Fersen & Lohse — decision catalogue page
 
    This page runs dark on purpose: it is working scaffolding, not part of the
-   site, and the switch makes that obvious the moment you land on it.
+   site, and the switch makes that obvious the moment you land on it. The dark
+   palette itself, the corrections where site.css hardcodes white, and the
+   print block that turns the page back into ink all live in workspace.css,
+   which the Projektdokumentation hub and the Projektplan share with it. This
+   file holds only what is specific to the decision catalogue.
 
-   It reuses the components of site.css and simply redefines that file's
-   tokens for the duration of this page — so cards, buttons, the header and
-   every dec- component below pick the dark values up on their own. Only the
-   handful of places where site.css hardcodes white need explicit overrides.
+   Load order: site.css → workspace.css → decisions.css.
 
    Every class is prefixed dec- so nothing collides with the shared
    components (.card and .note already exist in site.css).
    ========================================================================== */
-
-/* ----------------------------------------------------------- palette -- */
-
-body.dec-page {
-  /* Brand, lifted for dark ground: the deep teal of the site cannot carry
-     text on near-black, so --deep becomes the light teal of the lotus. */
-  --deep: #5bc0d4;
-  --deep-700: #8ad6e4;
-  --deep-900: #071214;
-  --light: #42afc3;
-  --light-soft: #1f3b41;
-  --light-tint: #12333b;
-  --mute: #7e9599;
-
-  /* Neutrals, inverted */
-  --ink: #e3ebec;
-  --ink-2: #afc4c8;
-  --ink-3: #7e9599;
-  --paper: #122225;          /* card and field surfaces */
-  --paper-alt: #193035;
-  --line: #274449;
-  --line-strong: #325257;
-
-  /* Signals */
-  --danger: #de8b74;
-  --danger-wash: #39231d;
-
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, .35), 0 3px 10px rgba(0, 0, 0, .25);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, .4), 0 16px 40px rgba(0, 0, 0, .35);
-
-  --ground: #0b1618;         /* the page itself, one step below the cards */
-  --on-teal: #08181b;        /* text on a bright teal fill */
-
-  background: var(--ground);
-  color: var(--ink);
-}
-
-/* ------------------------------- shared components, dark corrections -- */
-
-/* site.css hardcodes white in these four places. */
-body.dec-page .site-header {
-  background: rgba(11, 22, 24, .9);
-  border-bottom-color: var(--line);
-}
-
-body.dec-page .btn--primary,
-body.dec-page .btn--primary:hover { color: var(--on-teal); }
-
-body.dec-page .site-footer {
-  background: #0e1e22;
-  border-top: 1px solid var(--line);
-}
-
-@media (max-width: 900px) {
-  body.dec-page .nav { background: var(--paper); border-bottom-color: var(--line); }
-}
-
-/* The page header band: the site's teal gradient would glare against a dark
-   page, so it steps down instead of up. */
-body.dec-page .pagehead { background: linear-gradient(160deg, #0e2329, #16333b 90%); }
-body.dec-page .pagehead .eyebrow { color: var(--deep); }
-
-body.dec-page ::placeholder { color: var(--ink-3); opacity: 1; }
 
 /* ------------------------------------------------------------- layout -- */
 
@@ -89,8 +27,6 @@ body.dec-page ::placeholder { color: var(--ink-3); opacity: 1; }
   .dec-layout { grid-template-columns: 250px minmax(0, 1fr); gap: var(--s8); }
 }
 
-body.dec-page { padding-bottom: 92px; }          /* room for the fixed bar */
-body.dec-sheet-open { overflow: hidden; }
 
 /* ------------------------------------------------------------- how-to -- */
 
@@ -385,50 +321,6 @@ body.dec-sheet-open { overflow: hidden; }
 .dec-note__status.is-live { color: var(--deep); }
 .dec-note__status.is-warn { color: var(--danger); }
 
-.dec-mic {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 5px 13px 5px 10px;
-  border: 1px solid var(--line-strong);
-  border-radius: var(--radius-pill);
-  background: var(--paper);
-  color: var(--deep);
-  font: inherit;
-  font-size: var(--fs-xs);
-  font-weight: 650;
-  cursor: pointer;
-  transition: background .15s ease, border-color .15s ease, color .15s ease;
-}
-
-.dec-mic:hover { background: var(--light-tint); border-color: var(--light); }
-
-.dec-mic svg {
-  width: 16px;
-  height: 16px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.7;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.dec-mic.is-live {
-  background: var(--danger);
-  border-color: var(--danger);
-  color: #2a1512;
-  animation: dec-pulse 1.5s ease-in-out infinite;
-}
-
-@keyframes dec-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(222, 139, 116, .5); }
-  50%      { box-shadow: 0 0 0 6px rgba(222, 139, 116, 0); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .dec-mic.is-live { animation: none; }
-}
-
 /* ------------------------------------------------------------ closing -- */
 
 .dec-closing {
@@ -445,216 +337,160 @@ body.dec-sheet-open { overflow: hidden; }
 .dec-closing > p { color: var(--ink-2); font-size: var(--fs-sm); margin: 0; }
 .dec-closing .dec-note textarea { background: rgba(0, 0, 0, .22); }
 
-/* ------------------------------------------------------------- savebar -- */
+/* =========================================================== verdicts ==
 
-.dec-bar {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 60;
-  background: rgba(11, 22, 24, .96);
-  backdrop-filter: blur(8px);
-  border-top: 1px solid var(--line);
-  box-shadow: 0 -4px 20px rgba(0, 0, 0, .35);
+   Miguel's answers of 31.08.2026 and what they changed on the site.
+
+   They get their own colour — the --done green from workspace.css, which
+   appears nowhere else on this page — so that at a glance three states stay
+   apart: teal is what *this* browser has selected, red marks a
+   Grundsatzfrage, green is what was actually decided and built. None of the
+   three relies on colour alone: every one of them also carries a word.
+   ------------------------------------------------------------------------ */
+
+.dec-card.is-decided { border-left: 3px solid var(--done); }
+.dec-card.is-flag.is-decided { border-left-color: var(--danger); }
+
+.dec-tag--done { background: var(--done-wash); color: var(--done); border-color: var(--done-line); }
+
+/* The option Miguel picked, marked inside the list itself — the button stays
+   free for this browser's own answer. */
+.dec-opt.is-picked { border-color: var(--done-line); }
+
+.dec-opt__by {
+  display: inline-block;
+  margin-left: var(--s2);
+  padding: 1px 8px;
+  border-radius: var(--radius-pill);
+  background: var(--done-wash);
+  border: 1px solid var(--done-line);
+  color: var(--done);
+  font-size: var(--fs-xs);
+  font-weight: 650;
+  letter-spacing: .03em;
+  vertical-align: 1px;
 }
 
-.dec-bar__inner {
+.dec-verdict {
+  margin-top: var(--s5);
+  padding: var(--s4) var(--s5);
+  border: 1px solid var(--done-line);
+  border-left: 3px solid var(--done);
+  border-radius: var(--radius-sm);
+  background: var(--done-wash);
+}
+
+.dec-verdict__head {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  gap: var(--s3) var(--s4);
-  padding-block: 11px;
+  gap: var(--s2) var(--s3);
+  align-items: baseline;
+  margin-bottom: var(--s2);
 }
 
-.dec-progress { display: flex; align-items: center; gap: var(--s3); min-width: 210px; }
-
-.dec-progress__track {
-  width: 120px;
-  height: 6px;
-  border-radius: var(--radius-pill);
-  background: var(--line);
-  overflow: hidden;
+.dec-verdict__who {
+  font-size: var(--fs-xs);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  font-weight: 650;
+  color: var(--done);
 }
 
-.dec-progress__fill {
-  height: 100%;
-  width: 0;
-  background: var(--deep);
-  border-radius: var(--radius-pill);
-  transition: width .25s ease;
-}
+.dec-verdict__when { font-size: var(--fs-xs); color: var(--ink-3); }
 
-.dec-progress__text { font-size: var(--fs-xs); color: var(--ink-2); font-weight: 650; white-space: nowrap; }
-
-.dec-bar__spacer { flex: 1 1 auto; }
-
-.dec-status { font-size: var(--fs-xs); color: var(--ink-3); }
-.dec-status.is-ok { color: var(--deep); }
-.dec-status.is-warn { color: var(--danger); }
-
-.dec-bar input[type="text"] {
-  width: 165px;
-  padding: 9px 13px;
-  font: inherit;
+.dec-verdict__pick {
+  margin: 0;
+  font-weight: 650;
   font-size: var(--fs-sm);
-  border: 1px solid var(--line-strong);
-  border-radius: var(--radius-sm);
-  background: var(--paper);
   color: var(--ink);
 }
 
-.dec-bar input[type="text"]:focus {
-  outline: none;
-  border-color: var(--deep);
-  box-shadow: 0 0 0 3px var(--light-soft);
-}
-
-/* Two rows on a phone: progress on top, name plus send button below —
-   the save status already sits above the questions on that width. */
-@media (max-width: 720px) {
-  .dec-bar__inner { gap: 8px var(--s3); padding-block: 9px; }
-  .dec-progress { min-width: 0; order: 1; flex: 1 1 auto; }
-  .dec-progress__track { width: 70px; }
-  .dec-status { display: none; }
-  .dec-bar__spacer { display: none; }
-  .dec-bar input[type="text"] { order: 2; flex: 1 1 110px; width: auto; min-width: 0; }
-  .dec-bar .btn { order: 3; flex: 0 0 auto; }
-  body.dec-page { padding-bottom: 122px; }
-}
-
-/* --------------------------------------------------------- send sheet -- */
-
-.dec-sheet {
-  position: fixed;
-  inset: 0;
-  z-index: 80;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--s4);
-  background: rgba(3, 10, 12, .66);
-}
-
-.dec-sheet[hidden] { display: none; }
-
-.dec-sheet__panel {
-  width: min(560px, 100%);
-  max-height: 90vh;
-  overflow-y: auto;
-  background: var(--paper);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-md);
-  padding: var(--s5);
-}
-
-.dec-sheet__head {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: var(--s4);
-  margin-bottom: var(--s5);
-}
-
-.dec-sheet__head h2 { margin: 0 0 4px; font-size: var(--fs-h3); }
-.dec-sheet__head p { margin: 0; font-size: var(--fs-sm); color: var(--ink-3); }
-
-.dec-sheet__close {
-  flex: none;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  border: 1px solid var(--line-strong);
-  background: var(--paper);
+.dec-verdict__note {
+  margin: var(--s3) 0 0;
+  padding-left: var(--s4);
+  border-left: 2px solid var(--done-line);
+  font-size: var(--fs-sm);
+  font-style: italic;
   color: var(--ink-2);
-  font-size: 18px;
-  line-height: 1;
-  cursor: pointer;
 }
 
-.dec-sheet__close:hover { background: var(--paper-alt); color: var(--ink); }
+.dec-verdict__note::before { content: "„"; }
+.dec-verdict__note::after { content: "“"; }
 
-.dec-route {
-  display: flex;
-  gap: var(--s4);
-  align-items: flex-start;
-  width: 100%;
-  text-align: left;
-  padding: var(--s3) var(--s4);
-  margin-bottom: 8px;
-  border: 1px solid var(--line-strong);
-  border-radius: var(--radius-sm);
-  background: var(--paper);
-  font: inherit;
-  color: inherit;
-  cursor: pointer;
-  transition: border-color .15s ease, background .15s ease;
-}
+.dec-verdict__part { margin-top: var(--s4); }
 
-.dec-route:hover { border-color: var(--light); background: var(--light-tint); }
-
-.dec-route__icon {
-  flex: none;
-  width: 38px;
-  height: 38px;
-  border-radius: var(--radius-sm);
-  display: grid;
-  place-items: center;
-  background: var(--light-tint);
-  color: var(--deep);
-}
-
-.dec-route__icon svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
-.dec-route strong { display: block; font-size: var(--fs-sm); }
-.dec-route span { display: block; font-size: var(--fs-xs); color: var(--ink-3); margin-top: 2px; }
-
-.dec-sheet__foot {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--s4);
-  justify-content: space-between;
-  align-items: center;
-  margin-top: var(--s5);
-  padding-top: var(--s4);
-  border-top: 1px solid var(--line);
+.dec-verdict__part h4 {
+  margin: 0 0 3px;
   font-size: var(--fs-xs);
+  letter-spacing: .1em;
+  text-transform: uppercase;
   color: var(--ink-3);
 }
 
-.dec-linkbtn {
-  border: 0;
-  background: none;
+.dec-verdict__part p { margin: 0; font-size: var(--fs-sm); color: var(--ink-2); }
+
+.dec-verdict__part--open h4 { color: #e8c07a; }
+
+.dec-verdict__links {
+  list-style: none;
+  margin: var(--s4) 0 0;
   padding: 0;
-  font: inherit;
-  font-size: var(--fs-xs);
-  color: var(--danger);
-  text-decoration: underline;
-  cursor: pointer;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2);
 }
 
-/* -------------------------------------------------------------- print -- */
+.dec-verdict__links a {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--done-line);
+  background: rgba(0, 0, 0, .18);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--done);
+  text-decoration: none;
+}
+
+.dec-verdict__links a:hover { background: var(--done); color: #08181b; border-color: var(--done); }
+.dec-verdict__links a::after { content: " ↗"; }
+
+.dec-verdict__empty {
+  margin: var(--s3) 0 0;
+  font-size: var(--fs-sm);
+  color: var(--ink-3);
+  font-style: italic;
+}
+
+.dec-rail a.is-decided .dec-rail__dot { border-color: var(--done); }
+.dec-rail a.is-decided.is-done .dec-rail__dot { background: var(--done); border-color: var(--done); }
+
+/* -------------------------------------------- the answers-received banner -- */
+
+.dec-banner {
+  max-width: 46rem;
+  margin-top: var(--s5);
+  padding: var(--s5);
+  border: 1px solid var(--done-line);
+  border-left: 3px solid var(--done);
+  border-radius: var(--radius-sm);
+  background: var(--done-wash);
+}
+
+.dec-banner .eyebrow { color: var(--done); }
+.dec-banner h2 { font-size: var(--fs-h3); margin: var(--s2) 0 var(--s3); }
+.dec-banner p { font-size: var(--fs-sm); color: var(--ink-2); margin: 0 0 var(--s3); }
+.dec-banner p:last-child { margin-bottom: 0; }
 
 @media print {
-  .site-header, .site-footer, .dec-bar, .dec-rail, .dec-sheet,
-  .dec-mic, .fl-launcher, .fl-drawer, .fl-handle, .skip-link { display: none !important; }
-
-  /* On paper the dark ground turns back into ink on white. */
-  body.dec-page {
-    --ink: #111; --ink-2: #333; --ink-3: #555;
-    --paper: #fff; --paper-alt: #f4f7f8;
-    --line: #ccc; --line-strong: #aaa;
-    --deep: #0d5a69; --deep-700: #0d5a69;
-    --light-tint: #f0f6f7; --light-soft: #d5e4e7;
-    --danger: #8c3527; --danger-wash: #f6ebe8;
-    --ground: #fff; --on-teal: #fff;
-    background: #fff;
-    color: #111;
-    padding-bottom: 0;
-  }
-  .pagehead { background: none !important; color: #111; }
-  .pagehead h1, .pagehead p, .breadcrumb, .breadcrumb a { color: #111 !important; }
+  /* The ink-on-white switch is in workspace.css; these are the pieces of it
+     that only this page has. */
   .dec-layout { display: block; }
   .dec-card { break-inside: avoid; box-shadow: none; }
   .dec-closing { break-inside: avoid; }
+  .dec-verdict { break-inside: avoid; }
+  .dec-verdict__pick { color: #111; }
+  .dec-verdict__links a { color: var(--done); background: none; }
+  .dec-banner { break-inside: avoid; }
   .dec-note textarea { min-height: 60px; }
 }

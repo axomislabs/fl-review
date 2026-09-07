@@ -19,6 +19,108 @@
   };
   window.FL_CONTACT = CONTACT;
 
+  /* ----------------------------------------------------------------------
+     METRICS — the guided intake on the contact page (decision 17).
+
+     "Ich möchte das und das challengen" → "okay, dann brauchen wir folgende
+     Metriken" → Quote. The list below is what turns that into a page: the
+     visitor picks the domain their contract sits in and immediately sees what
+     we need in order to price it, instead of finding out on a call.
+
+     BASE applies to every enquiry. The keys underneath are the exact option
+     values of #cf-topic; anything not listed here (a general enquiry, or a
+     single capability arriving via catalog.html?topic=…) falls back to BASE.
+
+     FIRST DRAFT — derived from the capability catalog, not yet confirmed.
+     ---------------------------------------------------------------------- */
+  var METRICS_BASE = [
+    "Current annual spend on the contract",
+    "Contract end date and notice period",
+    "Committed volume, licence count or tier",
+    "Current vendor and the products in scope"
+  ];
+
+  var METRICS = {
+    "Web Performance & Delivery": [
+      "Monthly egress traffic in TB and requests per month",
+      "Peak bandwidth in Gbps and peak requests per second",
+      "Number of properties, domains and origins served",
+      "Regions delivered into",
+      "Security add-ons in scope: WAF, bot management, API and DDoS protection"
+    ],
+    "Cloud & Platform Operations": [
+      "Monthly spend per cloud provider, list and effective",
+      "Reserved instance or committed-use coverage today",
+      "Number of accounts, subscriptions or projects",
+      "Managed-service scope and hours covered",
+      "Data volume under monitoring and log retention"
+    ],
+    "Network & SASE": [
+      "Number of sites and remote users",
+      "Bandwidth per site and per circuit",
+      "Circuits, tunnels and breakouts in scope",
+      "Security services bundled into the contract today",
+      "Contract term and renewal date per site, if they differ"
+    ],
+    "Security & Identity": [
+      "Number of identities and of endpoints under management",
+      "Applications protected, internal and SaaS",
+      "SOC / MDR coverage hours and response commitments",
+      "Every security tool currently licensed, including the overlaps",
+      "Compliance regimes you have to evidence"
+    ],
+    "Application & Code Security": [
+      "Number of developers and of repositories",
+      "Builds or pipeline runs per month",
+      "Applications and APIs in scope",
+      "Scanning types licensed today: SAST, DAST, SCA, secrets, container",
+      "Where it has to run: IDE, pipeline, runtime"
+    ],
+    "FinOps, Risk & Governance": [
+      "Annual cloud and SaaS spend under management",
+      "Number of accounts and business units to allocate across",
+      "Savings-plan or commitment coverage today",
+      "Tooling licences already in place",
+      "Reporting the finance side needs out of it"
+    ],
+    "Cloud Hosting & Infrastructure": [
+      "Racks, units or instance counts by site",
+      "Power draw and bandwidth commitments",
+      "Colocation sites and their contract dates",
+      "Hardware refresh cycle and what is due",
+      "Support and remote-hands levels contracted"
+    ],
+    "Enterprise & SaaS Platforms": [
+      "Licence count per tier or edition",
+      "Actual active usage against what is licensed",
+      "Modules and add-ons in scope",
+      "Discount and uplift terms agreed today",
+      "Renewal date and any auto-renewal clause"
+    ],
+    "Developer & Edge Platform": [
+      "Invocations or requests per month",
+      "Storage volume and monthly egress",
+      "Environments in scope: production, staging, preview",
+      "Committed tier and overage rates today",
+      "Build minutes or compute hours consumed"
+    ],
+    "Video & Streaming Analytics": [
+      "Monthly viewing hours delivered",
+      "Peak concurrent viewers",
+      "Number of streams, channels or titles",
+      "Analytics events per month",
+      "Players and devices that have to be covered"
+    ],
+    "Dependency & migration ROI analysis": [
+      "Everything above for the contract in question",
+      "Integrations and internal systems that depend on the vendor",
+      "Custom configuration, rules or code built on the platform",
+      "Team size and skills that would carry a migration",
+      "Data volume to move and any residency constraint"
+    ]
+  };
+  window.FL_METRICS = { base: METRICS_BASE, byTopic: METRICS };
+
   var isPlaceholder = function (value) {
     return !value || /PLACEHOLDER|0000000/.test(value);
   };
@@ -121,6 +223,38 @@
       }
     }
 
+    /* ---- the metrics panel: topic in, list out (decision 17) ---------- */
+    var metricsFor = document.getElementById("cf-metrics-for");
+    var metricsList = document.getElementById("cf-metrics-list");
+    var metricsFoot = document.getElementById("cf-metrics-foot");
+
+    var currentMetrics = function () {
+      var chosen = topic ? topic.value : "";
+      var extra = METRICS[chosen];
+      return extra ? METRICS_BASE.concat(extra) : METRICS_BASE.slice();
+    };
+
+    var renderMetrics = function () {
+      if (!metricsList) { return; }
+      var chosen = topic ? topic.value : "";
+      var known = !!METRICS[chosen];
+      metricsList.innerHTML = "";
+      currentMetrics().forEach(function (line) {
+        var li = document.createElement("li");
+        li.textContent = line;
+        metricsList.appendChild(li);
+      });
+      if (metricsFor) { metricsFor.textContent = known ? chosen : "For any contract"; }
+      if (metricsFoot) {
+        metricsFoot.textContent = known
+          ? "Send whatever you have. Anything missing we work out together — nothing here has to be exact to start."
+          : "Choose a domain above and this list becomes specific to it.";
+      }
+    };
+
+    if (topic) { topic.addEventListener("change", renderMetrics); }
+    renderMetrics();
+
     var showError = function (input, on) {
       var field = input.closest(".field");
       if (field) { field.classList.toggle("field--error", on); }
@@ -161,6 +295,9 @@
         "",
         "Message:",
         value("cf-message"),
+        "",
+        "Metrics requested for this enquiry:",
+        currentMetrics().map(function (line) { return "  - " + line; }).join("\n"),
         "",
         "— sent from the Fersen & Lohse website draft"
       ].join("\n");

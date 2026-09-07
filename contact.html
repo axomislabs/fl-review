@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Contact — Fersen &amp; Lohse</title>
-<meta name="description" content="Talk to us about an upcoming renewal, a tender or a benchmark. By form, email, phone or WhatsApp.">
+<meta name="description" content="Tell us what you want to challenge, we tell you which metrics we need, and you get a quote. By form, email, phone or WhatsApp.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="assets/img/logo-mark.png">
 <link rel="stylesheet" href="assets/css/site.css">
@@ -33,40 +33,116 @@
       <a href="catalog.html">Catalog</a>
       <a href="contact.html" aria-current="page">Contact</a>
       <a class="btn btn--primary btn--sm" href="contact.html">Get in touch</a>
-      <a class="nav__draft" href="decisions.html">Überarbeitungszyklen</a>
+      <span class="nav__doc">
+        <a class="nav__doc-main" href="project.html">Projektdokumentation</a>
+        <span class="nav__doc-sub">
+          <a href="plan.html">Projektplan</a>
+          <a href="decisions.html">Überarbeitungszyklus 1</a>
+        </span>
+      </span>
     </nav>
   </div>
 </header>
 
 <main id="main">
 
-  <section class="pagehead" data-review-id="contact.head" data-review-label="Contact — Page header">
+  <section class="pagehead" id="rev-contact-head" data-review-id="contact.head" data-review-label="Contact — Page header">
     <div class="container pagehead__inner">
       <p class="breadcrumb"><a href="index.html">Home</a> &nbsp;/&nbsp; Contact</p>
       <span class="eyebrow">Contact</span>
-      <h1>Let's look at your contract together</h1>
+      <h1>Tell us what you want to challenge</h1>
       <p>
-        Tell us what is coming up for renewal, what you are trying to buy, or what you suspect
-        you are overpaying for. The first conversation is free and non-binding.
+        Name the contract you want to put under pressure. We tell you which metrics we need
+        for a comparable offer, you send them over, and you get a quote back. The first
+        conversation is free and non-binding, and there is no fee to find out.
       </p>
     </div>
   </section>
 
   <!-- ============================================================ FORM -->
-  <section class="section" data-review-id="contact.form" data-review-label="Contact — Contact form">
+  <section class="section" id="rev-contact-form" data-review-id="contact.form" data-review-label="Contact — Contact form">
     <div class="container">
-      <div class="grid" style="grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:var(--s8);align-items:start" id="contact-layout">
+      <div class="grid contact-layout" id="contact-layout">
 
         <div>
           <div class="section__head" style="margin-bottom:var(--s5)">
             <span class="eyebrow">Send an enquiry</span>
-            <h2>Contact form</h2>
+            <h2>Three steps to a quote</h2>
             <p>Fields marked <span class="req">*</span> are required. We reply within
               <span class="ph">one business day</span>.</p>
           </div>
 
+          <ol class="intake-flow" id="rev-contact-metrics" data-review-id="contact.metrics" data-review-label="Contact — Guided metrics intake">
+            <li><strong>You say what to challenge</strong> Which contract, which vendor, which domain.</li>
+            <li><strong>We name the metrics</strong> The list appears as soon as you choose — no call needed to find out.</li>
+            <li><strong>You get a quote</strong> Comparable offers against your own numbers.</li>
+          </ol>
+
           <div class="form-panel">
             <form id="contact-form" novalidate>
+              <div class="step-head">
+                <span class="step-head__n" aria-hidden="true">01</span>
+                <div>
+                  <h3>What do you want to challenge?</h3>
+                  <p>Pick the domain the contract sits in — the metrics list follows from it.</p>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="cf-topic">Area of interest</label>
+                <select id="cf-topic" name="topic">
+                  <option value="">— Please choose —</option>
+                  <option value="General enquiry">General enquiry</option>
+                  <option value="Contract renewal / renegotiation">Contract renewal / renegotiation</option>
+                  <option value="Market price benchmark">Market price benchmark</option>
+                  <option value="Tender / vendor selection">Tender / vendor selection</option>
+                  <option value="Dependency &amp; migration ROI analysis">Dependency &amp; migration ROI analysis</option>
+                  <optgroup label="Capability domains" id="cf-topic-domains">
+                  <option value="Web Performance &amp; Delivery">Web Performance &amp; Delivery</option>
+                  <option value="Cloud &amp; Platform Operations">Cloud &amp; Platform Operations</option>
+                  <option value="Network &amp; SASE">Network &amp; SASE</option>
+                  <option value="Security &amp; Identity">Security &amp; Identity</option>
+                  <option value="Application &amp; Code Security">Application &amp; Code Security</option>
+                  <option value="FinOps, Risk &amp; Governance">FinOps, Risk &amp; Governance</option>
+                  <option value="Cloud Hosting &amp; Infrastructure">Cloud Hosting &amp; Infrastructure</option>
+                  <option value="Enterprise &amp; SaaS Platforms">Enterprise &amp; SaaS Platforms</option>
+                  <option value="Developer &amp; Edge Platform">Developer &amp; Edge Platform</option>
+                  <option value="Video &amp; Streaming Analytics">Video &amp; Streaming Analytics</option>
+                  </optgroup>
+                </select>
+                <p class="field__hint" id="cf-topic-hint" hidden></p>
+              </div>
+
+              <div class="step-head">
+                <span class="step-head__n" aria-hidden="true">02</span>
+                <div>
+                  <h3>Then we need these metrics</h3>
+                  <p>Nothing to fill in here — this is what makes a comparable offer possible.</p>
+                </div>
+              </div>
+
+              <div class="metrics" id="cf-metrics" role="region" aria-live="polite" aria-label="Metrics we need">
+                <div class="metrics__head">
+                  <h3>What we need from you</h3>
+                  <span class="metrics__for" id="cf-metrics-for">For any contract</span>
+                </div>
+                <ul class="metrics__list" id="cf-metrics-list">
+                  <li>Current annual spend on the contract</li>
+                  <li>Contract end date and notice period</li>
+                  <li>Committed volume, licence count or tier</li>
+                  <li>Current vendor and the products in scope</li>
+                </ul>
+                <p class="metrics__foot" id="cf-metrics-foot">Choose a domain above and this list becomes specific to it.</p>
+              </div>
+
+              <div class="step-head">
+                <span class="step-head__n" aria-hidden="true">03</span>
+                <div>
+                  <h3>Where do we send the quote?</h3>
+                  <p>Send the metrics with your message, or later by email — whichever is quicker.</p>
+                </div>
+              </div>
+
               <div class="form-grid">
                 <div class="field">
                   <label for="cf-name">Name <span class="req">*</span></label>
@@ -89,32 +165,8 @@
               </div>
 
               <div class="field">
-                <label for="cf-topic">Area of interest</label>
-                <select id="cf-topic" name="topic">
-                  <option value="">— Please choose —</option>
-                  <option value="General enquiry">General enquiry</option>
-                  <option value="Contract renewal / renegotiation">Contract renewal / renegotiation</option>
-                  <option value="Market price benchmark">Market price benchmark</option>
-                  <option value="Tender / vendor selection">Tender / vendor selection</option>
-                  <optgroup label="Capability domains" id="cf-topic-domains">
-                  <option value="Web Performance &amp; Delivery">Web Performance &amp; Delivery</option>
-                  <option value="Cloud &amp; Platform Operations">Cloud &amp; Platform Operations</option>
-                  <option value="Network &amp; SASE">Network &amp; SASE</option>
-                  <option value="Security &amp; Identity">Security &amp; Identity</option>
-                  <option value="Application &amp; Code Security">Application &amp; Code Security</option>
-                  <option value="FinOps, Risk &amp; Governance">FinOps, Risk &amp; Governance</option>
-                  <option value="Cloud Hosting &amp; Infrastructure">Cloud Hosting &amp; Infrastructure</option>
-                  <option value="Enterprise &amp; SaaS Platforms">Enterprise &amp; SaaS Platforms</option>
-                  <option value="Developer &amp; Edge Platform">Developer &amp; Edge Platform</option>
-                  <option value="Video &amp; Streaming Analytics">Video &amp; Streaming Analytics</option>
-                  </optgroup>
-                </select>
-                <p class="field__hint" id="cf-topic-hint" hidden></p>
-              </div>
-
-              <div class="field">
                 <label for="cf-message">Message <span class="req">*</span></label>
-                <textarea id="cf-message" name="message" required placeholder="Which contract, which vendor, and when does it come up for renewal?"></textarea>
+                <textarea id="cf-message" name="message" required placeholder="Which contract, which vendor, when does it come up for renewal — and any of the metrics above you already have to hand."></textarea>
                 <p class="field__error">Please add a short message.</p>
               </div>
 
@@ -147,10 +199,22 @@
               </p>
             </div>
           </div>
+
+          <div class="note" style="margin-top:var(--s5)">
+            <span class="note__icon" aria-hidden="true">✎</span>
+            <div>
+              <strong>The metric lists are a first draft.</strong>
+              Ten domains, one list each — put together from the catalog, not yet confirmed.
+              They are the part of this page that decides whether an enquiry arrives usable,
+              so they should be gone through once before the page goes live.
+              They live in one place: <code>assets/js/site.js</code>, the <code>METRICS</code>
+              object near the top.
+            </div>
+          </div>
         </div>
 
         <!-- ================================================== CHANNELS -->
-        <aside data-review-id="contact.channels" data-review-label="Contact — Direct channels (phone, WhatsApp, email)">
+        <aside id="rev-contact-channels" data-review-id="contact.channels" data-review-label="Contact — Direct channels (phone, WhatsApp, email)">
           <div class="section__head" style="margin-bottom:var(--s5)">
             <span class="eyebrow">Direct</span>
             <h2 style="font-size:var(--fs-h3)">Prefer to talk?</h2>
@@ -233,7 +297,7 @@
   </section>
 
   <!-- ============================================================= CTA -->
-  <section class="section section--tight cta" data-review-id="contact.cta" data-review-label="Contact — Closing call to action">
+  <section class="section section--tight cta" id="rev-contact-cta" data-review-id="contact.cta" data-review-label="Contact — Closing call to action">
     <div class="container cta__inner">
       <div>
         <h2>Renewal in the next six months?</h2>
@@ -273,7 +337,7 @@
           <li><a href="references.html">References</a></li>
           <li><a href="catalog.html">Capability catalog</a></li>
           <li><a href="contact.html">Contact</a></li>
-          <li><a href="decisions.html">Überarbeitungszyklen</a></li>
+          <li><a href="project.html">Projektdokumentation</a></li>
         </ul>
       </div>
 
@@ -310,6 +374,7 @@
 </footer>
 
 <script src="assets/js/site.js"></script>
+<script src="assets/js/handoff.js"></script>
 <script src="assets/js/review.js"></script>
 </body>
 </html>

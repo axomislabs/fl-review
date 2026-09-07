@@ -1,0 +1,1037 @@
+/* ==========================================================================
+   Fersen & Lohse — Projektplan and the Projektdokumentation hub
+
+   Both run on the dark working palette from workspace.css, which also owns
+   the mic button, the fixed savebar and the send sheet — everything the plan
+   shares with the decision catalogue. This file adds only what belongs to
+   these two pages. Every class is prefixed pl-.
+
+   Load order: site.css → workspace.css → plan.css.
+   ========================================================================== */
+
+/* ------------------------------------------------------- the hub cards -- */
+
+.pl-hub { display: grid; gap: var(--s5); }
+
+@media (min-width: 820px) {
+  .pl-hub { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.pl-doc {
+  display: block;
+  position: relative;
+  padding: var(--s6);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--deep);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color .18s ease, transform .18s ease, box-shadow .18s ease;
+}
+.pl-doc:hover {
+  border-color: var(--light);
+  border-left-color: var(--light);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+.pl-doc--done { border-left-color: var(--done); }
+.pl-doc--live { border-left-color: var(--wait); }
+
+/* A cycle that has not happened yet is a placeholder, not a link. */
+.pl-doc--future {
+  border-style: dashed;
+  border-left-style: dashed;
+  border-left-color: var(--line-strong);
+  background: transparent;
+  cursor: default;
+}
+.pl-doc--future:hover { transform: none; box-shadow: none; border-color: var(--line-strong); }
+
+.pl-doc__when {
+  display: block;
+  font-size: var(--fs-xs);
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--ink-3);
+  margin-bottom: var(--s3);
+}
+.pl-doc--done .pl-doc__when { color: var(--done); }
+.pl-doc--live .pl-doc__when { color: var(--wait); }
+
+.pl-doc h3 { margin-bottom: var(--s3); }
+.pl-doc p { color: var(--ink-2); font-size: var(--fs-sm); margin-bottom: var(--s4); }
+.pl-doc p:last-child { margin-bottom: 0; }
+
+.pl-doc__more { font-size: var(--fs-sm); font-weight: 650; color: var(--deep); }
+.pl-doc__more::after { content: " →"; }
+
+/* ------------------------------------------------------- source of it -- */
+
+/* Where the plan comes from: the voice message itself, quoted, so nobody has
+   to take the phases on trust. */
+.pl-src {
+  padding: var(--s6);
+  background: var(--light-tint);
+  border: 1px solid var(--light-soft);
+  border-radius: var(--radius);
+}
+.pl-src blockquote {
+  margin: var(--s4) 0 0;
+  padding-left: var(--s5);
+  border-left: 3px solid var(--light);
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
+}
+.pl-src blockquote p { margin-bottom: var(--s3); }
+.pl-src cite {
+  display: block;
+  margin-top: var(--s4);
+  font-style: normal;
+  font-size: var(--fs-xs);
+  color: var(--ink-3);
+}
+
+/* ------------------------------------------------------------- chronik -- */
+
+/* What happened when, on the hub. A list, not a table — the entries are
+   sentences, and there are never going to be many of them. */
+.pl-log { list-style: none; padding: 0; margin: 0; }
+
+.pl-log li {
+  display: grid;
+  gap: 2px var(--s5);
+  margin: 0;
+  padding: var(--s5) 0;
+  border-top: 1px solid var(--line);
+}
+.pl-log li:last-child { border-bottom: 1px solid var(--line); }
+
+@media (min-width: 700px) {
+  .pl-log li { grid-template-columns: 150px minmax(0, 1fr); align-items: baseline; }
+}
+
+.pl-log time {
+  font-size: var(--fs-xs);
+  letter-spacing: .05em;
+  font-weight: 700;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+.pl-log strong { display: block; color: var(--ink); font-weight: 650; }
+.pl-log p { margin: 3px 0 0; font-size: var(--fs-sm); color: var(--ink-2); }
+.pl-log__what { grid-column: -2 / -1; }
+
+/* ------------------------------------------------------- open questions -- */
+
+/* Six of them, two abreast from 760 px: they are short, and stacked full
+   width they turned six sentences into a screen of their own. */
+.pl-open { display: grid; gap: var(--s3); }
+
+@media (min-width: 760px) {
+  .pl-open { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.pl-open li {
+  list-style: none;
+  margin: 0;
+  padding: var(--s4);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--wait);
+  border-radius: var(--radius-sm);
+}
+.pl-open strong { display: block; color: var(--ink); margin-bottom: 3px; font-size: var(--fs-sm); }
+.pl-open p { margin: 0; font-size: var(--fs-xs); line-height: 1.55; color: var(--ink-2); }
+
+/* ------------------------------------------------------------- chronik -- */
+
+/* What happened when, on the hub. A list, not a table — the entries are
+   sentences, and there are never going to be many of them. */
+.pl-log { list-style: none; padding: 0; margin: 0; }
+
+.pl-log li {
+  display: grid;
+  gap: 2px var(--s5);
+  margin: 0;
+  padding: var(--s5) 0;
+  border-top: 1px solid var(--line);
+}
+.pl-log li:last-child { border-bottom: 1px solid var(--line); }
+
+@media (min-width: 700px) {
+  .pl-log li { grid-template-columns: 150px minmax(0, 1fr); align-items: baseline; }
+}
+
+.pl-log time {
+  font-size: var(--fs-xs);
+  letter-spacing: .05em;
+  font-weight: 700;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+.pl-log strong { display: block; color: var(--ink); font-weight: 650; }
+.pl-log p { margin: 3px 0 0; font-size: var(--fs-sm); color: var(--ink-2); }
+.pl-log__what { grid-column: -2 / -1; }
+
+/* --------------------------------------------------------------- goals -- */
+
+.pl-goals { display: grid; gap: var(--s3); }
+
+@media (min-width: 700px) {
+  .pl-goals { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.pl-goal {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s4);
+  padding: var(--s4) var(--s5);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--paper-alt);
+}
+.pl-goal strong {
+  flex: none;
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  line-height: 1.1;
+  color: var(--deep);
+}
+.pl-goal span { font-size: var(--fs-sm); color: var(--ink-2); }
+
+
+/* ------------------------------------------------------- page rhythm -- */
+
+/* The plan is read, not landed on: half a screen of gradient before the
+   first phase is half a screen too much. */
+body[data-page="Projektplan"] .pagehead { padding-block: clamp(var(--s6), 4vw, 56px); }
+body[data-page="Projektplan"] .pagehead h1 { font-size: clamp(1.8rem, 1.3rem + 1.6vw, 2.5rem); }
+
+/* The plan is a working document, not a landing page. site.css spaces its
+   sections for the five public pages; here that spacing is what turns a
+   register into a scroll. */
+#zeitplan, #aufgaben, #offen, #ziele { padding-block: var(--s6); }
+#zeitplan .section__head,
+#aufgaben .section__head,
+#offen .section__head,
+#ziele .section__head { margin-bottom: var(--s5); }
+
+/* ============================================================== gantt ==
+
+   The six phases as one chart, two lines to a row: name, count and bar on
+   the first, timeframe and the sentence that says what the phase is on the
+   second. It was five stacked lines per phase before, which turned one chart
+   into six blocks — the whole point of a Gantt is that the rows sit close
+   enough together to be compared.
+
+   Each row is a button: pressing it filters the register below to that phase
+   and goes there, pressing it again releases the filter.
+
+   The scale survives on narrow screens: the row stacks (label above bar) and
+   the month header sits above the whole chart instead of beside the labels,
+   which keeps the bars comparable on a phone.
+   ------------------------------------------------------------------------ */
+
+.pl-gantt {
+  --pl-label: 500px;
+  --pl-today: -100px;          /* plan.js overwrites this with a percentage */
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.pl-gantt__scale {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--s5);
+  padding: 26px var(--s5) 6px;
+  background: var(--paper-alt);
+  border-bottom: 1px solid var(--line);
+}
+
+.pl-gantt__corner { display: none; }
+
+.pl-gantt__months {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 2px;
+  font-size: var(--fs-xs);
+  color: var(--ink-3);
+}
+.pl-gantt__months > span { padding-left: 5px; border-left: 1px solid var(--line-strong); }
+.pl-gantt__months b { font-weight: 700; }
+.pl-gantt__months i { font-style: normal; opacity: .7; margin-left: 3px; }
+
+/* Today, as a label over the scale and a hairline down every track. Set by
+   plan.js from the real date, so it cannot go stale; without JS it stays off
+   the chart entirely. */
+.pl-now {
+  position: absolute;
+  top: -20px;
+  left: var(--pl-today);
+  transform: translateX(-50%);
+  padding: 1px 8px !important;
+  border: 0 !important;
+  border-radius: var(--radius-pill);
+  background: var(--wait-wash);
+  color: var(--wait);
+  font-weight: 700;
+  white-space: nowrap;
+}
+.pl-now[hidden] { display: none; }
+
+.pl-gantt__rows { display: grid; }
+
+.pl-grow {
+  display: grid;
+  gap: var(--s3);
+  width: 100%;
+  margin: 0;
+  padding: 10px var(--s5);
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid var(--line);
+  cursor: pointer;
+  transition: background .15s ease, box-shadow .15s ease;
+}
+.pl-gantt__rows .pl-grow:first-child { border-top: 0; }
+.pl-grow:hover { background: var(--paper-alt); }
+.pl-grow:focus-visible { outline: 2px solid var(--light); outline-offset: -2px; }
+
+.pl-grow[aria-pressed="true"] {
+  background: var(--light-tint);
+  box-shadow: inset 4px 0 0 var(--deep);
+}
+.pl-grow--done[aria-pressed="true"] { box-shadow: inset 4px 0 0 var(--done); }
+
+.pl-grow__label { display: block; min-width: 0; }
+
+.pl-grow__line {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s3);
+  min-width: 0;
+}
+
+.pl-grow__n {
+  flex: none;
+  font-size: var(--fs-xs);
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--deep);
+}
+.pl-grow--done .pl-grow__n { color: var(--done); }
+
+.pl-grow__title {
+  font-size: .98rem;
+  font-weight: 650;
+  line-height: 1.25;
+  color: var(--ink);
+  min-width: 0;
+}
+
+.pl-grow__count {
+  flex: none;
+  margin-left: auto;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: .03em;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+.pl-grow[aria-pressed="true"] .pl-grow__count { color: var(--deep); }
+
+.pl-grow__sub {
+  display: block;
+  margin-top: 2px;
+  font-size: var(--fs-xs);
+  line-height: 1.5;
+  color: var(--ink-3);
+}
+.pl-grow__sub b { font-weight: 700; color: var(--ink-2); }
+
+/* ------------------------------------------------------------- the bars -- */
+
+.pl-grow__track {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 2px;
+  align-items: center;
+  min-height: 28px;
+  border-radius: var(--radius-sm);
+  background-image:
+    linear-gradient(to right,
+      transparent calc(var(--pl-today) - 1px), var(--wait) calc(var(--pl-today) - 1px),
+      var(--wait) calc(var(--pl-today) + 1px), transparent calc(var(--pl-today) + 1px)),
+    repeating-linear-gradient(to right, var(--line) 0 1px, transparent 1px 10%);
+}
+
+.pl-bar {
+  position: relative;
+  height: 20px;
+  border-radius: var(--radius-pill);
+  background: var(--deep);
+}
+.pl-bar--done { background: var(--done); }
+
+/* Open-ended: the phase does not stop at the edge of the strip. */
+.pl-bar--ongoing {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  -webkit-mask-image: linear-gradient(to right, #000 76%, rgba(0, 0, 0, .2));
+  mask-image: linear-gradient(to right, #000 76%, rgba(0, 0, 0, .2));
+}
+
+@media (min-width: 1100px) { .pl-gantt { --pl-label: 560px; } }
+@media (min-width: 1220px) { .pl-gantt { --pl-label: 610px; } }
+
+@media (min-width: 900px) {
+  .pl-gantt__scale {
+    grid-template-columns: var(--pl-label) minmax(0, 1fr);
+    gap: var(--s6);
+    padding-inline: var(--s5) var(--s6);
+  }
+  .pl-gantt__corner { display: block; }
+
+  .pl-grow {
+    grid-template-columns: var(--pl-label) minmax(0, 1fr);
+    gap: var(--s6);
+    align-items: center;
+    padding-inline: var(--s5) var(--s6);
+  }
+}
+
+@media (max-width: 560px) {
+  .pl-gantt__months { font-size: .68rem; }
+  .pl-gantt__months i { display: none; }
+  .pl-gantt__months > span { padding-left: 3px; }
+  .pl-grow__count { margin-left: 0; }
+  .pl-grow__line { flex-wrap: wrap; }
+}
+
+.pl-gantt__hint {
+  margin: var(--s3) 0 0;
+  font-size: var(--fs-xs);
+  color: var(--ink-3);
+}
+
+/* ============================================================= filters ==
+
+   One line: the five people as chips, then phase, area and status as
+   selects, then the count. It was a two-row panel with its own padding —
+   fine for a form, too much furniture for something that sits above a
+   fifty-row table.
+   ------------------------------------------------------------------------ */
+
+.pl-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s2);
+  padding: var(--s3) var(--s4);
+  margin-bottom: var(--s4);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.pl-filters__label {
+  font-size: var(--fs-xs);
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--ink-3);
+  margin-right: 2px;
+}
+
+.pl-filters__sep {
+  width: 1px;
+  align-self: stretch;
+  margin-inline: var(--s2);
+  background: var(--line);
+}
+
+.pl-chips { display: flex; flex-wrap: wrap; gap: 5px; }
+
+.pl-chip {
+  font: inherit;
+  font-size: var(--fs-xs);
+  font-weight: 650;
+  padding: 5px 13px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--line-strong);
+  background: transparent;
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease, color .15s ease;
+}
+.pl-chip:hover { border-color: var(--light); color: var(--deep); }
+.pl-chip[aria-pressed="true"] {
+  background: var(--deep);
+  border-color: var(--deep);
+  color: var(--on-teal);
+}
+
+.pl-filters select {
+  font: inherit;
+  font-size: var(--fs-xs);
+  max-width: 12rem;
+  padding: 5px 28px 5px 10px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: var(--paper-alt);
+  color: var(--ink);
+  appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--deep) 50%),
+    linear-gradient(135deg, var(--deep) 50%, transparent 50%);
+  background-position: calc(100% - 14px) 55%, calc(100% - 9px) 55%;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  text-overflow: ellipsis;
+}
+
+.pl-linkbtn {
+  font: inherit;
+  font-size: var(--fs-xs);
+  background: none;
+  border: 0;
+  padding: 0;
+  color: var(--deep);
+  text-decoration: underline;
+  cursor: pointer;
+}
+.pl-linkbtn[hidden] { display: none; }
+
+.pl-count {
+  margin: 0 0 0 auto;
+  font-size: var(--fs-xs);
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+.pl-hint {
+  margin: 0 0 var(--s3);
+  font-size: var(--fs-xs);
+  color: var(--wait);
+}
+.pl-hint[hidden] { display: none; }
+
+.pl-empty { font-size: var(--fs-sm); color: var(--ink-3); padding: var(--s5) 0; }
+.pl-empty[hidden] { display: none; }
+
+/* ======================================================== the register ==
+
+   Fifty tasks as one dense table per phase, in the order the phases run.
+   The sorting is the point: the time window decides where a task sits, not
+   its subject — every phase mixes Website, Marke, Agenten, LinkedIn,
+   Feedback and Steuerung, and the Bereich column says which is which.
+   Inside a phase, blockers come first, then what runs, then open, then
+   backlog.
+
+   A row is six facts wide and opens on click into the description and the
+   feedback panel. The rows are deliberately tight: a register is for
+   scanning, and fifty cards took four screens to say what a table says in
+   one.
+
+   Below 820 px the table stops being a table — the row becomes a two-line
+   block: number and title on the first line, area, who, effort and status on
+   the second. Nothing is dropped.
+   ------------------------------------------------------------------------ */
+
+.pl-group { margin-bottom: var(--s6); scroll-margin-top: 88px; }
+#pl-groups { scroll-margin-top: 88px; }
+.pl-group[hidden] { display: none; }
+
+.pl-group__head {
+  padding-bottom: var(--s2);
+  margin-bottom: var(--s3);
+  border-bottom: 2px solid var(--line-strong);
+}
+.pl-group__head h3 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--s2) var(--s3);
+  margin: 0 0 3px;
+  font-size: 1.12rem;
+}
+
+.pl-group__n {
+  flex: none;
+  padding: 2px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--light-tint);
+  border: 1px solid var(--light-soft);
+  font-size: var(--fs-xs);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--deep);
+}
+
+.pl-group__count {
+  margin-left: auto;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+.pl-group__meta {
+  margin: 0;
+  font-size: var(--fs-xs);
+  line-height: 1.5;
+  color: var(--ink-3);
+}
+.pl-group__meta b { font-weight: 700; color: var(--ink-2); }
+
+/* --------------------------------------------------------------- table -- */
+
+.pl-table { width: 100%; border-collapse: collapse; }
+
+.pl-table thead th {
+  padding: 0 var(--s3) 4px;
+  text-align: left;
+  font-size: .7rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--ink-3);
+  border-bottom: 1px solid var(--line);
+}
+
+.pl-table .c-nr   { width: 3.4em; }
+.pl-table .c-area { width: 8.5rem; }
+.pl-table .c-who  { width: 12rem; }
+.pl-table .c-eff  { width: 4.5rem; }
+.pl-table .c-st   { width: 7.5rem; }
+
+.pl-item { border-bottom: 1px solid var(--line); }
+.pl-item[hidden] { display: none; }
+
+.pl-row > td { padding: 6px var(--s3); vertical-align: middle; }
+.pl-row:hover > td { background: var(--paper); }
+.pl-item.is-open .pl-row > td { background: var(--paper); }
+
+.pl-item.is-marked .pl-row > td:first-child { box-shadow: inset 3px 0 0 var(--done); }
+
+.pl-row .c-nr {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: .06em;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------- the title as toggle -- */
+
+.pl-row__btn {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s2);
+  width: 100%;
+  padding: 0;
+  font: inherit;
+  font-size: .95rem;
+  font-weight: 650;
+  line-height: 1.35;
+  text-align: left;
+  color: var(--ink);
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.pl-row__btn:hover .pl-row__title { color: var(--deep); }
+.pl-row__btn:focus-visible { outline: 2px solid var(--light); outline-offset: 3px; border-radius: 3px; }
+
+.pl-row__caret {
+  flex: none;
+  color: var(--ink-3);
+  transition: transform .18s ease;
+  display: inline-block;
+}
+.pl-row__btn[aria-expanded="true"] .pl-row__caret { transform: rotate(90deg); color: var(--deep); }
+
+.pl-row__title { min-width: 0; }
+
+.pl-row__flag {
+  flex: none;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: var(--done);
+  white-space: nowrap;
+}
+.pl-row__flag--run   { color: var(--deep); }
+.pl-row__flag--block { color: var(--danger); }
+.pl-row__flag[hidden] { display: none; }
+
+/* ----------------------------------------------- area, who, effort, status */
+
+/* The area is a label, not a second ordering — muted on purpose, so the eye
+   keeps reading the register by phase and not by subject. */
+.pl-area { font-size: var(--fs-xs); color: var(--ink-3); white-space: nowrap; }
+.pl-area b {
+  display: inline-block;
+  min-width: 1.1em;
+  margin-right: 3px;
+  font-weight: 700;
+  color: var(--ink-2);
+}
+
+.pl-who { display: flex; flex-wrap: wrap; gap: 3px; }
+
+.pl-who__p {
+  padding: 1px 8px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--line);
+  background: var(--paper-alt);
+  font-size: var(--fs-xs);
+  font-weight: 650;
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+.pl-who__none { font-size: var(--fs-xs); color: var(--ink-3); }
+
+/* Filtering by a person lights that person up in every row that still
+   shows — the filter and the table say the same thing. */
+#pl-groups[data-who="miguel"]  .pl-who__p--miguel,
+#pl-groups[data-who="fredrik"] .pl-who__p--fredrik,
+#pl-groups[data-who="noel"]    .pl-who__p--noel,
+#pl-groups[data-who="martin"]  .pl-who__p--martin,
+#pl-groups[data-who="extern"]  .pl-who__p--extern,
+#pl-groups:not([data-who="all"]) .pl-who__p--all {
+  background: var(--deep);
+  border-color: var(--deep);
+  color: var(--on-teal);
+}
+
+.pl-eff {
+  display: inline-block;
+  min-width: 2em;
+  padding: 1px 6px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  text-align: center;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: var(--ink-2);
+}
+
+.pl-pill {
+  display: inline-block;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: .03em;
+  padding: 2px 9px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--line-strong);
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+.pl-pill--done  { background: var(--done-wash);   color: var(--done);   border-color: var(--done-line); }
+.pl-pill--run   { background: var(--light-tint);  color: var(--deep);   border-color: var(--light-soft); }
+.pl-pill--block { background: var(--danger-wash); color: var(--danger); border-color: #4e332c; }
+.pl-pill--later { border-style: dashed; }
+
+/* ------------------------------------------------------- the opened row -- */
+
+.pl-detail[hidden] { display: none; }
+
+.pl-detail > td {
+  padding: 0 var(--s3) var(--s4) calc(var(--s3) + 1.1em);
+  background: var(--paper);
+  border-top: 1px dashed var(--line);
+}
+
+/* The brief: what to do, what comes out of it, and what it hangs on. Written
+   for someone who does not have the rest of the context in their head — the
+   row itself is only a name. */
+.pl-brief {
+  margin: var(--s4) 0 var(--s3);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  color: var(--ink-2);
+  max-width: 82ch;
+}
+
+.pl-facts {
+  display: grid;
+  gap: 2px var(--s4);
+  margin: 0 0 var(--s3);
+  max-width: 96ch;
+  font-size: var(--fs-xs);
+}
+@media (min-width: 620px) {
+  .pl-facts { grid-template-columns: max-content minmax(0, 1fr); }
+}
+.pl-facts dt {
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--ink-3);
+}
+.pl-facts dd {
+  margin: 0 0 var(--s2);
+  color: var(--ink-2);
+  line-height: 1.6;
+}
+.pl-facts code { font-size: .95em; }
+
+/* A reference points at another task, usually in another phase. It says which
+   one, so the jump is never a surprise. */
+.pl-refs > .pl-ref + .pl-ref { margin-left: var(--s4); }
+
+.pl-ref {
+  color: var(--deep);
+  font-weight: 650;
+  text-decoration: none;
+  border-bottom: 1px solid var(--light-soft);
+}
+.pl-ref:hover { color: var(--deep-700); border-bottom-color: var(--deep); }
+.pl-ref b { font-weight: 700; letter-spacing: .04em; margin-right: 4px; }
+
+.pl-ref__phase { color: var(--ink-3); font-weight: 400; white-space: nowrap; }
+.pl-ref__phase::before { content: "· "; }
+
+/* Where a jump lands, briefly. */
+.pl-item.is-target > .pl-row > td { animation: pl-flash 1.8s ease-out; }
+@keyframes pl-flash {
+  0%, 35% { background: var(--light-tint); }
+  100%    { background: transparent; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pl-item.is-target > .pl-row > td { animation: none; background: var(--light-tint); }
+}
+
+.pl-detail__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px var(--s5);
+  margin: 0;
+  font-size: var(--fs-xs);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.pl-detail__meta b { font-weight: 700; color: var(--ink-2); text-transform: none; letter-spacing: 0; }
+
+/* ------------------------------------------------------------ narrow -- */
+
+@media (max-width: 820px) {
+  .pl-table thead { display: none; }
+  .pl-table, .pl-table tbody, .pl-table .pl-detail:not([hidden]), .pl-table td { display: block; }
+
+  .pl-table .pl-row {
+    display: grid;
+    grid-template-columns: 3.2em minmax(0, 1fr) auto auto;
+    gap: 3px var(--s2);
+    align-items: center;
+    padding: var(--s3) 0;
+  }
+  .pl-table .pl-row > td { width: auto; padding: 0; background: none !important; }
+
+  .pl-row .c-nr   { grid-column: 1; grid-row: 1; }
+  .pl-row .c-task { grid-column: 2 / -1; grid-row: 1; }
+  .pl-row .c-who  { grid-column: 2; grid-row: 2; }
+  .pl-row .c-eff  { grid-column: 3; grid-row: 2; justify-self: end; }
+  .pl-row .c-st   { grid-column: 4; grid-row: 2; justify-self: end; }
+  .pl-row .c-area { grid-column: 2 / -1; grid-row: 3; }
+
+  .pl-detail > td { padding: 0 0 var(--s4); }
+  .pl-item.is-open .pl-row > td { background: none; }
+}
+
+/* -------------------------------------------------- notes per area -- */
+
+/* The register runs on time windows, so the six areas have no table of
+   their own. What holds for a whole area regardless of phase says so here,
+   in six collapsed lines at the end. */
+.pl-areas {
+  margin-top: var(--s6);
+  padding-top: var(--s5);
+  border-top: 2px solid var(--line-strong);
+}
+.pl-areas h3 { margin: 0 0 var(--s2); font-size: 1.12rem; }
+.pl-areas__lead {
+  margin: 0 0 var(--s4);
+  font-size: var(--fs-xs);
+  line-height: 1.55;
+  color: var(--ink-3);
+  max-width: 70ch;
+}
+
+.pl-areas__grid { display: grid; gap: var(--s2); }
+
+@media (min-width: 720px) {
+  .pl-areas__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+}
+@media (min-width: 1040px) {
+  .pl-areas__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* An open panel takes the whole width back — a textarea in a third of the
+   page is a slot, not a place to write. */
+.pl-fb--area { margin: 0; }
+.pl-fb--area:has(.pl-fb__toggle[aria-expanded="true"]) { grid-column: 1 / -1; }
+.pl-fb--area .pl-fb__toggle { width: 100%; justify-content: flex-start; }
+
+/* ============================================================ feedback ==
+
+   Collapsed by default: fifty open forms would bury the plan. What a closed
+   panel still shows is whether it holds anything — the flag beside the label
+   names the progress mark and says "Anmerkung", so the state is readable
+   without opening it and without relying on the colour of the card's edge.
+   ------------------------------------------------------------------------ */
+
+.pl-fb { margin-top: var(--s3); }
+
+/* The note that belongs to a whole phase sits under its table, set off from
+   the rows above it so it cannot be read as one more task. */
+.pl-fb--group {
+  margin-top: var(--s4);
+  padding-top: var(--s4);
+  border-top: 1px dashed var(--line);
+}
+
+.pl-fb__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s2);
+  font: inherit;
+  font-size: var(--fs-xs);
+  font-weight: 650;
+  padding: 5px 12px 5px 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--ink-3);
+  cursor: pointer;
+  transition: border-color .15s ease, color .15s ease, background .15s ease;
+}
+.pl-fb__toggle:hover { border-color: var(--light); color: var(--deep); }
+.pl-fb.is-filled .pl-fb__toggle { border-color: var(--done-line); color: var(--done); }
+
+.pl-fb__caret { transition: transform .18s ease; display: inline-block; }
+.pl-fb__toggle[aria-expanded="true"] .pl-fb__caret { transform: rotate(90deg); }
+
+.pl-fb__flag {
+  font-weight: 700;
+  color: var(--done);
+  padding-left: var(--s2);
+  border-left: 1px solid var(--line);
+}
+.pl-fb__flag--run   { color: var(--deep); }
+.pl-fb__flag--block { color: var(--danger); }
+.pl-fb__flag[hidden] { display: none; }
+
+.pl-fb__body {
+  margin-top: var(--s3);
+  padding: var(--s4);
+  background: var(--paper-alt);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+}
+.pl-fb__body[hidden] { display: none; }
+
+/* ------------------------------------------------------------- marks -- */
+
+.pl-marks { display: flex; flex-wrap: wrap; gap: var(--s2); margin-bottom: var(--s4); }
+
+.pl-mark {
+  font: inherit;
+  font-size: var(--fs-xs);
+  font-weight: 650;
+  padding: 6px 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease, color .15s ease;
+}
+.pl-mark:hover { border-color: var(--light); color: var(--deep); }
+
+.pl-mark--done[aria-pressed="true"]  { background: var(--done);   border-color: var(--done);   color: #08181b; }
+.pl-mark--run[aria-pressed="true"]   { background: var(--deep);   border-color: var(--deep);   color: var(--on-teal); }
+.pl-mark--block[aria-pressed="true"] { background: var(--danger); border-color: var(--danger); color: #2a1512; }
+
+/* -------------------------------------------------------- the textarea -- */
+
+.pl-note__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s3);
+  margin-bottom: var(--s2);
+}
+.pl-note__head label {
+  font-size: var(--fs-xs);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--ink-3);
+}
+
+.pl-note textarea {
+  width: 100%;
+  font: inherit;
+  font-size: var(--fs-sm);
+  line-height: 1.55;
+  padding: var(--s3) var(--s4);
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  resize: vertical;
+  min-height: 74px;
+}
+.pl-note textarea:focus {
+  outline: none;
+  border-color: var(--light);
+  box-shadow: 0 0 0 3px rgba(66, 175, 195, .22);
+}
+
+.pl-note__status { margin: 6px 0 0; font-size: var(--fs-xs); color: var(--ink-3); min-height: 1em; }
+.pl-note__status.is-live { color: var(--deep); }
+.pl-note__status.is-warn { color: var(--danger); }
+
+/* ============================================================== print ==
+
+   Paper carries the whole plan: the filter is undone, every phase and task
+   comes back, and the feedback panels open so what was written is on the
+   page. The chart stays — it is the one thing that is worth the ink twice.
+   The chips, the savebar and the toggles drop out.
+   ------------------------------------------------------------------------ */
+
+@media print {
+  .pl-filters, .pl-count, .pl-hint, .pl-gantt__hint, .pl-now,
+  .pl-fb__toggle, .wl-mic, .pl-table .c-area { display: none !important; }
+
+  .pl-group[hidden], .pl-item[hidden] { display: revert !important; }
+  .pl-detail[hidden] { display: revert !important; }
+  /* Written notes come back on paper; the untouched forms do not — and an
+     area section with nothing written in it does not print a heading. */
+  .pl-fb.is-filled .pl-fb__body[hidden] { display: block !important; }
+  .pl-fb:not(.is-filled) { display: none !important; }
+  .pl-areas:not(:has(.pl-fb.is-filled)) { display: none !important; }
+
+  .pl-grow { break-inside: avoid; box-shadow: none !important; background: none !important; }
+
+  .pl-item, .pl-goal, .pl-open li, .pl-doc, .pl-log li, .pl-src {
+    break-inside: avoid;
+  }
+  .pl-group__head { break-after: avoid; }
+  .pl-row__caret { display: none; }
+  .pl-note textarea { min-height: 0; height: auto; }
+  .pl-mark:not([aria-pressed="true"]) { display: none; }
+}

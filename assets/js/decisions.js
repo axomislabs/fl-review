@@ -17,16 +17,24 @@
   var DECISIONS = DATA.items;
   var BLOCKS = DATA.blocks;
   var CLOSING = DATA.closingId;
+  /* Miguel's answers of 31.08.2026 and what they changed on the site. Read
+     only — they are shown beside each question, never mixed into the answers
+     this browser stores, so the page still works for a second round. */
+  var ANSWERED = DATA.answered || { by: "", at: "", items: {} };
 
   var CONFIG = {
     /* Where "per email" addresses the message. */
     recipient: "martin@axomislabs.com",
     project: "Fersen & Lohse",
-    storageKey: "fl-decisions-v1",
-    /* mailto: and wa.me URLs are length-limited by browsers and apps. */
-    mailBodyLimit: 1800,
-    waBodyLimit: 1500
+    storageKey: "fl-decisions-v1"
   };
+
+  /* Length budgeting for the mail and WhatsApp routes lives in handoff.js.
+     It used to live here as mailBodyLimit/waBodyLimit, and it was wrong in
+     both directions: too small, and enforced by cutting the text at the first
+     question that did not fit — which lost ten of eighteen answers without
+     the recipient ever knowing. See the header of handoff.js. */
+  var HANDOFF = window.FL && window.FL.handoff;
 
   /* ==================================================== state handling == */
 
@@ -89,6 +97,13 @@
     return n;
   };
 
+  /* The values Miguel chose for this question, always as an array. */
+  var decidedValues = function (d) {
+    var v = ANSWERED.items[d.id];
+    if (!v || v.v === undefined || v.v === null) return [];
+    return Array.isArray(v.v) ? v.v : [v.v];
+  };
+
   var pickedLabels = function (d) {
     var a = state.answers[d.id] || {};
     var chosen = d.type === "multi"
@@ -132,12 +147,16 @@
     var a = answer(d.id);
     var multi = d.type === "multi";
     var noteId = "note-" + d.id;
-    var h = '<article class="dec-card' + (d.flag ? " is-flag" : "") + '" id="q-' + d.id + '">';
+    var decided = ANSWERED.items[d.id];
+    var chosen = decidedValues(d);
+    var h = '<article class="dec-card' + (d.flag ? " is-flag" : "") +
+            (decided ? " is-decided" : "") + '" id="q-' + d.id + '">';
 
     h += '<div class="dec-card__top">' +
          '<span class="dec-card__n">Frage ' + esc(d.n) + '</span>' +
          (d.flag ? '<span class="dec-tag dec-tag--flag">Grundsatzfrage</span>' : "") +
          (multi ? '<span class="dec-tag">Mehrfachauswahl</span>' : "") +
+         (decided ? '<span class="dec-tag dec-tag--done">Beantwortet</span>' : "") +
          '</div>';
 
     h += '<h3 class="dec-card__q">' + esc(d.q) + "</h3>";
@@ -155,23 +174,69 @@
       var on = multi
         ? (Array.isArray(a.choice) && a.choice.indexOf(o.v) > -1)
         : (a.choice === o.v);
-      h += '<button type="button" class="dec-opt' + (multi ? " dec-opt--multi" : "") + '"' +
+      h += '<button type="button" class="dec-opt' + (multi ? " dec-opt--multi" : "") +
+           (chosen.indexOf(o.v) > -1 ? " is-picked" : "") + '"' +
            ' data-q="' + esc(d.id) + '" data-v="' + esc(o.v) + '" data-multi="' + (multi ? "1" : "0") + '"' +
            (multi
              ? ' aria-pressed="' + (on ? "true" : "false") + '"'
              : ' role="radio" aria-checked="' + (on ? "true" : "false") + '"') +
            '><span class="dec-opt__mark" aria-hidden="true"></span>' +
-           '<span class="dec-opt__body"><span class="dec-opt__label">' + esc(o.label) + "</span>" +
+           '<span class="dec-opt__body"><span class="dec-opt__label">' + esc(o.label) +
+           (chosen.indexOf(o.v) > -1
+             ? '<span class="dec-opt__by">' + esc(ANSWERED.by) + "</span>"
+             : "") + "</span>" +
            (o.hint ? '<span class="dec-opt__hint">' + esc(o.hint) + "</span>" : "") +
            "</span></button>";
     });
     h += "</div>";
+
+    h += verdict(d);
 
     h += noteField(noteId, d.id, "Ergänzung, Einwand, eigene Formulierung",
       "Optional — hier zählt auch ein halber Gedanke.", a.note);
 
     h += "</article>";
     return h;
+  };
+
+  /* What was answered, and what that turned into on the website. Sits between
+     the options and the free-text field: the answer first, then the change,
+     then the link to the place on the site where it can be looked at. */
+  var verdict = function (d) {
+    var v = ANSWERED.items[d.id];
+    if (!v) return "";
+
+    var want = decidedValues(d);
+    var labels = [];
+    d.opts.forEach(function (o) { if (want.indexOf(o.v) > -1) labels.push(o.label); });
+
+    var h = '<div class="dec-verdict">';
+    h += '<div class="dec-verdict__head">' +
+         '<span class="dec-verdict__who">Antwort von ' + esc(ANSWERED.by) + "</span>" +
+         '<span class="dec-verdict__when">' + esc(ANSWERED.at) + "</span></div>";
+
+    if (labels.length) {
+      h += '<p class="dec-verdict__pick">' + esc(labels.join(" · ")) + "</p>";
+    }
+    if (v.note) {
+      h += '<blockquote class="dec-verdict__note">' + esc(v.note) + "</blockquote>";
+    }
+    if (v.done) {
+      h += '<div class="dec-verdict__part"><h4>Daraufhin geändert</h4><p>' +
+           esc(v.done) + "</p></div>";
+    }
+    if (v.open) {
+      h += '<div class="dec-verdict__part dec-verdict__part--open"><h4>Offen geblieben</h4><p>' +
+           esc(v.open) + "</p></div>";
+    }
+    if (v.links && v.links.length) {
+      h += '<ul class="dec-verdict__links">';
+      v.links.forEach(function (l) {
+        h += '<li><a href="' + esc(l.h) + '">' + esc(l.t) + "</a></li>";
+      });
+      h += "</ul>";
+    }
+    return h + "</div>";
   };
 
   /* Free-text field with its dictation button. */
@@ -193,9 +258,9 @@
 
   var micButton = function (fieldId) {
     if (window.FL_DICTATION && window.FL_DICTATION.blocked() === "unsupported") return "";
-    return '<button type="button" class="dec-mic" data-mic="' + fieldId + '"' +
+    return '<button type="button" class="wl-mic" data-mic="' + fieldId + '"' +
       ' aria-pressed="false" title="Antwort diktieren statt tippen">' +
-      MIC_SVG + '<span class="dec-mic__label">Diktieren</span>' +
+      MIC_SVG + '<span class="wl-mic__label">Diktieren</span>' +
       '<span class="sr-only"> — Text in dieses Feld sprechen</span></button>';
   };
 
@@ -205,6 +270,10 @@
       "<h3>Was fehlt in diesem Katalog?</h3>" +
       "<p>Alles, was oben nicht vorkommt — eine Zielgruppe, die wir falsch angenommen haben, " +
       "ein Angebot, das wir übersehen haben, ein Satz auf der Seite, der so nicht stimmt.</p>" +
+      (ANSWERED.by
+        ? '<p class="dec-verdict__empty">' + esc(ANSWERED.by) +
+          " hat dieses Feld am " + esc(ANSWERED.at) + " leer gelassen.</p>"
+        : "") +
       noteField("note-" + CLOSING, CLOSING, "Freitext", "Was uns noch fehlt …", a.note) +
       "</section>";
   };
@@ -239,6 +308,7 @@
       var cls = [];
       if (isAnswered(d)) cls.push("is-done");
       if (d.flag) cls.push("is-flag");
+      if (ANSWERED.items[d.id]) cls.push("is-decided");
       var short = d.q.length > 44 ? d.q.slice(0, 42).replace(/\s+\S*$/, "") + "…" : d.q;
       html += '<a href="#q-' + esc(d.id) + '" class="' + cls.join(" ") + '">' +
         '<span class="dec-rail__dot" aria-hidden="true"></span><span>' +
@@ -269,7 +339,7 @@
     var el = $("#dec-status");
     if (!el) return;
     el.textContent = message || "";
-    el.className = "dec-status" + (kind ? " is-" + kind : "");
+    el.className = "wl-status" + (kind ? " is-" + kind : "");
   };
 
   /* ====================================================== interaction == */
@@ -328,12 +398,12 @@
     if (!button) return;
     button.setAttribute("aria-pressed", live ? "true" : "false");
     button.classList.toggle("is-live", !!live);
-    var label = button.querySelector(".dec-mic__label");
+    var label = button.querySelector(".wl-mic__label");
     if (label) label.textContent = live ? "Stopp" : "Diktieren";
   };
 
   document.addEventListener("click", function (event) {
-    var button = event.target.closest ? event.target.closest(".dec-mic") : null;
+    var button = event.target.closest ? event.target.closest(".wl-mic") : null;
     if (!button) return;
     event.preventDefault();
 
@@ -344,7 +414,7 @@
     /* Whatever else was recording stops on its own — clear its button too. */
     var running = window.FL_DICTATION.target();
     if (running && running !== field) {
-      var old = document.querySelector('.dec-mic.is-live');
+      var old = document.querySelector('.wl-mic.is-live');
       micVisual(old, false);
       if (old) micStatus(old.getAttribute("data-mic"), "");
     }
@@ -367,9 +437,7 @@
 
   /* ============================================================ export == */
 
-  var csvCell = function (value) {
-    return '"' + String(value === undefined || value === null ? "" : value).replace(/"/g, '""') + '"';
-  };
+  var csvCell = function (value) { return HANDOFF.csvCell(value); };
 
   var buildCsv = function () {
     var header = ["nr", "block", "frage", "antwort", "ergaenzung", "beantwortet_von", "stand"];
@@ -395,55 +463,99 @@
     return "sep=,\r\n" + header.map(csvCell).join(",") + "\r\n" + rows.join("\r\n") + "\r\n";
   };
 
-  /* Readable summary for email, WhatsApp and the clipboard. `limit` keeps the
-     URL-borne variants inside what browsers and apps accept. */
-  var buildText = function (options) {
-    var opts = options || {};
-    var limit = opts.limit || 0;
-    var lines = [
-      "Fersen & Lohse — Entscheidungen zum Website-Entwurf",
-      "Von: " + (state.who || "ohne Namen"),
-      "Stand: " + stampFull(),
-      "Beantwortet: " + countDone() + " von " + DECISIONS.length
-    ];
-    var truncated = false;
-    var lastBlock = null;
+  /* Readable summaries for email, WhatsApp and the clipboard.
 
+     Three renderings of the same answers, complete to terse. Every one of
+     them carries every answered question — what shrinks between them is the
+     detail per question, never the number of questions. handoff.js picks the
+     most complete one that fits the route. */
+
+  var answeredList = function () {
+    var out = [];
     for (var i = 0; i < DECISIONS.length; i += 1) {
       var d = DECISIONS[i];
       var a = state.answers[d.id] || {};
       var picked = pickedLabels(d);
       var note = (a.note || "").trim();
       if (!picked.length && !note) continue;
-
-      var block = [];
-      if (d.block !== lastBlock) {
-        block.push("", "== " + BLOCKS[d.block].t + " ==");
-      }
-      block.push(d.n + " " + d.q);
-      block.push("   → " + (picked.length ? picked.join(" / ") : "keine Option gewählt"));
-      if (note) block.push("   Ergänzung: " + note);
-
-      if (limit && lines.concat(block).join("\n").length > limit) {
-        truncated = true;
-        break;
-      }
-      lines = lines.concat(block);
-      lastBlock = d.block;
+      out.push({ d: d, picked: picked, note: note });
     }
+    return out;
+  };
 
+  var textHead = function () {
+    return [
+      "Fersen & Lohse — Entscheidungen zum Website-Entwurf",
+      "Von: " + (state.who || "ohne Namen"),
+      "Stand: " + stampFull(),
+      "Beantwortet: " + countDone() + " von " + DECISIONS.length
+    ];
+  };
+
+  var closingNote = function () {
     var closing = state.answers[CLOSING];
-    var closingNote = closing && closing.note ? closing.note.trim() : "";
-    if (closingNote) {
-      var tail = ["", "== Was fehlt ==", closingNote];
-      if (limit && lines.concat(tail).join("\n").length > limit) truncated = true;
-      else lines = lines.concat(tail);
-    }
+    return closing && closing.note ? closing.note.trim() : "";
+  };
 
-    if (truncated) {
-      lines.push("", "[Gekürzt — die vollständigen Antworten stehen in der CSV-Datei.]");
-    }
+  /* Level 0 — everything: block headings, question wording, choice, addition. */
+  var textFull = function () {
+    var lines = textHead();
+    var lastBlock = null;
+    answeredList().forEach(function (item) {
+      if (item.d.block !== lastBlock) {
+        lines.push("", "== " + BLOCKS[item.d.block].t + " ==");
+        lastBlock = item.d.block;
+      }
+      lines.push(item.d.n + " " + item.d.q);
+      lines.push("   → " + (item.picked.length ? item.picked.join(" / ") : "keine Option gewählt"));
+      if (item.note) lines.push("   Ergänzung: " + item.note);
+    });
+    var tail = closingNote();
+    if (tail) lines.push("", "== Was fehlt ==", tail);
     return lines.join("\n");
+  };
+
+  /* Level 1 — the additions move to the CSV, every question still listed. */
+  var textNoNotes = function () {
+    var items = answeredList();
+    var withNotes = items.filter(function (i) { return !!i.note; }).length;
+    var lines = textHead();
+    var lastBlock = null;
+    items.forEach(function (item) {
+      if (item.d.block !== lastBlock) {
+        lines.push("", "== " + BLOCKS[item.d.block].t + " ==");
+        lastBlock = item.d.block;
+      }
+      lines.push(item.d.n + " " + item.d.q);
+      lines.push("   → " + (item.picked.length ? item.picked.join(" / ") : "keine Option gewählt"));
+    });
+    if (withNotes) {
+      lines.push("", "[" + withNotes + " Ergänzung" + (withNotes === 1 ? "" : "en") +
+        " im Volltext in der CSV-Datei — hier ist kein Platz dafür.]");
+    }
+    var tail = closingNote();
+    if (tail) lines.push("", "== Was fehlt ==", tail);
+    return lines.join("\n");
+  };
+
+  /* Level 2 — one line per question. Still all of them. */
+  var textCompact = function () {
+    var lines = textHead();
+    lines.push("");
+    answeredList().forEach(function (item) {
+      lines.push(item.d.n + " → " + (item.picked.length ? item.picked.join(" / ") : "—") +
+        (item.note ? " (+Ergänzung)" : ""));
+    });
+    lines.push("", "[Kurzfassung. Fragen, Ergänzungen und Freitext stehen vollständig in der CSV-Datei.]");
+    return lines.join("\n");
+  };
+
+  var renderings = function () {
+    return [
+      { text: textFull(),    complete: true,  label: "vollständig" },
+      { text: textNoNotes(), complete: false, label: "ohne Ergänzungen" },
+      { text: textCompact(), complete: false, label: "Kurzfassung" }
+    ];
   };
 
   var hasAnswers = function () {
@@ -461,41 +573,46 @@
   };
 
   var downloadCsv = function () {
-    var blob = new Blob(["﻿" + buildCsv()], { type: "text/csv;charset=utf-8;" });
-    var url = URL.createObjectURL(blob);
-    var link = document.createElement("a");
-    link.href = url;
-    link.download = "fersen-lohse-entscheidungen-" + stampDay() + ".csv";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    window.setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+    HANDOFF.downloadCsv("fersen-lohse-entscheidungen-" + stampDay() + ".csv", buildCsv());
+  };
+
+  /* Whatever a route had to leave out is said in the status line, not buried
+     at the bottom of the message where nobody reads it. */
+  var reportRoute = function (picked, route) {
+    if (picked.complete && picked.fits) {
+      setStatus("Alle " + countDone() + " Antworten " + route + " übergeben.", "ok");
+      return;
+    }
+    setStatus("Für " + route + " auf „" + picked.label + "\u201c verkürzt — jede Frage ist drin, " +
+      "die Details stehen in der CSV-Datei.", "warn");
   };
 
   var sendMail = function () {
     downloadCsv();
-    var subject = "Entscheidungen Website-Entwurf – " + CONFIG.project +
-      (state.who ? " – " + state.who : "") + " – " + stampDay();
-    var body = buildText({ limit: CONFIG.mailBodyLimit }) +
-      "\n\nDie CSV-Datei mit allen Antworten wurde heruntergeladen — bitte an diese E-Mail anhängen.";
-    var href = "mailto:" + CONFIG.recipient +
-      "?subject=" + encodeURIComponent(subject) +
-      "&body=" + encodeURIComponent(body);
-    window.setTimeout(function () { window.location.href = href; }, 350);
+    var attach = "\n\nDie CSV-Datei mit allen Antworten wurde heruntergeladen — bitte an diese E-Mail anhängen.";
+    var picked = HANDOFF.mail({
+      recipient: CONFIG.recipient,
+      subject: "Entscheidungen Website-Entwurf – " + CONFIG.project +
+        (state.who ? " – " + state.who : "") + " – " + stampDay(),
+      renderings: renderings().map(function (r) {
+        return { text: r.text + attach, complete: r.complete, label: r.label };
+      }),
+      delay: 350
+    });
+    reportRoute(picked, "per E-Mail");
   };
 
   var sendWhatsApp = function () {
     /* WhatsApp takes text only — a file cannot be attached from a link, so the
        summary travels as the message and the CSV stays a separate download. */
-    var text = buildText({ limit: CONFIG.waBodyLimit });
-    var contact = window.FL_CONTACT || {};
-    var number = contact.whatsapp && !/^0+$|0000000/.test(contact.whatsapp) ? contact.whatsapp : "";
-    var url = "https://wa.me/" + number + "?text=" + encodeURIComponent(text);
-    window.open(url, "_blank", "noopener");
+    var picked = HANDOFF.whatsapp({
+      number: (window.FL_CONTACT || {}).whatsapp,
+      renderings: renderings()
+    });
+    reportRoute(picked, "per WhatsApp");
   };
 
   var copyText = function (button) {
-    var text = buildText({});
     var done = function (ok) {
       if (!button) return;
       var label = button.getAttribute("data-label") || button.textContent;
@@ -503,21 +620,8 @@
       button.textContent = ok ? "Kopiert ✓" : "Kopieren nicht möglich";
       window.setTimeout(function () { button.textContent = label; }, 2200);
     };
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(function () { done(true); }, function () { done(false); });
-      return;
-    }
-    var helper = document.createElement("textarea");
-    helper.value = text;
-    helper.setAttribute("readonly", "readonly");
-    helper.style.position = "fixed";
-    helper.style.opacity = "0";
-    document.body.appendChild(helper);
-    helper.select();
-    var ok = false;
-    try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
-    document.body.removeChild(helper);
-    done(ok);
+    /* The clipboard has no length limit, so it always gets the full text. */
+    HANDOFF.copy(textFull()).then(function () { done(true); }, function () { done(false); });
   };
 
   var resetAll = function () {
@@ -550,7 +654,7 @@
         (state.who ? " · " + state.who : " · noch ohne Namen");
     }
     sheet.hidden = false;
-    document.body.classList.add("dec-sheet-open");
+    document.body.classList.add("wl-sheet-open");
     var first = sheet.querySelector("button");
     if (first) first.focus();
   };
@@ -558,7 +662,7 @@
   var closeSheet = function () {
     if (!sheet || sheet.hidden) return;
     sheet.hidden = true;
-    document.body.classList.remove("dec-sheet-open");
+    document.body.classList.remove("wl-sheet-open");
     if (lastFocus && lastFocus.focus) lastFocus.focus();
   };
 
@@ -615,6 +719,6 @@
   window.FL_DECISIONS_STATE = {
     answers: function () { return JSON.parse(JSON.stringify(state)); },
     csv: buildCsv,
-    text: function () { return buildText({}); }
+    text: textFull
   };
 })();

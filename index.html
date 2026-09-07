@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Fersen &amp; Lohse — IT Procurement as a Service</title>
-<meta name="description" content="Independent sourcing, negotiation and benchmarking of software and technology solutions. We know what the market really pays — and what can be negotiated.">
+<meta name="description" content="We benchmark and negotiate software and technology contracts on your behalf. No fixed fees — we are paid from the savings we help you realise.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="assets/img/logo-mark.png">
 <link rel="stylesheet" href="assets/css/site.css">
@@ -33,7 +33,13 @@
       <a href="catalog.html">Catalog</a>
       <a href="contact.html">Contact</a>
       <a class="btn btn--primary btn--sm" href="contact.html">Get in touch</a>
-      <a class="nav__draft" href="decisions.html">Überarbeitungszyklen</a>
+      <span class="nav__doc">
+        <a class="nav__doc-main" href="project.html">Projektdokumentation</a>
+        <span class="nav__doc-sub">
+          <a href="plan.html">Projektplan</a>
+          <a href="decisions.html">Überarbeitungszyklus 1</a>
+        </span>
+      </span>
     </nav>
   </div>
 </header>
@@ -41,17 +47,19 @@
 <main id="main">
 
   <!-- ========================================================== HERO -->
-  <section class="hero" data-review-id="home.hero" data-review-label="Home — Hero">
+  <!-- Decision 01/15: the money model leads instead of the independence claim. -->
+  <section class="hero" id="rev-home-hero" data-review-id="home.hero" data-review-label="Home — Hero">
     <div class="container hero__inner">
-      <span class="hero__eyebrow">Independent · Vendor-neutral</span>
+      <span class="hero__eyebrow">No fixed fees · Paid from what you save</span>
       <h1>IT&nbsp;Procurement <em>as a Service</em></h1>
       <p class="hero__sub">
-        We source, benchmark and negotiate software and technology solutions on your behalf.
+        We source, benchmark and negotiate software and technology contracts on your behalf.
         After years on both sides of the table we know which prices are actually market rate,
         which terms are realistically negotiable — and where the fine print will cost you later.
+        You carry no fee for finding out.
       </p>
       <div class="hero__actions">
-        <a class="btn btn--onDark" href="contact.html">Book an intro call</a>
+        <a class="btn btn--onDark" href="contact.html">Benchmark a contract</a>
         <a class="btn btn--outlineDark" href="catalog.html">Browse 183 capabilities</a>
       </div>
       <div class="hero__facts">
@@ -64,19 +72,125 @@
           <span>Technology domains</span>
         </div>
         <div class="hero__fact">
-          <strong class="ph">XX&nbsp;yrs</strong>
-          <span>Enterprise market experience</span>
-        </div>
-        <div class="hero__fact">
-          <strong class="ph">XX&nbsp;%</strong>
-          <span>Average saving achieved</span>
+          <strong>~120</strong>
+          <span>Vendors we can quote from</span>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ======================================================= PROBLEM -->
+  <!-- Decision 08: the problem comes before the solution, but compact. -->
+  <section class="section section--tight section--alt" id="rev-home-problem" data-review-id="home.problem" data-review-label="Home — The problem (why buying IT is hard)">
+    <div class="container">
+      <div class="problem">
+        <div>
+          <span class="eyebrow">Why this is hard</span>
+          <p class="problem__claim">
+            In our assessment, around 95&nbsp;% of companies are making avoidable mistakes in
+            what they buy — either paying well over the market, or leaving holes open.
+          </p>
+          <p>
+            Buying technology is not like buying anything else a procurement team handles.
+            There is a technical judgement sitting underneath every commercial one, and the
+            market moves faster than any single buyer can stay current with.
+          </p>
+        </div>
+        <ul class="problem__points">
+          <li>
+            <strong>It is a technical purchase before it is a commercial one</strong>
+            You cannot negotiate a contract you cannot read. Comparing two offers means
+            comparing two architectures, two operating models and two sets of hidden limits.
+          </li>
+          <li>
+            <strong>The market outruns the buyer</strong>
+            Pricing models, vendor positions and whole product categories move within a
+            quarter. Large language models alone created security requirements that were on
+            nobody's list two years ago.
+          </li>
+          <li>
+            <strong>There are two kinds of mistake, and most firms only measure one</strong>
+            Paying too much is visible in a budget. Being exposed is not — which is why it
+            usually goes unpriced until it is expensive.
+          </li>
+        </ul>
+      </div>
+      <div class="note" style="margin-top:var(--s6)">
+        <span class="note__icon" aria-hidden="true">✎</span>
+        <div>
+          <strong>One figure to confirm.</strong>
+          The 95&nbsp;% above comes from the voice message and is currently framed as our own
+          assessment. If it is to stand as a hard number, it needs a source — otherwise the
+          first sceptical reader will ask for one.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================== USE CASES -->
+  <!-- Decision 16: a use-case layer for the buyer, as its own section. -->
+  <section class="section" id="rev-home-usecases" data-review-id="home.usecases" data-review-label="Home — Use cases for the buyer">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow">For the buyer</span>
+        <h2>Four things you can actually do with us</h2>
+        <p class="lead">
+          Same work, described from the side of the person who pays for it. Most engagements
+          start with the first one.
+        </p>
+      </div>
+
+      <div class="grid grid--2">
+        <article class="usecase usecase--lead">
+          <span class="usecase__n" aria-hidden="true">01</span>
+          <h3>Challenge your status quo</h3>
+          <p>
+            Put a current market value on the setup you already run. We represent your
+            existing requirement to two or three vendors and bring back comparable offers,
+            so the renewal conversation starts from a number rather than from a hope.
+          </p>
+          <span class="usecase__gain">You get: negotiating power in your renewal</span>
+        </article>
+
+        <article class="usecase">
+          <span class="usecase__n" aria-hidden="true">02</span>
+          <h3>Find out how dependent you are</h3>
+          <p>
+            How locked in are you with your current vendor, what would a migration really
+            cost, and what would the market charge you instead? One project, one complete
+            ROI calculation, no decision attached to it.
+          </p>
+          <span class="usecase__gain">You get: a costed exit option</span>
+        </article>
+
+        <article class="usecase">
+          <span class="usecase__n" aria-hidden="true">03</span>
+          <h3>Find out who the best players are</h3>
+          <p>
+            An independent read on who is genuinely strong for your specific challenge —
+            based on what we see working at other clients, not on who has the largest
+            analyst budget this year.
+          </p>
+          <span class="usecase__gain">You get: a shortlist you can defend internally</span>
+        </article>
+
+        <article class="usecase">
+          <span class="usecase__n" aria-hidden="true">04</span>
+          <h3>Put your own quote against the market</h3>
+          <p>
+            You have an offer on the table. We price the same metrics as if you were going
+            to market today, so you know whether what you are about to sign is competitive
+            before you sign it.
+          </p>
+          <span class="usecase__gain">You get: a second opinion before signature</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <!-- ====================================================== SERVICES -->
-  <section class="section" data-review-id="home.services" data-review-label="Home — What we do (services)">
+  <!-- Decision 09: the benchmark stays one of six, but is stated far more clearly. -->
+  <section class="section section--alt" id="rev-home-services" data-review-id="home.services" data-review-label="Home — What we do (services)">
     <div class="container">
       <div class="section__head">
         <span class="eyebrow">What we do</span>
@@ -89,6 +203,14 @@
       </div>
 
       <div class="grid grid--3">
+        <article class="card">
+          <div class="card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M4 8h13l-3-3"/><path d="M20 16H7l3 3"/></svg>
+          </div>
+          <h3>Three comparable offers, non-binding</h3>
+          <p>We bring you credible alternative quotes for what you already run. You do not have to switch and you do not have to migrate — but you can put them on the table at the next negotiation.</p>
+        </article>
+
         <article class="card">
           <div class="card__icon" aria-hidden="true">
             <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="m20 20-4.3-4.3"/></svg>
@@ -107,14 +229,6 @@
 
         <article class="card">
           <div class="card__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M4 8h13l-3-3"/><path d="M20 16H7l3 3"/></svg>
-          </div>
-          <h3>Counter-offers &amp; competitive tension</h3>
-          <p>We obtain and compare credible alternative offers, so your incumbent is priced against a real market — not against a bluff.</p>
-        </article>
-
-        <article class="card">
-          <div class="card__icon" aria-hidden="true">
             <svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>
           </div>
           <h3>Market price &amp; terms benchmarking</h3>
@@ -125,8 +239,8 @@
           <div class="card__icon" aria-hidden="true">
             <svg viewBox="0 0 24 24"><path d="M12 3v18M5 7h14"/><path d="m5 7-3 6h6ZM19 7l-3 6h6Z"/></svg>
           </div>
-          <h3>Independent vendor comparison</h3>
-          <p>No reseller margin, no referral fee, no vendor allegiance. Our only commercial interest is the quality of your decision.</p>
+          <h3>Vendor comparison from your side of the table</h3>
+          <p>We compare against your requirement, not against a vendor's roadmap. How we are paid — and by whom — is set out in plain terms further down this page.</p>
         </article>
 
         <article class="card">
@@ -140,8 +254,331 @@
     </div>
   </section>
 
+  <!-- ========================================================== CASE -->
+  <!-- Decisions 04 + 05: the placeholder figures are gone; the anonymised case
+       carries the proof on its own. -->
+  <section class="section" id="rev-home-case" data-review-id="home.case" data-review-label="Home — The benchmark case (anonymised)">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow">Proof</span>
+        <h2>Twelve years unchallenged, and one phone call</h2>
+      </div>
+
+      <div class="case">
+        <div>
+          <p class="lead">
+            A Mexican retail group — a listed business in the billions — had run the same
+            content delivery and web security platform for twelve years. In all that time the
+            contract had never been benchmarked. They were paying €&nbsp;2.4m a year.
+          </p>
+          <ul class="case__steps">
+            <li>A short technical review gave us their real usage metrics.</li>
+            <li>We asked a competing provider to quote against exactly those metrics. The offer came back at roughly half.</li>
+            <li>The client took that number to their incumbent and renegotiated. No tender, no migration, no switch.</li>
+          </ul>
+          <p style="margin-top:var(--s5)">
+            <a class="link-arrow" href="references.html#rev-references-case">The full case on the references page</a>
+          </p>
+        </div>
+
+        <figure class="case__figure">
+          <figcaption>Annual contract value, before and after</figcaption>
+          <div class="compare">
+            <div class="compare__row">
+              <span class="compare__label">Before — twelve years, never benchmarked</span>
+              <div class="compare__track">
+                <div class="compare__bar compare__bar--before" style="width:100%">€&nbsp;2.4m / year</div>
+              </div>
+            </div>
+            <div class="compare__row">
+              <span class="compare__label">After — same vendor, renegotiated</span>
+              <div class="compare__track">
+                <div class="compare__bar compare__bar--after" style="width:79.2%">€&nbsp;1.9m / year</div>
+                <div class="compare__delta" style="left:79.2%;right:0">− €&nbsp;500k</div>
+              </div>
+            </div>
+          </div>
+          <div class="case__result">
+            <strong>€&nbsp;1.5m</strong>
+            <span>saved across the three-year term, without changing provider</span>
+          </div>
+        </figure>
+      </div>
+
+      <div class="note" style="margin-top:var(--s6)">
+        <span class="note__icon" aria-hidden="true">✎</span>
+        <div>
+          <strong>Anonymised on purpose, and more to come.</strong>
+          Client and vendors are unnamed, so no release is needed to publish this.
+          Further examples are to be supplied and will be added alongside it.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================== OFFERS -->
+  <!-- Decision 18: the dependency analysis becomes a named second product,
+       with the benchmark as the light way in. -->
+  <section class="section section--tint" id="rev-home-offers" data-review-id="home.offers" data-review-label="Home — The two named engagements">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow">Engagements</span>
+        <h2>Two ways in — one of them very small</h2>
+        <p class="lead">
+          Most clients start with a benchmark because it commits them to nothing. The second
+          engagement is a real project, and it answers a much harder question.
+        </p>
+      </div>
+
+      <div class="offers">
+        <article class="offer">
+          <span class="offer__tag">The way in</span>
+          <h3>Market benchmark</h3>
+          <p>
+            What would you pay for your current setup if you went to market today? We take
+            your metrics, obtain comparable offers and hand them to you.
+          </p>
+          <ul class="offer__list">
+            <li>Two to three comparable offers on your own metrics</li>
+            <li>A written read on where your contract sits against the market</li>
+            <li>No obligation to switch, migrate or tender</li>
+            <li>Usable directly in your next renewal conversation</li>
+          </ul>
+          <p class="offer__foot"><a class="btn btn--primary btn--sm" href="contact.html">Start a benchmark</a></p>
+        </article>
+
+        <article class="offer offer--second">
+          <span class="offer__tag">The bigger question</span>
+          <h3>Dependency &amp; migration ROI analysis</h3>
+          <p>
+            How dependent are you on your current vendor, what would leaving actually cost,
+            and what would you pay elsewhere? One project, one complete calculation.
+          </p>
+          <ul class="offer__list">
+            <li>Technical and commercial lock-in mapped out</li>
+            <li>Migration cost estimated, not guessed</li>
+            <li>Market prices for the target setup</li>
+            <li>A full ROI calculation you can take to the board</li>
+          </ul>
+          <p class="offer__foot"><a class="btn btn--ghost btn--sm" href="contact.html?topic=Dependency%20%26%20migration%20ROI%20analysis">Scope an analysis</a></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================== SECURITY -->
+  <!-- Decision 11: risk becomes a service of its own, not just an argument. -->
+  <section class="section" id="rev-home-security" data-review-id="home.security" data-review-label="Home — Security exposure as its own service">
+    <div class="container">
+      <div class="grid grid--2" style="align-items:start;gap:var(--s8)">
+        <div>
+          <span class="eyebrow">The second kind of mistake</span>
+          <h2>Overpaying is visible. Being exposed is not.</h2>
+          <p class="lead">
+            Security is the largest of our ten domains — 35 of the 183 capabilities sit
+            there. It is also where the mistakes are quietest: a company that is paying too
+            much finds out at budget time, a company that is exposed usually finds out from
+            somebody else.
+          </p>
+          <p style="margin-top:var(--s5)">
+            <a class="link-arrow" href="catalog.html#security-identity">See the 35 security capabilities</a>
+          </p>
+        </div>
+        <div>
+          <h3>Security exposure review</h3>
+          <p style="color:var(--ink-2);font-size:var(--fs-sm)">
+            A standalone engagement, priced and delivered separately from any benchmark.
+          </p>
+          <ul class="offer__list" style="margin-top:var(--s4)">
+            <li>What you are actually covered for against what you are paying for</li>
+            <li>The gaps between tools that each vendor assumes the other closes</li>
+            <li>Newer exposure classes — identity, API and AI-driven — checked explicitly</li>
+            <li>A prioritised list, costed, so the next budget conversation has numbers in it</li>
+          </ul>
+          <div class="note" style="margin-top:var(--s5)">
+            <span class="note__icon" aria-hidden="true">✎</span>
+            <div>
+              <strong>Scope still to be defined.</strong>
+              Building this out as a second service was decided; what is inside it,
+              who delivers it and how it is priced is not yet written down.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================= MODEL -->
+  <!-- Decisions 01 + 15: vendor-financed, no price list, success share.
+       This replaces "no reseller margin, no referral fee, no vendor allegiance". -->
+  <section class="section section--deep" id="rev-home-model" data-review-id="home.model" data-review-label="Home — How we are paid (commercial model)">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow">How we are paid</span>
+        <p class="model__lead">
+          There is no price list. Your success is our success — we keep a share of the
+          savings we actually help you realise.
+        </p>
+      </div>
+
+      <div class="model">
+        <div class="model__item">
+          <h3>Nothing to budget up front</h3>
+          <p>
+            No day rates and no fixed project price. You do not have to get a spend approved
+            before you find out whether there is money on the table.
+          </p>
+        </div>
+        <div class="model__item">
+          <h3>A share of what you save</h3>
+          <p>
+            We keep a percentage of the direct savings on the contracts we were involved in
+            — and only on those. No saving, no invoice.
+          </p>
+        </div>
+        <div class="model__item">
+          <h3>And from the delivery side</h3>
+          <p>
+            Where a client decides to move, the implementation partner who does the work
+            also compensates us. We say so whenever that applies to your case.
+          </p>
+        </div>
+      </div>
+
+      <div class="note" style="margin-top:var(--s7)">
+        <span class="note__icon" aria-hidden="true">✎</span>
+        <div>
+          <strong>This section needs a legal check before launch.</strong>
+          A success share plus payment from the delivery side is a defensible model, but in
+          Germany advertising advice as independent while taking undisclosed vendor-side
+          compensation is attackable as misleading. The disclosure wording above, and the
+          percentage itself, should be reviewed by a lawyer.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================== PROCESS -->
+  <!-- Decision 12: the four-step process stays exactly as it was. -->
+  <section class="section section--alt" id="rev-home-process" data-review-id="home.process" data-review-label="Home — How it works (4 steps)">
+    <div class="container">
+      <div class="section__head section__head--center">
+        <span class="eyebrow">How it works</span>
+        <h2>A procurement process that stands up to audit</h2>
+        <p class="lead">Four stages, fixed deliverables, and a documented decision trail you can hand to finance, security and legal.</p>
+      </div>
+      <div class="grid grid--4 steps">
+        <article class="step">
+          <h3>Requirements &amp; baseline</h3>
+          <p>We capture the technical requirement, map your current contracts, spend and usage, and agree what a good outcome looks like in numbers.</p>
+        </article>
+        <article class="step">
+          <h3>Market scan &amp; shortlist</h3>
+          <p>We approach the relevant vendors, structure the RFI/RFP, and reduce the field to a comparable shortlist with a like-for-like commercial model.</p>
+        </article>
+        <article class="step">
+          <h3>Negotiation &amp; counter-offers</h3>
+          <p>We negotiate price, commit, term, SLA and exit conditions, keeping competitive tension alive until the last round.</p>
+        </article>
+        <article class="step">
+          <h3>Award &amp; handover</h3>
+          <p>Signed contract, documented rationale, tracked savings, and a renewal calendar so the same conversation is easier next time.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================== COVERAGE -->
+  <!-- Decision 13: the market map replaces the ten-card domain list.
+       Area is proportional to capability count; fill is one hue, five ordinal
+       steps, darker with size. Every tile is also a link into the catalog. -->
+  <section class="section" id="rev-home-coverage" data-review-id="home.coverage" data-review-label="Home — Market map of the ten domains">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow">Coverage</span>
+        <h2>183 capabilities across ten technology domains</h2>
+        <p class="lead">
+          The whole catalog at a glance: each rectangle is one domain, sized by how much of
+          the 183 sits inside it. Everything here is something we have sourced, benchmarked
+          or negotiated. Pick a domain to see the detail.
+        </p>
+      </div>
+
+      <div class="marketmap">
+        <div class="marketmap__row" style="--w:60">
+          <a class="marketmap__tile" data-step="5" style="--w:35" href="catalog.html#security-identity"
+             aria-label="Security &amp; Identity — 35 capabilities">
+            <span class="marketmap__name">Security &amp; Identity</span>
+            <span class="marketmap__n">35<span class="marketmap__unit"> capabilities</span></span>
+          </a>
+          <a class="marketmap__tile" data-step="4" style="--w:25" href="catalog.html#cloud-platform-operations"
+             aria-label="Cloud &amp; Platform Operations — 25 capabilities">
+            <span class="marketmap__name">Cloud &amp; Platform Operations</span>
+            <span class="marketmap__n">25<span class="marketmap__unit"> capabilities</span></span>
+          </a>
+        </div>
+        <div class="marketmap__row" style="--w:67">
+          <a class="marketmap__tile" data-step="4" style="--w:24" href="catalog.html#web-performance-delivery"
+             aria-label="Web Performance &amp; Delivery — 24 capabilities">
+            <span class="marketmap__name">Web Performance &amp; Delivery</span>
+            <span class="marketmap__n">24<span class="marketmap__unit"> capabilities</span></span>
+          </a>
+          <a class="marketmap__tile" data-step="4" style="--w:24" href="catalog.html#application-code-security"
+             aria-label="Application &amp; Code Security — 24 capabilities">
+            <span class="marketmap__name">Application &amp; Code Security</span>
+            <span class="marketmap__n">24<span class="marketmap__unit"> capabilities</span></span>
+          </a>
+          <a class="marketmap__tile" data-step="3" style="--w:19" href="catalog.html#network-sase"
+             aria-label="Network &amp; SASE — 19 capabilities">
+            <span class="marketmap__name">Network &amp; SASE</span>
+            <span class="marketmap__n">19<span class="marketmap__unit"> capabilities</span></span>
+          </a>
+        </div>
+        <div class="marketmap__row" style="--w:56">
+          <a class="marketmap__tile" data-step="3" style="--w:16" href="catalog.html#finops-risk-governance"
+             aria-label="FinOps, Risk &amp; Governance — 16 capabilities">
+            <span class="marketmap__name">FinOps &amp; Governance</span>
+            <span class="marketmap__n">16<span class="marketmap__unit"> capabilities</span></span>
+          </a>
+          <a class="marketmap__tile" data-step="2" style="--w:14" href="catalog.html#developer-edge-platform"
+             aria-label="Developer &amp; Edge Platform — 14 capabilities">
+            <span class="marketmap__name">Developer &amp; Edge</span>
+            <span class="marketmap__n">14<span class="marketmap__unit"> capabilities</span></span>
+          </a>
+          <a class="marketmap__tile marketmap__tile--tight" data-step="2" style="--w:11" href="catalog.html#enterprise-saas-platforms"
+             aria-label="Enterprise &amp; SaaS Platforms — 11 capabilities">
+            <span class="marketmap__name">Enterprise SaaS</span>
+            <span class="marketmap__n">11<span class="marketmap__unit"> capabilities</span></span>
+          </a>
+          <a class="marketmap__tile marketmap__tile--tight" data-step="2" style="--w:10" href="catalog.html#cloud-hosting-infrastructure"
+             aria-label="Cloud Hosting &amp; Infrastructure — 10 capabilities">
+            <span class="marketmap__name">Cloud Hosting</span>
+            <span class="marketmap__n">10<span class="marketmap__unit"> capabilities</span></span>
+          </a>
+          <a class="marketmap__tile marketmap__tile--tight" data-step="1" style="--w:5" href="catalog.html#video-streaming-analytics"
+             aria-label="Video &amp; Streaming Analytics — 5 capabilities">
+            <span class="marketmap__name">Video</span>
+            <span class="marketmap__n">5<span class="marketmap__unit"> capabilities</span></span>
+          </a>
+        </div>
+      </div>
+
+      <p class="marketmap-legend">
+        <span>Fewer</span>
+        <span class="marketmap-legend__ramp" aria-hidden="true">
+          <span style="background:#7ac2d2"></span><span style="background:#54a9bd"></span><span style="background:#2b8095"></span><span style="background:#156476"></span><span style="background:#0a4653"></span>
+        </span>
+        <span>More capabilities — rectangle area is proportional to the count, so the ten together are the catalog at 1:183</span>
+      </p>
+
+      <p style="margin-top:var(--s5)">
+        <a class="link-arrow" href="catalog.html">Search the full capability catalog</a>
+      </p>
+    </div>
+  </section>
+
   <!-- ======================================================= WHY US -->
-  <section class="section section--alt" data-review-id="home.why" data-review-label="Home — Why us / expertise &amp; partners">
+  <section class="section section--alt" id="rev-home-why" data-review-id="home.why" data-review-label="Home — Why us / expertise &amp; partners">
     <div class="container">
       <div class="grid grid--2" style="align-items:start;gap:var(--s8)">
         <div>
@@ -174,9 +611,9 @@
             <div class="logowall__item">Akamai</div>
             <div class="logowall__item">Cloudflare</div>
             <div class="logowall__item">Telefónica</div>
-            <div class="logowall__item">GlobalDots</div>
             <div class="logowall__item">Microsoft Azure</div>
             <div class="logowall__item">Google Cloud</div>
+            <div class="logowall__item">Fastly</div>
             <div class="logowall__item">+ many more</div>
           </div>
           <p class="field__hint" style="margin-top:var(--s3)">
@@ -187,149 +624,81 @@
     </div>
   </section>
 
-  <!-- ====================================================== PROCESS -->
-  <section class="section" data-review-id="home.process" data-review-label="Home — How it works (4 steps)">
-    <div class="container">
-      <div class="section__head section__head--center">
-        <span class="eyebrow">How it works</span>
-        <h2>A procurement process that stands up to audit</h2>
-        <p class="lead">Four stages, fixed deliverables, and a documented decision trail you can hand to finance, security and legal.</p>
-      </div>
-      <div class="grid grid--4 steps">
-        <article class="step">
-          <h3>Requirements &amp; baseline</h3>
-          <p>We capture the technical requirement, map your current contracts, spend and usage, and agree what a good outcome looks like in numbers.</p>
-        </article>
-        <article class="step">
-          <h3>Market scan &amp; shortlist</h3>
-          <p>We approach the relevant vendors, structure the RFI/RFP, and reduce the field to a comparable shortlist with a like-for-like commercial model.</p>
-        </article>
-        <article class="step">
-          <h3>Negotiation &amp; counter-offers</h3>
-          <p>We negotiate price, commit, term, SLA and exit conditions, keeping competitive tension alive until the last round.</p>
-        </article>
-        <article class="step">
-          <h3>Award &amp; handover</h3>
-          <p>Signed contract, documented rationale, tracked savings, and a renewal calendar so the same conversation is easier next time.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================================================== COVERAGE -->
-  <section class="section section--tint" data-review-id="home.coverage" data-review-label="Home — Coverage (10 catalog categories)">
+  <!-- ========================================================== TEAM -->
+  <!-- Decision 07: a team presence, but slim — a section here rather than a
+       sixth page. -->
+  <section class="section" id="rev-home-team" data-review-id="home.team" data-review-label="Home — The people behind it">
     <div class="container">
       <div class="section__head">
-        <span class="eyebrow">Coverage</span>
-        <h2>183 capabilities across ten technology domains</h2>
+        <span class="eyebrow">The people</span>
+        <h2>Who you are actually working with</h2>
         <p class="lead">
-          Everything below is something we have sourced, benchmarked or negotiated.
-          Pick a domain to see the detail — or search the full catalog.
+          The reach is the product. Three people, and the vendor relationships they have
+          built over their careers — that is what turns a request into a real quote inside
+          a few days.
         </p>
       </div>
-      <div class="grid grid--3">
-          <a class="card card--link" href="catalog.html#web-performance-delivery">
-            <h3>Web Performance &amp; Delivery</h3>
-            <p>CDN, DNS, edge delivery and media streaming — the layer your customers feel first.</p>
-            <span class="card__more">24 capabilities</span>
-          </a>
-          <a class="card card--link" href="catalog.html#cloud-platform-operations">
-            <h3>Cloud &amp; Platform Operations</h3>
-            <p>Migration, hosting, automation, observability and data platforms across the major clouds.</p>
-            <span class="card__more">25 capabilities</span>
-          </a>
-          <a class="card card--link" href="catalog.html#network-sase">
-            <h3>Network &amp; SASE</h3>
-            <p>Converged network and security edge: SD-WAN, SASE, SSE and Zero Trust connectivity.</p>
-            <span class="card__more">19 capabilities</span>
-          </a>
-          <a class="card card--link" href="catalog.html#security-identity">
-            <h3>Security &amp; Identity</h3>
-            <p>Perimeter, application and identity defence, plus managed detection and response.</p>
-            <span class="card__more">35 capabilities</span>
-          </a>
-          <a class="card card--link" href="catalog.html#application-code-security">
-            <h3>Application &amp; Code Security</h3>
-            <p>Securing the software supply chain from first commit to production runtime.</p>
-            <span class="card__more">24 capabilities</span>
-          </a>
-          <a class="card card--link" href="catalog.html#finops-risk-governance">
-            <h3>FinOps, Risk &amp; Governance</h3>
-            <p>Cloud spend control, exposure management and audit-ready governance.</p>
-            <span class="card__more">16 capabilities</span>
-          </a>
-          <a class="card card--link" href="catalog.html#cloud-hosting-infrastructure">
-            <h3>Cloud Hosting &amp; Infrastructure</h3>
-            <p>Dedicated, hybrid and colocation capacity, plus hardware sourcing and logistics.</p>
-            <span class="card__more">10 capabilities</span>
-          </a>
-          <a class="card card--link" href="catalog.html#enterprise-saas-platforms">
-            <h3>Enterprise &amp; SaaS Platforms</h3>
-            <p>ERP, CRM, HR, design and data platforms — licence sourcing and renewal negotiation.</p>
-            <span class="card__more">11 capabilities</span>
-          </a>
-          <a class="card card--link" href="catalog.html#developer-edge-platform">
-            <h3>Developer &amp; Edge Platform</h3>
-            <p>Serverless, storage, data and AI primitives for teams building at the edge.</p>
-            <span class="card__more">14 capabilities</span>
-          </a>
-          <a class="card card--link" href="catalog.html#video-streaming-analytics">
-            <h3>Video &amp; Streaming Analytics</h3>
-            <p>Quality of experience, audience measurement and delivery analytics for OTT video.</p>
-            <span class="card__more">5 capabilities</span>
-          </a>
-      </div>
-    </div>
-  </section>
 
-  <!-- ======================================================= IMPACT -->
-  <section class="section" data-review-id="home.impact" data-review-label="Home — Impact figures (placeholders)">
-    <div class="container">
-      <div class="section__head">
-        <span class="eyebrow">Impact</span>
-        <h2>What clients typically get out of it</h2>
+      <div class="people">
+        <article class="person">
+          <h3>Miguel Fersen</h3>
+          <span class="person__role ph">Role to be confirmed</span>
+          <p>
+            <span class="ph">Two or three sentences: background, which parts of the market
+            he negotiates in, and where the vendor relationships come from.</span>
+          </p>
+        </article>
+        <article class="person">
+          <h3>Fredrik <span class="ph">Surname</span></h3>
+          <span class="person__role ph">Role to be confirmed</span>
+          <p>
+            <span class="ph">Two or three sentences: background, which parts of the market
+            he negotiates in, and where the vendor relationships come from.</span>
+          </p>
+        </article>
+        <article class="person">
+          <h3>Noel <span class="ph">Surname</span></h3>
+          <span class="person__role ph">Role to be confirmed</span>
+          <p>
+            <span class="ph">Two or three sentences: background, which parts of the market
+            he negotiates in, and where the vendor relationships come from.</span>
+          </p>
+        </article>
       </div>
-      <div class="grid grid--3" style="margin-bottom:var(--s6)">
-        <div class="stat">
-          <strong class="ph">XX&nbsp;%</strong>
-          <span>Average reduction on renewed contracts</span>
-        </div>
-        <div class="stat">
-          <strong class="ph">€&nbsp;X.Xm</strong>
-          <span>Cumulative negotiated savings to date</span>
-        </div>
-        <div class="stat">
-          <strong class="ph">XX&nbsp;days</strong>
-          <span>Typical time from kick-off to signed contract</span>
-        </div>
-      </div>
-      <div class="note">
+
+      <div class="note" style="margin-top:var(--s6)">
         <span class="note__icon" aria-hidden="true">✎</span>
         <div>
-          <strong>Placeholder figures.</strong>
-          These three numbers are the strongest trust signal on the page. Please supply real,
-          defensible values (and, ideally, the basis on which they are calculated) before launch.
+          <strong>Names, roles and profile text needed.</strong>
+          Kept deliberately slim — no photos, no separate team page. Three short profiles
+          and the surnames are all that is missing.
         </div>
       </div>
     </div>
   </section>
 
   <!-- =================================================== REFERENCES -->
-  <section class="section section--alt" data-review-id="home.references" data-review-label="Home — References teaser">
+  <!-- Decision 06: Globe and Weiße Immobilien stay; copy and written releases
+       are being supplied. -->
+  <section class="section section--alt" id="rev-home-references" data-review-id="home.references" data-review-label="Home — References teaser">
     <div class="container">
       <div class="grid grid--2" style="align-items:center;gap:var(--s8)">
         <div>
           <span class="eyebrow">References</span>
           <h2>Proven in the enterprise environment</h2>
           <p class="lead">
-            Selected client projects and the delivery model behind them — including a
-            multi-party CDN migration run across vendor, platform and carrier teams.
+            The benchmark case in full, plus selected client projects — named once each
+            client has confirmed in writing that we may use their name.
           </p>
           <p style="margin-top:var(--s5)">
             <a class="btn btn--primary" href="references.html">View references</a>
           </p>
         </div>
         <div class="grid" style="gap:var(--s3)">
+          <article class="card" style="padding:var(--s5)">
+            <h3 style="margin-bottom:var(--s2)">Mexican retail group</h3>
+            <p>€&nbsp;1.5m saved across a three-year term, without changing provider.</p>
+          </article>
           <article class="card" style="padding:var(--s5)">
             <h3 style="margin-bottom:var(--s2)">Globe</h3>
             <p><span class="ph">One-line description of the engagement and the outcome achieved.</span></p>
@@ -338,17 +707,13 @@
             <h3 style="margin-bottom:var(--s2)">Weiße Immobilien</h3>
             <p><span class="ph">One-line description of the engagement and the outcome achieved.</span></p>
           </article>
-          <article class="card" style="padding:var(--s5)">
-            <h3 style="margin-bottom:var(--s2)">Further reference clients</h3>
-            <p>Available on request and by prior agreement with the client.</p>
-          </article>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ========================================================== CTA -->
-  <section class="section section--tight cta" data-review-id="home.cta" data-review-label="Home — Closing call to action">
+  <section class="section section--tight cta" id="rev-home-cta" data-review-id="home.cta" data-review-label="Home — Closing call to action">
     <div class="container cta__inner">
       <div>
         <h2>Have a renewal coming up?</h2>
@@ -376,8 +741,8 @@
           </span>
         </a>
         <p style="max-width:30ch">
-          Independent procurement, benchmarking and contract negotiation for software and
-          technology solutions.
+          Procurement, benchmarking and contract negotiation for software and
+          technology solutions. No fixed fees.
         </p>
       </div>
 
@@ -388,7 +753,7 @@
           <li><a href="references.html">References</a></li>
           <li><a href="catalog.html">Capability catalog</a></li>
           <li><a href="contact.html">Contact</a></li>
-          <li><a href="decisions.html">Überarbeitungszyklen</a></li>
+          <li><a href="project.html">Projektdokumentation</a></li>
         </ul>
       </div>
 
@@ -425,6 +790,7 @@
 </footer>
 
 <script src="assets/js/site.js"></script>
+<script src="assets/js/handoff.js"></script>
 <script src="assets/js/review.js"></script>
 </body>
 </html>

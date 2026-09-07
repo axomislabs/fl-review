@@ -17,8 +17,10 @@
     recipient: "martin@axomislabs.com",
     project: "Fersen & Lohse",
     storageKey: "fl-review-v1",
-    /* mailto: URLs are length-limited by browsers and mail clients. */
-    mailBodyLimit: 1800
+    /* Length budgeting for the mail route lives in handoff.js. It used to be
+       a mailBodyLimit of 1800 here, enforced by cutting the list at the first
+       comment that did not fit — so a reviewer with a lot to say silently
+       sent only part of it. See the header of handoff.js. */
   };
 
   /* ===================================================== state handling == */
@@ -546,39 +548,54 @@
     return true;
   }
 
-  var buildMailBody = function () {
-    var lines = [
+  /* Three renderings of the same comments, complete to terse. Every one of
+     them carries every comment — what shortens is each comment's text, never
+     the number of comments. handoff.js picks the most complete one that fits
+     the mail route. This is the layer the customer actually uses, so losing a
+     comment here is the worst thing the export could do. */
+  var mailHead = function () {
+    return [
       "Review feedback on the " + CONFIG.project + " website draft",
       "Date: " + stamp(),
       "Reviewer: " + (state.author || "not specified"),
       "Comments: " + state.comments.length
     ];
+  };
+
+  var buildMailBody = function (cap) {
+    var lines = mailHead();
     var currentPage = "";
-    var truncated = false;
+    var shortened = 0;
 
     for (var i = 0; i < state.comments.length; i += 1) {
       var comment = state.comments[i];
-      var block = [];
       if (comment.page !== currentPage) {
         currentPage = comment.page;
-        block.push("", "== " + currentPage + " ==");
+        lines.push("", "== " + currentPage + " ==");
       }
-      block.push("- [" + comment.sectionLabel + "] " + comment.text);
-
-      var candidate = lines.concat(block).join("\n");
-      if (candidate.length > CONFIG.mailBodyLimit) {
-        truncated = true;
-        break;
+      var text = comment.text;
+      if (cap && text.length > cap) {
+        text = text.slice(0, cap).replace(/\s+\S*$/, "") + " […]";
+        shortened += 1;
       }
-      lines = lines.concat(block);
+      lines.push("- [" + comment.sectionLabel + "] " + text);
     }
 
     lines.push("");
-    if (truncated) {
-      lines.push("[Shortened — the complete list is in the attached CSV file.]");
+    if (shortened) {
+      lines.push("[" + shortened + " comment" + (shortened === 1 ? "" : "s") +
+        " shortened here — the full text of every one is in the attached CSV.]");
     }
     lines.push("The CSV file with all comments has been downloaded; please attach it to this email.");
     return lines.join("\n");
+  };
+
+  var mailRenderings = function () {
+    return [
+      { text: buildMailBody(0),   complete: true,  label: "full" },
+      { text: buildMailBody(240), complete: false, label: "shortened comments" },
+      { text: buildMailBody(80),  complete: false, label: "first line of each comment" }
+    ];
   };
 
   function sendFeedback() {
@@ -588,10 +605,26 @@
     }
     downloadCsv();
     var subject = "Website review – " + CONFIG.project + " – " + stamp();
-    var href = "mailto:" + CONFIG.recipient +
-      "?subject=" + encodeURIComponent(subject) +
-      "&body=" + encodeURIComponent(buildMailBody());
-    window.setTimeout(function () { window.location.href = href; }, 350);
+
+    /* This is the button a customer presses. If handoff.js is missing for any
+       reason, send the full text rather than doing nothing — a mail client
+       that chokes on a long URL is a visible failure the sender can react to;
+       a dead button is not. */
+    if (!window.FL || !window.FL.handoff) {
+      window.setTimeout(function () {
+        window.location.href = "mailto:" + CONFIG.recipient +
+          "?subject=" + encodeURIComponent(subject) +
+          "&body=" + encodeURIComponent(buildMailBody(0));
+      }, 350);
+      return;
+    }
+
+    window.FL.handoff.mail({
+      recipient: CONFIG.recipient,
+      subject: subject,
+      renderings: mailRenderings(),
+      delay: 350
+    });
   }
 
   /* ============================================================ public API =
