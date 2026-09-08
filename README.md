@@ -1909,3 +1909,165 @@ breakpoint from 900 to 960 hands that band to the phone menu — which now has s
 put twenty-seven sections — while dropping `.nav__doc` to a second line under the nav keeps the
 desktop row down there instead. Left alone for now because it is the first of the two that changes
 what the site looks like at a width you have not asked about.
+
+---
+
+## 18. The Overview jump and the type, 8 September
+
+Two comments after the phone menu went live.
+
+### Tapping "Overview" landed on the headline, not on the overview
+
+The first Home entry in the nav pointed at `#rev-home-hero` — the whole band. On a wide screen that
+is right: above 1080px the flower sits *beside* the pitch, so the top of the hero already is the
+overview. Stacked, it is not. Measured:
+
+| | tour starts this far into the hero | on landing at `#rev-home-hero` |
+| --- | --- | --- |
+| 390px | **614px** | flower below the fold |
+| 768px | 509px | flower below the fold |
+| 1080px | 146px | both on screen |
+| 1280px | 115px | both on screen |
+
+So on a phone the entry named *Overview* scrolled you to the headline and left the thing it named
+off the bottom of the screen.
+
+`.hero__tour` carries `id="home-overview"` now and the nav entry points at it on all eight pages.
+The `rev-` ids are the review layer's namespace — `review.js` generates them from `data-review-id`
+— so this one is deliberately outside it and gets its own `scroll-margin-top`, the same
+`calc(76px + var(--s4))` that every other jump on the site clears the sticky header with.
+
+**Above 1080px it still lands at the top of the page**, because there the flower is beside the pitch
+and scrolling to it alone would push the headline under the header to reveal something already on
+the screen. That is `scroll-margin-top: 100vh` — any margin larger than the element's own distance
+from the top of the document clamps the scroll to zero. A viewport's height says that in one term;
+a number measured off this layout would go stale the first time the hero's padding changed.
+
+The breakpoint is **1080, not 900** — it follows the hero's own column break rather than the burger
+menu's. Between 900 and 1080 the flower is under the pitch with the full width to itself, and there
+the jump is as useful as it is on a phone.
+
+Measured at ten widths from 320 to 1600, same page and coming across from `catalog.html`: below
+1080 the Overview head lands at 117px, just under the 76px header, with the whole index on screen;
+at 1080 and above, `scrollY 0` with the headline untouched.
+
+### One display face for the wordmark, and running text in the sans
+
+*The hero headline is the only place we use that typeface apart from the logo — we should be
+consistent.* Nearly true, and the exception makes the case rather than weakening it. Croissant One
+was set in eight places: the wordmark, the hero headline, and **six sets of figures** — the step
+numbers, the stat and result numbers, the usecase numbers, the goal numbers on the Projektplan. So
+the headline was the only *running text* on the site in it, one line of display serif against every
+other heading in the sans.
+
+`.hero h1` drops `font-family` and `font-weight` entirely. It does not restate what the `h1` rule
+already says — weight 650, `-0.018em` — because restating it is how two rules drift apart. What
+stays is what is particular to this headline: white, and `line-height: 1.08`, because at 67px the
+1.16 every other heading uses opens too far. `<em>as a Service</em>` keeps its `--light-soft`, so
+the two-tone reading survives the change of face.
+
+The face is now the wordmark and the numerals, which is a system rather than an exception. The hero
+also stops waiting on a 60KB TTF to paint its headline.
+
+### The one teal heading
+
+*In The challenge the main text is in a blue and departs from the typeface the other sections use.*
+The typeface was already the same one — `--font-sans`, weight 650, the same tracking as an `h2`.
+What departed was the **colour**, and a colour that far from the others reads as a different face.
+
+`.problem__claim` was `--deep`, the teal: the only heading-weight text on the site in the accent
+that everything else uses for figures and links. Its twin further down the page, `.model__lead` in
+*Our pricing model*, was already `--ink`. Both are the same construct — a section whose head is a
+sentence rather than a title, sitting under an eyebrow where the other eight sections put an `h2` —
+so they now carry the same colour and the same size clamp, and at 1280px both measure 30.4px in
+`--ink` against the 32px in teal that one of them used to be.
+
+Contrast went up rather than down: `--deep` on `--paper-alt` was the weaker of the two.
+
+### Still open, and not touched
+
+**Two home sections have no `h2`** — *The challenge* and *Our pricing model*, the two whose head is
+a claim in a `<p>`. Visually they now read exactly like the other eight; in the document outline
+they are still sections without a heading, which is what a screen reader navigating by heading
+walks past. Turning both `<p>`s into `<h2>`s would close it and change nothing on the screen, but it
+changes the outline, so it is worth saying out loud rather than slipping in with a colour fix.
+
+### Checked after the change
+
+- Eight pages × ten widths from 320 to 1600: no console errors, no failed loads, no broken images.
+- The phone menu re-checked in full — four buttons, folded, tab order, one group at a time.
+- The Overview jump measured at ten widths, same page and cross page.
+- Type measured rather than eyeballed: hero headline `-apple-system` 650 at 67.2px/1280 and
+  38.4px/390; the challenge claim and the pricing lead identical at 30.4px and 21.09px in `--ink`;
+  the wordmark still Croissant One and now the only text on the site that is.
+
+---
+
+## 19. The two open items from section 18, closed
+
+Both were things the review could not see — *nothing stood out to me in the interface, but if you
+say so, do it.* That is the honest description of both: one is invisible unless you navigate by
+heading, the other unless your window happens to be forty pixels wide in the wrong place.
+
+### The two sections that had no heading
+
+*The challenge* and *Our pricing model* opened with a claim in a `<p>` under an eyebrow, where the
+other eight sections of the home page put an `h2`. On the screen they read as headings; in the
+document outline the two sections had no heading at all, so a screen reader walking the page by
+heading went straight past both.
+
+Both `<p>`s are `<h2>`s now, and **the change is invisible** — measured, not assumed: at 1280px the
+claim is 30.4px, weight 650, `-0.5472px` tracking, `rgb(13,42,49)`, 16px bottom margin, before and
+after; at 390px 21.09px. The boxes are the same size.
+
+It is invisible because most of what those two rules said was what the `h2` rule already says. Both
+now carry two declarations instead of seven — the two ways a head that is a sentence genuinely
+differs from a title:
+
+| | why it stays |
+| --- | --- |
+| its own size clamp | a whole sentence at full `--fs-h2` is too loud |
+| `line-height: 1.3` | a sentence runs to four lines; 1.16 is for a title that does not |
+
+`index.html` now has one `h1`, eleven sections, **no section without a heading and no skipped
+level**. Two sections elsewhere still have none and are left alone deliberately:
+`references.testimonial` is a `<blockquote>` — a pull quote does not want a heading, and inventing
+one would be inventing copy — and `catalog.list` is the accordion, whose headings are the ten
+domains inside it.
+
+### The header overflow, and the breakpoint that caused it
+
+Section 17 recorded this and left it, because the fix looked like a design decision. Measured a
+pixel at a time it turned out not to be one:
+
+| window | header overflows by |
+| --- | --- |
+| 901px | 40px |
+| 940px | 1px |
+| **941px** | **nothing** |
+
+The desktop row is brand 154 + nav 739 + gap. It needs 941px and **the burger breakpoint was at
+900** — so a strip of forty widths got a row that does not fit, a horizontal scrollbar, and the
+Projektdokumentation block hanging off the right edge. There was no rearrangement inside the row
+that was going to find 41px. The breakpoint was simply too low.
+
+It is **960** now. Not 941 exactly: the row is text, another platform's sans sets those five entries
+a few pixels wider, and a breakpoint standing on its own measured minimum has no headroom for that.
+Handing 900–959 to the phone menu is only affordable because that menu is now four folded lines
+rather than the 1130px list it was in the morning — the fold is what paid for this fix.
+
+Three places had to move together, and the third is the one that would have been forgotten:
+`site.css` (the nav block), `site.js` (the width at which tapping a link closes the menu), and
+`workspace.css`, where `body.dec-page .nav` gives the open menu a light ground on the dark decisions
+page. Had that stayed at 900, widths 901 to 959 would have shown the burger menu in the page's dark
+colours.
+
+**Verified across every width from 895 to 975, one pixel at a time, on all eight pages: 648
+measurements, no overflow anywhere.** At 959 the burger is up with the fold working; at 960 the
+desktop row is back with its hover panels.
+
+### And two more cache traps closed
+
+`workspace.css` was linked bare on `decisions.html` and with `?v=` on the other two, and
+`dictation.js` bare on two pages and versioned on five — the same file with two cache entries, which
+is the shape of the bug that broke the fold in section 17. Both carry one stamp on every page now.

@@ -136,7 +136,7 @@
       nav.setAttribute("data-open", String(!open));
     });
     nav.addEventListener("click", function (event) {
-      if (event.target.tagName === "A" && window.innerWidth <= 900) {
+      if (event.target.tagName === "A" && window.innerWidth <= 959) {
         toggle.setAttribute("aria-expanded", "false");
         nav.setAttribute("data-open", "false");
       }
@@ -166,7 +166,7 @@
      Built here rather than written into the eight pages because it is a control
      for a menu that only exists when this script runs: no script, no burger
      button, nothing to fold. The markup stays what it is, and the panels keep
-     working on hover above 900px whether this ran or not. */
+     working on hover from 960px up whether this ran or not. */
   if (nav) {
     var groups = [];
 

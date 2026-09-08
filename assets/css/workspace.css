@@ -84,7 +84,11 @@ body.dec-page .site-footer {
   border-top: 1px solid var(--line);
 }
 
-@media (max-width: 900px) {
+/* Follows the nav's own breakpoint in site.css, which moved from 900 to 959 on
+   8 September - the open menu on this dark page needs a light ground, and if
+   the two numbers come apart, 901 to 959 gets the burger menu in the page's
+   dark colours. */
+@media (max-width: 959px) {
   body.dec-page .nav { background: var(--paper); border-bottom-color: var(--line); }
 }
 
