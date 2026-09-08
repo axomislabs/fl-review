@@ -150,6 +150,75 @@
     });
   }
 
+  /* --------------------------------------- the sections on a phone -- */
+  /* A wide screen drops each entry's panel on hover. A phone has no hover, so
+     the sections used to be printed out under the pages they belong to and the
+     menu was four pages and twenty-seven sections long - the whole map at once,
+     which is the same as having no map. Each entry now carries a button that
+     folds its own sections away, and the menu opens as four lines.
+
+     One group open at a time, and every group shut when the menu comes down.
+     Two of the four carry ten sections each, so two open together is most of
+     the long list back - and opening the page you are already on for you would
+     put ten of them above the other three pages, which is the overview this was
+     supposed to give. The page you are on is already the teal one.
+
+     Built here rather than written into the eight pages because it is a control
+     for a menu that only exists when this script runs: no script, no burger
+     button, nothing to fold. The markup stays what it is, and the panels keep
+     working on hover above 900px whether this ran or not. */
+  if (nav) {
+    var groups = [];
+
+    Array.prototype.forEach.call(nav.querySelectorAll(".nav__item"), function (item, index) {
+      var link = item.querySelector("a");
+      var sub = item.querySelector(".nav__sub");
+      if (!link || !sub) { return; }
+
+      if (!sub.id) { sub.id = "nav-sections-" + (index + 1); }
+
+      var button = document.createElement("button");
+      button.type = "button";
+      button.className = "nav__disclosure";
+      button.setAttribute("aria-expanded", "false");
+      button.setAttribute("aria-controls", sub.id);
+
+      /* The chevron is drawn by CSS on ::before, so the button's own content is
+         the name a screen reader reads out. Without it the control announces
+         itself as "button" four times over. */
+      var label = document.createElement("span");
+      label.className = "sr-only";
+      label.textContent = "Sections of " + (link.textContent || "").trim();
+      button.appendChild(label);
+
+      var group = {
+        open: function (open) {
+          item.setAttribute("data-open", String(open));
+          button.setAttribute("aria-expanded", String(open));
+        }
+      };
+
+      button.addEventListener("click", function () {
+        var isOpen = button.getAttribute("aria-expanded") === "true";
+        groups.forEach(function (other) { other.open(false); });
+        group.open(!isOpen);
+      });
+
+      /* After the link and before the panel: the tab order is the page, the
+         button that reveals its sections, then the sections themselves. */
+      link.parentNode.insertBefore(button, link.nextSibling);
+      group.open(false);
+      groups.push(group);
+    });
+
+    /* The flag every folding rule in site.css hangs off, set last and only if
+       there is something to fold. Until it is on the panels are open, so a
+       stylesheet that arrives without its script - a cached site.js, a blocked
+       one, an error thrown further up this file - leaves the sections where
+       they were rather than hiding them behind a button that was never built. */
+    if (groups.length) { nav.setAttribute("data-folds", "true"); }
+  }
+
   /* --------------------------------------------------- contact links -- */
   var channelHref = {
     email: function () { return "mailto:" + CONTACT.email; },

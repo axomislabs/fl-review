@@ -134,6 +134,10 @@ li + li { margin-top: var(--s2); }
 .section--tint { background: var(--light-tint); }
 
 .section__head { max-width: 46rem; margin-bottom: var(--s7); }
+/* No user on the home page since the process section stopped being a banner and
+   put its head in a visual__body beside the picture. Kept, like --banner and
+   --tile: a centred head is an arrangement this system should go on offering,
+   and it is two lines. */
 .section__head--center { margin-inline: auto; text-align: center; }
 
 .eyebrow {
@@ -257,6 +261,83 @@ li + li { margin-top: var(--s2); }
   height: 2px; background: var(--light); border-radius: 2px;
 }
 
+/* ------------------------------------------- the sections of each page --
+
+   The header named four pages and said nothing about what was inside them.
+   Review of 8 September: the sub-points are missing - which sections are there.
+   So every entry now carries its own page's sections, and the shape of the site
+   is readable from the header rather than only by scrolling the page: nine
+   bands on the home page, four parts of the references, the ten domains of the
+   catalog, four on contact.
+
+   No JavaScript. The panel opens on :hover and on :focus-within, and focusing
+   the parent link is itself focus-within - so a keyboard opens the panel by
+   arriving at the entry and walks into it by tabbing on, rather than having to
+   find a control that opens it. The panel is hidden with visibility rather than
+   opacity alone, so its links are out of the tab order until it is open.     */
+
+.nav__item { position: relative; display: inline-flex; align-items: center; gap: 5px; }
+
+/* The chevron sits on the wrapper, not on the link: the link's own ::after is
+   already the current-page underline. */
+.nav__item::after {
+  content: "";
+  width: 0; height: 0;
+  border: 4px solid transparent;
+  border-top-color: currentColor;
+  color: var(--mute);
+  margin-top: 3px;
+  transition: color .16s ease, transform .16s ease;
+}
+.nav__item:hover::after,
+.nav__item:focus-within::after { color: var(--deep); transform: rotate(180deg); }
+
+.nav__sub {
+  position: absolute;
+  top: calc(100% + 18px);
+  left: -14px;
+  z-index: 5;
+  display: grid;
+  gap: 1px;
+  min-width: 216px;
+  padding: var(--s3);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-5px);
+  transition: opacity .16s ease, transform .16s ease, visibility 0s linear .16s;
+}
+
+/* The panel hangs 18px below the entry, and a pointer crossing that gap is over
+   neither of them. This carries the panel's hover area up over the gap so the
+   menu does not close on the way into it. */
+.nav__sub::before {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; top: -19px; height: 19px;
+}
+
+.nav__item:hover .nav__sub,
+.nav__item:focus-within .nav__sub {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition-delay: 0s;
+}
+
+.nav .nav__sub a {
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  color: var(--ink-2);
+  padding: 7px 10px;
+  border-radius: 7px;
+  white-space: nowrap;
+}
+.nav .nav__sub a:hover { background: var(--light-tint); color: var(--deep); }
+
 /* Draft-only tab. Sits behind the call to action and is deliberately quieter
    than the real navigation, so it reads as scaffolding, not as a site page. */
 /* The working layer hangs off the end of the nav, behind the Get in touch
@@ -311,6 +392,12 @@ li + li { margin-top: var(--s2); }
 .nav-toggle[aria-expanded="true"] span::before { transform: rotate(45deg); }
 .nav-toggle[aria-expanded="true"] span::after { transform: rotate(-45deg) translateY(-1px); }
 
+/* The per-entry disclosure is a phone control only. Above 900px the panel opens
+   on hover and on focus-within and there is nothing for a button to do, so it
+   is not merely hidden - script builds it either way, and a control that is
+   display:none is out of the tab order as well as off the screen. */
+.nav__disclosure { display: none; }
+
 @media (max-width: 900px) {
   .nav-toggle { display: inline-flex; }
   .nav {
@@ -322,7 +409,143 @@ li + li { margin-top: var(--s2); }
     display: none;
   }
   .nav[data-open="true"] { display: flex; }
+  /* With the sections folded the menu opens at about 300px, but one open group
+     of ten on a short screen still overruns it, so the panel keeps scrolling
+     inside itself rather than running off the bottom. */
+  .nav {
+    max-height: calc(100vh - 76px);
+    max-height: calc(100dvh - 76px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
   .nav a { padding: 13px 0; border-bottom: 1px solid var(--line); font-size: 1rem; }
+
+  /* No hover on a phone, and until 8 September that meant the sections were
+     simply printed out under the page they belong to: four pages and
+     twenty-seven sections, the whole map at once, which is the same as no map.
+     Each entry now folds behind its own button and the menu opens as four
+     lines. site.js builds the buttons; everything below is what they drive.
+
+     The entry is a two-column row - the page link, and the button beside it -
+     with the section panel spanning both underneath. Beside and not around: the
+     page name has to stay a link that goes to the page. */
+  .nav__item { border-bottom: 1px solid var(--line); }
+  .nav[data-folds="true"] .nav__item {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+  }
+  .nav__item::after { display: none; }
+  .nav__item > a { border-bottom: 0; }
+
+  /* 44px square, which is the target size a thumb needs, pulled out to the
+     padding edge so the chevrons line up on the right margin of the panel. */
+  .nav__disclosure {
+    display: inline-flex;
+    align-items: center; justify-content: center;
+    width: 44px; height: 44px;
+    margin-right: calc(-1 * var(--s2));
+    padding: 0;
+    background: transparent;
+    border: 0;
+    /* --ink-3 and not --mute. It was --mute, which is the grey the wordmark and
+       the disabled type are, and on a phone this triangle is not decoration
+       beside a hover panel - it is the only way to the twenty-seven sections
+       under it. A control that is the only door has to look like one. */
+    color: var(--ink-3);
+    cursor: pointer;
+  }
+  .nav__disclosure::before {
+    content: "";
+    width: 0; height: 0;
+    border: 6px solid transparent;
+    border-top-color: currentColor;
+    transition: transform .2s ease;
+  }
+  .nav__disclosure[aria-expanded="true"] { color: var(--deep); }
+  .nav__disclosure[aria-expanded="true"]::before { transform: rotate(180deg); }
+
+  /* --- the panel, unfolded. This is the rule that was here before the fold,
+     and it is deliberately unconditional: it is what a phone gets when the
+     script has not run. The sections sit open, indented under their page.
+     Long, but every one of them reachable. --- */
+  .nav__sub {
+    position: static;
+    opacity: 1; visibility: visible; transform: none;
+    min-width: 0;
+    padding: 0 0 var(--s3) var(--s4);
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  /* --- and the fold on top of it. Everything below hangs off data-folds,
+     which site.js sets on the nav only once the four buttons are actually in
+     the document.
+
+     The scoping is not caution for its own sake. The first build folded the
+     panels unconditionally, and site.css carried ?v= in every page while
+     site.js did not: a browser that already had the site took the new
+     stylesheet and kept the old script, so the panels were hidden by CSS with
+     nothing in the document that could ever open them again - four page names,
+     and twenty-seven sections that were in the HTML and could not be reached
+     by any means. A stylesheet must not hide what only a script can bring
+     back. site.js is versioned now as well, which fixes that one instance; the
+     flag is what makes the whole class of it impossible. --- */
+  .nav[data-folds="true"] .nav__sub {
+    grid-column: 1 / -1;
+    /* No bottom padding once it folds: border-box floors the content height at
+       zero under max-height but not the box, so 12px of padding on a closed
+       panel is 12px of panel still on the screen - four groups, 48px of gaps
+       between rows that are supposed to be shut. The space under the last
+       section becomes a margin on the last link, which is inside the box and
+       clips away with the rest of it. */
+    padding-bottom: 0;
+    /* Closed is max-height 0 rather than display:none so the fold can be seen
+       to happen - a list of ten appearing under the finger with no movement
+       reads as the page having jumped.
+
+       34rem clears the longest panel - the catalog's ten domains, some of them
+       on two lines - and the cost of a cap that is larger than the content is
+       that a four-item panel finishes opening before the transition does. The
+       alternative is measuring each panel in script on every resize, which is a
+       resize listener to save 60ms of easing.
+
+       visibility, not just the clipping: overflow:hidden keeps the links off
+       the screen but leaves them in the tab order, and a keyboard would walk
+       into twenty-seven invisible section links. It is switched at the end of
+       the close and at the start of the open, so it never hides the animation. */
+    visibility: hidden;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .24s ease, visibility 0s linear .24s;
+  }
+  /* The hover-and-focus-within reveal above is not in a media query - the
+     desktop panel is built on it - and focusing a page link is itself
+     focus-within. So tabbing onto "Home" was unfolding its ten sections behind
+     a button that still said closed, and the keyboard walked through all
+     twenty-seven of them. On a phone the button is the only thing that opens a
+     panel; these two selectors carry the same weight as the ones they undo and
+     sit later in the file, and the open state carries the same weight again and
+     sits later still, so a panel that is open stays open when focus enters it. */
+  .nav[data-folds="true"] .nav__item:hover > .nav__sub,
+  .nav[data-folds="true"] .nav__item:focus-within > .nav__sub { visibility: hidden; }
+
+  .nav[data-folds="true"] .nav__item[data-open="true"] > .nav__sub {
+    visibility: visible;
+    max-height: 34rem;
+    transition: max-height .26s ease, visibility 0s;
+  }
+  .nav__sub::before { display: none; }
+  .nav .nav__sub a {
+    padding: 8px 0;
+    font-size: var(--fs-sm);
+    color: var(--ink-3);
+    border-bottom: 0;
+    white-space: normal;
+  }
+  .nav[data-folds="true"] .nav__sub a:last-child { margin-bottom: var(--s3); }
   .nav a[aria-current="page"]::after { display: none; }
   .nav .btn { margin-top: var(--s4); }
   .nav .nav__doc {
@@ -343,12 +566,16 @@ li + li { margin-top: var(--s2); }
   color: #fff;
   padding-block: clamp(var(--s8), 9vw, 150px);
 }
+/* The faint mark washed into the corner of the band. It used to sit bottom
+   right, which is exactly where the picture index now draws a lotus of its own
+   — two of them in one corner read as a mistake — so it moved across to sit
+   under the pitch instead, and lost a point of opacity on the way. */
 .hero::after {
   content: "";
-  position: absolute; right: -8%; bottom: -30%;
-  width: min(680px, 62vw); aspect-ratio: 1;
+  position: absolute; left: -12%; bottom: -32%;
+  width: min(640px, 58vw); aspect-ratio: 1;
   background: url("../img/logo-mark-white.png") center / contain no-repeat;
-  opacity: .07;
+  opacity: .06;
   pointer-events: none;
 }
 .hero__inner { position: relative; z-index: 1; }
@@ -360,10 +587,34 @@ li + li { margin-top: var(--s2); }
 @media (min-width: 1080px) {
   .hero__inner {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(330px, 400px);
-    gap: var(--s8);
-    align-items: start;
+    /* The flower's column is the wider half of what it was: with the badge and
+       the figures gone from the pitch, the hero's weight is the picture index,
+       so it gets the room. The gap comes in to 48px to pay for it, which keeps
+       the pitch column wide enough for "IT Procurement" to stay on one line. */
+    grid-template-columns: minmax(0, 1fr) minmax(400px, 540px);
+    gap: var(--s7);
+    align-items: center;
   }
+}
+
+/* From 1280 up the container has stopped growing — it is capped at 1180 — and
+   every extra pixel of the window goes into the two gutters. The flower takes
+   some of it back: its column goes 540 to 600, and it is pulled 32px out of the
+   right-hand gutter below. Review of 8 September, third round: make the flower
+   bigger and pull it further right.
+
+   Not below 1280, and the headline is why. IT&nbsp;Procurement is one
+   unbreakable run at 4.2rem and measures 550px; its column is 544 at 1280 and
+   386 at 1080, so the word already overhangs into the 48px gap at every width
+   this layout exists at. That overhang is what a wider flower column spends.
+   Measured left edge of the label ring against the right edge of the headline:
+   87px at 1440 and above, 31px at 1280, and at 1080 — where the column would
+   have to come out of a 386px pitch — it would be gone. Hence 1280.
+
+   The 31px at 1280 is the boxes, not the ink: the headline's long line is the
+   first one and the nearest label vertically is Why us, 140px away from it. */
+@media (min-width: 1280px) {
+  .hero__inner { grid-template-columns: minmax(0, 1fr) minmax(0, 600px); }
 }
 .hero h1 {
   font-family: var(--font-display);
@@ -381,139 +632,414 @@ li + li { margin-top: var(--s2); }
   max-width: 40rem;
   margin-bottom: var(--s7);
 }
-.hero__eyebrow {
-  display: inline-block;
-  font-size: var(--fs-xs); font-weight: 700;
-  letter-spacing: .18em; text-transform: uppercase;
-  color: var(--light-soft);
-  border: 1px solid rgba(255, 255, 255, .3);
-  border-radius: var(--radius-pill);
-  padding: 6px 16px;
-  margin-bottom: var(--s5);
-}
 .hero__actions { display: flex; flex-wrap: wrap; gap: var(--s3); }
-.hero__facts {
-  display: grid;
-  /* auto-fit rather than a fixed four: the hero carries three figures since
-     the two XX placeholders came out (answer 05), and empty tracks would
-     leave the row hanging to the right. */
-  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-  gap: var(--s5) var(--s4);
-  margin-top: var(--s8);
-  padding-top: var(--s5);
-  border-top: 1px solid rgba(255, 255, 255, .2);
-}
-@media (max-width: 620px) { .hero__facts { grid-template-columns: 1fr 1fr; } }
 /* ------------------------------------------ the hero's picture index -- */
 
-/* Six sections of this page carry a picture, and all six sit in the hero as
-   cards: a thumbnail with its own half-sentence laid over it, the section's
-   name underneath. The line over the picture is a hint, not the section's
-   headline — at this size the full sentence would be unreadable and the point
-   is to suggest what is down there.
+/* Nine sections of this page carry a picture, and all nine are in the hero -
+   as the petals of the mark rather than as nine cards in a grid.
 
-   They are photographs on a saturated teal ground, which is the difficulty: at
-   full strength six small pictures fight both the gradient and each other. So
-   they are held back — desaturated and dimmed — until they are pointed at.
-   Neither line depends on that: both are real text, the one over the picture
-   on its own scrim. */
+   The first build was a two-column grid of photographs. The review of
+   8 September: too many separate pictures in those two columns, put them in a
+   circle - a lotus form - with the logo in the middle. That is what this is.
+   The nine petals sit at 40 degrees to each other around a white disc carrying
+   the mark; each one is named outside its own tip, because an index that does
+   not say what is in it is an ornament.
+
+   The photographs are still there and still clickable. They are held back hard
+   - a third of full opacity, desaturated - so the flower reads as one shape on
+   the teal, and the petal that is pointed at comes up to full colour and pushes
+   out a few pixels. That keeps what the picture index was for and drops what
+   the review objected to, which was nine of them shouting at once.
+
+   Geometry, all of it relative to the square the flower sits in, so the whole
+   thing scales with its column and never needs a second set of numbers:
+     --pw / --ph  the petal box              15.5% x 29% of the square
+     --gap        base of the petal off the centre, in petal heights
+     --lr         where the label sits, from the centre
+   The petal shape itself is one clipPath in index.html in objectBoundingBox
+   units - a tip at the top, the widest point two thirds down, a rounded base
+   at the flower's heart.                                                    */
+
 .hero__tour { margin-top: var(--s7); padding-top: var(--s5); border-top: 1px solid rgba(255, 255, 255, .2); }
 
+/* Beside the pitch the flower is centred against it, so it needs no rule over
+   it and no head-alignment nudge — only its own head. */
 @media (min-width: 1080px) {
-  .hero__tour { margin-top: 6px; padding-top: 0; border-top: 0; }
+  .hero__tour { margin-top: 0; padding-top: 0; border-top: 0; }
 }
 
+/* The head of the flower, and it has to read as one. It was --fs-xs at 650 in
+   .82 white — smaller and dimmer than the nine chapter names ringing the flower
+   below it, which are up to 13.5px of full white — so it read as a tenth label
+   that had drifted off the ring. Review of 8 September, fourth round: it hardly
+   sets itself apart from the chapters.
+
+   Three things separate it now, and only the third is decisive. It is a step
+   larger than the largest label and a step heavier; it is full white; and it
+   carries the site's own eyebrow rule — 22 x 2px of --light — mirrored either
+   side, because this head is centred where every other eyebrow on the site is
+   ranged left. That rule is a colour nothing else in the flower uses, and it is
+   what stops the eye reading the word as one more petal name.
+
+   No text-indent, which centred letterspaced type usually wants to pay back the
+   trailing space after its last glyph. The rule on the ::after side takes that
+   space instead, so adding the indent as well overshoots: measured, the word
+   sits dead on the flower's centre without it and 2px right of it with it. */
 .hero__tour-head {
-  font-size: var(--fs-xs);
-  font-weight: 650;
-  letter-spacing: .14em;
+  font-size: .95rem;
+  font-weight: 700;
+  letter-spacing: .2em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, .62);
-  margin: 0 0 var(--s4);
-}
-
-.tour {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--s4) var(--s3);
-}
-
-@media (min-width: 1080px) { .tour { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 560px)  { .tour { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-
-.tour li { margin: 0; }
-
-.tour__link {
-  display: grid;
-  gap: 8px;
-  text-decoration: none;
   color: #fff;
+  margin: 0 0 var(--s5);
+  text-align: center;
 }
+.hero__tour-head::before,
+.hero__tour-head::after {
+  content: "";
+  display: inline-block;
+  width: 22px; height: 2px;
+  background: var(--light);
+  vertical-align: middle;
+  transform: translateY(-2px);
+}
+.hero__tour-head::before { margin-right: 14px; }
+.hero__tour-head::after { margin-left: 14px; }
 
-.tour__shot {
+/* The clipPath carrier is a real <svg> in the flow; it has no size but a
+   browser still gives it a default 300x150 box if it is not told otherwise. */
+.lotus__def { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+.lotus {
+  /* Petal box and the push out from the centre are percentages of the square
+     and of the petal's own height. The two label numbers are container units:
+     a percentage inside a transform would measure the label, not the flower,
+     and would stack all nine of them on the middle. */
+  --pw: 16.5%;    /* petal width, of the square                              */
+  --ph: 24%;      /* petal height, of the square                             */
+  --gap: 20%;     /* base of the petal off the centre, in petal heights      */
+  /* Default only. Every petal overrides it in the markup, because one radius
+     for all nine leaves the labels at the top and the bottom of the ring
+     stranded: a label has to clear the tip by its half-width when it sits
+     beside the flower and only by its half-height when it sits above it. The
+     inline value is
+        28.8 (the tip) + 1.5 (clearance) + 8.5·|sin a| + 3.4·|cos a|
+     in the same container units — the tip is --ph × (1 + --gap), 8.5 is half
+     the label box, 3.4 is half a two-line label. */
+  --lr: 38.5cqw;  /* label centre, from the middle of the flower              */
+  --lw: 17cqw;    /* label width                                             */
+  /* What happens when a petal is pointed at. --grow opens it out from its own
+     base, away from the heart, so the petal being read is the biggest thing in
+     the flower. --unzoom pulls the photograph inside back by the reciprocal,
+     and that pairing is the whole point: scale the petal on its own and the
+     picture scales with it, so you get the same crop at a larger size and see
+     nothing you could not see before. 1.24 x .8 is .99 — the photograph stays
+     the size it was, to within a percent, and the petal becomes a wider window
+     on it. A quarter more petal each way, which is about 56% more of the
+     picture.
+
+     The floor on --unzoom is coverage: the photograph is rotated inside its own
+     petal, so it has to stay big enough to cover the clip outline at every one
+     of the nine angles. Measured against the outline itself rather than the box
+     around it, the worst petal uses 73% of what it has at .8. There is room to
+     go lower; it is the picture getting smaller on the screen, not coverage,
+     that sets this number. */
+  --grow: 1.24;
+  --unzoom: .8;
+  container-type: inline-size;
   position: relative;
-  display: block;
-  border-radius: 9px;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, .25);
-  transition: border-color .2s ease, transform .2s ease;
-}
-
-.tour__img {
   width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  display: block;
-  filter: saturate(.45) brightness(.86) contrast(1.04);
-  transition: filter .2s ease;
+  max-width: 480px;
+  /* Wider than it is tall, although the flower itself is round: the ring of
+     labels reaches 39.4% of the width sideways and only 33.7% of it upwards,
+     so a square box would carry about 100px of empty band above and below the
+     top and bottom labels. This is the ring's own proportion, with room for
+     those two labels to run to two lines. */
+  aspect-ratio: 1.22;
+  margin-inline: auto;
 }
 
-/* The hint sits on its own band at the foot of the card. A full-width scrim is
-   right here and wrong on the big pictures: at 180px there is no quiet corner
-   to tuck it into, and the band reads as a caption rather than as a wash. */
-.tour__over {
+/* A soft wash under the whole flower. It does two things: it seats the object
+   on the band instead of leaving it floating, and it takes the ground under the
+   labels down far enough that white 11.5px type clears 4.5:1 out there. Without
+   it the lightest part of the gradient behind a label measures 4.43:1 — close
+   enough to pass by eye and not close enough to ship. */
+.lotus::before {
+  content: "";
   position: absolute;
-  inset: auto 0 0 0;
-  padding: 22px 9px 8px;
-  font-size: 11.5px;
+  inset: -8%;
+  border-radius: 50%;
+  /* farthest-side, not closest-side. The box is wider than it is tall, so
+     closest-side sized the wash to the half-height and died well inside the
+     ring — the labels at the sides, which are the ones furthest out, sat on
+     bare gradient and were the worst-contrast text in the flower. Sizing it to
+     the half-width instead carries it under all nine.
+
+     The stops come down as the reach goes out, so the wash is no heavier over
+     the flower itself than it was — .24 at the middle against the .26 it used
+     to be — and what it gains is out at the ring. Worst label 4.73:1 to 5.19:1
+     at 1280, against 4.5:1 required at this size; it was 4.84:1 before the
+     flower moved right onto lighter ground. */
+  background: radial-gradient(farthest-side,
+    rgba(4, 20, 24, .24) 0%, rgba(4, 20, 24, .19) 60%,
+    rgba(4, 20, 24, .10) 86%, rgba(4, 20, 24, 0) 100%);
+  pointer-events: none;
+}
+
+.lotus__ring { list-style: none; margin: 0; padding: 0; }
+/* pointer-events off here as well as on the link: the li is a full-square box
+   too, and nine of them stacked means the last one in the source covers the
+   other eight. .lotus__shot and .lotus__name switch the pointer back on, so
+   the hit areas are the nine petals and the nine labels and nothing else. */
+.lotus__petal { position: absolute; inset: 0; margin: 0; pointer-events: none; }
+
+/* The link is the whole square with the pointer switched off, and its two
+   visible parts switch it back on: that way one anchor covers both the petal
+   and its label - hovering or clicking either lights both - without a
+   transparent 480px box swallowing the eight petals underneath it. */
+.lotus__link {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  text-decoration: none;
+  outline: none;
+}
+
+.lotus__shot, .lotus__name { pointer-events: auto; }
+
+/* Base of the petal on the flower's centre, rotated about that point, then
+   pushed out along its own axis. */
+.lotus__shot {
+  position: absolute;
+  left: 50%; bottom: 50%;
+  width: var(--pw); height: var(--ph);
+  margin-left: calc(var(--pw) / -2);
+  transform-origin: 50% 100%;
+  transform: rotate(var(--a)) translateY(calc(-1 * var(--gap)));
+  clip-path: url(#petal);
+  background: rgba(255, 255, 255, .14);
+  overflow: hidden;
+  transition: transform .22s ease, background-color .22s ease;
+}
+
+/* Three shades over nine petals, so the flower has depth without any petal
+   being singled out. */
+.lotus__petal:nth-child(3n + 1) .lotus__shot { background: rgba(255, 255, 255, .20); }
+.lotus__petal:nth-child(3n + 2) .lotus__shot { background: rgba(255, 255, 255, .14); }
+.lotus__petal:nth-child(3n)     .lotus__shot { background: rgba(255, 255, 255, .09); }
+
+/* Oversized and counter-rotated: the photograph stays upright in a shape that
+   is not, and is big enough that no corner of the petal runs off it. */
+.lotus__img {
+  position: absolute;
+  left: 50%; top: 50%;
+  /* max-width: none because the reset sets img { max-width: 100% }, and a
+     max-width beats a width: the 190% below was silently being served as 99% —
+     the width of the petal box — for as long as this has existed. A photograph
+     exactly as wide as the box does not cover that box once it is rotated
+     inside it, so eight of the nine petals had a sliver of bare petal along one
+     edge. Invisible at rest, where the picture is a blurred third of itself
+     over a translucent petal, and not invisible at all on hover once it comes
+     up to full colour. Measured against the clip outline rather than the box:
+     the worst petal needed 1.185x what it had. */
+  max-width: none;
+  width: 190%; height: 190%;
+  object-fit: cover;
+  transform: translate(-50%, -50%) rotate(calc(-1 * var(--a)));
+  /* Nine photographs of nine different subjects, at a third of full strength,
+     read as nine blotches rather than as one flower. Blended for luminosity
+     they take the teal of the petal and the band under it, so what is left of
+     each one is its light and shade — texture, not a picture. The picture comes
+     back whole on hover, blend and all. */
+  mix-blend-mode: luminosity;
+  filter: contrast(.8) blur(1.2px);
+  opacity: .28;
+  transition: opacity .22s ease, filter .22s ease, transform .22s ease;
+}
+
+/* Placed by the same angle and then turned back level, so nine labels sit
+   around the ring and every one of them reads horizontally. */
+.lotus__name {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: var(--lw);
+  transform:
+    translate(-50%, -50%)
+    rotate(var(--a))
+    translateY(calc(-1 * var(--lr)))
+    rotate(calc(-1 * var(--a)));
+  font-size: clamp(11.5px, 2.4cqw, 13.5px);
   line-height: 1.3;
-  font-weight: 620;
+  font-weight: 600;
+  letter-spacing: .01em;
+  text-align: center;
+  /* Full white, not the .78 the card captions used. Measured on the rendered
+     page, .78 white over the lightest part of the gradient the flower sits on
+     comes to 3.40:1, and 11.5px at 600 is not large text, so it needs 4.5:1.
+     White is 4.61:1 there. The shadow is for the two labels that can catch the
+     lit edge of a petal, not for the band. */
   color: #fff;
-  background: linear-gradient(to top,
-    rgba(4, 20, 24, .95) 0%, rgba(4, 20, 24, .86) 46%, rgba(4, 20, 24, 0) 100%);
+  text-shadow: 0 1px 2px rgba(4, 20, 24, .4);
 }
 
-.tour__label {
-  font-size: var(--fs-xs);
-  line-height: 1.35;
-  color: rgba(255, 255, 255, .78);
-  transition: color .2s ease;
+/* transform-origin is the base of the petal, and the scale is written after the
+   push, so the petal opens outward from the heart rather than growing around
+   its own middle. What that has to clear is the ring of labels. Hit-tested on
+   the rendered page rather than computed from the boxes — a rotated petal's
+   bounding box overshoots its own tip badly, and clip-path clips hit-testing
+   too — the tightest clear ground around any label is 32px with nothing open
+   and 8px with a petal open, at the 600px figure. The 8 is What we do, with its
+   own petal open. 7px at the 560px figure. No overlap anywhere. */
+.lotus__link:hover .lotus__shot,
+.lotus__link:focus-visible .lotus__shot {
+  background: rgba(255, 255, 255, .3);
+  transform: rotate(var(--a)) translateY(calc(-1 * var(--gap) - 6px)) scale(var(--grow));
+  /* Nine petals overlap like a real flower's and the last one in the source
+     wins, so the one that has grown has to come up over its neighbours. .lotus
+     is the stacking context — container-type: inline-size contains layout —
+     which is why 2 here is enough and why the core is given 3. */
+  z-index: 2;
+}
+.lotus__link:hover .lotus__img,
+.lotus__link:focus-visible .lotus__img {
+  opacity: 1; filter: none; mix-blend-mode: normal;
+  transform: translate(-50%, -50%) rotate(calc(-1 * var(--a))) scale(var(--unzoom));
+}
+/* The label is already white; what changes on hover is the petal. */
+
+/* clip-path cuts an outline off with everything else outside the petal, so the
+   focus ring goes on the label, which is not clipped. */
+.lotus__link:focus-visible .lotus__name {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+  border-radius: 6px;
 }
 
-.tour__link:hover .tour__img,
-.tour__link:focus-visible .tour__img { filter: none; }
-.tour__link:hover .tour__shot,
-.tour__link:focus-visible .tour__shot {
-  border-color: rgba(255, 255, 255, .8);
-  transform: translateY(-3px);
+/* z-index because a petal that has grown is raised to 2, and the base of every
+   petal runs in under this disc — without it the opened petal would paint over
+   the mark. */
+.lotus__core {
+  position: absolute;
+  z-index: 3;
+  left: 50%; top: 50%;
+  width: 22%; aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 0 9px rgba(255, 255, 255, .09), var(--shadow-md);
 }
-.tour__link:hover .tour__label,
-.tour__link:focus-visible .tour__label { color: #fff; }
+.lotus__core img { width: 64%; }
+
+/* Beside the pitch the flower takes its whole column - 540px against the 480
+   it was held to - and sits at the right of it, not centred in it. */
+@media (min-width: 1080px) {
+  .lotus { max-width: none; margin-inline: auto 0; }
+}
+
+/* …and from 1280 the whole tour — head and flower together — is pushed out of
+   the container's right-hand gutter. It is on .hero__tour rather than on .lotus
+   because the head has to travel with the flower it names: the first build put
+   the shift on the flower alone and left the head centred on the grid column,
+   88px to the left of the thing it sits over. Review of 8 September, fourth
+   round: the Overview title has slipped, it is no longer together and central.
+   One shift on the parent cannot come apart that way.
+
+   Equal and opposite margins, so the box is the width of its grid area either
+   way and only its position moves. How far is how much gutter there is: half of
+   whatever the window has over the 1180px container, floored at 32px so 1280
+   still gets the shift, capped at 88 so it drifts toward the edge of a wide
+   window without ever hugging it. --rail is the strip the review layer reserves
+   down the right for its comment bubbles; it is 58px while that layer is on and
+   this has to leave it alone, so it comes out of the gutter before the halving.
+   site.css alone has no such strip, hence the 0px fallback. The hero clips its
+   overflow either way, so the worst case here is a label trimmed, not a
+   scrollbar. */
+@media (min-width: 1280px) {
+  .hero__tour {
+    --bleed: clamp(var(--s6), (100vw - var(--rail, 0px) - var(--container)) / 2, var(--s9));
+    margin-inline: var(--bleed) calc(-1 * var(--bleed));
+  }
+}
+
+/* Between the phone and the two-column hero the flower has the full width to
+   itself, so it takes a little more of it. */
+@media (max-width: 1079px) {
+  .lotus { max-width: 560px; }
+}
+
+/* A ring of nine labels needs about 460px to be legible and a phone does not
+   have it. Below that the geometry is dropped entirely - no ring, no rotation,
+   no clip - and the same nine links become a plain list with round thumbnails,
+   which is what a narrow column is good at. */
+@media (max-width: 679px) {
+  .lotus {
+    aspect-ratio: auto;
+    max-width: none;
+    display: grid;
+  }
+  .lotus::before, .lotus__core { display: none; }
+  .lotus__ring { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s3) var(--s4); }
+  .lotus__petal { position: static; inset: auto; }
+  .lotus__link {
+    position: static;
+    pointer-events: auto;
+    display: flex; align-items: center; gap: 10px;
+  }
+  /* relative, not static: the photograph inside is absolutely positioned, and
+     with nothing positioned between it and .lotus it would size itself against
+     the whole list instead of against its own 42px thumbnail. */
+  .lotus__shot {
+    position: relative;
+    inset: auto;
+    width: 42px; height: 42px;
+    flex: none;
+    margin: 0;
+    transform: none;
+    clip-path: none;
+    border-radius: 50%;
+  }
+  .lotus__img {
+    width: 100%; height: 100%;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: normal;
+    opacity: 1;
+    filter: saturate(.75);
+  }
+  .lotus__name {
+    position: static;
+    width: auto;
+    transform: none;
+    text-align: left;
+    font-size: var(--fs-xs);
+  }
+  /* Neither half of the hover geometry applies to a round 42px thumbnail: the
+     petal has nothing to open out of and the photograph is already whole, so
+     pulling it back would only show the edges of the circle. */
+  .lotus__link:hover .lotus__shot, .lotus__link:focus-visible .lotus__shot { transform: none; }
+  .lotus__link:hover .lotus__img,
+  .lotus__link:focus-visible .lotus__img { transform: translate(-50%, -50%); }
+}
 
 @media (prefers-reduced-motion: reduce) {
-  .tour__shot, .tour__img { transition: none; }
-  .tour__link:hover .tour__shot, .tour__link:focus-visible .tour__shot { transform: none; }
+  .lotus__shot, .lotus__img, .lotus__name { transition: none; }
 }
 
-.hero__fact strong {
-  display: block;
-  font-family: var(--font-display);
-  font-size: 1.75rem; font-weight: 400; color: #fff;
+/* The petal still lights up without motion; it just stops moving. Scoped above
+   the phone breakpoint, where the petals are round thumbnails with no angle.
+   The opening and the photograph's counter-scale go with the push — they are
+   one gesture, and half of it on its own reads as a glitch rather than as less
+   motion. What is left is what it always was: the picture comes up to full
+   colour, unblurred, in a petal that has not moved. */
+@media (prefers-reduced-motion: reduce) and (min-width: 680px) {
+  .lotus__link:hover .lotus__shot,
+  .lotus__link:focus-visible .lotus__shot { transform: rotate(var(--a)) translateY(calc(-1 * var(--gap))); }
+  .lotus__link:hover .lotus__img,
+  .lotus__link:focus-visible .lotus__img {
+    transform: translate(-50%, -50%) rotate(calc(-1 * var(--a)));
+  }
 }
-.hero__fact span { font-size: var(--fs-xs); color: rgba(255,255,255,.72); letter-spacing: .04em; }
 
 /* page hero (inner pages) */
 .pagehead {
@@ -1082,23 +1608,41 @@ table.matrix tbody tr:hover { background: var(--light-tint); }
   flex-direction: column;
 }
 
-/* The second engagement used to be filled with --light-tint — which is the
-   exact colour of the band it sits on, so on the tinted section it read as a
-   hole rather than as a card. It is now the one that carries the weight: the
-   same white surface as the first, with the brand edge and a filled tag,
-   which is also the honest hierarchy — it is the larger engagement. */
-.offer--second {
-  background: #fff;
-  border: 1.5px solid var(--deep);
-  box-shadow: var(--shadow-sm);
+/* Side by side, the two cards have to read as one comparison, and they only do
+   that if the rows line up: both drawings starting on the same line, both
+   checklists starting on the same line, both buttons on the same line. The
+   intros are two lines on the left and three on the right, so left to itself
+   the right-hand card sits a line lower all the way down. Subgrid hands the
+   six rows of the card back to the outer grid, which sizes each row to the
+   taller of the pair. Row gap goes to zero inside the band because the spacing
+   is already carried by the elements' own margins; the column gap is the one
+   that separates the two cards. Browsers without subgrid keep the flex column
+   above and simply stagger, which is what the section did before. */
+@supports (grid-template-rows: subgrid) {
+  @media (min-width: 820px) {
+    .offers {
+      grid-template-rows: repeat(6, auto);
+      row-gap: 0;
+      column-gap: var(--s5);
+    }
+    .offer {
+      grid-row: span 6;
+      display: grid;
+      grid-template-rows: subgrid;
+    }
+  }
 }
 
-.offer--second .offer__tag {
-  background: var(--deep);
-  color: #fff;
-  padding: 4px 12px;
-  border-radius: var(--radius-pill);
-}
+/* The two cards are deliberately identical now. The second one used to carry
+   a brand-coloured edge and a filled tag, on the argument that it is the
+   larger engagement — but that put the emphasis in opposite places on the two
+   cards: a filled pill at the top of the right one, a filled pill at the
+   bottom of the left one, and the eye read the pair as inconsistent rather
+   than as ranked. Both now follow the first card — plain tag at the top, one
+   dark pill at the bottom where the call to action is. The ranking is carried
+   by the labels instead: quick market check, then full business case.
+   (The original problem this replaced: the card was filled with --light-tint,
+   the exact colour of the band it sits on, so it read as a hole.) */
 
 .offer__tag {
   align-self: flex-start;
@@ -1131,6 +1675,79 @@ table.matrix tbody tr:hover { background: var(--light-tint); }
 }
 
 .offer__foot { margin-top: auto; }
+
+/* Each engagement carries a small drawing of what it hands over: three
+   comparable offers against a market that has moved, and a locked-in estate
+   costed through to a paper the board can read. Inline SVG rather than image
+   files — they are flat line work in the brand ramp, they have to stay sharp
+   at any column width, and the words inside them (OFFER 1, ROI) stay text
+   that can be edited and translated, which is the same rule the .visual
+   template applies to picture headlines. Both use the one 520 × 180 frame, so
+   the two drawings render at the same height and the lists below them line
+   up across the pair. */
+
+.offer__art {
+  display: block;
+  width: 100%;
+  /* Capped at its own drawn width. In two columns the card is narrower than
+     this and the drawing simply fits it; stacked on a tablet the card is wider
+     than the drawing was ever meant to be, and without the cap the paperwork
+     grows to the size of the text it illustrates. */
+  max-width: 520px;
+  height: auto;
+  margin: var(--s5) auto var(--s2);
+}
+
+.offer__art .art-paper  { fill: #fff; stroke: var(--line-strong); stroke-width: 1.5; }
+.offer__art .art-fold   { fill: var(--line); }
+.offer__art .art-rule   { fill: var(--line-strong); }
+.offer__art .art-slab   { fill: var(--line-strong); }
+.offer__art .art-dot    { fill: var(--ink-3); }
+.offer__art .art-deep   { fill: var(--deep); }
+.offer__art .art-screen { fill: var(--light-tint); }
+.offer__art .art-key    { fill: var(--light-soft); }
+.offer__art .art-lock   { fill: var(--deep-900); }
+
+.offer__art .art-shackle {
+  fill: none;
+  stroke: var(--deep-900);
+  stroke-width: 8;
+  stroke-linecap: round;
+}
+
+/* Three steps off the same ordinal ramp the market map uses, so a rising bar
+   means the same thing in both places on the page. */
+.offer__art .art-step1 { fill: #7ac2d2; }
+.offer__art .art-step3 { fill: #2b8095; }
+.offer__art .art-step5 { fill: #0a4653; }
+
+.offer__art .art-trend {
+  fill: none;
+  stroke: var(--deep);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.offer__art .art-arrow {
+  fill: none;
+  stroke: var(--mute);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.offer__art .art-label {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: .04em;
+  fill: var(--ink-3);
+}
+
+.offer__art .art-label--lead { fill: var(--ink); }
+
+.offer__art .art-euro { font-family: var(--font-sans); fill: var(--ink-3); }
+.offer__art .art-euro--lead { fill: var(--ink-2); }
 
 /* ------------------------------------- market map of the ten domains — 13 -- */
 
@@ -1305,17 +1922,15 @@ table.matrix tbody tr:hover { background: var(--light-tint); }
 @media (min-width: 860px) { .model { grid-template-columns: repeat(3, 1fr); gap: var(--s7); } }
 
 .model__item h3 { margin-bottom: var(--s3); }
-.model__item p { color: rgba(255, 255, 255, .82); font-size: var(--fs-sm); }
-
-.model__item h3 { color: #fff; }
+.model__item p { color: var(--ink-2); font-size: var(--fs-sm); }
 
 /* The picture used to run the full width of the section with the three points
    pressed up underneath it. It now sits beside the lead — the arrangement the
    two sections above use — and the row of points gets a full band of air. */
-.section--deep .visual--split { margin-block-end: var(--s8); }
+.visual--split + .model { margin-top: var(--s2); }
 
 .model__sub {
-  color: rgba(255, 255, 255, .82);
+  color: var(--ink-2);
   font-size: var(--fs-sm);
   max-width: 36ch;
   margin: var(--s4) 0 0;
@@ -1327,24 +1942,19 @@ table.matrix tbody tr:hover { background: var(--light-tint); }
   letter-spacing: -.018em;
   font-size: clamp(1.3rem, 1.05rem + 1.1vw, 1.9rem);
   line-height: 1.3;
-  color: #fff;
+  color: var(--ink);
   margin: 0 0 var(--s6);
   max-width: 30ch;
 }
 
-/* A dark band that is not the hero and not the closing CTA — used once, for
-   the commercial model, because that section has to carry more weight than a
-   tinted band gives it. */
-.section--deep { background: var(--deep-900); color: rgba(255, 255, 255, .86); }
-.section--deep h2, .section--deep h3 { color: #fff; }
-.section--deep .eyebrow { color: var(--light-soft); }
-.section--deep .eyebrow::before { background: var(--light); }
-.section--deep .lead { color: rgba(255, 255, 255, .82); }
-.section--deep .ph {
-  background: rgba(255, 255, 255, .15);
-  border-bottom-color: rgba(255, 255, 255, .45);
-  color: inherit;
-}
+/* There was a --deep modifier here: a dark band, used once, for the commercial
+   model, on the argument that the section had to carry more weight than a
+   tinted band gives it. The review of 8 September asked the obvious question -
+   why does that one section jump out of a page that is otherwise white and pale
+   teal - and the honest answer was that it did not need to. The band is white
+   now, the alternation runs straight through it, and the modifier is gone with
+   it. The hero and the closing call to action are still dark; they are the ends
+   of the page rather than a section in the middle of it. */
 
 /* The three named steps of the guided intake — question 17. */
 .step-head {
@@ -1411,7 +2021,7 @@ table.matrix tbody tr:hover { background: var(--light-tint); }
 
 /* ------------------------------------------------ visual — image template --
 
-   The first photographic imagery on the site. One template, used six times on
+   The first photographic imagery on the site. One template, used seven times on
    the home page: a picture, a short line of text laid over it, and the lotus
    mark in the corner. The text is real HTML, never burnt into the file — so it
    stays editable, selectable, searchable and legible at 390px, and a picture
@@ -1421,7 +2031,7 @@ table.matrix tbody tr:hover { background: var(--light-tint); }
    ahead of B2. The images themselves are placeholders at 500px until the
    high-resolution regenerations land under the same filenames.
 
-   Three of the six pictures are dark and three are light, so the tone is a
+   Three of the seven pictures are dark and four are light, so the tone is a
    modifier rather than one fixed scrim: --onDark paints white text over a dark
    wash, --onLight ink text over a light one. data-anchor puts the text in
    whichever corner of that particular picture is quietest.                  */
@@ -1437,8 +2047,9 @@ table.matrix tbody tr:hover { background: var(--light-tint); }
   background: var(--paper-alt);
 }
 
-/* Never cropped. Four of the six carry their own explanatory labels — leader
-   lines, column headers, the Before/Savings/After row — and several of those
+/* Never cropped. Five of the seven carry their own explanatory labels — leader
+   lines, column headers, the Before/Savings/After row, the two captions under
+   the benchmark and the project — and several of those
    sit hard against the edge of the frame, so object-fit: cover would quietly
    cut the part that makes the picture mean anything. The file's own proportions
    decide the height; width/height on the tag hold the space while it loads. */
@@ -1635,11 +2246,21 @@ table.matrix tbody tr:hover { background: var(--light-tint); }
   .visual--first:not(.visual--split) { order: -1; }
 }
 
-/* Variant: banner — one picture carrying a statement across the full column.
-   is-placeholder holds it back to a width the 500px source can actually fill;
-   drop that class once the high-resolution file is in. */
-.visual--banner .visual__title { font-size: clamp(1.4rem, 1rem + 2.2vw, 2.6rem); max-width: var(--tw, 20ch); }
-.visual--banner.is-placeholder .visual__media { max-width: 760px; margin-inline: auto; }
+/* Variant: banner — one picture under a centred head, carrying a statement
+   across the column rather than sitting beside prose.
+
+   No user on the page as built. The process picture was the one, and the third
+   round of 8 September moved it into its section as a --split like the other
+   seven, so the page is eight splits and no banner. The variant is kept for the
+   same reason --tile is: it is one of the three cases the template was designed
+   to cover, and it is nine lines.
+
+   The 780px cap is the whole of the earlier comment about it: at the full
+   1132px of the container the picture rendered 906px tall against the 534px
+   squares of the splits, three times the area of any other section's. */
+.visual--banner { margin-block-end: var(--s7); }
+.visual--banner .visual__media { max-width: 780px; margin-inline: auto; }
+.visual--banner .visual__title { font-size: clamp(1.35rem, 1rem + 1.5vw, 2.1rem); max-width: var(--tw, 20ch); }
 
 /* Variant: tile — for a row of parallel pictures. Unused on the home page as
    built, but the third case the template was designed to cover. */

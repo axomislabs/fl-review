@@ -7,7 +7,7 @@
 <meta name="description" content="We benchmark and negotiate software and technology contracts on your behalf. No fixed fees — we are paid from the savings we help you realise.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="assets/img/logo-mark.png">
-<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/site.css?v=20260908d">
 <link rel="stylesheet" href="assets/css/review.css?v=20260907">
 </head>
 <body data-page="Home">
@@ -28,10 +28,58 @@
       <span></span><span class="sr-only">Menu</span>
     </button>
     <nav class="nav" id="primary-nav" aria-label="Primary">
-      <a href="index.html" aria-current="page">Home</a>
-      <a href="references.html">References</a>
-      <a href="catalog.html">Catalog</a>
-      <a href="contact.html">Contact</a>
+      <span class="nav__item">
+        <a href="index.html" aria-current="page">Home</a>
+        <span class="nav__sub">
+          <!-- The hero is a section of the page like the nine under it, and the
+               sub-menu that leaves it out is a map with the top of the page
+               missing. Named for what it holds - the picture index - and not
+               for the headline, which would read as a second "Home". -->
+          <a href="index.html#rev-home-hero">Overview</a>
+          <a href="index.html#rev-home-problem">The challenge</a>
+          <a href="index.html#rev-home-usecases">Your benefits</a>
+          <a href="index.html#rev-home-services">What we do</a>
+          <a href="index.html#rev-home-offers">Our engagements</a>
+          <a href="index.html#rev-home-security">Security exposure</a>
+          <a href="index.html#rev-home-model">Our pricing model</a>
+          <a href="index.html#rev-home-process">How it works</a>
+          <a href="index.html#rev-home-coverage">Our coverage</a>
+          <a href="index.html#rev-home-why">Why us</a>
+        </span>
+      </span>
+      <span class="nav__item">
+        <a href="references.html">References</a>
+        <span class="nav__sub">
+          <a href="references.html#rev-references-case">The benchmark case</a>
+          <a href="references.html#rev-references-cases">Client projects</a>
+          <a href="references.html#rev-references-partners">Partners &amp; technologies</a>
+          <a href="references.html#rev-references-testimonial">Client testimonial</a>
+        </span>
+      </span>
+      <span class="nav__item">
+        <a href="catalog.html">Catalog</a>
+        <span class="nav__sub">
+          <a href="catalog.html#web-performance-delivery">Web Performance &amp; Delivery</a>
+          <a href="catalog.html#cloud-platform-operations">Cloud &amp; Platform Operations</a>
+          <a href="catalog.html#network-sase">Network &amp; SASE</a>
+          <a href="catalog.html#security-identity">Security &amp; Identity</a>
+          <a href="catalog.html#application-code-security">Application &amp; Code Security</a>
+          <a href="catalog.html#finops-risk-governance">FinOps, Risk &amp; Governance</a>
+          <a href="catalog.html#cloud-hosting-infrastructure">Cloud Hosting &amp; Infrastructure</a>
+          <a href="catalog.html#enterprise-saas-platforms">Enterprise &amp; SaaS Platforms</a>
+          <a href="catalog.html#developer-edge-platform">Developer &amp; Edge Platform</a>
+          <a href="catalog.html#video-streaming-analytics">Video &amp; Streaming Analytics</a>
+        </span>
+      </span>
+      <span class="nav__item">
+        <a href="contact.html">Contact &amp; about</a>
+        <span class="nav__sub">
+          <a href="contact.html#rev-contact-form">The intake form</a>
+          <a href="contact.html#rev-contact-metrics">Metrics we need</a>
+          <a href="contact.html#rev-contact-channels">Talk to us directly</a>
+          <a href="contact.html#about">About us</a>
+        </span>
+      </span>
       <a class="btn btn--primary btn--sm" href="contact.html">Get in touch</a>
       <span class="nav__doc">
         <a class="nav__doc-main" href="project.html">Projektdokumentation</a>
@@ -47,11 +95,16 @@
 <main id="main">
 
   <!-- ========================================================== HERO -->
-  <!-- Decision 01/15: the money model leads instead of the independence claim. -->
+  <!-- Decision 01/15: the money model leads instead of the independence claim -
+       but it leads from inside the pitch, as the last line of the paragraph.
+       Until 8 September it was also a badge over the headline and a row of three
+       figures under it; both came out on the review of that day. The pricing is
+       explained in full further down this page and the counts are broken down in
+       the catalogue and the references, so saying either of them before the claim
+       was made only stood in front of the claim. -->
   <section class="hero" id="rev-home-hero" data-review-id="home.hero" data-review-label="Home — Hero">
     <div class="container hero__inner">
       <div class="hero__pitch">
-        <span class="hero__eyebrow">No fixed fees &middot; Paid from what you save</span>
         <h1>IT&nbsp;Procurement <em>as a Service</em></h1>
         <p class="hero__sub">
           We source, benchmark and negotiate software and technology contracts on your behalf.
@@ -61,92 +114,124 @@
         </p>
         <div class="hero__actions">
           <a class="btn btn--onDark" href="contact.html">Benchmark a contract</a>
-          <a class="btn btn--outlineDark" href="catalog.html">Browse 183 capabilities</a>
-        </div>
-        <div class="hero__facts">
-          <div class="hero__fact">
-            <strong>183</strong>
-            <span>Capabilities sourced</span>
-          </div>
-          <div class="hero__fact">
-            <strong>10</strong>
-            <span>Technology domains</span>
-          </div>
-          <div class="hero__fact">
-            <strong>~120</strong>
-            <span>Vendors we can quote from</span>
-          </div>
+          <a class="btn btn--outlineDark" href="catalog.html">Browse our capabilities</a>
         </div>
       </div>
 
-      <!-- The six sections that carry a picture, beside the pitch rather than
-           under it: you read the claim on the left and see what the page holds
-           on the right. Each card says its own half-sentence over the picture
-           and names its section underneath. -->
-      <nav class="hero__tour" aria-label="What is on this page">
-        <p class="hero__tour-head">What is on this page</p>
-        <ul class="tour">
-          <li>
-            <a class="tour__link" href="#rev-home-problem">
-              <span class="tour__shot">
-                <img class="tour__img" src="assets/img/visual-price-layers.webp" alt=""
-                     width="504" height="511" loading="lazy" decoding="async">
-                <span class="tour__over">The price is the easy part</span>
+      <!-- The nine sections that carry a picture, as the petals of the mark.
+
+           Until 8 September this was nine photographs in a two-column grid beside
+           the pitch, and the review of that evening said what was wrong with it:
+           too many separate pictures in those two columns, arrange them as a
+           circle - a lotus form - with the logo in the middle. So they are one
+           object now instead of nine. Nine petals at 40 degrees, the mark on a
+           white disc at the centre, and each section named outside its own petal,
+           because an index that does not say what is in it is decoration.
+
+           The photograph stays in the petal but is held right back - dimmed to a
+           third and desaturated - and comes up to full colour when that petal is
+           pointed at. The picture index survives; it just stops shouting nine
+           times at once. README section 14 has the geometry.
+
+           The petal outline is one clipPath in objectBoundingBox units, so the
+           same path scales from the 480px figure to the phone. Each petal carries
+           its angle as --a: the shape is rotated by it, the photograph inside is
+           counter-rotated by the same amount so it stays upright, and the label
+           is placed by it and then turned back level.
+
+           Below 680px the ring is dropped altogether and the nine become a plain
+           two-column list with round thumbnails - a circle of nine labels does
+           not fit a phone, and a list does. -->
+      <nav class="hero__tour" aria-label="Overview of this page">
+        <p class="hero__tour-head">Overview</p>
+
+        <svg class="lotus__def" width="0" height="0" aria-hidden="true" focusable="false">
+          <defs>
+            <clipPath id="petal" clipPathUnits="objectBoundingBox">
+              <path d="M.5 0C.8.26 1 .48 1 .66 1 .82.72 1 .5 1 .28 1 0 .82 0 .66 0 .48.2.26.5 0Z"/>
+            </clipPath>
+          </defs>
+        </svg>
+
+        <div class="lotus">
+          <ul class="lotus__ring">
+          <li class="lotus__petal" style="--a:0deg;--lr:33.7cqw">
+            <a class="lotus__link" href="#rev-home-problem">
+              <span class="lotus__shot">
+                <img class="lotus__img" src="assets/img/visual-price-layers.webp" alt="" loading="lazy" decoding="async">
               </span>
-              <span class="tour__label">The challenge</span>
+              <span class="lotus__name">The challenge</span>
             </a>
           </li>
-          <li>
-            <a class="tour__link" href="#rev-home-usecases">
-              <span class="tour__shot">
-                <img class="tour__img" src="assets/img/visual-same-price.webp" alt=""
-                     width="501" height="511" loading="lazy" decoding="async">
-                <span class="tour__over">Same price. Different deal.</span>
+          <li class="lotus__petal" style="--a:40deg;--lr:38.4cqw">
+            <a class="lotus__link" href="#rev-home-usecases">
+              <span class="lotus__shot">
+                <img class="lotus__img" src="assets/img/visual-same-price.webp" alt="" loading="lazy" decoding="async">
               </span>
-              <span class="tour__label">Your benefits</span>
+              <span class="lotus__name">Your benefits</span>
             </a>
           </li>
-          <li>
-            <a class="tour__link" href="#rev-home-services">
-              <span class="tour__shot">
-                <img class="tour__img" src="assets/img/visual-market-moved.webp" alt=""
-                     width="505" height="511" loading="lazy" decoding="async">
-                <span class="tour__over">Procurement expertise</span>
+          <li class="lotus__petal" style="--a:80deg;--lr:39.3cqw">
+            <a class="lotus__link" href="#rev-home-services">
+              <span class="lotus__shot">
+                <img class="lotus__img" src="assets/img/visual-market-moved.webp" alt="" loading="lazy" decoding="async">
               </span>
-              <span class="tour__label">What we do</span>
+              <span class="lotus__name">What we do</span>
             </a>
           </li>
-          <li>
-            <a class="tour__link" href="#rev-home-security">
-              <span class="tour__shot">
-                <img class="tour__img" src="assets/img/visual-hidden-exposure.webp" alt=""
-                     width="500" height="500" loading="lazy" decoding="async">
-                <span class="tour__over">Exposure hits later</span>
+          <li class="lotus__petal" style="--a:120deg;--lr:39.4cqw">
+            <a class="lotus__link" href="#rev-home-offers">
+              <span class="lotus__shot">
+                <img class="lotus__img" src="assets/img/visual-benchmark-project.webp" alt="" loading="lazy" decoding="async">
               </span>
-              <span class="tour__label">Security exposure</span>
+              <span class="lotus__name">Our engagements</span>
             </a>
           </li>
-          <li>
-            <a class="tour__link" href="#rev-home-model">
-              <span class="tour__shot">
-                <img class="tour__img" src="assets/img/visual-savings-share.webp" alt=""
-                     width="505" height="498" loading="lazy" decoding="async">
-                <span class="tour__over">Paid from what you save</span>
+          <li class="lotus__petal" style="--a:160deg;--lr:36.4cqw">
+            <a class="lotus__link" href="#rev-home-security">
+              <span class="lotus__shot">
+                <img class="lotus__img" src="assets/img/visual-hidden-exposure.webp" alt="" loading="lazy" decoding="async">
               </span>
-              <span class="tour__label">Our pricing model</span>
+              <span class="lotus__name">Security exposure</span>
             </a>
           </li>
-          <li>
-            <a class="tour__link" href="#rev-home-why">
-              <span class="tour__shot">
-                <img class="tour__img" src="assets/img/visual-experience-gap.webp" alt=""
-                     width="500" height="500" loading="lazy" decoding="async">
-                <span class="tour__over">You&rsquo;ve seen only one deal</span>
+          <li class="lotus__petal" style="--a:200deg;--lr:36.4cqw">
+            <a class="lotus__link" href="#rev-home-model">
+              <span class="lotus__shot">
+                <img class="lotus__img" src="assets/img/visual-savings-share.webp" alt="" loading="lazy" decoding="async">
               </span>
-              <span class="tour__label">Why us</span>
+              <span class="lotus__name">Our pricing model</span>
             </a>
           </li>
-        </ul>
+          <li class="lotus__petal" style="--a:240deg;--lr:39.4cqw">
+            <a class="lotus__link" href="#rev-home-process">
+              <span class="lotus__shot">
+                <img class="lotus__img" src="assets/img/visual-process-steps.webp" alt="" loading="lazy" decoding="async">
+              </span>
+              <span class="lotus__name">How it works</span>
+            </a>
+          </li>
+          <li class="lotus__petal" style="--a:280deg;--lr:39.3cqw">
+            <a class="lotus__link" href="#rev-home-coverage">
+              <span class="lotus__shot">
+                <img class="lotus__img" src="assets/img/visual-capability-book.webp" alt="" loading="lazy" decoding="async">
+              </span>
+              <span class="lotus__name">Our coverage</span>
+            </a>
+          </li>
+          <li class="lotus__petal" style="--a:320deg;--lr:38.4cqw">
+            <a class="lotus__link" href="#rev-home-why">
+              <span class="lotus__shot">
+                <img class="lotus__img" src="assets/img/visual-experience-gap.webp" alt="" loading="lazy" decoding="async">
+              </span>
+              <span class="lotus__name">Why us</span>
+            </a>
+          </li>
+          </ul>
+          <span class="lotus__core" aria-hidden="true">
+            <img src="assets/img/logo-mark.png" alt="">
+          </span>
+        </div>
       </nav>
     </div>
   </section>
@@ -374,25 +459,94 @@
   <!-- ======================================================== OFFERS -->
   <!-- Decision 18: the dependency analysis becomes a named second product,
        with the benchmark as the light way in. -->
-  <section class="section section--tint" id="rev-home-offers" data-review-id="home.offers" data-review-label="Home — The two named engagements">
+  <!-- 8 September: this section gets a picture too, so all seven picture-bearing
+       sections are built the same way. It lands between the services and the
+       security picture, both of which it would have doubled up on, so the two
+       below it are mirrored: security moves to the right column, the commercial
+       model to the left. Sides still alternate all the way down the page. -->
+  <!-- The band used to be section--tint, and --light-tint (#eef7f9) is five
+       points off --paper-alt (#f3f8f9), which is the services band directly
+       above it: the two read as one long section with no boundary. This one
+       goes back to plain paper and the security section below takes --alt, so
+       the page keeps its white / tinted rhythm and every boundary is visible. -->
+  <section class="section" id="rev-home-offers" data-review-id="home.offers" data-review-label="Home — The two named engagements">
     <div class="container">
-      <div class="section__head">
-        <span class="eyebrow">Engagements</span>
-        <h2>Initial benchmark versus actual project</h2>
-        <p class="lead">
-          Most clients start with the benchmark because it commits them to nothing. The second
-          engagement is a real project, and it answers a much harder question.
-        </p>
+      <div class="visual visual--split visual--first visual--onLight" data-anchor="top-left"
+           style="--tw:15ch;--sw:20ch">
+        <div class="visual__body">
+          <div class="section__head" style="margin-bottom:0">
+            <span class="eyebrow">Engagements</span>
+            <h2>Initial benchmark versus actual project</h2>
+            <p class="lead">
+              Most clients start with the benchmark because it commits them to nothing. The second
+              engagement is a real project, and it answers a much harder question.
+            </p>
+          </div>
+        </div>
+        <div class="visual__media">
+          <img class="visual__img" src="assets/img/visual-benchmark-project.webp"
+               width="500" height="500" loading="lazy" decoding="async"
+               alt="A single sheet headed Market Benchmark, its bar chart read through a magnifying glass, and an arrow from it to a thick stack of tabbed folders headed Project — technical analysis, commercial analysis, migration planning, ROI model, executive summary — beside a laptop showing a project schedule. The two are labelled underneath: 1. Benchmark, a clear view of the market, no commitment; 2. Project, deeper analysis, real options, measurable impact.">
+          <div class="visual__overlay">
+            <p class="visual__title">Our iterative <em>engagement approach.</em></p>
+            <p class="visual__sub">Check the benchmark and find out what&rsquo;s possible.</p>
+          </div>
+          <img class="visual__brand" src="assets/img/logo-mark.png" alt="" aria-hidden="true">
+        </div>
       </div>
 
       <div class="offers">
         <article class="offer">
-          <span class="offer__tag">The way in</span>
+          <span class="offer__tag">Quick market check</span>
           <h3>Market benchmark</h3>
           <p>
             What would you pay for your current setup if you went to market today? We take
             your metrics, obtain comparable offers and hand them to you.
           </p>
+
+          <!-- What the engagement puts on the table: three comparable offers, read
+               against a market that has moved. Drawn, not photographed — see README §6. -->
+          <svg class="offer__art" viewBox="0 0 520 180" role="img" aria-labelledby="offerArtBenchmark">
+            <title id="offerArtBenchmark">Three comparable offers on your own metrics, read against where the market has moved</title>
+            <ellipse cx="216" cy="170" rx="146" ry="8" fill="#eaf3f5"/>
+
+            <g transform="rotate(-8 124 104)">
+              <rect class="art-paper" x="75" y="44" width="98" height="120" rx="5"/>
+              <text class="art-label" x="124" y="74" text-anchor="middle" font-size="13">OFFER 2</text>
+              <rect class="art-rule" x="92" y="88" width="64" height="5" rx="2.5"/>
+              <rect class="art-rule" x="92" y="101" width="64" height="5" rx="2.5"/>
+              <rect class="art-rule" x="92" y="114" width="42" height="5" rx="2.5"/>
+              <text class="art-euro" x="124" y="152" text-anchor="middle" font-size="26">€</text>
+            </g>
+
+            <g transform="rotate(8 308 104)">
+              <rect class="art-paper" x="259" y="44" width="98" height="120" rx="5"/>
+              <text class="art-label" x="308" y="74" text-anchor="middle" font-size="13">OFFER 3</text>
+              <rect class="art-rule" x="276" y="88" width="64" height="5" rx="2.5"/>
+              <rect class="art-rule" x="276" y="101" width="64" height="5" rx="2.5"/>
+              <rect class="art-rule" x="276" y="114" width="42" height="5" rx="2.5"/>
+              <text class="art-euro" x="308" y="152" text-anchor="middle" font-size="26">€</text>
+            </g>
+
+            <g>
+              <rect class="art-paper" x="160" y="22" width="112" height="142" rx="6"/>
+              <text class="art-label art-label--lead" x="216" y="56" text-anchor="middle" font-size="16">OFFER 1</text>
+              <rect class="art-rule" x="178" y="72" width="76" height="6" rx="3"/>
+              <rect class="art-rule" x="178" y="87" width="76" height="6" rx="3"/>
+              <rect class="art-rule" x="178" y="102" width="52" height="6" rx="3"/>
+              <text class="art-euro art-euro--lead" x="216" y="147" text-anchor="middle" font-size="34">€</text>
+            </g>
+
+            <g>
+              <rect class="art-rule" x="386" y="164" width="104" height="3" rx="1.5"/>
+              <rect class="art-step1" x="392" y="130" width="24" height="34" rx="3"/>
+              <rect class="art-step3" x="426" y="108" width="24" height="56" rx="3"/>
+              <rect class="art-step5" x="460" y="80" width="24" height="84" rx="3"/>
+              <path class="art-trend" d="M384 126c30-8 56-30 86-64"/>
+              <path class="art-trend" d="M467.6 73.8 470 62l-11.4 3.8"/>
+            </g>
+          </svg>
+
           <ul class="offer__list">
             <li>Two to three comparable offers on your own metrics</li>
             <li>A written read on where your contract sits against the market</li>
@@ -402,20 +556,79 @@
           <p class="offer__foot"><a class="btn btn--primary btn--sm" href="contact.html">Start a benchmark</a></p>
         </article>
 
-        <article class="offer offer--second">
-          <span class="offer__tag">The bigger question</span>
+        <article class="offer">
+          <span class="offer__tag">Full business case</span>
           <h3>Dependency &amp; migration ROI analysis</h3>
           <p>
             How dependent are you on your current vendor, what would leaving actually cost,
             and what would you pay elsewhere? One project, one complete calculation.
           </p>
+
+          <!-- The chain the engagement runs: a locked-in estate, costed, into a paper
+               the board can read. -->
+          <svg class="offer__art" viewBox="0 0 520 180" role="img" aria-labelledby="offerArtRoi">
+            <title id="offerArtRoi">A locked-in estate, costed end to end, into an ROI paper for the board</title>
+
+            <g>
+              <rect class="art-slab" x="34" y="40" width="126" height="30" rx="7"/>
+              <rect class="art-slab" x="34" y="78" width="126" height="30" rx="7"/>
+              <rect class="art-slab" x="34" y="116" width="126" height="30" rx="7"/>
+              <circle class="art-dot" cx="53" cy="55" r="4.5"/>
+              <circle class="art-dot" cx="71" cy="55" r="4.5"/>
+              <circle class="art-dot" cx="53" cy="93" r="4.5"/>
+              <circle class="art-dot" cx="71" cy="93" r="4.5"/>
+              <circle class="art-dot" cx="53" cy="131" r="4.5"/>
+              <circle class="art-dot" cx="71" cy="131" r="4.5"/>
+            </g>
+
+            <g>
+              <path class="art-shackle" d="M136 124v-16a16 16 0 0 1 32 0v16"/>
+              <rect class="art-lock" x="124" y="120" width="56" height="46" rx="9"/>
+              <circle cx="152" cy="137" r="5.5" fill="#fff"/>
+              <rect x="149.5" y="139" width="5" height="13" rx="2.5" fill="#fff"/>
+            </g>
+
+            <path class="art-arrow" d="M198 100h30"/>
+            <path class="art-arrow" d="m222 92 8 8-8 8"/>
+
+            <g>
+              <rect class="art-deep" x="252" y="44" width="88" height="112" rx="11"/>
+              <rect class="art-screen" x="266" y="58" width="60" height="24" rx="4"/>
+              <rect class="art-key" x="266" y="94" width="16" height="13" rx="3"/>
+              <rect class="art-key" x="288" y="94" width="16" height="13" rx="3"/>
+              <rect class="art-key" x="310" y="94" width="16" height="13" rx="3"/>
+              <rect class="art-key" x="266" y="112" width="16" height="13" rx="3"/>
+              <rect class="art-key" x="288" y="112" width="16" height="13" rx="3"/>
+              <rect class="art-key" x="310" y="112" width="16" height="13" rx="3"/>
+              <rect class="art-key" x="266" y="130" width="16" height="13" rx="3"/>
+              <rect class="art-key" x="288" y="130" width="16" height="13" rx="3"/>
+              <rect class="art-key" x="310" y="130" width="16" height="13" rx="3"/>
+            </g>
+
+            <path class="art-arrow" d="M352 100h30"/>
+            <path class="art-arrow" d="m376 92 8 8-8 8"/>
+
+            <g>
+              <path class="art-paper" d="M404 26h62l24 24v102a6 6 0 0 1-6 6h-80a6 6 0 0 1-6-6V32a6 6 0 0 1 6-6z"/>
+              <path class="art-fold" d="M466 26v24h24z"/>
+              <text class="art-label art-label--lead" x="440" y="80" text-anchor="middle" font-size="24">ROI</text>
+              <rect class="art-rule" x="412" y="126" width="70" height="3" rx="1.5"/>
+              <rect class="art-step1" x="414" y="114" width="12" height="12" rx="2"/>
+              <rect class="art-step3" x="432" y="106" width="12" height="20" rx="2"/>
+              <rect class="art-step3" x="450" y="100" width="12" height="26" rx="2"/>
+              <rect class="art-step5" x="468" y="92" width="12" height="34" rx="2"/>
+              <rect class="art-rule" x="412" y="137" width="68" height="5" rx="2.5"/>
+              <rect class="art-rule" x="412" y="148" width="46" height="5" rx="2.5"/>
+            </g>
+          </svg>
+
           <ul class="offer__list">
             <li>Technical and commercial lock-in mapped out</li>
             <li>Migration cost estimated, not guessed</li>
             <li>Market prices for the target setup</li>
             <li>A full ROI calculation you can take to the board</li>
           </ul>
-          <p class="offer__foot"><a class="btn btn--ghost btn--sm" href="contact.html?topic=Dependency%20%26%20migration%20ROI%20analysis">Scope an analysis</a></p>
+          <p class="offer__foot"><a class="btn btn--primary btn--sm" href="contact.html?topic=Dependency%20%26%20migration%20ROI%20analysis">Scope an analysis</a></p>
         </article>
       </div>
     </div>
@@ -423,9 +636,9 @@
 
   <!-- ====================================================== SECURITY -->
   <!-- Decision 11: risk becomes a service of its own, not just an argument. -->
-  <section class="section" id="rev-home-security" data-review-id="home.security" data-review-label="Home — Security exposure as its own service">
+  <section class="section section--alt" id="rev-home-security" data-review-id="home.security" data-review-label="Home — Security exposure as its own service">
     <div class="container">
-      <div class="visual visual--split visual--first visual--onLight" data-anchor="bottom-left">
+      <div class="visual visual--split visual--onLight" data-anchor="bottom-left">
         <div class="visual__body">
           <span class="eyebrow">The second kind of mistake</span>
           <h2>Overpaying is visible. Being exposed is not.</h2>
@@ -477,9 +690,13 @@
   <!-- ========================================================= MODEL -->
   <!-- Decisions 01 + 15: vendor-financed, no price list, success share.
        This replaces "no reseller margin, no referral fee, no vendor allegiance". -->
-  <section class="section section--deep" id="rev-home-model" data-review-id="home.model" data-review-label="Home — How we are paid (commercial model)">
+  <!-- This was the one dark band in the middle of the page. Review of
+       8 September: why does this section stick out when every other one is
+       white or pale teal? It does not any more — white surface, ink text, and
+       the light/tinted alternation of the page runs straight through it. -->
+  <section class="section" id="rev-home-model" data-review-id="home.model" data-review-label="Home — How we are paid (commercial model)">
     <div class="container">
-      <div class="visual visual--split visual--onLight" data-anchor="top-left">
+      <div class="visual visual--split visual--first visual--onLight" data-anchor="top-left">
         <div class="visual__body">
           <span class="eyebrow">Our pricing model</span>
           <p class="model__lead">
@@ -542,14 +759,48 @@
   </section>
 
   <!-- ====================================================== PROCESS -->
-  <!-- Decision 12: the four-step process stays exactly as it was. -->
+  <!-- Decision 12: the four steps themselves stay exactly as they were — the
+       picture is added above them, nothing is cut to make room for it. -->
+  <!-- This was the one picture on the page that sat under its section rather
+       than in it: --banner, a centred head with the picture full width beneath.
+       Review of 8 September, third round: the other sections carry their
+       picture inside the section, left or right of the prose, and this one
+       should do the same. So it is a --split like the other seven, and the head
+       moves into the visual__body beside it.
+
+       Media right, which is the side the alternation wants. Read down the page
+       the pictures now go right - left - right - left - right - left - RIGHT -
+       left - right: with the banner gone from the middle the run alternates all
+       the way through, and the double-left that the coverage picture had to
+       reason its way around is gone with it.
+
+       The picture is the only one on the site that is not square — 5:4, four
+       numbered stages read left to right — so in a half-column it renders wider
+       than tall against eight squares. That is the one thing this arrangement
+       costs, and it is worth less than the consistency. -->
   <section class="section section--alt" id="rev-home-process" data-review-id="home.process" data-review-label="Home — How it works (4 steps)">
     <div class="container">
-      <div class="section__head section__head--center">
-        <span class="eyebrow">How it works</span>
-        <h2>A procurement process that stands up to audit</h2>
-        <p class="lead">Four stages, fixed deliverables, and a documented decision trail you can hand to finance, security and legal.</p>
+      <div class="visual visual--split visual--onLight" data-anchor="top-left"
+           style="--tw:14ch;--sw:24ch">
+        <div class="visual__body">
+          <div class="section__head" style="margin-bottom:0">
+            <span class="eyebrow">How it works</span>
+            <h2>A procurement process that stands up to audit</h2>
+            <p class="lead">Four stages, fixed deliverables, and a documented decision trail you can hand to finance, security and legal.</p>
+          </div>
+        </div>
+        <div class="visual__media">
+          <img class="visual__img" src="assets/img/visual-process-steps.webp"
+               width="1132" height="906" loading="lazy" decoding="async"
+               alt="Four stone plinths in a row, numbered 01 to 04, each holding an upright document, with an arrow from each to the next. 01, Requirements and baseline: a checklist headed Requirements with technical needs, current contracts, usage and spend, and business goals all ticked, a pen lying beside it. 02, Market scan and shortlist: a sheet headed Vendor Comparison with a column of vendor marks and a magnifying glass held over the figures, more sheets fanned out behind it. 03, Negotiation and counter-offers: a sheet headed Negotiation listing price, terms, SLA and exit conditions. 04, Award and handover: a signed sheet headed Contract in a tabbed folder, with a seal and a tick.">
+          <div class="visual__overlay">
+            <p class="visual__title">From requirement <em>to signature.</em></p>
+            <p class="visual__sub">Four steps to success.</p>
+          </div>
+          <img class="visual__brand" src="assets/img/logo-mark.png" alt="" aria-hidden="true">
+        </div>
       </div>
+
       <div class="grid grid--4 steps">
         <article class="step">
           <h3>Requirements &amp; baseline</h3>
@@ -577,14 +828,40 @@
        steps, darker with size. Every tile is also a link into the catalog. -->
   <section class="section" id="rev-home-coverage" data-review-id="home.coverage" data-review-label="Home — Market map of the ten domains">
     <div class="container">
-      <div class="section__head">
-        <span class="eyebrow">Coverage</span>
-        <h2>183 capabilities across ten technology domains</h2>
-        <p class="lead">
-          The whole catalog at a glance: each rectangle is one domain, sized by how much of
-          the 183 sits inside it. Everything here is something we have sourced, benchmarked
-          or negotiated. Pick a domain to see the detail.
-        </p>
+      <!-- The picture came on 8 September. This was the last section on the page
+           with a head, a lead and a diagram but nothing to look at beside the
+           prose.
+
+           Media left. It was a compromise while the process picture above was a
+           full-width banner: the run doubled up on left, and the banner sitting
+           between the two halves of that double was the whole argument for it.
+           The process picture moved into its own section on the third round of
+           8 September and took the banner out of the middle, so left is now
+           simply the next side along - the nine read right, left, right, left,
+           right, left, right, LEFT, right, and this is the eighth. -->
+      <div class="visual visual--split visual--first visual--onLight" data-anchor="top-left"
+           style="--tw:14ch;--sw:24ch">
+        <div class="visual__body">
+          <div class="section__head" style="margin-bottom:0">
+            <span class="eyebrow">Coverage</span>
+            <h2>183 capabilities across ten technology domains</h2>
+            <p class="lead">
+              The whole catalog at a glance: each rectangle is one domain, sized by how much of
+              the 183 sits inside it. Everything here is something we have sourced, benchmarked
+              or negotiated. Pick a domain to see the detail.
+            </p>
+          </div>
+        </div>
+        <div class="visual__media">
+          <img class="visual__img" src="assets/img/visual-capability-book.webp"
+               width="500" height="500" loading="lazy" decoding="async"
+               alt="A bound reference volume lying on a stone surface, titled Technology Capabilities, subtitled a complete market overview, with the line Explore. Compare. Plan. at the foot of the cover. Ten coloured chapter tabs run down the fore-edge, each with its own icon, from the darkest at the top to the palest at the bottom: Security &amp; Identity, Cloud &amp; Platform Operations, Applications, Network &amp; SASE, Data &amp; AI, Developer Tools, FinOps &amp; Governance, Collaboration, Infrastructure and Other.">
+          <div class="visual__overlay">
+            <p class="visual__title">One market. <em>Ten chapters.</em></p>
+            <p class="visual__sub">Browse our capabilities.</p>
+          </div>
+          <img class="visual__brand" src="assets/img/logo-mark.png" alt="" aria-hidden="true">
+        </div>
       </div>
 
       <div class="marketmap">
@@ -719,37 +996,13 @@
     </div>
   </section>
 
-  <!-- =================================================== REFERENCES -->
-  <!-- Decision 06: Globe and Weiße Immobilien stay; copy and written releases
-       are being supplied. -->
-  <section class="section" id="rev-home-references" data-review-id="home.references" data-review-label="Home — References teaser">
-    <div class="container">
-      <div class="grid grid--2" style="align-items:center;gap:var(--s8)">
-        <div>
-          <span class="eyebrow">References</span>
-          <h2>Proven in the enterprise environment</h2>
-          <p class="lead">
-            The benchmark case is told in full on the references page, together with the
-            client projects behind it — each named once the client has confirmed in writing
-            that we may use their name.
-          </p>
-          <p style="margin-top:var(--s5)">
-            <a class="btn btn--primary" href="references.html">View references</a>
-          </p>
-        </div>
-        <div class="grid" style="gap:var(--s3)">
-          <article class="card" style="padding:var(--s5)">
-            <h3 style="margin-bottom:var(--s2)">Globe</h3>
-            <p><span class="ph">One-line description of the engagement and the outcome achieved.</span></p>
-          </article>
-          <article class="card" style="padding:var(--s5)">
-            <h3 style="margin-bottom:var(--s2)">Weiße Immobilien</h3>
-            <p><span class="ph">One-line description of the engagement and the outcome achieved.</span></p>
-          </article>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- The references teaser stood here: a headline, a lead, a link to the
+       references page and two named client cards. Review of 8 September — the
+       references belong on the references page, take them off the home page
+       altogether — so it is gone rather than shortened. References are one
+       click away in the header, and the header now lists what is on that page.
+       (Cycle 1 had already taken the benchmark case out of this section for the
+       same reason; this is the rest of it.) -->
 
   <!-- ========================================================== CTA -->
   <section class="section section--tight cta" id="rev-home-cta" data-review-id="home.cta" data-review-label="Home — Closing call to action">
@@ -829,7 +1082,7 @@
   </div>
 </footer>
 
-<script src="assets/js/site.js"></script>
+<script src="assets/js/site.js?v=20260908d"></script>
 <script src="assets/js/handoff.js"></script>
 <script src="assets/js/dictation.js?v=20260907"></script>
 <script src="assets/js/review.js?v=20260907"></script>
