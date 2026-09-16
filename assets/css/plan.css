@@ -423,6 +423,31 @@ body[data-page="Projektplan"] .pagehead h1 { font-size: clamp(1.8rem, 1.3rem + 1
   color: var(--ink-3);
 }
 
+/* ------------------------------------------- the plan as a whole -- */
+
+/* The chart is the only place where the plan is one shape rather than fifty
+   rows, so the question about that shape is asked directly under it. Down in
+   the register it would be a fifty-first task, which is exactly what it is
+   not. The panel itself is the ordinary .pl-fb — only its surroundings say
+   that this one is about everything above it. */
+.pl-planfb {
+  margin-top: var(--s4);
+  padding-top: var(--s4);
+  border-top: 1px dashed var(--line);
+}
+
+.pl-planfb h3 { margin: 0 0 var(--s2); font-size: 1.12rem; }
+
+.pl-planfb__lead {
+  margin: 0 0 var(--s3);
+  font-size: var(--fs-xs);
+  line-height: 1.55;
+  color: var(--ink-3);
+  max-width: 70ch;
+}
+
+.pl-fb--plan { margin-top: 0; }
+
 /* ============================================================= filters ==
 
    One line: the five people as chips, then phase, area and status as
@@ -1024,6 +1049,7 @@ body[data-page="Projektplan"] .pagehead h1 { font-size: clamp(1.8rem, 1.3rem + 1
   .pl-fb.is-filled .pl-fb__body[hidden] { display: block !important; }
   .pl-fb:not(.is-filled) { display: none !important; }
   .pl-areas:not(:has(.pl-fb.is-filled)) { display: none !important; }
+  .pl-planfb:not(:has(.pl-fb.is-filled)) { display: none !important; }
 
   .pl-grow { break-inside: avoid; box-shadow: none !important; background: none !important; }
 

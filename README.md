@@ -294,6 +294,14 @@ their tasks, an impossible combination says so instead of going blank, and *Filt
 appears only while something is filtered. A link into a phase — from the footer, say — clears
 the filter first if that phase is currently hidden, so a jump can never land on nothing.
 
+**The plan as a whole takes feedback too, and it is asked for first.** Directly under the
+chart, before the register begins, sits one note — *Und der Ablauf als Ganzes?* — for the
+order of the phases, where they are cut, whether the dates are realistic and whether the
+right things depend on each other. It is deliberately not the fifty-first row in the
+register: the chart is the only place where the plan is visible as one shape, and a remark
+about that shape has nowhere to go among fifty answers about its parts. Its id is `ABLAUF`,
+it carries no progress mark — a sequence is not *erledigt* — and it leads both exports.
+
 **Every task, every phase and every area takes feedback.** A panel inside the opened row
 holds a progress mark (*erledigt · in Arbeit · blockiert*) and a note, typed or dictated;
 each phase has a note of its own for what applies to all of it. The six areas keep their
@@ -308,9 +316,12 @@ browser until someone exports.
 
 **Getting it out:** the same five routes as the catalogue, from the same shared sheet — CSV,
 mail (which downloads the CSV alongside), WhatsApp, clipboard, print. The CSV is the complete
-record: all fifty tasks whether touched or not, plus the six phase notes and the six area
-notes, with columns
+record: the note on the Ablauf first, then all fifty tasks whether touched or not, then the
+six phase notes and the six area notes, with columns
 `typ, nr, aufgabe, block, phase, wer, status_plan, fortschritt, rueckmeldung, von, stand`.
+The header line of the mail, WhatsApp and clipboard text counts the two kinds apart —
+*1 von 50 Aufgaben · 3 Anmerkungen zu Ablauf, Phasen und Bereichen* — because adding them
+together once read as *1 von 50 Aufgaben* for a message that answered no task at all.
 **Printing ignores the filter, opens every task and every written note**, and leaves the
 untouched forms out — paper carries the whole plan rather than whatever was on screen,
 without fifty empty boxes.

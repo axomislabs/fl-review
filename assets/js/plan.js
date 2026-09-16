@@ -42,6 +42,14 @@
     block: "blockiert"
   };
 
+  /* The plan as a whole. Its panel is the one that does not sit in the
+     register: it belongs under the chart, because the chart is the only
+     place where the plan is visible as one shape rather than as fifty
+     separate rows. Everything that walks the panels therefore has to reach
+     outside #pl-groups — see the selectors below, which are document-wide. */
+  var PLAN_ID = "ABLAUF";
+  var PLAN_TITLE = "Ablauf insgesamt — Reihenfolge, Phasen, Termine";
+
   var $ = function (sel, scope) { return (scope || document).querySelector(sel); };
   var $$ = function (sel, scope) {
     return Array.prototype.slice.call((scope || document).querySelectorAll(sel));
@@ -67,6 +75,15 @@
     });
     return n;
   };
+
+  /* countFeedback() is every panel; these two split it, because a note on the
+     Ablauf, a phase or an area answers no task. TASKS is defined further
+     down — both are only ever called after boot. */
+  var taskCount = function () {
+    return TASKS.filter(function (t) { return hasContent(state.items[t.id]); }).length;
+  };
+
+  var otherCount = function () { return countFeedback() - taskCount(); };
 
   var load = function () {
     try {
@@ -196,7 +213,9 @@
     phase: { label: "Anmerkung zur ganzen Phase",  field: "Was gilt für diese Phase?",
              hint: "Gilt für alle Aufgaben dieser Phase …" },
     area:  { label: "",                            field: "Was gilt für diesen Bereich?",
-             hint: "Gilt für alle Aufgaben dieses Bereichs …" }
+             hint: "Gilt für alle Aufgaben dieses Bereichs …" },
+    plan:  { label: "Anmerkung zum ganzen Ablauf", field: "Was stimmt am Ablauf nicht?",
+             hint: "Reihenfolge, Phasenschnitte, Termine, Abhängigkeiten …" }
   };
 
   var panelHtml = function (id, kind, title) {
@@ -229,17 +248,24 @@
            '</div>';
   };
 
-  $$(".pl-fb", root).forEach(function (host) {
+  /* Document-wide, not inside the register: the Ablauf panel lives up at the
+     chart. Everything else about it is an ordinary panel. */
+  $$(".pl-fb").forEach(function (host) {
     var id = host.getAttribute("data-fb");
-    var kind = id.indexOf("PHASE-") === 0 ? "phase"
+    var kind = id === PLAN_ID ? "plan"
+             : id.indexOf("PHASE-") === 0 ? "phase"
              : id.indexOf("BLOCK-") === 0 ? "area" : "task";
     host.innerHTML = panelHtml(id, kind, host.getAttribute("data-area") || "");
   });
 
+  var hostFor = function (id) {
+    return document.querySelector('.pl-fb[data-fb="' + id + '"]');
+  };
+
   /* Reflect stored feedback into a panel, and mark the collapsed header so a
      filled-in note is visible without opening anything. */
   var paint = function (id) {
-    var host = root.querySelector('.pl-fb[data-fb="' + id + '"]');
+    var host = hostFor(id);
     if (!host) return;
     var e = entry(id);
     var area = $("textarea", host);
@@ -276,6 +302,7 @@
   };
 
   var paintAll = function () {
+    paint(PLAN_ID);
     TASKS.forEach(function (t) { paint(t.id); });
     GROUPS.forEach(function (g) { paint(groupId(g.key)); });
     AREAS.forEach(function (a) { paint("BLOCK-" + a.key); });
@@ -306,7 +333,13 @@
     if (btn) btn.focus({ preventScroll: true });
   };
 
-  root.addEventListener("click", function (event) {
+  /* Delegated from the document rather than from the register: the Ablauf
+     panel sits in the chart section, and its toggle and textarea have to be
+     reached by the same handler as all the others. The row and reference
+     branches below only ever match inside the register. */
+  document.addEventListener("click", function (event) {
+    if (!event.target.closest) return;
+
     /* A brief points at the tasks it needs and at the ones waiting for it.
        Those live in other phases, and the filter may be hiding them. */
     var ref = event.target.closest(".pl-ref");
@@ -349,13 +382,17 @@
     }
   });
 
-  root.addEventListener("input", function (event) {
+  document.addEventListener("input", function (event) {
     var area = event.target.closest ? event.target.closest("textarea[data-note]") : null;
     if (!area) return;
-    entry(area.getAttribute("data-note")).note = area.value;
     var id = area.getAttribute("data-note");
-    var host = root.querySelector('.pl-fb[data-fb="' + id + '"]');
-    if (host) host.classList.toggle("is-filled", hasContent(entry(id)));
+    entry(id).note = area.value;
+    /* Repaint rather than only setting is-filled: on a panel that has no
+       progress marks — a phase, an area, the Ablauf — nothing else ever puts
+       the word "Anmerkung" on the closed header, so it used to show up only
+       after a reload. paint() leaves the textarea alone when its value
+       already matches, so the caret does not move. */
+    paint(id);
     saveSoon();
   });
 
@@ -375,7 +412,7 @@
     button.setAttribute("aria-label", live ? "Diktat beenden" : "Diktieren statt tippen");
   };
 
-  root.addEventListener("click", function (event) {
+  document.addEventListener("click", function (event) {
     var button = event.target.closest ? event.target.closest(".wl-mic") : null;
     if (!button || !window.FL_DICTATION) return;
     var fieldId = button.getAttribute("data-mic");
@@ -599,6 +636,11 @@
 
   var withFeedback = function () {
     var out = [];
+    /* First, and on its own: a remark about the shape of the plan is not one
+       more line among fifty answers about its parts. */
+    if (hasContent(state.items[PLAN_ID])) {
+      out.push({ kind: "plan", e: state.items[PLAN_ID] });
+    }
     TASKS.forEach(function (t) {
       var e = state.items[t.id];
       if (hasContent(e)) out.push({ kind: "task", t: t, e: e });
@@ -618,11 +660,14 @@
      not, so the file doubles as the plan itself. */
   var buildCsv = function () {
     var when = stampFull();
-    var rows = TASKS.map(function (t) {
+    var plan = state.items[PLAN_ID] || {};
+    var rows = [["Ablauf", PLAN_ID, PLAN_TITLE, "", "", "", "", "",
+                 (plan.note || "").trim(), state.who || "", when]];
+    TASKS.forEach(function (t) {
       var e = state.items[t.id] || {};
-      return ["Aufgabe", t.id, t.title, t.stream, t.whenText, t.whoText,
-              t.statusText, e.mark ? MARKS[e.mark] : "", (e.note || "").trim(),
-              state.who || "", when];
+      rows.push(["Aufgabe", t.id, t.title, t.stream, t.whenText, t.whoText,
+                 t.statusText, e.mark ? MARKS[e.mark] : "", (e.note || "").trim(),
+                 state.who || "", when]);
     });
     GROUPS.forEach(function (g) {
       var e = state.items[groupId(g.key)] || {};
@@ -645,8 +690,27 @@
       "Fersen & Lohse — Rückmeldung zum Projektplan",
       "Von: " + (state.who || "ohne Namen"),
       "Stand: " + stampFull(),
-      "Rückmeldungen: " + countFeedback() + " von " + TASKS.length + " Aufgaben"
+      /* Counted apart: a remark on the Ablauf, a phase or an area is not an
+         answered task, and adding the two together once read as "1 von 50
+         Aufgaben" for a mail that held no task feedback at all. */
+      "Rückmeldungen: " + taskCount() + " von " + TASKS.length + " Aufgaben" +
+        (otherCount()
+          ? " · " + otherCount() + " Anmerkung" + (otherCount() === 1 ? "" : "en") +
+            " zu Ablauf, Phasen und Bereichen"
+          : "")
     ];
+  };
+
+  /* What a note that is not about one task is headed with. */
+  var groupTitle = function (item) {
+    if (item.kind === "plan") return "Ablauf insgesamt";
+    if (item.kind === "phase") return item.g.title;
+    return "Bereich " + item.a.title;
+  };
+
+  var groupKey = function (item) {
+    if (item.kind === "plan") return "Ablauf";
+    return item.kind === "phase" ? item.g.key : item.a.key;
   };
 
   /* Three renderings, complete to terse. Every one of them lists every item
@@ -655,9 +719,7 @@
     var lines = head();
     withFeedback().forEach(function (item) {
       if (item.kind !== "task") {
-        lines.push("", item.kind === "phase"
-          ? "== " + item.g.title + " =="
-          : "== Bereich " + item.a.title + " ==");
+        lines.push("", "== " + groupTitle(item) + " ==");
         lines.push("   " + item.e.note.trim());
         return;
       }
@@ -675,8 +737,7 @@
     lines.push("");
     items.forEach(function (item) {
       if (item.kind !== "task") {
-        lines.push((item.kind === "phase" ? item.g.title : "Bereich " + item.a.title) +
-          ": Anmerkung vorhanden");
+        lines.push(groupTitle(item) + ": Anmerkung vorhanden");
         return;
       }
       lines.push(item.t.id + " " + item.t.title +
@@ -695,7 +756,7 @@
     lines.push("");
     withFeedback().forEach(function (item) {
       if (item.kind !== "task") {
-        lines.push((item.kind === "phase" ? item.g.key : item.a.key) + " +");
+        lines.push(groupKey(item) + " +");
         return;
       }
       lines.push(item.t.id + (item.e.mark ? " " + MARKS[item.e.mark] : "") +
